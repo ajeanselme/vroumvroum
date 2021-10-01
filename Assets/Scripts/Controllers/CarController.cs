@@ -8,66 +8,120 @@ public class CarController : MonoBehaviour
 {
     public Rigidbody theRB;
 
-    public float forwardAccel = 8f, reverseAccel = 4f, maxSpeed = 50f, turnStrength = 180, gravityForce = 10f, dragOnGround = 3f;
+    [Header("Settings")]
+    [Tooltip("Temps total de parcours avant décélération")]
+    public float totalTime;
+    
+    [Header("Vitesses")]
+    [Tooltip("Vitesse de départ")]
+    public float initialSpeed = 8f;
+    [Tooltip("Vitesse de décélération quand le temps total s'est écoulé")]
+    public float decelerationSpeed = 10f;
+    [Tooltip("Facteur de décélération en montée. + élevé = décélération moindre")]
+    [Range(0.9f, .99f)]
+    public float uphillDecelerationFactor = .95f;
+    [Header("Forces")]
+    [Tooltip("Force de turn")]
+    public float turnStrength = 180; 
+    [Tooltip("Force de gravité (vitesse à laquelle la voiture tombe quand en l'air")]
+    public float gravityForce = 10f; 
+    [Tooltip("Force de friction au sol")]
+    public float dragOnGround = 3f;
+    public ParticleSystem[] dustTrail;
+    [Tooltip("Quantité de particules max")]
+    public float maxEmission = 50f;
 
-    private float _speedInput, _turnInput;
+    private float _currentSpeed, _turnInput, _remainingTime;
     private bool grounded;
     
+    [Header("PAS TOUCHER")]
     public LayerMask whatIsGround;
     public float groundRayLength = .5f;
     public Transform groundRayPoint;
 
-    public ParticleSystem[] dustTrail;
-    public float maxEmission = 50f;
+    [SerializeField] private AnimationCurve slideCurve = new AnimationCurve ( new Keyframe (-45f, 1f), new Keyframe(0f, 0f));
+
     private float emissionRate;
     
     private void Start()
     {
         theRB.transform.SetParent(null);
+        _currentSpeed = initialSpeed;
+        launchCar();
     }
 
     private void Update()
     {
-        _speedInput = 0;
-        if (Input.GetAxis("Vertical") > 0)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            _speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
+            launchCar();
         }
-        else if(Input.GetAxis("Vertical") < 0)
-        {
-            _speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
-        }
-
+        
         _turnInput = Input.GetAxis("Horizontal");
 
-        if (grounded)
+        if (grounded && _currentSpeed > 0)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * turnStrength * Time.deltaTime, 0f));
         }
         transform.position = theRB.transform.position;
     }
 
     private void FixedUpdate()
     {
+        if (_remainingTime > 0)
+        {
+            _remainingTime -= 1 * Time.deltaTime;
+        }
+        
+        float slopeAngle = (Vector3.Angle (Vector3.down, transform.forward)) - 90;
+        float speedFactor = slideCurve.Evaluate(slopeAngle);
+        
         grounded = false;
         RaycastHit hit;
         if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround))
         {
             grounded = true;
-            
+            emissionRate = 0;
+
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
-
-        emissionRate = 0;
-
+        
         if (grounded)
         {
-            theRB.drag = dragOnGround;
-            if (Mathf.Abs(_speedInput) > 0)
+            if (_currentSpeed > .1f)
             {
-                theRB.AddForce(transform.forward * _speedInput);
-
-                emissionRate = maxEmission;
+                theRB.drag = dragOnGround;
+                // If on flat ground
+                if (slopeAngle == 0)
+                {
+                    if (_currentSpeed > 0)
+                    {
+                        // Decelerate if time expired
+                        if (_remainingTime <= 0)
+                        {
+                            _currentSpeed -= decelerationSpeed * Time.deltaTime;
+                        }
+                    }
+                }
+                // If on slide
+                else if (slopeAngle < 0)
+                {
+                    _currentSpeed = Mathf.Clamp(_currentSpeed + .5f * speedFactor, 0, initialSpeed * 1.2f);
+                }
+                // If on uphill
+                else if (slopeAngle > 0)
+                {
+                    if (_remainingTime > 0)
+                    {
+                        _currentSpeed = Mathf.Clamp(_currentSpeed * uphillDecelerationFactor, 0, initialSpeed);
+                    }
+                    else
+                    {
+                        _currentSpeed = Mathf.Clamp(_currentSpeed * (uphillDecelerationFactor * .95f), 0, initialSpeed);
+                        Debug.Log(_currentSpeed);
+                    }
+                }
+                setCarSpeed(_currentSpeed);
             }
         }
         else
@@ -83,72 +137,34 @@ public class CarController : MonoBehaviour
         }
     }
 
+    public void setCarSpeed(float speed)
+    {
+        if (speed > 0.1f)
+        {
+            theRB.velocity = transform.forward * speed * 4f;
+            emissionRate = maxEmission;
+        }
+        else
+        {
+            stopCar();
+        }
+    }
 
-    // private Rigidbody rb;
+    public void launchCar()
+    {
+        theRB.useGravity = true;
+        _remainingTime = totalTime;
+        _currentSpeed = initialSpeed;
+    }
 
-    // [Header("Timers")]
-    // [Tooltip("Temps total de vie de la voiture, avant décélération")]
-    // public float totalTime = 10;
-    //
-    // [Header("Speeds")]
-    // [Tooltip("Vitesse de départ")]
-    // public float initialSpeed = 10;
-    // [Tooltip("Vitesse de décélération qquand le temps total s'est écoulé")]
-    // public float decelerationSpeed = 1;
-    // public float steering = 1f;
-    //
-    // private bool _moving;
-    // private float _currentRotation, _rotate;
-    // private void Start()
-    // {
-    //     rb = GetComponent<Rigidbody>();
-    //     Debug.Log("dece " + decelerationSpeed);
-    // }
-    //
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         Debug.Log("launch");
-    //         _moving = true;
-    //     }
-    //
-    //     if (Input.GetAxis("Horizontal") != 0 && _moving)
-    //     {
-    //         int dir = Input.GetAxis("Horizontal") > 0f ? 1 : -1;
-    //         float amount = Mathf.Abs(Input.GetAxis("Horizontal"));
-    //         Steer(dir, amount);
-    //     }
-    //
-    //     _currentRotation = Mathf.Lerp(_currentRotation, _rotate, 8f * Time.deltaTime);
-    //     _rotate = 0f;
-    // }
-    //
-    // private void FixedUpdate()
-    // {
-    //     // Rotation
-    //     transform.eulerAngles = Vector3.Lerp(transform.eulerAngles,
-    //         new Vector3(0f, transform.eulerAngles.y + _currentRotation, 0f), 10f * Time.deltaTime);;
-    //     
-    //     if (_moving)
-    //     {
-    //         // Movement
-    //         transform.position += transform.forward * initialSpeed;
-    //         totalTime -= 1 * Time.deltaTime;
-    //         if (totalTime <= 0)
-    //         {
-    //             initialSpeed -= decelerationSpeed * Time.deltaTime;
-    //         }
-    //         if (initialSpeed <= 0)
-    //         {
-    //             _moving = false;
-    //             Debug.Log("stop");
-    //         }
-    //     }
-    // }
-    //
-    // void Steer(int direction, float amount)
-    // {
-    //     _rotate = (steering * direction) * amount;
-    // }
+    public void stopCar()
+    {
+        _remainingTime = -1;
+        _currentSpeed = 0;
+        emissionRate = 0;
+        
+        theRB.useGravity = false;
+        theRB.drag = 0.1f;
+        theRB.velocity = Vector3.zero;
+    }
 }
