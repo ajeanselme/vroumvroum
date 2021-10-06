@@ -8,8 +8,10 @@ public class TurnManager : MonoBehaviour
     public static TurnManager instance;
 
     private int turn = 0;
+    private int indexCarTurn = 0;
 
-    [SerializeField] private GameObject[] players;
+    [SerializeField] private CarController[] players;
+    [SerializeField] private GameObject[] playersCamera;
     [Space]
     [SerializeField] private int maxTurn;
 
@@ -25,22 +27,48 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void FinishTurn(GameObject player)
+    private void Start()
+    {
+        for (int i = 1; i < players.Length; i++)
+        {
+            players[i].gameObject.SetActive(false);
+            playersCamera[i].SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        // Debug
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            FinishTurn(players[indexCarTurn]);
+        }
+    }
+
+    public void FinishTurn(CarController player)
     {
         for (int i = 0; i < players.Length; i++)
         {
             if (player == players[i])
             {
-                player.SetActive(false);
+                player.enabled = false;
+                playersCamera[i].SetActive(false);
 
                 if (i + 1 == players.Length)
                 {
                     turn++;
-                    players[0].SetActive(true);
+                    indexCarTurn = 0;
+                    players[0].enabled = true;
+                    playersCamera[0].SetActive(true);
                 }
                 else
                 {
-                    players[i].SetActive(true);
+                    if (!players[i+1].gameObject.activeSelf)
+                        players[i+1].gameObject.SetActive(true);
+                    
+                    players[i+1].enabled = true;
+                    playersCamera[i+1].SetActive(true);
+                    indexCarTurn = i+1;
                 }
                 
                 break;
