@@ -32,7 +32,7 @@ public class MovementController : MonoBehaviour
     public float maxEmission = 50f;
 
     private float _currentSpeed, _turnInput, _remainingTime;
-    private bool grounded;
+    private bool grounded, _bumped, _groundedLastFrame;
     
     [Header("PAS TOUCHER")]
     public LayerMask whatIsGround;
@@ -85,8 +85,13 @@ public class MovementController : MonoBehaviour
 
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
+
+        if (!_groundedLastFrame && grounded)
+        {
+            _bumped = false;
+        }
         
-        if (grounded)
+        if (grounded && !_bumped)
         {
             if (_currentSpeed > .1f)
             {
@@ -135,6 +140,8 @@ public class MovementController : MonoBehaviour
             var emissionModule = part.emission;
             emissionModule.rateOverTime = emissionRate;
         }
+
+        _groundedLastFrame = grounded;
     }
 
     public void setCarSpeed(float speed)
@@ -160,6 +167,15 @@ public class MovementController : MonoBehaviour
         theRB.useGravity = true;
         _remainingTime = totalTime;
         _currentSpeed = initialSpeed;
+    }
+
+    public void bumpCar(Vector3 direction, float force)
+    {
+        if (!_bumped)
+        {
+            _bumped = true;
+            theRB.velocity = new Vector3((-theRB.velocity.normalized.x * force) +  (direction.normalized.x * force), 10f, (-theRB.velocity.normalized.z * force) +  (direction.normalized.z * force));
+        }
     }
 
     public void stopCar()
