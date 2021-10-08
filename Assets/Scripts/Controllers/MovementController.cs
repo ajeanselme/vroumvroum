@@ -50,6 +50,12 @@ public class MovementController : MonoBehaviour
         launchCar();
     }
 
+    private void OnDrawGizmos()
+    {
+        Vector3 point_B = groundRayPoint.position + (-transform.up * groundRayLength);
+        Debug.DrawLine(groundRayPoint.position, point_B, Color.black);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
