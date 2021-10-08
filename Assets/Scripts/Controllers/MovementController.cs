@@ -159,7 +159,7 @@ public class MovementController : MonoBehaviour
         }
         else
         {
-            stopCar();
+            stopCar(true);
         }
     }
 
@@ -184,7 +184,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void stopCar()
+    public void stopCar(bool endingTurn = false)
     {
         _remainingTime = -1;
         _currentSpeed = 0;
@@ -193,5 +193,7 @@ public class MovementController : MonoBehaviour
         theRB.useGravity = false;
         theRB.drag = 0.1f;
         theRB.velocity = Vector3.zero;
+        
+        if(endingTurn) TurnManager.instance.FinishTurn(this);
     }
 }
