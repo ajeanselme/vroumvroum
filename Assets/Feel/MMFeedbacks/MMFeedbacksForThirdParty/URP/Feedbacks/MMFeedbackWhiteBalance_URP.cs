@@ -76,7 +76,8 @@ namespace MoreMountains.FeedbacksForThirdParty
         {
             if (Active)
             {
-                float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                // float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                float intensityMultiplier = feedbacksIntensity;
                 MMWhiteBalanceShakeEvent_URP.Trigger(ShakeTemperature, FeedbackDuration, RemapTemperatureZero, RemapTemperatureOne,
                     ShakeTint, RemapTintZero, RemapTintOne, RelativeValues, intensityMultiplier,
                     Channel, ResetShakerValuesAfterShake, ResetTargetValuesAfterShake, NormalPlayDirection);
