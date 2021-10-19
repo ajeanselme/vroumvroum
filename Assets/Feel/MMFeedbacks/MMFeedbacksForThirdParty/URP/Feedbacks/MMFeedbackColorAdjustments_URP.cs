@@ -125,7 +125,8 @@ namespace MoreMountains.FeedbacksForThirdParty
         {
             if (Active)
             {
-                float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                float intensityMultiplier = feedbacksIntensity;
+                // float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
                 MMColorAdjustmentsShakeEvent_URP.Trigger(ShakePostExposure, RemapPostExposureZero, RemapPostExposureOne,
                     ShakeHueShift, RemapHueShiftZero, RemapHueShiftOne,
                     ShakeSaturation, RemapSaturationZero, RemapSaturationOne,

@@ -63,7 +63,8 @@ namespace MoreMountains.FeedbacksForThirdParty
         {
             if (Active)
             {
-                float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                float intensityMultiplier = feedbacksIntensity;
+                // float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
                 MMPaniniProjectionShakeEvent_URP.Trigger(ShakeDistance, FeedbackDuration, RemapDistanceZero, RemapDistanceOne, RelativeDistance, intensityMultiplier, Channel, 
                     ResetShakerValuesAfterShake, ResetTargetValuesAfterShake, NormalPlayDirection);
             }

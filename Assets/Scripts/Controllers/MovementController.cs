@@ -50,7 +50,7 @@ public class MovementController : MonoBehaviour
         launchCar();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Vector3 point_B = groundRayPoint.position + (-transform.up * groundRayLength);
         Debug.DrawLine(groundRayPoint.position, point_B, Color.black);
