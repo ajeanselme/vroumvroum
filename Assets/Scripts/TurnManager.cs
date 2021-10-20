@@ -10,7 +10,7 @@ public class TurnManager : MonoBehaviour
     private int turn = 0;
     private int indexCarTurn = 0;
 
-    [SerializeField] private MovementController[] players;
+    [SerializeField] private CarController[] players;
     [SerializeField] private GameObject[] playersCamera;
     [Space]
     [SerializeField] private GameObject endCamera;
@@ -52,7 +52,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void FinishTurn(MovementController player)
+    public void FinishTurn(CarController player)
     {
         for (int i = 0; i < players.Length; i++)
         {
@@ -96,7 +96,7 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    IEnumerator WaitLaunch(MovementController player, float sec)
+    IEnumerator WaitLaunch(CarController player, float sec)
     {
         player.stopCar();
         

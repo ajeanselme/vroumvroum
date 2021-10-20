@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CarCollider : MonoBehaviour
 {
-    private MovementController car;
+    private CarController car;
 
     private void Start()
     {
