@@ -28,9 +28,9 @@ public class CarController : MonoBehaviour
     [Tooltip("Quantité de particules max")]
     public float maxEmission = 50f;
 
-    public float _currentSpeed, _currentGroundRayLength;
-    private float _turnInput, _remainingTime;
-    private bool grounded, _bumped, _groundedLastFrame;
+    [Tooltip("Facteurs de vitesse dans les pentes")]
+    [SerializeField] private AnimationCurve slideCurve = new AnimationCurve ( new Keyframe (0f, 0f), new Keyframe(90f, 1f));
+    [SerializeField] private AnimationCurve uphillCurve = new AnimationCurve ( new Keyframe (0f, 1f), new Keyframe(90f, 0f));
     
     
     [Header("PAS TOUCHER")]
@@ -42,16 +42,13 @@ public class CarController : MonoBehaviour
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
-
-    [SerializeField] private AnimationCurve slideCurve = new AnimationCurve ( new Keyframe (0f, 0f), new Keyframe(90f, 1f));
-    [SerializeField] private AnimationCurve uphillCurve = new AnimationCurve ( new Keyframe (0f, 1f), new Keyframe(90f, 0f));
-
     
-    private float emissionRate;
+    
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate;
+    private bool grounded, _bumped, _groundedLastFrame;
 
-    private bool _rotating;
     private Quaternion _nextRotation;
-    private float damping = 10f;
+    private float _rotationDamping = 5f;
     private float _slopeAngle = 0f;
 
     private MMFeedbacks _feedbacks;
@@ -69,7 +66,6 @@ public class CarController : MonoBehaviour
          * Setup runtime values
          */
         _currentSpeed = initialSpeed;
-        _currentGroundRayLength = groundRayLength;
         _nextRotation = transform.rotation;
 
         _feedbacks = GetComponent<MMFeedbacks>();
@@ -85,12 +81,9 @@ public class CarController : MonoBehaviour
             GUILayout.Space(2);
             GUILayout.Box("Debug Window");
             GUILayout.Box("State : " + (grounded ? "ground" : "air"));
-            GUILayout.Box("Rotating : " + _rotating);
             GUILayout.Box("Current Speed : " + _currentSpeed);
             GUILayout.Box("Slope : " + _slopeAngle);
             GUILayout.Box("Time Left : " + _remainingTime);
-            GUILayout.Space(2);
-            GUILayout.Box("_currentGroundRayLength : " + _currentGroundRayLength);
 
             GUILayout.EndArea();
         }
@@ -125,10 +118,10 @@ public class CarController : MonoBehaviour
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            if (Physics.Raycast(point_A, -wheel.transform.up, out hit, _currentGroundRayLength + wheelOffset, whatIsGround))
+            if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
                 grounded = true;
-                emissionRate = 0;
+                _emissionRate = 0;
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
                 break;
             }
@@ -148,7 +141,7 @@ public class CarController : MonoBehaviour
          * Finally update the general GO to match the RB position, and Lerp the new rotation based on the ground
          */
         transform.position = theRB.transform.position;
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * damping);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * _rotationDamping);
 
         
         if (Debugging)
@@ -193,7 +186,6 @@ public class CarController : MonoBehaviour
                 // If on flat ground
                 if (_slopeAngle > -1f && _slopeAngle < 1f)
                 {
-                    _currentGroundRayLength = groundRayLength;
                     if (_currentSpeed > 0)
                     {
                         // Decelerate if time expired
@@ -247,7 +239,7 @@ public class CarController : MonoBehaviour
         foreach (ParticleSystem part in dustTrail)
         {
             var emissionModule = part.emission;
-            emissionModule.rateOverTime = emissionRate;
+            emissionModule.rateOverTime = _emissionRate;
         }
 
         _groundedLastFrame = grounded;
@@ -258,7 +250,7 @@ public class CarController : MonoBehaviour
         if (speed > 0.1f)
         {
             theRB.velocity = transform.forward * speed * 4f;
-            emissionRate = maxEmission;
+            _emissionRate = maxEmission;
         }
         else
         {
@@ -298,11 +290,11 @@ public class CarController : MonoBehaviour
     {
         _remainingTime = -1;
         _currentSpeed = 0;
-        emissionRate = 0;
+        _emissionRate = 0;
         
         theRB.constraints = RigidbodyConstraints.FreezeAll;
         
-        // if(endingTurn) TurnManager.instance.FinishTurn(this);
+        if(endingTurn) TurnManager.instance.FinishTurn(this);
     }
 
     void jumpCar()
