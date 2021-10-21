@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour
 {
-    public MovementController car;
+    public CarController car;
     public float bumpAngle = 45f;
     public float bumpForce = 10f;
 
