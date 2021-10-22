@@ -28,6 +28,12 @@ public class CarController : MonoBehaviour
     [Tooltip("Quantité de particules max")]
     public float maxEmission = 50f;
 
+    [Header("Tresholds")]
+    [Tooltip("Si airtime en dessous de cette valeur, aucune animation")]
+    public float airIgnoring = .2f;
+    [Tooltip("Si airtime en dessous de cette valeur, small bump, sinon big")]
+    public float airSmallBump = .7f;
+
     [Tooltip("Facteurs de vitesse dans les pentes")]
     [SerializeField] private AnimationCurve slideCurve = new AnimationCurve ( new Keyframe (0f, 0f), new Keyframe(90f, 1f));
     [SerializeField] private AnimationCurve uphillCurve = new AnimationCurve ( new Keyframe (0f, 1f), new Keyframe(90f, 0f));
@@ -44,9 +50,11 @@ public class CarController : MonoBehaviour
     public float wheelOffset = 0f;
     
     
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate;
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime;
     private bool grounded, _bumped, _groundedLastFrame;
 
+    private Animator _animator;
+    
     private Quaternion _nextRotation;
     private float _rotationDamping = 5f;
     private float _slopeAngle = 0f;
@@ -69,6 +77,7 @@ public class CarController : MonoBehaviour
         _nextRotation = transform.rotation;
 
         _feedbacks = GetComponent<MMFeedbacks>();
+        _animator = GetComponent<Animator>();
         
         launchCar();
     }
@@ -84,6 +93,7 @@ public class CarController : MonoBehaviour
             GUILayout.Box("Current Speed : " + _currentSpeed);
             GUILayout.Box("Slope : " + _slopeAngle);
             GUILayout.Box("Time Left : " + _remainingTime);
+            GUILayout.Box("Air time : " + _airTime);
 
             GUILayout.EndArea();
         }
@@ -126,7 +136,12 @@ public class CarController : MonoBehaviour
                 break;
             }
         }
-        
+
+        if (!grounded)
+        {
+            _airTime += Time.deltaTime;
+        }
+
         /*
          * Change car direction based on Horizontal input 
          */
@@ -274,7 +289,29 @@ public class CarController : MonoBehaviour
 
     public void landCar()
     {
-        _feedbacks.PlayFeedbacks();
+        if (_airTime < airIgnoring)
+        {
+            // Debug.Log("No land");
+        }
+        else if(_airTime < airSmallBump)
+        {
+            // Debug.Log("Small bump");
+            _feedbacks.Feedbacks[1].Active = false;
+            _feedbacks.Feedbacks[2].Active = false;
+            _animator.SetInteger("Power", 0);
+            _feedbacks.PlayFeedbacks();
+        }
+        else
+        {
+            // Debug.Log("Full bounce");
+            _feedbacks.Feedbacks[1].Active = true;
+            _feedbacks.Feedbacks[2].Active = true;
+            _animator.SetInteger("Power", 1);
+
+            _feedbacks.PlayFeedbacks();
+        }
+        
+        _airTime = 0f;
     }
 
     public void bumpCar(Vector3 direction, float force)
