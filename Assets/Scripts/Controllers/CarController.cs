@@ -122,6 +122,12 @@ public class CarController : MonoBehaviour
          * otherwhise the car won't adapt correctly to the slope.
          */
         grounded = false;
+
+        if (_slopeAngle < .1f)
+        {
+            
+        }
+        
         foreach (GameObject wheel in wheels)
         {
             RaycastHit hit;
@@ -275,7 +281,7 @@ public class CarController : MonoBehaviour
 
     public void setDirection(float turnInput)
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime, 0f));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
         wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }

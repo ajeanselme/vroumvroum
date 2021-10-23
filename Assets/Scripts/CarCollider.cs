@@ -14,9 +14,12 @@ public class CarCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.transform.IsChildOf(car.transform) && other.gameObject != car.theRB.gameObject)
+        if (!other.gameObject.CompareTag("Prop"))
         {
-            transform.GetComponentInParent<CollisionController>().callCollision(other);
+            if (!other.transform.IsChildOf(car.transform) && other.gameObject != car.theRB.gameObject)
+            {
+                transform.GetComponentInParent<CollisionController>().callCollision(other);
+            }
         }
     }
 
