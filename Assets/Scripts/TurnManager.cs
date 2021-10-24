@@ -17,7 +17,7 @@ public class TurnManager : MonoBehaviour
     [Space]
     [SerializeField] private int maxTurn;
     [Space]
-    [SerializeField] private ParticleSystem speedParticles;
+    public ParticleSystem speedParticles;
 
     private void Awake()
     {
