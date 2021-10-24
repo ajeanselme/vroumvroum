@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73c5377f-5d77-4154-8b5b-71057c37231c" name="Changes" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Assets/PolygonPrototype/URP_ExtractMe.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Felix/Test 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Felix/Test 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/.idea.vroumvroum/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.vroumvroum/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Animations/Car/BigBump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Car/BigBump.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Animations/Car/SmallBump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Car/SmallBump.anim" afterDir="false" />

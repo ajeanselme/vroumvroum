@@ -16,6 +16,8 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private GameObject endCamera;
     [Space]
     [SerializeField] private int maxTurn;
+    [Space]
+    [SerializeField] private ParticleSystem speedParticles;
 
     private void Awake()
     {
@@ -54,6 +56,9 @@ public class TurnManager : MonoBehaviour
 
     public void FinishTurn(CarController player)
     {
+        if (speedParticles.isPlaying)
+            speedParticles.Stop();
+        
         for (int i = 0; i < players.Length; i++)
         {
             if (player == players[i])
@@ -103,6 +108,7 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(sec);
         
         player.launchCar();
+        speedParticles.Play();
     }
 
     private void EndGame()
