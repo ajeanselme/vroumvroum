@@ -35,30 +35,19 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-<<<<<<< HEAD
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackWhiteBalance_URP.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TurnManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackChromaticAberration_URP.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackColorAdjustments_URP.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CarCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackDepthOfField_URP.cs" root0="FORCE_HIGHLIGHTING" />
-=======
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TurnManager.cs" root0="FORCE_HIGHLIGHTING" />
-<<<<<<< HEAD
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CarCollider.cs" root0="FORCE_HIGHLIGHTING" />
-=======
->>>>>>> felix
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.6.0/Runtime/Utilities/CoreUtils.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackLensDistortion_URP.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/da6ab58261ca4bf88d2245fa0b5e29ff18000/f7/05a497c0/Rigidbody.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/da6ab58261ca4bf88d2245fa0b5e29ff18000/90/701e7339/Collision.cs" root0="SKIP_HIGHLIGHTING" />
-<<<<<<< HEAD
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackMotionBlur_URP.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackPaniniProjection_URP.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Feel/MMFeedbacks/MMFeedbacksForThirdParty/URP/Feedbacks/MMFeedbackVignette_URP.cs" root0="FORCE_HIGHLIGHTING" />
-=======
->>>>>>> antoine
->>>>>>> felix
   </component>
   <component name="ProjectId" id="1yonQ9gJRtcTmjWE33UzR3dKiqw" />
   <component name="ProjectViewState">

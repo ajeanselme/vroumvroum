@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -26,7 +27,8 @@ public class CarController : MonoBehaviour
     [Tooltip("Force appliquée vers le bas de la voiture pour régler le bounce")]
     public float antiBounceForce = 10f; 
     [Tooltip("Quantité de particules max")]
-    public float maxEmission = 50f;
+    public float trailMaxEmission = 50f;
+    public float speedEmissionFactor = 50f;
 
     [Header("Tresholds")]
     [Tooltip("Si airtime en dessous de cette valeur, aucune animation")]
@@ -48,9 +50,10 @@ public class CarController : MonoBehaviour
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
-    
-    
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime;
+
+    public CinemachineVirtualCamera vcam;
+
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _initialFOV;
     private bool grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
@@ -75,6 +78,7 @@ public class CarController : MonoBehaviour
          */
         _currentSpeed = initialSpeed;
         _nextRotation = transform.rotation;
+        _initialFOV = vcam.m_Lens.FieldOfView;
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
@@ -94,6 +98,7 @@ public class CarController : MonoBehaviour
             GUILayout.Box("Slope : " + _slopeAngle);
             GUILayout.Box("Time Left : " + _remainingTime);
             GUILayout.Box("Air time : " + _airTime);
+            GUILayout.Box("FOV : " + vcam.m_Lens.FieldOfView);
 
             GUILayout.EndArea();
         }
@@ -164,7 +169,6 @@ public class CarController : MonoBehaviour
         transform.position = theRB.transform.position;
         transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * _rotationDamping);
 
-        
         if (Debugging)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -204,6 +208,8 @@ public class CarController : MonoBehaviour
                 
                 _slopeAngle = (Vector3.Angle (Vector3.down, transform.forward)) - 90;
                 
+                var emission = TurnManager.instance.speedParticles.emission;
+
                 // If on flat ground
                 if (_slopeAngle > -1f && _slopeAngle < 1f)
                 {
@@ -219,6 +225,8 @@ public class CarController : MonoBehaviour
                             _currentSpeed -= decelerationSpeed * Time.deltaTime;
                         }
                     }
+                    
+                    emission.rateOverTime = speedEmissionFactor * (_currentSpeed / initialSpeed);
                 }
                 // If on slide
                 else if (_slopeAngle < -1f)
@@ -231,6 +239,8 @@ public class CarController : MonoBehaviour
                     {
                         _currentSpeed = Mathf.Clamp(_currentSpeed + slideCurve.Evaluate(-_slopeAngle) * Time.deltaTime, 0, initialSpeed * 1.2f);
                     }
+                    
+                    emission.rateOverTime = (speedEmissionFactor + speedEmissionFactor * (5 * (-_slopeAngle / 45))) * (_currentSpeed / initialSpeed);
                 }
                 // If on uphill
                 else if (_slopeAngle > 1f)
@@ -243,8 +253,8 @@ public class CarController : MonoBehaviour
                     {
                         _currentSpeed -= decelerationSpeed * Mathf.Clamp(uphillCurve.Evaluate(_slopeAngle), .95f, 1f) * Time.deltaTime;
                     }
+                    emission.rateOverTime = (speedEmissionFactor * (1 - _slopeAngle / 45)) * (_currentSpeed / initialSpeed);
                 }
-                
                 setCarSpeed(_currentSpeed);
             }
             
@@ -271,7 +281,7 @@ public class CarController : MonoBehaviour
         if (speed > 0.1f)
         {
             theRB.velocity = transform.forward * speed * 4f;
-            _emissionRate = maxEmission;
+            _emissionRate = trailMaxEmission;
         }
         else
         {
