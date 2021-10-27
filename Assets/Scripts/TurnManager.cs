@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class TurnManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class TurnManager : MonoBehaviour
 
     private int turn = 0;
     private int indexCarTurn = 0;
+    
+    private Player[] rewiredPlayers;
+    [Space]
 
     [SerializeField] private CarController[] players;
     [SerializeField] private GameObject[] playersCamera;
@@ -34,6 +38,14 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
+
+        Debug.Log(ReInput.players.playerCount);
+        rewiredPlayers = new Player[players.Length];
+        
+        for (int i = 0; i < 2; i++)
+        {
+            rewiredPlayers[i] = ReInput.players.GetPlayer(i);
+        }
         
         for (int i = 1; i < players.Length; i++)
         {
@@ -47,6 +59,10 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
+        // Debug
+        if (rewiredPlayers[indexCarTurn].GetButtonDown("QTE"))
+            Debug.Log("QTE, player" + indexCarTurn);
+        
         // Debug
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -97,8 +113,6 @@ public class TurnManager : MonoBehaviour
                 break;
             }
         }
-
-        
     }
 
     IEnumerator WaitLaunch(CarController player, float sec)
