@@ -61,7 +61,7 @@ public class TurnManager : MonoBehaviour
     {
         // Debug
         if (rewiredPlayers[indexCarTurn].GetButtonDown("QTE"))
-            Debug.Log("QTE, player" + indexCarTurn);
+            Debug.Log("QTE + " + rewiredPlayers[indexCarTurn] + ", player" + indexCarTurn);
         
         // Debug
         if (Input.GetKeyDown(KeyCode.Return))
