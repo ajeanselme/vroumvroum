@@ -50,9 +50,6 @@ public class CarController : MonoBehaviour
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
-    public float frontSlopeLength = 0f;
-
-    public GameObject frontSlopeDetector;
 
     public CinemachineVirtualCamera vcam;
 
@@ -109,24 +106,18 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         /*
          * Drawing Guizmos of each detectors for debug purposes
          */
-        
-        Vector3 point_A = new Vector3(frontSlopeDetector.transform.position.x, 
-            frontSlopeDetector.transform.position.y,
-            frontSlopeDetector.transform.position.z);
-        Vector3 point_B = frontSlopeDetector.transform.position + (-transform.up * frontSlopeLength);
-        Debug.DrawLine(point_A, point_B, Color.blue);
-        
+
         foreach (GameObject wheel in wheels)
         {
-            point_A = new Vector3(wheel.transform.position.x, 
+            Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            point_B = wheel.transform.position + (-transform.up * groundRayLength);
+            Vector3 point_B = wheel.transform.position + (-transform.up * groundRayLength);
             Debug.DrawLine(point_A, point_B, Color.red);
         }
     }
