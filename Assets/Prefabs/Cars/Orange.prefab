@@ -9642,6 +9642,7 @@ Transform:
   m_Children:
   - {fileID: 1813643304}
   - {fileID: 893170361}
+  - {fileID: 4349487699311061832}
   m_Father: {fileID: 5478544761951383303}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10661,7 +10662,8 @@ MonoBehaviour:
   turnStrength: 180
   gravityForce: 30
   antiBounceForce: 100
-  maxEmission: 50
+  trailMaxEmission: 50
+  speedEmissionFactor: 50
   airIgnoring: 0.2
   airSmallBump: 0.7
   slideCurve:
@@ -10725,7 +10727,10 @@ MonoBehaviour:
   - {fileID: 8763222415228285151}
   - {fileID: 6434554124432306005}
   - {fileID: 4930829332813377756}
-  wheelOffset: 0.3
+  wheelOffset: 0.33
+  frontSlopeLength: 0.88
+  frontSlopeDetector: {fileID: 6563631360391331137}
+  vcam: {fileID: 1280199411}
 --- !u!114 &1498212713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11077,6 +11082,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6563631360391331137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4349487699311061832}
+  m_Layer: 0
+  m_Name: FrontSlopeDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4349487699311061832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563631360391331137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.644, z: 1.814}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 805471784}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8763222415228285151
 GameObject:
   m_ObjectHideFlags: 0
