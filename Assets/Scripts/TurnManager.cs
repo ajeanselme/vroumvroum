@@ -15,7 +15,7 @@ public class TurnManager : MonoBehaviour
     }
     
     private int turn = 0;
-    private int indexCarTurn = 0;
+    public int indexCarTurn = 0;
 
     [HideInInspector] public List<Player> playerList = new List<Player>();
     [HideInInspector] public List<GameObject> carPrefabs = new List<GameObject>();
@@ -41,11 +41,6 @@ public class TurnManager : MonoBehaviour
     {
         endCamera.SetActive(false);
 
-        for (int i = 0; i < playerList.Count; i++)
-        {
-            
-        }
-        
         for (int i = 1; i < playerList.Count; i++)
         {
             playerList[i].carController.stopCar();
