@@ -10,12 +10,14 @@ public class TurnManager : MonoBehaviour
     private int turn = 0;
     private int indexCarTurn = 0;
 
-    [SerializeField] private MovementController[] players;
+    [SerializeField] private CarController[] players;
     [SerializeField] private GameObject[] playersCamera;
     [Space]
     [SerializeField] private GameObject endCamera;
     [Space]
     [SerializeField] private int maxTurn;
+    [Space]
+    public ParticleSystem speedParticles;
 
     private void Awake()
     {
@@ -52,8 +54,11 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void FinishTurn(MovementController player)
+    public void FinishTurn(CarController player)
     {
+        if (speedParticles.isPlaying)
+            speedParticles.Stop();
+        
         for (int i = 0; i < players.Length; i++)
         {
             if (player == players[i])
@@ -96,13 +101,14 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    IEnumerator WaitLaunch(MovementController player, float sec)
+    IEnumerator WaitLaunch(CarController player, float sec)
     {
         player.stopCar();
         
         yield return new WaitForSeconds(sec);
         
         player.launchCar();
+        speedParticles.Play();
     }
 
     private void EndGame()

@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - bordDroit
-  - bordGauche
+  - Prop
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
   - Ground

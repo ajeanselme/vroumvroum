@@ -88,7 +88,8 @@ namespace MoreMountains.FeedbacksForThirdParty
         {
             if (Active)
             {
-                float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                // float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                float intensityMultiplier = feedbacksIntensity;
                 MMDepthOfFieldShakeEvent_URP.Trigger(ShakeFocusDistance, FeedbackDuration, RemapFocusDistanceZero, RemapFocusDistanceOne,
                     ShakeAperture, RemapApertureZero, RemapApertureOne,
                     ShakeFocalLength, RemapFocalLengthZero, RemapFocalLengthOne,

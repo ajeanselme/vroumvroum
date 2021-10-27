@@ -64,7 +64,8 @@ namespace MoreMountains.FeedbacksForThirdParty
         {
             if (Active)
             {
-                float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
+                float intensityMultiplier = feedbacksIntensity;
+                // float intensityMultiplier = ConstantIntensity ? 1f : feedbacksIntensity;
                 MMVignetteShakeEvent_URP.Trigger(Intensity, FeedbackDuration, RemapIntensityZero, RemapIntensityOne, RelativeIntensity, intensityMultiplier,
                     Channel, ResetShakerValuesAfterShake, ResetTargetValuesAfterShake, NormalPlayDirection);
             }
