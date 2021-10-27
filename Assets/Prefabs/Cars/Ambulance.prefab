@@ -10626,7 +10626,8 @@ MonoBehaviour:
   turnStrength: 90
   gravityForce: 50
   antiBounceForce: 10
-  maxEmission: 150
+  trailMaxEmission: 50
+  speedEmissionFactor: 50
   airIgnoring: 0.2
   airSmallBump: 0.7
   slideCurve:
@@ -10691,6 +10692,7 @@ MonoBehaviour:
   - {fileID: 4848262928764546330}
   - {fileID: 6803125630529548947}
   wheelOffset: 0.3
+  vcam: {fileID: 967639479}
 --- !u!114 &1874726220050443046
 MonoBehaviour:
   m_ObjectHideFlags: 0
