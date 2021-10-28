@@ -45,6 +45,8 @@ public class TurboEditor : EditorWindow
 
     private void OnEnable()
     {
+        FindTurnManager();
+        
         playerLogs.Clear();
         for (int i = 0; i < _turnManager.playerList.Count; i++)
         {
@@ -58,7 +60,7 @@ public class TurboEditor : EditorWindow
 
     private void OnFocus()
     {
-        _turnManager = GameObject.Find("TurnManager").GetComponent<TurnManager>();
+        FindTurnManager();
 
         playerLogs.Clear();
         for (int i = 0; i < _turnManager.playerList.Count; i++)
@@ -67,15 +69,12 @@ public class TurboEditor : EditorWindow
         }
     }
 
-    private void OnInspectorUpdate()
-    {
-        _turnManager = GameObject.Find("TurnManager").GetComponent<TurnManager>();
-    }
-
     private void OnGUI()
     {
         if (!Application.isPlaying)
         {
+            FindTurnManager();
+
             _turnManager = (TurnManager) EditorGUILayout.ObjectField("Turn Manager", _turnManager, typeof(TurnManager), true);
             
             GUILayout.Space(20);
@@ -211,5 +210,10 @@ public class TurboEditor : EditorWindow
         DestroyImmediate(_turnManager.playerList[carIndex].carController.gameObject);
         _turnManager.playerList[carIndex].carController = newCar.GetComponent<CarController>();
         _turnManager.playerList[carIndex].prefabIndex = typeIndex;
+    }
+
+    private void FindTurnManager()
+    {
+        if(_turnManager == null) _turnManager = GameObject.Find("TurnManager").GetComponent<TurnManager>();
     }
 }
