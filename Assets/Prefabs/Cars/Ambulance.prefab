@@ -10577,7 +10577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6228746409818422740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.87, y: 0.4, z: 46.59111}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1874726219072459739}
@@ -10620,12 +10620,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Debugging: 1
-  totalTime: 5
+  totalTime: 3
   initialSpeed: 8
   decelerationSpeed: 3
   turnStrength: 90
   gravityForce: 50
-  antiBounceForce: 10
+  antiBounceForce: 0
   trailMaxEmission: 50
   speedEmissionFactor: 50
   airIgnoring: 0.2

@@ -41,6 +41,11 @@ public class TurnManager : MonoBehaviour
     {
         endCamera.SetActive(false);
 
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            CheckpointsController.instance.InitPlayer();
+        }
+        
         for (int i = 1; i < playerList.Count; i++)
         {
             playerList[i].carController.stopCar();
@@ -110,7 +115,8 @@ public class TurnManager : MonoBehaviour
     IEnumerator WaitLaunch(CarController player, float sec)
     {
         player.stopCar();
-        
+        CheckpointsController.instance.LoadPlayer(indexCarTurn);
+
         yield return new WaitForSeconds(sec);
         
         player.launchCar();
