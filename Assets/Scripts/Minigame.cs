@@ -7,6 +7,9 @@ public class Minigame : MonoBehaviour
 {
     public Slider slider;
     public GameObject barre;
+    public CarController car1;
+    public TurnManager changementVoiture;
+    public bool begin = false;
 
     public Text compteur;
     public Text compteur2;
@@ -44,9 +47,9 @@ public class Minigame : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) || begin)
         {
-            randomMinigame = Random.Range(0, 2);
+            
 
             if (randomMinigame == 0)
             {
@@ -66,6 +69,7 @@ public class Minigame : MonoBehaviour
                 decompte2 = 5.0f;
                 m2actif = true;
             }
+            begin = false;
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -89,7 +93,6 @@ public class Minigame : MonoBehaviour
         if (randomMinigame == 0)
         {
             decompte -= Time.deltaTime;
-            Debug.Log(decompte);
 
             if (decompte > 0)
                 compteur.text = decompte.ToString();
@@ -102,8 +105,9 @@ public class Minigame : MonoBehaviour
                 minigame2.SetActive(false);
                 decompteaenlever.SetActive(false);
                 decompteaenlever2.SetActive(false);
-                Debug.Log("BOOM");
                 Debug.Log(slider.value);
+                car1.totalTime = (slider.value / 10) + 1;
+                launchCar();
                 randomMinigame = 100;
             }
         }
@@ -129,8 +133,9 @@ public class Minigame : MonoBehaviour
                 minigame2.SetActive(false);
                 decompteaenlever.SetActive(false);
                 decompteaenlever2.SetActive(false);
-                Debug.Log("BOOM2");
                 Debug.Log(m2Charge);
+                car1.totalTime = (m2Charge / 10) + 1;
+                launchCar();
                 randomMinigame = 100;
             }
         }
@@ -179,6 +184,18 @@ public class Minigame : MonoBehaviour
             decompte2 = 0f;
         }
 
+    }
+
+    public void beginMinigame(CarController player)
+    {
+        randomMinigame = Random.Range(0, 2);
+        begin = true;
+        car1 = player;
+    }
+
+    public void launchCar()
+    {
+        car1.launchCar();
     }
 
     public void SetCharge()
