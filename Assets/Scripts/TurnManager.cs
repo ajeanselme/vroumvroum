@@ -60,8 +60,16 @@ public class TurnManager : MonoBehaviour
     private void Update()
     {
         // Debug
-        if (rewiredPlayers[indexCarTurn].GetButtonDown("QTE"))
-            Debug.Log("QTE + " + rewiredPlayers[indexCarTurn] + ", player" + indexCarTurn);
+        if (rewiredPlayers[indexCarTurn].GetButtonDown("Cross"))
+            Debug.Log("QTE + " + rewiredPlayers[indexCarTurn] + ", Cross");
+        if (rewiredPlayers[indexCarTurn].GetButtonDown("Circle"))
+            Debug.Log("QTE + " + rewiredPlayers[indexCarTurn] + ", Circle");
+        if (rewiredPlayers[indexCarTurn].GetButtonDown("Triangle"))
+            Debug.Log("QTE + " + rewiredPlayers[indexCarTurn] + ", Triangle");
+        if (rewiredPlayers[indexCarTurn].GetButtonDown("Square"))
+            Debug.Log("QTE + " + rewiredPlayers[indexCarTurn] + ", Square");
+        if (rewiredPlayers[indexCarTurn].GetButtonDown("Start"))
+            Debug.Log("Start");
         
         // Debug
         if (Input.GetKeyDown(KeyCode.Return))
