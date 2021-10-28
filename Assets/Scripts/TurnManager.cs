@@ -7,6 +7,8 @@ public class TurnManager : MonoBehaviour
 {
     public static TurnManager instance;
 
+    public Minigame minigame; 
+
     [Serializable]
     public class Player
     {
@@ -114,12 +116,13 @@ public class TurnManager : MonoBehaviour
 
     IEnumerator WaitLaunch(CarController player, float sec)
     {
+        player.turn = false;
         player.stopCar();
-        
+
         yield return new WaitForSeconds(sec);
-        
-        player.launchCar();
         speedParticles.Play();
+
+        minigame.beginMinigame(player);
     }
 
     private void EndGame()
