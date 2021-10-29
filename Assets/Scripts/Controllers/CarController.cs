@@ -5,10 +5,11 @@ using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Rewired;
 
 public class CarController : MonoBehaviour
 {
-    public bool Debugging;
+    public bool Debugging, turn;
 
     [Header("Settings")]
     [Tooltip("Temps total de parcours avant décélération")]
@@ -63,6 +64,8 @@ public class CarController : MonoBehaviour
 
     private MMFeedbacks _feedbacks;
 
+    [HideInInspector] public Rewired.Player rewiredPlayer;
+
     //Debug variables
     private float _rotationDamping;
     private GUIStyle debugWindowStyle, debugTextBoxStyle;
@@ -108,8 +111,9 @@ public class CarController : MonoBehaviour
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
-        
-        launchCar();
+
+        stopCar();
+        turn = false;
     }
 
     private void OnGUI()
@@ -204,7 +208,7 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = Input.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("Horizontal");
         if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
@@ -336,10 +340,10 @@ public class CarController : MonoBehaviour
             theRB.velocity = transform.forward * speed * 4f;
             _emissionRate = trailMaxEmission;
         }
-        else
-        {
+        else 
+       
             stopCar(true);
-        }
+        
     }
 
     public void setDirection(float turnInput)
@@ -353,7 +357,9 @@ public class CarController : MonoBehaviour
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
         _remainingTime = totalTime;
+        totalTime = 0f;
         _currentSpeed = initialSpeed;
+        turn = true;
         theRB.gameObject.SetActive(true);
     }
 

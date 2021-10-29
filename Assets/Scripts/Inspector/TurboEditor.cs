@@ -292,11 +292,12 @@ public class TurboEditor : EditorWindow
     private void AddCheckpoint()
     {
         int newIndex = _checkpointsController.points.Count;
-        int prevIndex = 0;
-        if (newIndex > 0) prevIndex = newIndex - 1;
         
         GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_checkpointsController.CPPrefab, _checkpointsController.transform);
-        go.transform.position = _checkpointsController.points[prevIndex].GO.transform.position;
+        if (newIndex > 0)
+        {
+            go.transform.position = _checkpointsController.points[newIndex - 1].GO.transform.position;
+        }
         go.name = "Checkpoint " + newIndex;
         
         go.GetComponent<CheckPoint>().setIndex(newIndex);
@@ -403,21 +404,26 @@ public class TurboEditor : EditorWindow
             {
                 Handles.Label(_checkpointsController.points[i].GO.transform.position, _checkpointsController.points[i].GO.name);
                 Handles.SphereHandleCap(0, _checkpointsController.points[i].GO.transform.position, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
-            }
 
-            if ( i + 1 < _checkpointsController.points.Count)
+                if ( i + 1 < _checkpointsController.points.Count)
+                {
+                    Vector3 current = _checkpointsController.points[i].GO.transform.position;
+                    Vector3 next = _checkpointsController.points[i + 1].GO.transform.position;
+                    Handles.color = Color.blue;
+                    Handles.DrawLine(current, next);
+                    
+                    Handles.color = Color.green;
+                    Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
+                        (current.z + next.z) / 2f);
+                    Handles.SphereHandleCap(0, middle, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
+
+                }
+            }
+            else
             {
-                Vector3 current = _checkpointsController.points[i].GO.transform.position;
-                Vector3 next = _checkpointsController.points[i + 1].GO.transform.position;
-                Handles.color = Color.blue;
-                Handles.DrawLine(current, next);
-                
-                Handles.color = Color.green;
-                Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
-                    (current.z + next.z) / 2f);
-                Handles.SphereHandleCap(0, middle, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
-
+                RemoveCheckpoint(i);
             }
+
         }
         Handles.EndGUI();
     }
