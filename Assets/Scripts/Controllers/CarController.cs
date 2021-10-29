@@ -354,6 +354,7 @@ public class CarController : MonoBehaviour
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
         _remainingTime = totalTime;
         _currentSpeed = initialSpeed;
+        theRB.gameObject.SetActive(true);
     }
 
     public void landCar()
@@ -397,9 +398,9 @@ public class CarController : MonoBehaviour
         _remainingTime = -1;
         _currentSpeed = 0;
         _emissionRate = 0;
-        
         theRB.constraints = RigidbodyConstraints.FreezeAll;
-        
+        theRB.gameObject.SetActive(false);
+
         if(endingTurn) TurnManager.instance.FinishTurn(this);
     }
 

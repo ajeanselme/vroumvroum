@@ -28,7 +28,7 @@ public class CheckpointsController : MonoBehaviour
     class PlayerData
     {
         public int index;
-        public int currentCP;
+        public int ladderPosition, currentCP;
         public float CPDistance, previousDistance, lastProgress;
         public float CurrentDistance => CPDistance + previousDistance;
 
@@ -44,6 +44,10 @@ public class CheckpointsController : MonoBehaviour
     public GameObject UI;
     public Image progressBarFill;
 
+    public AudioClip[] ladderAudioClips;
+    public AudioSource audio;
+
+    
     private PlayerData _playingPlayer;
     private int firstCar;
     // private float _CPDistance, _previousDistance, _lastProgress;
@@ -53,6 +57,8 @@ public class CheckpointsController : MonoBehaviour
     private List<PlayerData> _playerDatas = new List<PlayerData>();
 
     public GameObject debug;
+
+    private float _lastUpdate;
     
     private void Awake()
     {
@@ -66,13 +72,10 @@ public class CheckpointsController : MonoBehaviour
         }
     }
 
-    // private void Start()
-    // {
-    //     for (int i = 0; i < points.Count; i++)
-    //     {
-    //         totalDistance += points[i].km;
-    //     }
-    // }
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -114,7 +117,6 @@ public class CheckpointsController : MonoBehaviour
             if (_playingPlayer.CurrentDistance > _playerDatas[firstCar].CurrentDistance)
             {
                 firstCar = _playingPlayer.index;
-                UI.GetComponent<MMFeedbacks>().PlayFeedbacks();
             }
             
             if (progress > 1f)
@@ -134,6 +136,11 @@ public class CheckpointsController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             UI.GetComponent<MMFeedbacks>().PlayFeedbacks();
+        }
+
+        if (_lastUpdate < Time.fixedTime)
+        {
+            OrderPositions();
         }
     }
 
@@ -198,5 +205,37 @@ public class CheckpointsController : MonoBehaviour
             InitPlayer();
             _playingPlayer = _playerDatas[index];
         }
+    }
+
+    public void OrderPositions()
+    {
+        List<PlayerData> newlist = new List<PlayerData>();
+        newlist.AddRange(_playerDatas);
+        newlist.Sort(delegate(PlayerData c1, PlayerData c2) { return c2.CurrentDistance.CompareTo(c1.CurrentDistance); });
+
+        for (int i = 0; i < newlist.Count; i++)
+        {
+            if (newlist[i].index == _playingPlayer.index)
+            {            
+                int oldLadder = _playerDatas[newlist[i].index].ladderPosition;
+                if (oldLadder > i + 1 && i < 3)
+                {
+                    audio.clip = ladderAudioClips[i];
+                    audio.Play();
+                    if (i == 0)
+                    {
+                        UI.GetComponent<Animator>().SetTrigger("Confetti");
+
+                    }
+                    else
+                    {
+                        UI.GetComponent<Animator>().SetTrigger("Blow");
+                    }
+                }
+            }
+            _playerDatas[newlist[i].index].ladderPosition = i + 1;
+        }
+        // Debug.Log("Position " + _playingPlayer.ladderPosition);
+        _lastUpdate = Time.fixedTime + .5f;
     }
 }
