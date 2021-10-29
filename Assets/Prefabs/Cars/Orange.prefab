@@ -10078,7 +10078,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280199409}
-  m_LocalRotation: {x: 0.25241944, y: -0.000000008324602, z: 0.0000000021716124, w: 0.9676179}
+  m_LocalRotation: {x: 0.25241944, y: -0.000000008324601, z: 0.0000000021716122, w: 0.9676179}
   m_LocalPosition: {x: 0, y: 4.72, z: -8.431114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10599,7 +10599,7 @@ GameObject:
   - component: {fileID: 1498212733}
   m_Layer: 0
   m_Name: Orange
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10611,8 +10611,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5509219885173718939}
-  m_LocalRotation: {x: 0, y: -0.15592586, z: 0, w: 0.98776877}
-  m_LocalPosition: {x: -3.5251927, y: 0, z: -1.2171006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1721209236}
@@ -10622,7 +10622,7 @@ Transform:
   - {fileID: 37210080959263224}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -17.941, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1498212715
 Animator:
   serializedVersion: 3
@@ -10655,11 +10655,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Debugging: 1
-  totalTime: 500
+  totalTime: 3
   initialSpeed: 8
   decelerationSpeed: 3
   turnStrength: 180
-  gravityForce: 30
+  gravityForce: 50
   antiBounceForce: 0
   trailMaxEmission: 50
   speedEmissionFactor: 25
@@ -10727,8 +10727,6 @@ MonoBehaviour:
   - {fileID: 6434554124432306005}
   - {fileID: 4930829332813377756}
   wheelOffset: 0.33
-  frontSlopeLength: 1
-  frontSlopeDetector: {fileID: 0}
   vcam: {fileID: 1280199411}
 --- !u!114 &1498212713
 MonoBehaviour:

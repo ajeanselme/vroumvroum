@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967639477}
-  m_LocalRotation: {x: 0.25241944, y: -0.0000000083246015, z: 0.0000000021716124, w: 0.9676179}
+  m_LocalRotation: {x: 0.25241944, y: -0.000000008324602, z: 0.0000000021716124, w: 0.9676179}
   m_LocalPosition: {x: 0, y: 4.72, z: -8.431114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10564,7 +10564,7 @@ GameObject:
   - component: {fileID: 1874726220050443058}
   m_Layer: 0
   m_Name: Ambulance
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10577,7 +10577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6228746409818422740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.87, y: 0.4, z: 46.59111}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1874726219072459739}
@@ -10620,12 +10620,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Debugging: 1
-  totalTime: 5
+  totalTime: 3
   initialSpeed: 8
   decelerationSpeed: 3
   turnStrength: 90
   gravityForce: 50
-  antiBounceForce: 10
+  antiBounceForce: 0
   trailMaxEmission: 50
   speedEmissionFactor: 50
   airIgnoring: 0.2
