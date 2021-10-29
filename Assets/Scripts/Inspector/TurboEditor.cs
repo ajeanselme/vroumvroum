@@ -353,17 +353,24 @@ public class TurboEditor : EditorWindow
     
         private void AddPlayer()
         {
-            GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0], _checkpointsController.points[0].GO.transform);
-            go.transform.SetParent(null);
-            go.name = "Player " + _turnManager.playerList.Count;
-            TurnManager.Player newPlayer = new TurnManager.Player();
+            if (_checkpointsController.points.Count > 0)
+            {
+                GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0], _checkpointsController.points[0].GO.transform);
+                go.transform.SetParent(null);
+                go.name = "Player " + _turnManager.playerList.Count;
+                TurnManager.Player newPlayer = new TurnManager.Player();
             
-            newPlayer.carController = go.GetComponent<CarController>();
-            newPlayer.prefabIndex = 0;
+                newPlayer.carController = go.GetComponent<CarController>();
+                newPlayer.prefabIndex = 0;
             
-            _turnManager.playerList.Add(newPlayer);
+                _turnManager.playerList.Add(newPlayer);
             
-            playerLogs.Add(new PlayerLog(0));
+                playerLogs.Add(new PlayerLog(0));
+            }
+            else
+            {
+                Debug.LogError("Tu dois créer le premier checkpoint avant !");
+            }
         }
 
         private void RemovePlayer(int index)
