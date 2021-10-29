@@ -132,12 +132,6 @@ public class CheckpointsController : MonoBehaviour
             _playingPlayer.lastProgress = progress;
         }
         
-        //Debug
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            UI.GetComponent<MMFeedbacks>().PlayFeedbacks();
-        }
-
         if (_lastUpdate < Time.fixedTime)
         {
             OrderPositions();

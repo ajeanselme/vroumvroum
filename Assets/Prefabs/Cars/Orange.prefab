@@ -10078,8 +10078,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280199409}
-  m_LocalRotation: {x: 0.25241944, y: -0.000000008324601, z: 0.0000000021716122, w: 0.9676179}
-  m_LocalPosition: {x: 0, y: 4.72, z: -8.431114}
+  m_LocalRotation: {x: 0.2524195, y: 0.0000000033830232, z: -8.825179e-10, w: 0.9676179}
+  m_LocalPosition: {x: 0, y: 4.72, z: -8.431112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1100880794}
@@ -10654,7 +10654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b561151140656ea4d8d90077697af265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debugging: 1
+  Debugging: 0
+  turn: 0
   totalTime: 3
   initialSpeed: 11
   decelerationSpeed: 3
@@ -10719,7 +10720,7 @@ MonoBehaviour:
   - {fileID: 325828355}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   groundRayLength: 0.35
   wheels:
   - {fileID: 4068351305608145970}
