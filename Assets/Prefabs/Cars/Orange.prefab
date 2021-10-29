@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.83
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5088,7 +5088,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.83
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9957,8 +9957,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8837869, y: 0.43854845, z: 3.0054932}
-  m_Center: {x: 1.698301e-17, y: 1.6848416, z: -0.33150244}
+  m_Size: {x: 1.8837869, y: 1.0283692, z: 3.2709517}
+  m_Center: {x: 0, y: 1.3899313, z: -0.19877315}
 --- !u!1 &1100880793
 GameObject:
   m_ObjectHideFlags: 0
@@ -10272,10 +10272,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2715747
+  m_Radius: 0.3314909
   m_Height: 2.0141263
   m_Direction: 0
-  m_Center: {x: 0, y: -0.0628061, z: 0.45523965}
+  m_Center: {x: 0, y: -0.1227223, z: 0.45523965}
 --- !u!114 &1813643306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10660,8 +10660,9 @@ MonoBehaviour:
   decelerationSpeed: 3
   turnStrength: 180
   gravityForce: 30
-  antiBounceForce: 100
-  maxEmission: 50
+  antiBounceForce: 0
+  trailMaxEmission: 50
+  speedEmissionFactor: 25
   airIgnoring: 0.2
   airSmallBump: 0.7
   slideCurve:
@@ -10718,14 +10719,17 @@ MonoBehaviour:
   - {fileID: 325828355}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
   groundRayLength: 0.35
   wheels:
   - {fileID: 4068351305608145970}
   - {fileID: 8763222415228285151}
   - {fileID: 6434554124432306005}
   - {fileID: 4930829332813377756}
-  wheelOffset: 0.3
+  wheelOffset: 0.33
+  frontSlopeLength: 1
+  frontSlopeDetector: {fileID: 0}
+  vcam: {fileID: 1280199411}
 --- !u!114 &1498212713
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 public class CarController : MonoBehaviour
 {
-    public bool Debugging;
+    public bool Debugging, turn;
 
     [Header("Settings")]
     [Tooltip("Temps total de parcours avant décélération")]
@@ -54,15 +54,17 @@ public class CarController : MonoBehaviour
     public CinemachineVirtualCamera vcam;
 
     private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _initialFOV;
-    private bool grounded, _bumped, _groundedLastFrame;
+    private bool _grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
     
     private Quaternion _nextRotation;
-    private float _rotationDamping = 5f;
     private float _slopeAngle = 0f;
 
     private MMFeedbacks _feedbacks;
+    
+    //Debug variables
+    private float _rotationDamping;
 
     private void Start()
     {
@@ -82,8 +84,10 @@ public class CarController : MonoBehaviour
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
-        
-        launchCar();
+
+        stopCar();
+        turn = false;
+        //launchCar();
     }
 
     private void OnGUI()
@@ -93,22 +97,23 @@ public class CarController : MonoBehaviour
             GUILayout.BeginArea(new Rect(10,10,200,200));
             GUILayout.Space(2);
             GUILayout.Box("Debug Window");
-            GUILayout.Box("State : " + (grounded ? "ground" : "air"));
+            GUILayout.Box("State : " + (_grounded ? "ground" : "air"));
             GUILayout.Box("Current Speed : " + _currentSpeed);
             GUILayout.Box("Slope : " + _slopeAngle);
             GUILayout.Box("Time Left : " + _remainingTime);
             GUILayout.Box("Air time : " + _airTime);
-            GUILayout.Box("FOV : " + vcam.m_Lens.FieldOfView);
+            GUILayout.Box("RotationDamping : " + _rotationDamping);
 
             GUILayout.EndArea();
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         /*
-         * Drawing Guizmos of the wheels detectors for debug purposes
+         * Drawing Guizmos of each detectors for debug purposes
          */
+
         foreach (GameObject wheel in wheels)
         {
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
@@ -126,12 +131,7 @@ public class CarController : MonoBehaviour
          * Attention: The front wheels must be the first in the wheel tables
          * otherwhise the car won't adapt correctly to the slope.
          */
-        grounded = false;
-
-        if (_slopeAngle < .1f)
-        {
-            
-        }
+        _grounded = false;
         
         foreach (GameObject wheel in wheels)
         {
@@ -141,14 +141,14 @@ public class CarController : MonoBehaviour
                 wheel.transform.position.z);
             if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
-                grounded = true;
+                _grounded = true;
                 _emissionRate = 0;
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
                 break;
             }
         }
 
-        if (!grounded)
+        if (!_grounded)
         {
             _airTime += Time.deltaTime;
         }
@@ -157,7 +157,7 @@ public class CarController : MonoBehaviour
          * Change car direction based on Horizontal input 
          */
         _turnInput = Input.GetAxis("Horizontal");
-        if (grounded && _currentSpeed > 0)
+        if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
         }
@@ -167,6 +167,7 @@ public class CarController : MonoBehaviour
          * Finally update the general GO to match the RB position, and Lerp the new rotation based on the ground
          */
         transform.position = theRB.transform.position;
+        _rotationDamping = Mathf.Abs(90 - _slopeAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * _rotationDamping);
 
         if (Debugging)
@@ -191,7 +192,7 @@ public class CarController : MonoBehaviour
         }
 
 
-        if (!_groundedLastFrame && grounded)
+        if (!_groundedLastFrame && _grounded)
         {
             _bumped = false;
             landCar();
@@ -200,12 +201,11 @@ public class CarController : MonoBehaviour
         /*
          * Handling car speed
          */
-        if (grounded && !_bumped)
+        if (_grounded && !_bumped)
         {
             if (_currentSpeed > .1f)
             {
                 // Manage speed based on slope
-                
                 _slopeAngle = (Vector3.Angle (Vector3.down, transform.forward)) - 90;
                 
                 var emission = TurnManager.instance.speedParticles.emission;
@@ -273,7 +273,7 @@ public class CarController : MonoBehaviour
             emissionModule.rateOverTime = _emissionRate;
         }
 
-        _groundedLastFrame = grounded;
+        _groundedLastFrame = _grounded;
     }
 
     public void setCarSpeed(float speed)
@@ -283,10 +283,10 @@ public class CarController : MonoBehaviour
             theRB.velocity = transform.forward * speed * 4f;
             _emissionRate = trailMaxEmission;
         }
-        else
-        {
+        else 
+       
             stopCar(true);
-        }
+        
     }
 
     public void setDirection(float turnInput)
@@ -300,7 +300,9 @@ public class CarController : MonoBehaviour
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
         _remainingTime = totalTime;
+        totalTime = 0f;
         _currentSpeed = initialSpeed;
+        turn = true;
     }
 
     public void landCar()
