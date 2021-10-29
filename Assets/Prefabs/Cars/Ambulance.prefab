@@ -10619,17 +10619,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b561151140656ea4d8d90077697af265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debugging: 1
+  Debugging: 0
   totalTime: 3
-  initialSpeed: 8
+  initialSpeed: 11
   decelerationSpeed: 3
-  turnStrength: 90
-  gravityForce: 50
-  antiBounceForce: 0
-  trailMaxEmission: 50
-  speedEmissionFactor: 50
+  turnStrength: 300
+  gravityForce: 70
+  antiBounceForce: 100
+  trailMaxEmission: 30
+  speedEmissionFactor: 200
   airIgnoring: 0.2
-  airSmallBump: 0.7
+  airSmallBump: 0.6
   slideCurve:
     serializedVersion: 2
     m_Curve:
@@ -10662,16 +10662,16 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 90
-      value: 0
+      time: 1
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0

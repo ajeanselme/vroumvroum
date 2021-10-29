@@ -292,11 +292,12 @@ public class TurboEditor : EditorWindow
     private void AddCheckpoint()
     {
         int newIndex = _checkpointsController.points.Count;
-        int prevIndex = 0;
-        if (newIndex > 0) prevIndex = newIndex - 1;
         
         GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_checkpointsController.CPPrefab, _checkpointsController.transform);
-        go.transform.position = _checkpointsController.points[prevIndex].GO.transform.position;
+        if (newIndex > 0)
+        {
+            go.transform.position = _checkpointsController.points[newIndex - 1].GO.transform.position;
+        }
         go.name = "Checkpoint " + newIndex;
         
         go.GetComponent<CheckPoint>().setIndex(newIndex);
@@ -352,17 +353,24 @@ public class TurboEditor : EditorWindow
     
         private void AddPlayer()
         {
-            GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0], _checkpointsController.points[0].GO.transform);
-            go.transform.SetParent(null);
-            go.name = "Player " + _turnManager.playerList.Count;
-            TurnManager.Player newPlayer = new TurnManager.Player();
+            if (_checkpointsController.points.Count > 0)
+            {
+                GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0], _checkpointsController.points[0].GO.transform);
+                go.transform.SetParent(null);
+                go.name = "Player " + _turnManager.playerList.Count;
+                TurnManager.Player newPlayer = new TurnManager.Player();
             
-            newPlayer.carController = go.GetComponent<CarController>();
-            newPlayer.prefabIndex = 0;
+                newPlayer.carController = go.GetComponent<CarController>();
+                newPlayer.prefabIndex = 0;
             
-            _turnManager.playerList.Add(newPlayer);
+                _turnManager.playerList.Add(newPlayer);
             
-            playerLogs.Add(new PlayerLog(0));
+                playerLogs.Add(new PlayerLog(0));
+            }
+            else
+            {
+                Debug.LogError("Tu dois créer le premier checkpoint avant !");
+            }
         }
 
         private void RemovePlayer(int index)
@@ -403,21 +411,26 @@ public class TurboEditor : EditorWindow
             {
                 Handles.Label(_checkpointsController.points[i].GO.transform.position, _checkpointsController.points[i].GO.name);
                 Handles.SphereHandleCap(0, _checkpointsController.points[i].GO.transform.position, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
-            }
 
-            if ( i + 1 < _checkpointsController.points.Count)
+                if ( i + 1 < _checkpointsController.points.Count)
+                {
+                    Vector3 current = _checkpointsController.points[i].GO.transform.position;
+                    Vector3 next = _checkpointsController.points[i + 1].GO.transform.position;
+                    Handles.color = Color.blue;
+                    Handles.DrawLine(current, next);
+                    
+                    Handles.color = Color.green;
+                    Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
+                        (current.z + next.z) / 2f);
+                    Handles.SphereHandleCap(0, middle, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
+
+                }
+            }
+            else
             {
-                Vector3 current = _checkpointsController.points[i].GO.transform.position;
-                Vector3 next = _checkpointsController.points[i + 1].GO.transform.position;
-                Handles.color = Color.blue;
-                Handles.DrawLine(current, next);
-                
-                Handles.color = Color.green;
-                Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
-                    (current.z + next.z) / 2f);
-                Handles.SphereHandleCap(0, middle, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
-
+                RemoveCheckpoint(i);
             }
+
         }
         Handles.EndGUI();
     }
