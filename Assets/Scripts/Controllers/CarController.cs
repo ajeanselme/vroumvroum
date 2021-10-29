@@ -5,6 +5,7 @@ using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Rewired;
 
 public class CarController : MonoBehaviour
 {
@@ -63,6 +64,8 @@ public class CarController : MonoBehaviour
 
     private MMFeedbacks _feedbacks;
 
+    [HideInInspector] public Rewired.Player rewiredPlayer;
+
     //Debug variables
     private float _rotationDamping;
     private GUIStyle debugWindowStyle, debugTextBoxStyle;
@@ -111,7 +114,6 @@ public class CarController : MonoBehaviour
 
         stopCar();
         turn = false;
-        //launchCar();
     }
 
     private void OnGUI()
@@ -206,7 +208,7 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = Input.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("Horizontal");
         if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
