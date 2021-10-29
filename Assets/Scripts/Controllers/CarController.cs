@@ -166,6 +166,9 @@ public class CarController : MonoBehaviour
             GUILayout.BeginHorizontal(debugTextBoxStyle);
                 GUILayout.Label("[Space] Jump");
             GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[R] Restart");
+            GUILayout.EndHorizontal();
             
             GUILayout.EndArea();
         }
