@@ -42,7 +42,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log(ReInput.players.playerCount);
         rewiredPlayers = new Player[players.Length];
         
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < players.Length; i++)
         {
             rewiredPlayers[i] = ReInput.players.GetPlayer(i);
         }
