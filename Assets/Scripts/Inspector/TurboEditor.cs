@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using MoreMountains.Tools;
-using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using ReorderableList = UnityEditorInternal.ReorderableList;
 
+#if UNITY_EDITOR
 public class TurboEditor : EditorWindow
 {
+    
     private class PlayerLog
     {
         public int oldSelectedIndex = 0;
@@ -456,3 +453,5 @@ public class TurboEditor : EditorWindow
         list[indexB] = tmp;
     }
 }
+#endif
+

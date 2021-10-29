@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -81,6 +83,11 @@ public class TurnManager : MonoBehaviour
         {
             FinishTurn(playerList[indexCarTurn].carController);
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     public void FinishTurn(CarController player)
@@ -136,8 +143,8 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(sec);
         speedParticles.Play();
 
-        // minigame.beginMinigame(player);
-        player.launchCar();
+        minigame.beginMinigame(player);
+        // player.launchCar();
     }
 
     private void EndGame()

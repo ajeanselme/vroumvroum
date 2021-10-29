@@ -10622,7 +10622,7 @@ MonoBehaviour:
   Debugging: 0
   turn: 0
   totalTime: 3
-  initialSpeed: 11
+  initialSpeed: 8
   decelerationSpeed: 3
   turnStrength: 300
   gravityForce: 70
