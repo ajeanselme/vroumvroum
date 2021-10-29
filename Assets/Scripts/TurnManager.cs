@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class TurnManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TurnManager : MonoBehaviour
     public class Player
     {
         public CarController carController;
+        public Rewired.Player rewiredPlayer;
         public int prefabIndex;
     }
     
@@ -42,14 +44,10 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
-
-        for (int i = 0; i < playerList.Count; i++)
-        {
-            
-        }
         
         for (int i = 1; i < playerList.Count; i++)
         {
+            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
             playerList[i].carController.stopCar();
             playerList[i].carController.gameObject.SetActive(false);
             playerList[i].carController.vcam.gameObject.SetActive(false);
@@ -60,6 +58,18 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
+        // Debug
+        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Cross"))
+            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Cross");
+        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Circle"))
+            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Circle");
+        if (playerList[indexCarTurn].GetButtonDown("Triangle"))
+            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Triangle");
+        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Square"))
+            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Square");
+        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Start"))
+            Debug.Log("Start");
+        
         // Debug
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -110,14 +120,12 @@ public class TurnManager : MonoBehaviour
                 break;
             }
         }
-
-        
     }
 
     IEnumerator WaitLaunch(CarController player, float sec)
     {
         player.turn = false;
-        player.stopCar();
+        player.stopCar();
 
         yield return new WaitForSeconds(sec);
         speedParticles.Play();
