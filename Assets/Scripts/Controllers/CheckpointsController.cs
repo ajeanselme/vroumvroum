@@ -141,7 +141,7 @@ public class CheckpointsController : MonoBehaviour
     {
         List<float> scores = new List<float>();
         
-        float imageHeight = progressBarFill.rectTransform.sizeDelta.y - 100f;
+        float imageHeight = progressBarFill.rectTransform.sizeDelta.y - 30f;
 
         for (int i = 0; i < _playerDatas.Count; i++)
         {
@@ -162,7 +162,7 @@ public class CheckpointsController : MonoBehaviour
             float newPos = Mathf.Clamp(progress * imageHeight, progressBarFill.transform.position.y + 20f, imageHeight);
             Transform bar = progressBarFill.transform.GetChild(i);
 
-            bar.position = Vector3.Lerp(bar.position, new Vector2(bar.position.x, newPos), Time.deltaTime * 10f);
+            bar.position = Vector3.Lerp(bar.position, new Vector2(progressBarFill.transform.position.x, newPos), Time.deltaTime * 10f);
         }
     }
 
