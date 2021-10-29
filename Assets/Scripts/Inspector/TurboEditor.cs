@@ -201,6 +201,7 @@ public class TurboEditor : EditorWindow
                     if (_turnManager.playerList[i].carController == null)
                     {
                         RemovePlayer(i);
+                        Debug.Log("remove 1");
                         i--;
                     }
                     else
@@ -234,6 +235,7 @@ public class TurboEditor : EditorWindow
                     if (_turnManager.playerList.Count > 0)
                     {
                         RemovePlayer(_turnManager.playerList.Count - 1);
+                        Debug.Log("remove 2");
                     }   
                 }
                 EditorGUILayout.EndHorizontal();

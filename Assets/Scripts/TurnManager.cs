@@ -136,7 +136,8 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(sec);
         speedParticles.Play();
 
-        minigame.beginMinigame(player);
+        // minigame.beginMinigame(player);
+        player.launchCar();
     }
 
     private void EndGame()

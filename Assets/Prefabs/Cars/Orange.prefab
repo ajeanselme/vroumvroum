@@ -10654,7 +10654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b561151140656ea4d8d90077697af265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debugging: 1
+  Debugging: 0
   turn: 0
   totalTime: 3
   initialSpeed: 11
@@ -10720,7 +10720,7 @@ MonoBehaviour:
   - {fileID: 325828355}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   groundRayLength: 0.35
   wheels:
   - {fileID: 4068351305608145970}

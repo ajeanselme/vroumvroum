@@ -10654,7 +10654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b561151140656ea4d8d90077697af265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debugging: 1
+  Debugging: 0
   turn: 0
   totalTime: 3
   initialSpeed: 11
