@@ -37,6 +37,8 @@ public class TurboEditor : EditorWindow
 
     private bool showPlayerList, showCheckPoints;
 
+    private Vector2 scrollPos;
+
     private int advancedToolbar = 0;
 
     private GUIStyle checkpointStyle;
@@ -101,6 +103,8 @@ public class TurboEditor : EditorWindow
             // _turnManager = (TurnManager) EditorGUILayout.ObjectField("Turn Manager", _turnManager, typeof(TurnManager), true);
             
             GUILayout.Space(20);
+
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
             
             #region Map Settings
             
@@ -284,6 +288,8 @@ public class TurboEditor : EditorWindow
                 
             }
             #endregion
+            
+            EditorGUILayout.EndScrollView();
         }
     }
 
