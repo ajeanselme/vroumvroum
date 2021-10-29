@@ -47,12 +47,13 @@ public class TurnManager : MonoBehaviour
 
         for (int i = 0; i < playerList.Count; i++)
         {
+            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
+            playerList[i].carController.rewiredPlayer = playerList[i].rewiredPlayer;
             CheckpointsController.instance.InitPlayer();
         }
         
         for (int i = 1; i < playerList.Count; i++)
         {
-            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
             playerList[i].carController.stopCar();
             playerList[i].carController.gameObject.SetActive(false);
             playerList[i].carController.vcam.gameObject.SetActive(false);
