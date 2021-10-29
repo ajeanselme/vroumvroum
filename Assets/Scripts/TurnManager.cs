@@ -15,7 +15,7 @@ public class TurnManager : MonoBehaviour
     }
     
     private int turn = 0;
-    private int indexCarTurn = 0;
+    public int indexCarTurn = 0;
 
     [HideInInspector] public List<Player> playerList = new List<Player>();
     [HideInInspector] public List<GameObject> carPrefabs = new List<GameObject>();
@@ -43,7 +43,7 @@ public class TurnManager : MonoBehaviour
 
         for (int i = 0; i < playerList.Count; i++)
         {
-            
+            CheckpointsController.instance.InitPlayer();
         }
         
         for (int i = 1; i < playerList.Count; i++)
@@ -115,7 +115,8 @@ public class TurnManager : MonoBehaviour
     IEnumerator WaitLaunch(CarController player, float sec)
     {
         player.stopCar();
-        
+        CheckpointsController.instance.LoadPlayer(indexCarTurn);
+
         yield return new WaitForSeconds(sec);
         
         player.launchCar();
