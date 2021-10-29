@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -26,7 +27,14 @@ public class CarController : MonoBehaviour
     [Tooltip("Force appliquée vers le bas de la voiture pour régler le bounce")]
     public float antiBounceForce = 10f; 
     [Tooltip("Quantité de particules max")]
-    public float maxEmission = 50f;
+    public float trailMaxEmission = 50f;
+    public float speedEmissionFactor = 50f;
+
+    [Header("Tresholds")]
+    [Tooltip("Si airtime en dessous de cette valeur, aucune animation")]
+    public float airIgnoring = .2f;
+    [Tooltip("Si airtime en dessous de cette valeur, small bump, sinon big")]
+    public float airSmallBump = .7f;
 
     [Tooltip("Facteurs de vitesse dans les pentes")]
     [SerializeField] private AnimationCurve slideCurve = new AnimationCurve ( new Keyframe (0f, 0f), new Keyframe(90f, 1f));
@@ -42,19 +50,48 @@ public class CarController : MonoBehaviour
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
-    
-    
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate;
-    private bool grounded, _bumped, _groundedLastFrame;
 
+    public CinemachineVirtualCamera vcam;
+
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _initialFOV;
+    private bool _grounded, _bumped, _groundedLastFrame;
+
+    private Animator _animator;
+    
     private Quaternion _nextRotation;
-    private float _rotationDamping = 5f;
     private float _slopeAngle = 0f;
 
     private MMFeedbacks _feedbacks;
 
+    //Debug variables
+    private float _rotationDamping;
+    private GUIStyle debugWindowStyle, debugTextBoxStyle;
+
     private void Start()
     {
+        debugWindowStyle = new GUIStyle();
+        debugWindowStyle.normal.background = Texture2D.grayTexture;
+
+        debugTextBoxStyle = new GUIStyle();
+        debugTextBoxStyle.normal.textColor = Color.white;
+        Texture2D newTex = new Texture2D(64,64);
+        
+        for (int y = 0; y < newTex.height; y++)
+        {
+            for (int x = 0; x < newTex.width; x++)
+            {
+                newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+            }
+        }
+        
+        for (int x = 0; x < newTex.width; x++)
+        {
+            newTex.SetPixel(x, 0, Color.black);
+        }
+        
+        newTex.Apply();
+        debugTextBoxStyle.normal.background = newTex;
+
         /*
          * Set the RB as an independant GO
          * The mesh will then follow the RB position in the update
@@ -67,33 +104,63 @@ public class CarController : MonoBehaviour
          */
         _currentSpeed = initialSpeed;
         _nextRotation = transform.rotation;
+        _initialFOV = vcam.m_Lens.FieldOfView;
 
         _feedbacks = GetComponent<MMFeedbacks>();
+        _animator = GetComponent<Animator>();
         
         launchCar();
     }
 
     private void OnGUI()
     {
+        GUILayout.BeginArea(new Rect(10,10,200, Screen.height));
+        GUILayout.Space(2);
+        GUILayout.Box("Debug Window [P]");
         if (Debugging)
         {
-            GUILayout.BeginArea(new Rect(10,10,200,200));
-            GUILayout.Space(2);
-            GUILayout.Box("Debug Window");
-            GUILayout.Box("State : " + (grounded ? "ground" : "air"));
-            GUILayout.Box("Current Speed : " + _currentSpeed);
-            GUILayout.Box("Slope : " + _slopeAngle);
-            GUILayout.Box("Time Left : " + _remainingTime);
+            GUILayout.BeginArea(new Rect(0,25,200,Screen.height), "", debugWindowStyle);
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("State : " + (_grounded ? "ground" : "air"));
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Current Speed : " + _currentSpeed);
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Slope : " + _slopeAngle);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Time Left : " + _remainingTime);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Air time : " + _airTime);
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Checkpoint : " + CheckpointsController.instance.CurrentCP);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
+            GUILayout.EndHorizontal();
 
             GUILayout.EndArea();
         }
+        GUILayout.EndArea();
+
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         /*
-         * Drawing Guizmos of the wheels detectors for debug purposes
+         * Drawing Guizmos of each detectors for debug purposes
          */
+
         foreach (GameObject wheel in wheels)
         {
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
@@ -106,12 +173,14 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
+        
         /*
          * Reset the grounded state and check each wheel for ground contact.
          * Attention: The front wheels must be the first in the wheel tables
          * otherwhise the car won't adapt correctly to the slope.
          */
-        grounded = false;
+        _grounded = false;
+        
         foreach (GameObject wheel in wheels)
         {
             RaycastHit hit;
@@ -120,18 +189,23 @@ public class CarController : MonoBehaviour
                 wheel.transform.position.z);
             if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
-                grounded = true;
+                _grounded = true;
                 _emissionRate = 0;
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
                 break;
             }
         }
-        
+
+        if (!_grounded)
+        {
+            _airTime += Time.deltaTime;
+        }
+
         /*
          * Change car direction based on Horizontal input 
          */
         _turnInput = Input.GetAxis("Horizontal");
-        if (grounded && _currentSpeed > 0)
+        if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
         }
@@ -141,8 +215,13 @@ public class CarController : MonoBehaviour
          * Finally update the general GO to match the RB position, and Lerp the new rotation based on the ground
          */
         transform.position = theRB.transform.position;
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * _rotationDamping);
+        _rotationDamping = Mathf.Abs(90 - _slopeAngle);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * 90f);
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debugging = !Debugging;
+        }
         
         if (Debugging)
         {
@@ -166,7 +245,7 @@ public class CarController : MonoBehaviour
         }
 
 
-        if (!_groundedLastFrame && grounded)
+        if (!_groundedLastFrame && _grounded)
         {
             _bumped = false;
             landCar();
@@ -175,14 +254,15 @@ public class CarController : MonoBehaviour
         /*
          * Handling car speed
          */
-        if (grounded && !_bumped)
+        if (_grounded && !_bumped)
         {
             if (_currentSpeed > .1f)
             {
                 // Manage speed based on slope
-                
                 _slopeAngle = (Vector3.Angle (Vector3.down, transform.forward)) - 90;
                 
+                var emission = TurnManager.instance.speedParticles.emission;
+
                 // If on flat ground
                 if (_slopeAngle > -1f && _slopeAngle < 1f)
                 {
@@ -198,6 +278,8 @@ public class CarController : MonoBehaviour
                             _currentSpeed -= decelerationSpeed * Time.deltaTime;
                         }
                     }
+                    
+                    emission.rateOverTime = speedEmissionFactor * (_currentSpeed / initialSpeed);
                 }
                 // If on slide
                 else if (_slopeAngle < -1f)
@@ -210,6 +292,8 @@ public class CarController : MonoBehaviour
                     {
                         _currentSpeed = Mathf.Clamp(_currentSpeed + slideCurve.Evaluate(-_slopeAngle) * Time.deltaTime, 0, initialSpeed * 1.2f);
                     }
+                    
+                    emission.rateOverTime = (speedEmissionFactor + speedEmissionFactor * (5 * (-_slopeAngle / 45))) * (_currentSpeed / initialSpeed);
                 }
                 // If on uphill
                 else if (_slopeAngle > 1f)
@@ -222,8 +306,8 @@ public class CarController : MonoBehaviour
                     {
                         _currentSpeed -= decelerationSpeed * Mathf.Clamp(uphillCurve.Evaluate(_slopeAngle), .95f, 1f) * Time.deltaTime;
                     }
+                    emission.rateOverTime = (speedEmissionFactor * (1 - _slopeAngle / 45)) * (_currentSpeed / initialSpeed);
                 }
-                
                 setCarSpeed(_currentSpeed);
             }
             
@@ -242,7 +326,7 @@ public class CarController : MonoBehaviour
             emissionModule.rateOverTime = _emissionRate;
         }
 
-        _groundedLastFrame = grounded;
+        _groundedLastFrame = _grounded;
     }
 
     public void setCarSpeed(float speed)
@@ -250,7 +334,7 @@ public class CarController : MonoBehaviour
         if (speed > 0.1f)
         {
             theRB.velocity = transform.forward * speed * 4f;
-            _emissionRate = maxEmission;
+            _emissionRate = trailMaxEmission;
         }
         else
         {
@@ -260,7 +344,7 @@ public class CarController : MonoBehaviour
 
     public void setDirection(float turnInput)
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime, 0f));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
         wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }
@@ -270,11 +354,34 @@ public class CarController : MonoBehaviour
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
         _remainingTime = totalTime;
         _currentSpeed = initialSpeed;
+        theRB.gameObject.SetActive(true);
     }
 
     public void landCar()
     {
-        _feedbacks.PlayFeedbacks();
+        if (_airTime < airIgnoring)
+        {
+            // Debug.Log("No land");
+        }
+        else if(_airTime < airSmallBump)
+        {
+            // Debug.Log("Small bump");
+            _feedbacks.Feedbacks[1].Active = false;
+            _feedbacks.Feedbacks[2].Active = false;
+            _animator.SetInteger("Power", 0);
+            _feedbacks.PlayFeedbacks();
+        }
+        else
+        {
+            // Debug.Log("Full bounce");
+            _feedbacks.Feedbacks[1].Active = true;
+            _feedbacks.Feedbacks[2].Active = true;
+            _animator.SetInteger("Power", 1);
+
+            _feedbacks.PlayFeedbacks();
+        }
+        
+        _airTime = 0f;
     }
 
     public void bumpCar(Vector3 direction, float force)
@@ -291,9 +398,9 @@ public class CarController : MonoBehaviour
         _remainingTime = -1;
         _currentSpeed = 0;
         _emissionRate = 0;
-        
         theRB.constraints = RigidbodyConstraints.FreezeAll;
-        
+        theRB.gameObject.SetActive(false);
+
         if(endingTurn) TurnManager.instance.FinishTurn(this);
     }
 
