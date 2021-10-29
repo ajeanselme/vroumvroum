@@ -147,8 +147,8 @@ public class CheckpointsController : MonoBehaviour
     private void UpdateUI()
     {
         List<float> scores = new List<float>();
-        
-        float imageHeight = progressBarFill.rectTransform.sizeDelta.y - 30f;
+
+        float imageHeight = Screen.height - Screen.height / 14f;
 
         for (int i = 0; i < _playerDatas.Count; i++)
         {
