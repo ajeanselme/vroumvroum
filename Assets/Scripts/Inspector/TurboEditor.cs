@@ -117,52 +117,7 @@ public class TurboEditor : EditorWindow
             showCheckPoints = EditorGUILayout.Foldout(showCheckPoints, "Checkpoints");
             if (showCheckPoints)
             {
-                for (int i = 0; i < _checkpointsController.points.Count; i++)
-                {
-                    EditorGUILayout.BeginVertical(checkpointStyle);
-                    EditorGUILayout.BeginHorizontal();
-                            GUILayout.Label(""+i);
-                            if (GUILayout.Button("", "Radio"))
-                            {
-                                FocusCP(i);
-                            }
-
-                            _checkpointsController.points[i].distance = EditorGUILayout.FloatField("", _checkpointsController.points[i].distance, EditorStyles.numberField);
-                            
-                            if (GUILayout.Button("▲", "MiniButtonLeft"))
-                            {
-                                if(i > 0) SwapList(_checkpointsController.points, i, i-1);
-                            }
-                            if (GUILayout.Button("▼", "MiniButtonRight"))
-                            {
-                                if(i < _checkpointsController.points.Count - 1) SwapList(_checkpointsController.points, i, i+1);
-                            }
-                            if (GUILayout.Button("✖", "MiniButtonRight"))
-                            {
-                                RemoveCheckpoint(i);
-                                return;
-                            }
-                        EditorGUILayout.EndHorizontal();
-
-                        Vector3 previous = _checkpointsController.points[i - 1 >= 0 ? i - 1 : (_checkpointsController.points.Count - 1)].position;
-                        Vector3 current = _checkpointsController.points[i].position;
-                        
-                        GUILayout.Label("Previous Direct Distance " + Vector3.Distance(current, previous), EditorStyles.miniLabel);
-
-                        _checkpointsController.points[i].position = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].position);
-                        _checkpointsController.points[i].rotation = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].rotation);
-                        
-                    EditorGUILayout.EndVertical();
-                    GUILayout.Space(3);
-                }
-
-                EditorGUILayout.BeginHorizontal();
-                
-                if (GUILayout.Button("Add", "MiniButtonLeft"))
-                {
-                    AddCheckpoint();
-                }
-                EditorGUILayout.EndHorizontal();
+                showCheckpoints();
             }
 
             #endregion
@@ -283,6 +238,65 @@ public class TurboEditor : EditorWindow
         }
     }
 
+    #region EditorMethods
+
+    private void showCheckpoints()
+    {
+        for (int i = 0; i < _checkpointsController.points.Count; i++)
+        {
+            EditorGUILayout.BeginVertical(checkpointStyle);
+            EditorGUILayout.BeginHorizontal();
+                    GUILayout.Label(""+i);
+                    if (GUILayout.Button("", "Radio"))
+                    {
+                        FocusCP(i);
+                    }
+
+                    _checkpointsController.points[i].distance = EditorGUILayout.FloatField("", _checkpointsController.points[i].distance, EditorStyles.numberField);
+                    
+                    if (GUILayout.Button("▲", "MiniButtonLeft"))
+                    {
+                        if(i > 0) SwapList(_checkpointsController.points, i, i-1);
+                    }
+                    if (GUILayout.Button("▼", "MiniButtonRight"))
+                    {
+                        if(i < _checkpointsController.points.Count - 1) SwapList(_checkpointsController.points, i, i+1);
+                    }
+                    if (GUILayout.Button("✖", "MiniButtonRight"))
+                    {
+                        RemoveCheckpoint(i);
+                        return;
+                    }
+                EditorGUILayout.EndHorizontal();
+
+                Vector3 previous = _checkpointsController.points[i - 1 >= 0 ? i - 1 : (_checkpointsController.points.Count - 1)].position;
+                Vector3 current = _checkpointsController.points[i].position;
+                
+                GUILayout.Label("Previous Direct Distance " + Vector3.Distance(current, previous), EditorStyles.miniLabel);
+
+                _checkpointsController.points[i].foldout =
+                    EditorGUILayout.Foldout(_checkpointsController.points[i].foldout, "Transform");
+                if (_checkpointsController.points[i].foldout)
+                {
+                    _checkpointsController.points[i].position = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].position);
+                    _checkpointsController.points[i].rotation = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].rotation);
+                }
+                
+            EditorGUILayout.EndVertical();
+            GUILayout.Space(3);
+        }
+
+        EditorGUILayout.BeginHorizontal();
+        
+        if (GUILayout.Button("Add", "MiniButtonLeft"))
+        {
+            AddCheckpoint();
+        }
+        EditorGUILayout.EndHorizontal();
+    }
+
+    #endregion
+
     #region Map Methods
 
     private void AddCheckpoint()
@@ -291,8 +305,6 @@ public class TurboEditor : EditorWindow
         _checkpointsController.points.Add(new CheckpointsController.Checkpoint(_checkpointsController.points[newIndex - 1].position));
         FocusCP(newIndex);
     }
-    
-    
     private void RemoveCheckpoint(int index)
     {
         if (_checkpointsController.points.Count > index)
