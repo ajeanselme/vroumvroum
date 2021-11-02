@@ -13,15 +13,14 @@ public class CheckpointsController : MonoBehaviour
     [Serializable]
     public class Checkpoint
     {
-        public GameObject GO;
         public int listIndex;
+        public Vector3 position;
+        public Vector3 rotation;
+        public float distance;
 
-        public float km = 0f;
-
-        public Checkpoint(GameObject gameObject, int index)
+        public Checkpoint(Vector3 vector3)
         {
-            GO = gameObject;
-            listIndex = index;
+            this.position = vector3;
         }
     }
 
@@ -97,8 +96,8 @@ public class CheckpointsController : MonoBehaviour
             }
             
 
-            Vector3 pointA = currentCP.GO.transform.position;
-            Vector3 pointB = nextCP.GO.transform.position;
+            Vector3 pointA = currentCP.position;
+            Vector3 pointB = nextCP.position;
 
             Vector3 player = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController.transform.position;
 
@@ -112,7 +111,7 @@ public class CheckpointsController : MonoBehaviour
 
             // debug.transform.position = projected;
             
-            _playingPlayer.CPDistance = nextCP.km * progress;
+            _playingPlayer.CPDistance = nextCP.distance * progress;
 
             if (_playingPlayer.CurrentDistance > _playerDatas[firstCar].CurrentDistance)
             {

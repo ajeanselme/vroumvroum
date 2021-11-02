@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -107,6 +108,7 @@ public class TurboEditor : EditorWindow
             
             GUILayout.Label("Map Settings", EditorStyles.whiteLargeLabel);
             GUILayout.Space(10);
+            EditorGUI.indentLevel++;
             _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera, typeof(GameObject), true);
             // _turnManager.spawnPoint = (Transform) EditorGUILayout.ObjectField("Spawn Transform", _turnManager.spawnPoint, typeof(Transform), true);
             _turnManager.maxTurn = EditorGUILayout.IntField("Turns Per Player", _turnManager.maxTurn);
@@ -117,26 +119,15 @@ public class TurboEditor : EditorWindow
             {
                 for (int i = 0; i < _checkpointsController.points.Count; i++)
                 {
-                    String name;
-                    if (_checkpointsController.points[i].GO != null)
-                    {
-                        name = _checkpointsController.points[i].GO.name;
-                    }
-                    else
-                    {
-                        name = "null";
-                    }
-
-                    
                     EditorGUILayout.BeginVertical(checkpointStyle);
                     EditorGUILayout.BeginHorizontal();
-                            GUILayout.Label(name);
+                            GUILayout.Label(""+i);
                             if (GUILayout.Button("", "Radio"))
                             {
                                 FocusCP(i);
                             }
 
-                            _checkpointsController.points[i].km = EditorGUILayout.FloatField("", _checkpointsController.points[i].km, EditorStyles.numberField);
+                            _checkpointsController.points[i].distance = EditorGUILayout.FloatField("", _checkpointsController.points[i].distance, EditorStyles.numberField);
                             
                             if (GUILayout.Button("▲", "MiniButtonLeft"))
                             {
@@ -149,17 +140,22 @@ public class TurboEditor : EditorWindow
                             if (GUILayout.Button("✖", "MiniButtonRight"))
                             {
                                 RemoveCheckpoint(i);
+                                return;
                             }
                         EditorGUILayout.EndHorizontal();
 
-                        Vector3 previous = _checkpointsController.points[i - 1 >= 0 ? i - 1 : (_checkpointsController.points.Count - 1)].GO.transform.position;
-                        Vector3 current = _checkpointsController.points[i].GO.transform.position;
+                        Vector3 previous = _checkpointsController.points[i - 1 >= 0 ? i - 1 : (_checkpointsController.points.Count - 1)].position;
+                        Vector3 current = _checkpointsController.points[i].position;
                         
                         GUILayout.Label("Previous Direct Distance " + Vector3.Distance(current, previous), EditorStyles.miniLabel);
+
+                        _checkpointsController.points[i].position = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].position);
+                        _checkpointsController.points[i].rotation = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].rotation);
                         
                     EditorGUILayout.EndVertical();
                     GUILayout.Space(3);
                 }
+
                 EditorGUILayout.BeginHorizontal();
                 
                 if (GUILayout.Button("Add", "MiniButtonLeft"))
@@ -167,11 +163,6 @@ public class TurboEditor : EditorWindow
                     AddCheckpoint();
                 }
                 EditorGUILayout.EndHorizontal();
-
-                if (GUILayout.Button("Beautify"))
-                {
-                    OrderCP();
-                }
             }
 
             #endregion
@@ -297,20 +288,8 @@ public class TurboEditor : EditorWindow
     private void AddCheckpoint()
     {
         int newIndex = _checkpointsController.points.Count;
-        
-        GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_checkpointsController.CPPrefab, _checkpointsController.transform);
-        if (newIndex > 0)
-        {
-            go.transform.position = _checkpointsController.points[newIndex - 1].GO.transform.position;
-        }
-        go.name = "Checkpoint " + newIndex;
-        
-        go.GetComponent<CheckPoint>().setIndex(newIndex);
-        
-        _checkpointsController.points.Add(new CheckpointsController.Checkpoint(go, newIndex));
-        
+        _checkpointsController.points.Add(new CheckpointsController.Checkpoint(_checkpointsController.points[newIndex - 1].position));
         FocusCP(newIndex);
-        OrderCP();
     }
     
     
@@ -318,38 +297,17 @@ public class TurboEditor : EditorWindow
     {
         if (_checkpointsController.points.Count > index)
         {
-            if (_checkpointsController.points[index].GO != null)
-            {
-                DestroyImmediate(_checkpointsController.points[index].GO);
-            }
-
             _checkpointsController.points.RemoveAt(index);
-            OrderCP();
-        }
-    }
-
-    private void OrderCP()
-    {
-        for (int i = 0; i < _checkpointsController.points.Count; i++)
-        {
-            if (_checkpointsController.points[i].GO != null)
-            {
-                _checkpointsController.points[i].listIndex = i;
-                _checkpointsController.points[i].GO.name = "Checkpoint " + i;
-                _checkpointsController.points[i].GO.GetComponent<CheckPoint>().setIndex(i);
-            }
-            else
-            {
-                RemoveCheckpoint(i);
-                i--;
-            }
         }
     }
 
     private void FocusCP(int index)
     {
-        Selection.activeGameObject = _checkpointsController.points[index].GO;
+        GameObject temp = new GameObject();
+        temp.transform.position = _checkpointsController.points[index].position;
+        Selection.activeTransform = temp.transform;
         SceneView.lastActiveSceneView.FrameSelected();
+        DestroyImmediate(temp);
     }
     
     #endregion
@@ -360,8 +318,8 @@ public class TurboEditor : EditorWindow
         {
             if (_checkpointsController.points.Count > 0)
             {
-                GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0], _checkpointsController.points[0].GO.transform);
-                go.transform.SetParent(null);
+                GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0]);
+                go.transform.position = _checkpointsController.points[0].position;
                 go.name = "Player " + _turnManager.playerList.Count;
                 TurnManager.Player newPlayer = new TurnManager.Player();
             
@@ -412,32 +370,40 @@ public class TurboEditor : EditorWindow
         Handles.BeginGUI();
         for (int i = 0; i < _checkpointsController.points.Count; i++)
         {
-            if (_checkpointsController.points[i].GO != null)
+            Handles.Label(_checkpointsController.points[i].position, "Checkpoint " + i);
+            Handles.SphereHandleCap(0, _checkpointsController.points[i].position, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
+
+            if ( i + 1 < _checkpointsController.points.Count)
             {
-                Handles.Label(_checkpointsController.points[i].GO.transform.position, _checkpointsController.points[i].GO.name);
-                Handles.SphereHandleCap(0, _checkpointsController.points[i].GO.transform.position, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
+                Vector3 current = _checkpointsController.points[i].position;
+                Vector3 next = _checkpointsController.points[i + 1].position;
+                Handles.color = Color.blue;
+                Handles.DrawLine(current, next);
+                
+                Handles.color = Color.green;
+                Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
+                    (current.z + next.z) / 2f);
+                Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
 
-                if ( i + 1 < _checkpointsController.points.Count)
-                {
-                    Vector3 current = _checkpointsController.points[i].GO.transform.position;
-                    Vector3 next = _checkpointsController.points[i + 1].GO.transform.position;
-                    Handles.color = Color.blue;
-                    Handles.DrawLine(current, next);
-                    
-                    Handles.color = Color.green;
-                    Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
-                        (current.z + next.z) / 2f);
-                    Handles.SphereHandleCap(0, middle, _checkpointsController.points[i].GO.transform.rotation, .5f, EventType.Repaint);
-
-                }
             }
-            else
-            {
-                RemoveCheckpoint(i);
-            }
+        }
 
+        for (int i = 0; i < _checkpointsController.points.Count; i++)
+        {
+            // Handles.Label(checkpoints[i].position, "Checkpoint " + i);
+            // Handles.SphereHandleCap(0, checkpoints[i].position, quaternion.Euler(0,0,0), .5f, EventType.Repaint);
+            EditorGUI.BeginChangeCheck();
+            _checkpointsController.points[i].position = Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
+            // if (EditorGUI.EndChangeCheck())
+            // {
+            //     Undo.RecordObject(this, "Free Move LookAt Point");
+            //     checkpoints[i].position = pos;
+            //     this.Update();
+            // }
+            EditorGUI.EndChangeCheck();
         }
         Handles.EndGUI();
+        Repaint();
     }
     
     private void FindManagers()
