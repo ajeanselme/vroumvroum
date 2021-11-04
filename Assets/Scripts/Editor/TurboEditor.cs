@@ -98,143 +98,155 @@ public class TurboEditor : EditorWindow
         {
             FindManagers();
 
-            // _turnManager = (TurnManager) EditorGUILayout.ObjectField("Turn Manager", _turnManager, typeof(TurnManager), true);
-            
-            GUILayout.Space(20);
-
-            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-            
-            #region Map Settings
-            
-            GUILayout.Label("Map Settings", EditorStyles.whiteLargeLabel);
-            GUILayout.Space(10);
-            EditorGUI.indentLevel++;
-            _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera, typeof(GameObject), true);
-            // _turnManager.spawnPoint = (Transform) EditorGUILayout.ObjectField("Spawn Transform", _turnManager.spawnPoint, typeof(Transform), true);
-            _turnManager.maxTurn = EditorGUILayout.IntField("Turns Per Player", _turnManager.maxTurn);
-
-            GUILayout.Space(10);
-            showCheckPoints = EditorGUILayout.Foldout(showCheckPoints, "Checkpoints");
-            if (showCheckPoints)
+            if (_turnManager != null)
             {
-                showCheckpoints();
-            }
-
-            #endregion
-
-            GUILayout.Space(20);
+                // _turnManager = (TurnManager) EditorGUILayout.ObjectField("Turn Manager", _turnManager, typeof(TurnManager), true);
             
-            #region Players Settings
+                GUILayout.Space(20);
 
-            GUILayout.Label("Players Settings", EditorStyles.whiteLargeLabel);
-            GUILayout.Space(10);
-
-            showPlayerList = EditorGUILayout.Foldout(showPlayerList, "Player List", EditorStyles.foldoutHeader);
-            if (showPlayerList)
-            {
+                scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+                
+                #region Map Settings
+                
+                GUILayout.Label("Map Settings", EditorStyles.whiteLargeLabel);
                 GUILayout.Space(10);
-                List<string> prefabsNames = new List<string>();
-                for (int i = 0; i < _turnManager.carPrefabs.Count; i++)
+                EditorGUI.indentLevel++;
+                _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera, typeof(GameObject), true);
+                // _turnManager.spawnPoint = (Transform) EditorGUILayout.ObjectField("Spawn Transform", _turnManager.spawnPoint, typeof(Transform), true);
+                _turnManager.maxTurn = EditorGUILayout.IntField("Turns Per Player", _turnManager.maxTurn);
+
+                GUILayout.Space(10);
+                showCheckPoints = EditorGUILayout.Foldout(showCheckPoints, "Checkpoints");
+                if (showCheckPoints)
                 {
-                    prefabsNames.Add(_turnManager.carPrefabs[i].name);
+                    showCheckpoints();
                 }
 
-                for (int i = 0; i < _turnManager.playerList.Count; i++)
-                {
-                    if (_turnManager.playerList[i].carController == null)
-                    {
-                        RemovePlayer(i);
-                        Debug.Log("remove 1");
-                        i--;
-                    }
-                    else
-                    {
-                        EditorGUILayout.BeginHorizontal();
+                #endregion
 
-                        if (GUILayout.Button("", "Radio"))
+                GUILayout.Space(20);
+                
+                #region Players Settings
+
+                GUILayout.Label("Players Settings", EditorStyles.whiteLargeLabel);
+                GUILayout.Space(10);
+
+                showPlayerList = EditorGUILayout.Foldout(showPlayerList, "Player List", EditorStyles.foldoutHeader);
+                if (showPlayerList)
+                {
+                    GUILayout.Space(10);
+                    List<string> prefabsNames = new List<string>();
+                    for (int i = 0; i < _turnManager.carPrefabs.Count; i++)
+                    {
+                        prefabsNames.Add(_turnManager.carPrefabs[i].name);
+                    }
+
+                    for (int i = 0; i < _turnManager.playerList.Count; i++)
+                    {
+                        if (_turnManager.playerList[i].carController == null)
                         {
-                            Selection.activeGameObject = _turnManager.playerList[i].carController.gameObject;
+                            RemovePlayer(i);
+                            Debug.Log("remove 1");
+                            i--;
                         }
+                        else
+                        {
+                            EditorGUILayout.BeginHorizontal();
+
+                            if (GUILayout.Button("", "Radio"))
+                            {
+                                Selection.activeGameObject = _turnManager.playerList[i].carController.gameObject;
+                            }
+                        
+                            if(playerLogs[i].ChangeIndex(EditorGUILayout.Popup("Player " + i, _turnManager.playerList[i].prefabIndex, prefabsNames.ToArray())))
+                            {
+                                ChangeCarType(i, playerLogs[i].selectedIndex);
+                            }
+                         
+                            _turnManager.playerList[i].carController.gameObject.SetActive(GUILayout.Toggle(_turnManager.playerList[i].carController.gameObject.activeInHierarchy, ""));
+                         
+                            EditorGUILayout.EndHorizontal();
+                        }
+                    }
                     
-                        if(playerLogs[i].ChangeIndex(EditorGUILayout.Popup("Player " + i, _turnManager.playerList[i].prefabIndex, prefabsNames.ToArray())))
-                        {
-                            ChangeCarType(i, playerLogs[i].selectedIndex);
-                        }
-                     
-                        _turnManager.playerList[i].carController.gameObject.SetActive(GUILayout.Toggle(_turnManager.playerList[i].carController.gameObject.activeInHierarchy, ""));
-                     
-                        EditorGUILayout.EndHorizontal();
-                    }
-                }
-                
-                GUILayout.Space(10);
-                EditorGUILayout.BeginHorizontal();
-                if (GUILayout.Button("Add", "MiniButtonLeft"))
-                {
-                    AddPlayer();
-                }
-                if (GUILayout.Button("Remove", "MiniButtonRight"))
-                {
-                    if (_turnManager.playerList.Count > 0)
+                    GUILayout.Space(10);
+                    EditorGUILayout.BeginHorizontal();
+                    if (GUILayout.Button("Add", "MiniButtonLeft"))
                     {
-                        RemovePlayer(_turnManager.playerList.Count - 1);
-                        Debug.Log("remove 2");
-                    }   
+                        AddPlayer();
+                    }
+                    if (GUILayout.Button("Remove", "MiniButtonRight"))
+                    {
+                        if (_turnManager.playerList.Count > 0)
+                        {
+                            RemovePlayer(_turnManager.playerList.Count - 1);
+                            Debug.Log("remove 2");
+                        }   
+                    }
+                    EditorGUILayout.EndHorizontal();
                 }
-                EditorGUILayout.EndHorizontal();
-            }
-            
-            #endregion
+                
+                #endregion
 
-            GUILayout.Space(20);
-            
-            #region Advanced Edit
-            
-            GUILayout.Label("Edit Mode", EditorStyles.whiteLargeLabel);
-            
-            advancedToolbar = GUILayout.Toolbar(advancedToolbar, new string[] {"Simple", "Advanced"});
-            
-            // If Advanced mode
-            if (advancedToolbar == 1)
+                GUILayout.Space(20);
+                
+                #region Advanced Edit
+                
+                GUILayout.Label("Edit Mode", EditorStyles.whiteLargeLabel);
+                
+                advancedToolbar = GUILayout.Toolbar(advancedToolbar, new string[] {"Simple", "Advanced"});
+                
+                // If Advanced mode
+                if (advancedToolbar == 1)
+                {
+                    GUILayout.Space(10);
+                    GUILayout.Label("Car prefabs");
+                    
+                    
+                    for (int i = 0; i < _turnManager.carPrefabs.Count; i++)
+                    {
+                        _turnManager.carPrefabs[i] = (GameObject) EditorGUILayout.ObjectField("Prefab " + i, _turnManager.carPrefabs[i], typeof(GameObject), true);
+                    }
+
+                    GUILayout.BeginHorizontal();
+                    if (GUILayout.Button("+", "toolbarTextField"))
+                    {
+                        _turnManager.carPrefabs.Add(_turnManager.carPrefabs[_turnManager.carPrefabs.Count - 1]);
+                    }
+                    if (GUILayout.Button("-", "toolbarTextField"))
+                    {
+                        _turnManager.carPrefabs.RemoveAt(_turnManager.carPrefabs.Count - 1);
+                    }
+                    GUILayout.EndHorizontal();
+                    
+                    GUILayout.Space(10);
+                    
+                    _turnManager.speedParticles = (ParticleSystem) EditorGUILayout.ObjectField("Speed Particles", _turnManager.speedParticles, typeof(ParticleSystem), true);
+                    _checkpointsController.CPPrefab = (GameObject) EditorGUILayout.ObjectField("Checkpoint Prefab", _checkpointsController.CPPrefab, typeof(GameObject), true);
+                    
+                    // if (GUILayout.Button("Reset"))
+                    // {
+                    //     for (int i = 0; i < _turnManager.playerList.Count; i++)
+                    //     {
+                    //         RemovePlayer(i);
+                    //         i--;
+                    //     }
+                    // }
+                    
+                }
+                #endregion
+                
+                EditorGUILayout.EndScrollView();
+            }
+            else
             {
-                GUILayout.Space(10);
-                GUILayout.Label("Car prefabs");
-                
-                
-                for (int i = 0; i < _turnManager.carPrefabs.Count; i++)
+                GUILayout.Space(maxSize.y / 10f);
+                if (GUILayout.Button("Setup Scene"))
                 {
-                    _turnManager.carPrefabs[i] = (GameObject) EditorGUILayout.ObjectField("Prefab " + i, _turnManager.carPrefabs[i], typeof(GameObject), true);
+                    GameObject components = (GameObject) PrefabUtility.InstantiatePrefab(Resources.Load("SceneComponents"));
+                    components.name = "SceneComponents";
                 }
-
-                GUILayout.BeginHorizontal();
-                if (GUILayout.Button("+", "toolbarTextField"))
-                {
-                    _turnManager.carPrefabs.Add(_turnManager.carPrefabs[_turnManager.carPrefabs.Count - 1]);
-                }
-                if (GUILayout.Button("-", "toolbarTextField"))
-                {
-                    _turnManager.carPrefabs.RemoveAt(_turnManager.carPrefabs.Count - 1);
-                }
-                GUILayout.EndHorizontal();
-                
-                GUILayout.Space(10);
-                
-                _turnManager.speedParticles = (ParticleSystem) EditorGUILayout.ObjectField("Speed Particles", _turnManager.speedParticles, typeof(ParticleSystem), true);
-                _checkpointsController.CPPrefab = (GameObject) EditorGUILayout.ObjectField("Checkpoint Prefab", _checkpointsController.CPPrefab, typeof(GameObject), true);
-                
-                // if (GUILayout.Button("Reset"))
-                // {
-                //     for (int i = 0; i < _turnManager.playerList.Count; i++)
-                //     {
-                //         RemovePlayer(i);
-                //         i--;
-                //     }
-                // }
-                
             }
-            #endregion
-            
-            EditorGUILayout.EndScrollView();
         }
     }
 
@@ -302,7 +314,14 @@ public class TurboEditor : EditorWindow
     private void AddCheckpoint()
     {
         int newIndex = _checkpointsController.points.Count;
-        _checkpointsController.points.Add(new CheckpointsController.Checkpoint(_checkpointsController.points[newIndex - 1].position));
+        if (newIndex > 0)
+        {
+            _checkpointsController.points.Add(new CheckpointsController.Checkpoint(_checkpointsController.points[newIndex - 1].position));
+        }
+        else
+        {
+            _checkpointsController.points.Add(new CheckpointsController.Checkpoint(new Vector3(0,0,0)));
+        }
         FocusCP(newIndex);
     }
     private void RemoveCheckpoint(int index)
@@ -420,8 +439,23 @@ public class TurboEditor : EditorWindow
     
     private void FindManagers()
     {
-        if(_turnManager == null) _turnManager = GameObject.Find("TurnManager").GetComponent<TurnManager>();
-        if(_checkpointsController == null) _checkpointsController = GameObject.Find("CheckpointsController").GetComponent<CheckpointsController>();
+
+        if (_turnManager == null)
+        {
+            if (GameObject.Find("TurnManager"))
+            {
+                _turnManager = GameObject.Find("TurnManager").GetComponent<TurnManager>();
+            }
+        }
+
+        if (_checkpointsController == null)
+        {
+            if (GameObject.Find("CheckpointsController"))
+            {
+                _checkpointsController = GameObject.Find("CheckpointsController").GetComponent<CheckpointsController>();
+                Debug.Log("ko");
+            }
+        }
     }
     
     private void SwapList<T>(List<T> list, int indexA, int indexB)
