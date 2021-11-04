@@ -153,6 +153,23 @@ public class CarController : MonoBehaviour
                 GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
             GUILayout.EndHorizontal();
 
+            
+            
+            GUILayout.Space(10);
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Enter] Skip turn");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[LShift] Reset time");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Space] Jump");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[R] Restart");
+            GUILayout.EndHorizontal();
+            
             GUILayout.EndArea();
         }
         GUILayout.EndArea();

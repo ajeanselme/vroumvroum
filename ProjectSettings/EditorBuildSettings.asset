@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Antoine/Test.unity
-    guid: 7db93d2d6c01b034481b3d79f2630deb
+    path: Assets/Scenes/Antoine/Proto_29_10.unity
+    guid: ae55ad3397b7208418cbc1562db14359
   m_configObjects: {}

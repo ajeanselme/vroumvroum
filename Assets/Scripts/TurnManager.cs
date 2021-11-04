@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using Rewired;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -109,6 +111,11 @@ public class TurnManager : MonoBehaviour
             speedParticles.Stop();
             // stop cam movement
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     public void BoostCarEffects(float time)
@@ -176,6 +183,7 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(sec);
 
         minigame.beginMinigame(player);
+        // player.launchCar();
     }
 
     private void EndGame()
