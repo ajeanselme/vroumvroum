@@ -5,10 +5,11 @@ using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Rewired;
 
 public class CarController : MonoBehaviour
 {
-    public bool Debugging;
+    public bool Debugging, turn;
 
     [Header("Settings")]
     [Tooltip("Temps total de parcours avant décélération")]
@@ -62,12 +63,38 @@ public class CarController : MonoBehaviour
     private float _slopeAngle = 0f;
 
     private MMFeedbacks _feedbacks;
-    
+
+    [HideInInspector] public Rewired.Player rewiredPlayer;
+
     //Debug variables
     private float _rotationDamping;
+    private GUIStyle debugWindowStyle, debugTextBoxStyle;
 
     private void Start()
     {
+        debugWindowStyle = new GUIStyle();
+        debugWindowStyle.normal.background = Texture2D.grayTexture;
+
+        debugTextBoxStyle = new GUIStyle();
+        debugTextBoxStyle.normal.textColor = Color.white;
+        Texture2D newTex = new Texture2D(64,64);
+        
+        for (int y = 0; y < newTex.height; y++)
+        {
+            for (int x = 0; x < newTex.width; x++)
+            {
+                newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+            }
+        }
+        
+        for (int x = 0; x < newTex.width; x++)
+        {
+            newTex.SetPixel(x, 0, Color.black);
+        }
+        
+        newTex.Apply();
+        debugTextBoxStyle.normal.background = newTex;
+
         /*
          * Set the RB as an independant GO
          * The mesh will then follow the RB position in the update
@@ -84,26 +111,69 @@ public class CarController : MonoBehaviour
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
-        
-        launchCar();
+
+        stopCar();
+        turn = false;
     }
 
     private void OnGUI()
     {
+        GUILayout.BeginArea(new Rect(10,10,200, Screen.height));
+        GUILayout.Space(2);
+        GUILayout.Box("Debug Window [P]");
         if (Debugging)
         {
-            GUILayout.BeginArea(new Rect(10,10,200,200));
-            GUILayout.Space(2);
-            GUILayout.Box("Debug Window");
-            GUILayout.Box("State : " + (_grounded ? "ground" : "air"));
-            GUILayout.Box("Current Speed : " + _currentSpeed);
-            GUILayout.Box("Slope : " + _slopeAngle);
-            GUILayout.Box("Time Left : " + _remainingTime);
-            GUILayout.Box("Air time : " + _airTime);
-            GUILayout.Box("RotationDamping : " + _rotationDamping);
+            GUILayout.BeginArea(new Rect(0,25,200,Screen.height), "", debugWindowStyle);
 
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("State : " + (_grounded ? "ground" : "air"));
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Current Speed : " + _currentSpeed);
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Slope : " + _slopeAngle);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Time Left : " + _remainingTime);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Air time : " + _airTime);
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Checkpoint : " + CheckpointsController.instance.CurrentCP);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
+            GUILayout.EndHorizontal();
+
+            
+            
+            GUILayout.Space(10);
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Enter] Skip turn");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[LShift] Reset time");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Space] Jump");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[R] Restart");
+            GUILayout.EndHorizontal();
+            
             GUILayout.EndArea();
         }
+        GUILayout.EndArea();
+
     }
 
     private void OnDrawGizmosSelected()
@@ -124,6 +194,7 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
+        
         /*
          * Reset the grounded state and check each wheel for ground contact.
          * Attention: The front wheels must be the first in the wheel tables
@@ -154,7 +225,7 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = Input.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("Horizontal");
         if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
@@ -166,8 +237,13 @@ public class CarController : MonoBehaviour
          */
         transform.position = theRB.transform.position;
         _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * _rotationDamping);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * 90f);
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debugging = !Debugging;
+        }
+        
         if (Debugging)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -281,10 +357,10 @@ public class CarController : MonoBehaviour
             theRB.velocity = transform.forward * speed * 4f;
             _emissionRate = trailMaxEmission;
         }
-        else
-        {
+        else 
+       
             stopCar(true);
-        }
+        
     }
 
     public void setDirection(float turnInput)
@@ -298,7 +374,10 @@ public class CarController : MonoBehaviour
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
         _remainingTime = totalTime;
+        totalTime = 0f;
         _currentSpeed = initialSpeed;
+        turn = true;
+        theRB.gameObject.SetActive(true);
     }
 
     public void landCar()
@@ -342,9 +421,9 @@ public class CarController : MonoBehaviour
         _remainingTime = -1;
         _currentSpeed = 0;
         _emissionRate = 0;
-        
         theRB.constraints = RigidbodyConstraints.FreezeAll;
-        
+        theRB.gameObject.SetActive(false);
+
         if(endingTurn) TurnManager.instance.FinishTurn(this);
     }
 
