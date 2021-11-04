@@ -243,7 +243,7 @@ public class TurboEditor : EditorWindow
                 GUILayout.Space(maxSize.y / 10f);
                 if (GUILayout.Button("Setup Scene"))
                 {
-                    GameObject components = (GameObject) PrefabUtility.InstantiatePrefab(Resources.Load("SceneComponents"));
+                    GameObject components = Instantiate(Resources.Load("SceneComponents") as GameObject);
                     components.name = "SceneComponents";
                 }
             }
