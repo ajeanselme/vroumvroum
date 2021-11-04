@@ -44,36 +44,39 @@ public class TurboEditor : EditorWindow
     [MenuItem("Window/TurboEditor")]
     public static void ShowWindow()
     {
-        EditorWindow.GetWindow(typeof(TurboEditor));
+        EditorWindow.GetWindow(typeof(TurboEditor)).Show();
     }
 
     private void OnEnable()
     {
         FindManagers();
-        
-        playerLogs.Clear();
-        for (int i = 0; i < _turnManager.playerList.Count; i++)
-        {
-            playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
-        }
 
-        checkpointStyle = new GUIStyle();
-        checkpointStyle.normal.textColor = Color.white;
-        Texture2D newTex = new Texture2D(64,64);
-        
-        for (int y = 0; y < newTex.height; y++)
+        if (_turnManager != null)
         {
-            for (int x = 0; x < newTex.width; x++)
+            playerLogs.Clear();
+            for (int i = 0; i < _turnManager.playerList.Count; i++)
             {
-                newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+                playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
             }
-        }
-        
-        newTex.Apply();
-        checkpointStyle.normal.background = newTex;
 
-        sceneViewAction = new Action<SceneView>(this.OnSceneGUI);
-        SceneView.duringSceneGui += sceneViewAction;
+            checkpointStyle = new GUIStyle();
+            checkpointStyle.normal.textColor = Color.white;
+            Texture2D newTex = new Texture2D(64,64);
+            
+            for (int y = 0; y < newTex.height; y++)
+            {
+                for (int x = 0; x < newTex.width; x++)
+                {
+                    newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+                }
+            }
+            
+            newTex.Apply();
+            checkpointStyle.normal.background = newTex;
+
+            sceneViewAction = new Action<SceneView>(this.OnSceneGUI);
+            SceneView.duringSceneGui += sceneViewAction;
+        }
     }
 
     private void OnDestroy()
@@ -85,10 +88,13 @@ public class TurboEditor : EditorWindow
     {
         FindManagers();
 
-        playerLogs.Clear();
-        for (int i = 0; i < _turnManager.playerList.Count; i++)
+        if (_turnManager != null)
         {
-            playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
+            playerLogs.Clear();
+            for (int i = 0; i < _turnManager.playerList.Count; i++)
+            {
+                playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
+            }
         }
     }
 
