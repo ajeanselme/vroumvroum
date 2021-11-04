@@ -5,6 +5,7 @@ using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Rewired;
 
 public class CarController : MonoBehaviour
 {
@@ -63,6 +64,8 @@ public class CarController : MonoBehaviour
 
     private MMFeedbacks _feedbacks;
 
+    [HideInInspector] public Rewired.Player rewiredPlayer;
+
     //Debug variables
     private float _rotationDamping;
     private GUIStyle debugWindowStyle, debugTextBoxStyle;
@@ -111,7 +114,6 @@ public class CarController : MonoBehaviour
 
         stopCar();
         turn = false;
-        //launchCar();
     }
 
     private void OnGUI()
@@ -151,6 +153,23 @@ public class CarController : MonoBehaviour
                 GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
             GUILayout.EndHorizontal();
 
+            
+            
+            GUILayout.Space(10);
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Enter] Skip turn");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[LShift] Reset time");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Space] Jump");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[R] Restart");
+            GUILayout.EndHorizontal();
+            
             GUILayout.EndArea();
         }
         GUILayout.EndArea();
@@ -206,7 +225,7 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = Input.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("Horizontal");
         if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
@@ -358,6 +377,7 @@ public class CarController : MonoBehaviour
         totalTime = 0f;
         _currentSpeed = initialSpeed;
         turn = true;
+        theRB.gameObject.SetActive(true);
     }
 
     public void landCar()
@@ -401,9 +421,9 @@ public class CarController : MonoBehaviour
         _remainingTime = -1;
         _currentSpeed = 0;
         _emissionRate = 0;
-        
         theRB.constraints = RigidbodyConstraints.FreezeAll;
-        
+        theRB.gameObject.SetActive(false);
+
         if(endingTurn) TurnManager.instance.FinishTurn(this);
     }
 

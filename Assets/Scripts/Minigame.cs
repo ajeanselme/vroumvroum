@@ -80,12 +80,12 @@ public class Minigame : MonoBehaviour
             if (barre.transform.position.x <= m2Debut.transform.position.x || goRight)
             {
                 goRight = true;
-                barre.transform.position += new Vector3(horizontal + 5, 0, 0);
+                barre.transform.position += new Vector3(horizontal + 6, 0, 0);
             }
             if (barre.transform.position.x >= m2Fin.transform.position.x || !goRight)
             {
                 goRight = false;
-                barre.transform.position += new Vector3(horizontal - 5, 0, 0);
+                barre.transform.position += new Vector3(horizontal - 6, 0, 0);
             }
         }
 
@@ -99,7 +99,7 @@ public class Minigame : MonoBehaviour
             else
                 compteur.text = "0";
 
-            if (decompte < -3)
+            if (decompte < -2.5f)
             {
                 minigame1.SetActive(false);
                 minigame2.SetActive(false);
@@ -127,7 +127,7 @@ public class Minigame : MonoBehaviour
                 m2actif = false;
             }
 
-            if (decompte2 < -3 && randomMinigame == 1)
+            if (decompte2 < -2.5f && randomMinigame == 1)
             {
                 minigame1.SetActive(false);
                 minigame2.SetActive(false);

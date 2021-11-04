@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -47,12 +49,13 @@ public class TurnManager : MonoBehaviour
 
         for (int i = 0; i < playerList.Count; i++)
         {
+            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
+            playerList[i].carController.rewiredPlayer = playerList[i].rewiredPlayer;
             CheckpointsController.instance.InitPlayer();
         }
         
         for (int i = 1; i < playerList.Count; i++)
         {
-            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
             playerList[i].carController.stopCar();
             playerList[i].carController.gameObject.SetActive(false);
             playerList[i].carController.vcam.gameObject.SetActive(false);
@@ -68,7 +71,7 @@ public class TurnManager : MonoBehaviour
             Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Cross");
         if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Circle"))
             Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Circle");
-        if (playerList[indexCarTurn].GetButtonDown("Triangle"))
+        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Triangle"))
             Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Triangle");
         if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Square"))
             Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Square");
@@ -79,6 +82,11 @@ public class TurnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             FinishTurn(playerList[indexCarTurn].carController);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -136,6 +144,7 @@ public class TurnManager : MonoBehaviour
         speedParticles.Play();
 
         minigame.beginMinigame(player);
+        // player.launchCar();
     }
 
     private void EndGame()

@@ -13,22 +13,21 @@ public class CheckpointsController : MonoBehaviour
     [Serializable]
     public class Checkpoint
     {
-        public GameObject GO;
         public int listIndex;
+        public Vector3 position;
+        public Vector3 rotation;
+        public float distance;
 
-        public float km = 0f;
-
-        public Checkpoint(GameObject gameObject, int index)
+        public Checkpoint(Vector3 vector3)
         {
-            GO = gameObject;
-            listIndex = index;
+            this.position = vector3;
         }
     }
 
     class PlayerData
     {
         public int index;
-        public int currentCP;
+        public int ladderPosition, currentCP;
         public float CPDistance, previousDistance, lastProgress;
         public float CurrentDistance => CPDistance + previousDistance;
 
@@ -44,6 +43,10 @@ public class CheckpointsController : MonoBehaviour
     public GameObject UI;
     public Image progressBarFill;
 
+    public AudioClip[] ladderAudioClips;
+    public AudioSource audio;
+
+    
     private PlayerData _playingPlayer;
     private int firstCar;
     // private float _CPDistance, _previousDistance, _lastProgress;
@@ -53,6 +56,8 @@ public class CheckpointsController : MonoBehaviour
     private List<PlayerData> _playerDatas = new List<PlayerData>();
 
     public GameObject debug;
+
+    private float _lastUpdate;
     
     private void Awake()
     {
@@ -66,13 +71,10 @@ public class CheckpointsController : MonoBehaviour
         }
     }
 
-    // private void Start()
-    // {
-    //     for (int i = 0; i < points.Count; i++)
-    //     {
-    //         totalDistance += points[i].km;
-    //     }
-    // }
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -94,8 +96,8 @@ public class CheckpointsController : MonoBehaviour
             }
             
 
-            Vector3 pointA = currentCP.GO.transform.position;
-            Vector3 pointB = nextCP.GO.transform.position;
+            Vector3 pointA = currentCP.position;
+            Vector3 pointB = nextCP.position;
 
             Vector3 player = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController.transform.position;
 
@@ -109,12 +111,11 @@ public class CheckpointsController : MonoBehaviour
 
             // debug.transform.position = projected;
             
-            _playingPlayer.CPDistance = nextCP.km * progress;
+            _playingPlayer.CPDistance = nextCP.distance * progress;
 
             if (_playingPlayer.CurrentDistance > _playerDatas[firstCar].CurrentDistance)
             {
                 firstCar = _playingPlayer.index;
-                UI.GetComponent<MMFeedbacks>().PlayFeedbacks();
             }
             
             if (progress > 1f)
@@ -130,18 +131,17 @@ public class CheckpointsController : MonoBehaviour
             _playingPlayer.lastProgress = progress;
         }
         
-        //Debug
-        if (Input.GetKeyDown(KeyCode.E))
+        if (_lastUpdate < Time.fixedTime)
         {
-            UI.GetComponent<MMFeedbacks>().PlayFeedbacks();
+            OrderPositions();
         }
     }
 
     private void UpdateUI()
     {
         List<float> scores = new List<float>();
-        
-        float imageHeight = progressBarFill.rectTransform.sizeDelta.y - 100f;
+
+        float imageHeight = Screen.height - Screen.height / 14f;
 
         for (int i = 0; i < _playerDatas.Count; i++)
         {
@@ -162,7 +162,7 @@ public class CheckpointsController : MonoBehaviour
             float newPos = Mathf.Clamp(progress * imageHeight, progressBarFill.transform.position.y + 20f, imageHeight);
             Transform bar = progressBarFill.transform.GetChild(i);
 
-            bar.position = Vector3.Lerp(bar.position, new Vector2(bar.position.x, newPos), Time.deltaTime * 10f);
+            bar.position = Vector3.Lerp(bar.position, new Vector2(progressBarFill.transform.position.x, newPos), Time.deltaTime * 10f);
         }
     }
 
@@ -198,5 +198,37 @@ public class CheckpointsController : MonoBehaviour
             InitPlayer();
             _playingPlayer = _playerDatas[index];
         }
+    }
+
+    public void OrderPositions()
+    {
+        List<PlayerData> newlist = new List<PlayerData>();
+        newlist.AddRange(_playerDatas);
+        newlist.Sort(delegate(PlayerData c1, PlayerData c2) { return c2.CurrentDistance.CompareTo(c1.CurrentDistance); });
+
+        for (int i = 0; i < newlist.Count; i++)
+        {
+            if (newlist[i].index == _playingPlayer.index)
+            {            
+                int oldLadder = _playerDatas[newlist[i].index].ladderPosition;
+                if (oldLadder > i + 1 && i < 3)
+                {
+                    audio.clip = ladderAudioClips[i];
+                    audio.Play();
+                    if (i == 0)
+                    {
+                        UI.GetComponent<Animator>().SetTrigger("Confetti");
+
+                    }
+                    else
+                    {
+                        UI.GetComponent<Animator>().SetTrigger("Blow");
+                    }
+                }
+            }
+            _playerDatas[newlist[i].index].ladderPosition = i + 1;
+        }
+        // Debug.Log("Position " + _playingPlayer.ladderPosition);
+        _lastUpdate = Time.fixedTime + .5f;
     }
 }
