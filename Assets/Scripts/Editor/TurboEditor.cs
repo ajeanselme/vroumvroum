@@ -351,6 +351,7 @@ public class TurboEditor : EditorWindow
             {
                 GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0]);
                 go.transform.position = _checkpointsController.points[0].position;
+                go.transform.eulerAngles = _checkpointsController.points[0].rotation;
                 go.name = "Player " + _turnManager.playerList.Count;
                 TurnManager.Player newPlayer = new TurnManager.Player();
             
