@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using Rewired;
 using UnityEditor;
@@ -21,6 +22,12 @@ public class TurnManager : MonoBehaviour
     }
     
     private int turn = 0;
+    private float startTimerBoostCar = 0f;
+    private float timerBoostCar = 0f;
+    private float timeBoostCar = 0f;
+
+    private float zActualCam = 0f;
+    private float halfTimer = 0f;
     public int indexCarTurn = 0;
 
     [HideInInspector] public List<Player> playerList = new List<Player>();
@@ -84,16 +91,49 @@ public class TurnManager : MonoBehaviour
             FinishTurn(playerList[indexCarTurn].carController);
         }
 
+        if (timerBoostCar > 0f)
+        {
+            timerBoostCar -= Time.deltaTime;
+
+            if (timerBoostCar > halfTimer)
+            {
+                float z = Mathf.Lerp(zActualCam, -12f, Mathf.Abs(timerBoostCar / startTimerBoostCar - 1f) * 2f);
+                playerList[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = z;
+            }
+            else
+            {
+                float z = Mathf.Lerp(-12f, zActualCam, Mathf.Abs(timerBoostCar / startTimerBoostCar - 0.5f) * 2f);
+                playerList[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = z;
+            }
+        }
+        else if (timerBoostCar <= 0f && speedParticles.isPlaying)
+        {
+            speedParticles.Stop();
+            // stop cam movement
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
+    public void BoostCarEffects(float time)
+    {
+        halfTimer = time / 2f;
+        timerBoostCar = time;
+        startTimerBoostCar = time;
+        speedParticles.Play();
+
+        zActualCam = playerList[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z;
+    }
+
     public void FinishTurn(CarController player)
     {
         if (speedParticles.isPlaying)
             speedParticles.Stop();
+        
+        playerList[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = zActualCam;
         
         for (int i = 0; i < playerList.Count; i++)
         {
@@ -141,7 +181,6 @@ public class TurnManager : MonoBehaviour
         CheckpointsController.instance.LoadPlayer(indexCarTurn);
 
         yield return new WaitForSeconds(sec);
-        speedParticles.Play();
 
         minigame.beginMinigame(player);
         // player.launchCar();
