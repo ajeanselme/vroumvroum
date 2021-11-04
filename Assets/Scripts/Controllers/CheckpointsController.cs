@@ -79,62 +79,70 @@ public class CheckpointsController : MonoBehaviour
 
     private void Update()
     {
-        UpdateUI();
-
-        if (_playingPlayer.currentCP > -1)
+        if (_playingPlayer != null)
         {
-            
-            Checkpoint currentCP = points[_playingPlayer.currentCP];
-            Checkpoint nextCP;
-            
-            if (_playingPlayer.currentCP + 1 < points.Count)
+            UpdateUI();
+
+            if (_playingPlayer.currentCP > -1)
             {
-                nextCP = points[_playingPlayer.currentCP + 1];
+                
+                Checkpoint currentCP = points[_playingPlayer.currentCP];
+                Checkpoint nextCP;
+                
+                if (_playingPlayer.currentCP + 1 < points.Count)
+                {
+                    nextCP = points[_playingPlayer.currentCP + 1];
+                }
+                else
+                {
+                    nextCP = points[0];
+                }
+                
+
+                Vector3 pointA = currentCP.position;
+                Vector3 pointB = nextCP.position;
+
+                Vector3 player = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController.transform.position;
+
+                Vector3 projected = Vector3.Project((player - pointA), (pointB - pointA)) + pointA;
+                
+                
+                float CPDistance = Vector3.Distance(pointA, pointB);
+                float projetedDistance = Vector3.Distance(pointA, projected);
+
+                float progress = projetedDistance / CPDistance;
+
+                // debug.transform.position = projected;
+                
+                _playingPlayer.CPDistance = nextCP.distance * progress;
+
+                if (_playingPlayer.CurrentDistance > _playerDatas[firstCar].CurrentDistance)
+                {
+                    firstCar = _playingPlayer.index;
+                }
+                
+                if (progress > 1f)
+                {
+                    NextCP();
+                }
+
+                // if (_lastProgress > progress)
+                // {
+                //     Debug.Log("wrong way");
+                // }
+                
+                _playingPlayer.lastProgress = progress;
             }
-            else
+            
+            if (_lastUpdate < Time.fixedTime)
             {
-                nextCP = points[0];
+                OrderPositions();
             }
-            
-
-            Vector3 pointA = currentCP.position;
-            Vector3 pointB = nextCP.position;
-
-            Vector3 player = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController.transform.position;
-
-            Vector3 projected = Vector3.Project((player - pointA), (pointB - pointA)) + pointA;
-            
-            
-            float CPDistance = Vector3.Distance(pointA, pointB);
-            float projetedDistance = Vector3.Distance(pointA, projected);
-
-            float progress = projetedDistance / CPDistance;
-
-            // debug.transform.position = projected;
-            
-            _playingPlayer.CPDistance = nextCP.distance * progress;
-
-            if (_playingPlayer.CurrentDistance > _playerDatas[firstCar].CurrentDistance)
-            {
-                firstCar = _playingPlayer.index;
-            }
-            
-            if (progress > 1f)
-            {
-                NextCP();
-            }
-
-            // if (_lastProgress > progress)
-            // {
-            //     Debug.Log("wrong way");
-            // }
-            
-            _playingPlayer.lastProgress = progress;
         }
-        
-        if (_lastUpdate < Time.fixedTime)
+        else
         {
-            OrderPositions();
+            Debug.LogError("No Player created");
+            Application.Quit();
         }
     }
 
