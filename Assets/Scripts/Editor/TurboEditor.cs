@@ -120,6 +120,7 @@ public class TurboEditor : EditorWindow
                 _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera, typeof(GameObject), true);
                 // _turnManager.spawnPoint = (Transform) EditorGUILayout.ObjectField("Spawn Transform", _turnManager.spawnPoint, typeof(Transform), true);
                 _turnManager.maxTurn = EditorGUILayout.IntField("Turns Per Player", _turnManager.maxTurn);
+                _turnManager.playMinigame = EditorGUILayout.Toggle("Activate Minigame", _turnManager.playMinigame);
 
                 GUILayout.Space(10);
                 showCheckPoints = EditorGUILayout.Foldout(showCheckPoints, "Checkpoints");
