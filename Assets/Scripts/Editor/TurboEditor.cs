@@ -58,25 +58,25 @@ public class TurboEditor : EditorWindow
             {
                 playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
             }
-
-            checkpointStyle = new GUIStyle();
-            checkpointStyle.normal.textColor = Color.white;
-            Texture2D newTex = new Texture2D(64,64);
-            
-            for (int y = 0; y < newTex.height; y++)
-            {
-                for (int x = 0; x < newTex.width; x++)
-                {
-                    newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
-                }
-            }
-            
-            newTex.Apply();
-            checkpointStyle.normal.background = newTex;
-
-            sceneViewAction = new Action<SceneView>(this.OnSceneGUI);
-            SceneView.duringSceneGui += sceneViewAction;
         }
+        
+        checkpointStyle = new GUIStyle();
+        checkpointStyle.normal.textColor = Color.white;
+        Texture2D newTex = new Texture2D(64,64);
+            
+        for (int y = 0; y < newTex.height; y++)
+        {
+            for (int x = 0; x < newTex.width; x++)
+            {
+                newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+            }
+        }
+            
+        newTex.Apply();
+        checkpointStyle.normal.background = newTex;
+
+        sceneViewAction = new Action<SceneView>(this.OnSceneGUI);
+        SceneView.duringSceneGui += sceneViewAction;
     }
 
     private void OnDestroy()
