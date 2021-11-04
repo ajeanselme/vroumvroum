@@ -44,36 +44,39 @@ public class TurboEditor : EditorWindow
     [MenuItem("Window/TurboEditor")]
     public static void ShowWindow()
     {
-        EditorWindow.GetWindow(typeof(TurboEditor));
+        EditorWindow.GetWindow(typeof(TurboEditor)).Show();
     }
 
     private void OnEnable()
     {
         FindManagers();
-        
-        playerLogs.Clear();
-        for (int i = 0; i < _turnManager.playerList.Count; i++)
-        {
-            playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
-        }
 
-        checkpointStyle = new GUIStyle();
-        checkpointStyle.normal.textColor = Color.white;
-        Texture2D newTex = new Texture2D(64,64);
-        
-        for (int y = 0; y < newTex.height; y++)
+        if (_turnManager != null)
         {
-            for (int x = 0; x < newTex.width; x++)
+            playerLogs.Clear();
+            for (int i = 0; i < _turnManager.playerList.Count; i++)
             {
-                newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+                playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
             }
-        }
-        
-        newTex.Apply();
-        checkpointStyle.normal.background = newTex;
 
-        sceneViewAction = new Action<SceneView>(this.OnSceneGUI);
-        SceneView.duringSceneGui += sceneViewAction;
+            checkpointStyle = new GUIStyle();
+            checkpointStyle.normal.textColor = Color.white;
+            Texture2D newTex = new Texture2D(64,64);
+            
+            for (int y = 0; y < newTex.height; y++)
+            {
+                for (int x = 0; x < newTex.width; x++)
+                {
+                    newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
+                }
+            }
+            
+            newTex.Apply();
+            checkpointStyle.normal.background = newTex;
+
+            sceneViewAction = new Action<SceneView>(this.OnSceneGUI);
+            SceneView.duringSceneGui += sceneViewAction;
+        }
     }
 
     private void OnDestroy()
@@ -85,10 +88,13 @@ public class TurboEditor : EditorWindow
     {
         FindManagers();
 
-        playerLogs.Clear();
-        for (int i = 0; i < _turnManager.playerList.Count; i++)
+        if (_turnManager != null)
         {
-            playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
+            playerLogs.Clear();
+            for (int i = 0; i < _turnManager.playerList.Count; i++)
+            {
+                playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
+            }
         }
     }
 
@@ -397,45 +403,48 @@ public class TurboEditor : EditorWindow
 
     private void OnSceneGUI(SceneView obj)
     {
-        Handles.color = Color.blue;
+        if (_checkpointsController != null)
+        {
+            Handles.color = Color.blue;
             
-        Handles.BeginGUI();
-        for (int i = 0; i < _checkpointsController.points.Count; i++)
-        {
-            Handles.Label(_checkpointsController.points[i].position, "Checkpoint " + i);
-            Handles.SphereHandleCap(0, _checkpointsController.points[i].position, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
-
-            if ( i + 1 < _checkpointsController.points.Count)
+            Handles.BeginGUI();
+            for (int i = 0; i < _checkpointsController.points.Count; i++)
             {
-                Vector3 current = _checkpointsController.points[i].position;
-                Vector3 next = _checkpointsController.points[i + 1].position;
-                Handles.color = Color.blue;
-                Handles.DrawLine(current, next);
+                Handles.Label(_checkpointsController.points[i].position, "Checkpoint " + i);
+                Handles.SphereHandleCap(0, _checkpointsController.points[i].position, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
+
+                if ( i + 1 < _checkpointsController.points.Count)
+                {
+                    Vector3 current = _checkpointsController.points[i].position;
+                    Vector3 next = _checkpointsController.points[i + 1].position;
+                    Handles.color = Color.blue;
+                    Handles.DrawLine(current, next);
                 
-                Handles.color = Color.green;
-                Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
-                    (current.z + next.z) / 2f);
-                Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
+                    Handles.color = Color.green;
+                    Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
+                        (current.z + next.z) / 2f);
+                    Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
 
+                }
             }
-        }
 
-        for (int i = 0; i < _checkpointsController.points.Count; i++)
-        {
-            // Handles.Label(checkpoints[i].position, "Checkpoint " + i);
-            // Handles.SphereHandleCap(0, checkpoints[i].position, quaternion.Euler(0,0,0), .5f, EventType.Repaint);
-            EditorGUI.BeginChangeCheck();
-            _checkpointsController.points[i].position = Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
-            // if (EditorGUI.EndChangeCheck())
-            // {
-            //     Undo.RecordObject(this, "Free Move LookAt Point");
-            //     checkpoints[i].position = pos;
-            //     this.Update();
-            // }
-            EditorGUI.EndChangeCheck();
+            for (int i = 0; i < _checkpointsController.points.Count; i++)
+            {
+                // Handles.Label(checkpoints[i].position, "Checkpoint " + i);
+                // Handles.SphereHandleCap(0, checkpoints[i].position, quaternion.Euler(0,0,0), .5f, EventType.Repaint);
+                EditorGUI.BeginChangeCheck();
+                _checkpointsController.points[i].position = Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
+                // if (EditorGUI.EndChangeCheck())
+                // {
+                //     Undo.RecordObject(this, "Free Move LookAt Point");
+                //     checkpoints[i].position = pos;
+                //     this.Update();
+                // }
+                EditorGUI.EndChangeCheck();
+            }
+            Handles.EndGUI();
+            Repaint();
         }
-        Handles.EndGUI();
-        Repaint();
     }
     
     private void FindManagers()
@@ -454,7 +463,6 @@ public class TurboEditor : EditorWindow
             if (GameObject.Find("CheckpointsController"))
             {
                 _checkpointsController = GameObject.Find("CheckpointsController").GetComponent<CheckpointsController>();
-                Debug.Log("ko");
             }
         }
     }
