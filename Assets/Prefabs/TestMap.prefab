@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7242201762280619782}
   m_Layer: 0
   m_Name: Flake194
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 38881056146141434}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 177540260202792149}
   m_Layer: 0
   m_Name: Pencil 14
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 6831808821798868030}
   m_Layer: 0
   m_Name: Meeple 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1333,7 +1333,7 @@ GameObject:
   - component: {fileID: 7425764604764439663}
   m_Layer: 0
   m_Name: Pencil 27
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1700,7 +1700,7 @@ GameObject:
   - component: {fileID: 5047013941055327090}
   m_Layer: 0
   m_Name: Cone013
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1878,7 +1878,7 @@ GameObject:
   - component: {fileID: 868278424124920919}
   m_Layer: 0
   m_Name: Marshmallow060
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2083,7 +2083,7 @@ GameObject:
   - component: {fileID: 8951153574119704896}
   m_Layer: 0
   m_Name: Meeple 15
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2343,7 +2343,7 @@ GameObject:
   - component: {fileID: 1151686364588703073}
   m_Layer: 0
   m_Name: Rectangle_Fine 5
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2550,7 +2550,7 @@ GameObject:
   - component: {fileID: 1175702265784832429}
   m_Layer: 0
   m_Name: Flake204
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2662,7 +2662,7 @@ GameObject:
   - component: {fileID: 1189631378539059616}
   m_Layer: 0
   m_Name: Cylinder115
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2980,7 +2980,7 @@ GameObject:
   - component: {fileID: 3617270036693099072}
   m_Layer: 0
   m_Name: Meeple 4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3144,7 +3144,7 @@ GameObject:
   - component: {fileID: 1332813284835662463}
   m_Layer: 0
   m_Name: Sphere024
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3256,7 +3256,7 @@ GameObject:
   - component: {fileID: 1414387989742741075}
   m_Layer: 0
   m_Name: Dice
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3368,7 +3368,7 @@ GameObject:
   - component: {fileID: 1459018289126226106}
   m_Layer: 0
   m_Name: Pen 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3480,7 +3480,7 @@ GameObject:
   - component: {fileID: 1471128276297400812}
   m_Layer: 0
   m_Name: Cylinder077
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3960,7 +3960,7 @@ GameObject:
   - component: {fileID: 1697714582926063892}
   m_Layer: 0
   m_Name: Marble
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4153,7 +4153,7 @@ GameObject:
   - component: {fileID: 1774164676383257556}
   m_Layer: 0
   m_Name: Marble 7
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4263,7 +4263,7 @@ GameObject:
   - component: {fileID: 3900597134129678863}
   m_Layer: 0
   m_Name: Meeple 16
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4458,7 +4458,7 @@ GameObject:
   - component: {fileID: 1908451377438630299}
   m_Layer: 0
   m_Name: Pencil 11
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4651,7 +4651,7 @@ GameObject:
   - component: {fileID: 1923691791942633017}
   m_Layer: 0
   m_Name: Rectangle_Fine 3
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4954,7 +4954,7 @@ GameObject:
   - component: {fileID: 1444226596173604517}
   m_Layer: 0
   m_Name: Pencil 30
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5037,7 +5037,7 @@ GameObject:
   - component: {fileID: 2045900005519322309}
   m_Layer: 0
   m_Name: Rectangle_Fine 4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5259,7 +5259,7 @@ GameObject:
   - component: {fileID: 5936322212007027745}
   m_Layer: 0
   m_Name: Sphere027
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5341,7 +5341,7 @@ GameObject:
   - component: {fileID: 2107515693881799592}
   m_Layer: 6
   m_Name: Arbre_Toy 11
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5437,7 +5437,7 @@ GameObject:
   - component: {fileID: 2112799855527358086}
   m_Layer: 0
   m_Name: Pencil 15
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5547,7 +5547,7 @@ GameObject:
   - component: {fileID: 869674909577645762}
   m_Layer: 0
   m_Name: Meeple 12
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 2152391697419097459}
   m_Layer: 0
   m_Name: Flake202
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5742,7 +5742,7 @@ GameObject:
   - component: {fileID: 2176168060910880126}
   m_Layer: 0
   m_Name: Flake200
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5852,7 +5852,7 @@ GameObject:
   - component: {fileID: 8159588163901326765}
   m_Layer: 0
   m_Name: Meeple 14
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6060,7 +6060,7 @@ GameObject:
   - component: {fileID: 2266815645237589318}
   m_Layer: 0
   m_Name: Cylinder128
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6169,7 +6169,7 @@ GameObject:
   - component: {fileID: 1020125805937816904}
   - component: {fileID: 3791377075085137487}
   - component: {fileID: 2277934045922571807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jumper 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6266,7 +6266,7 @@ GameObject:
   - component: {fileID: 6437054223397303080}
   m_Layer: 0
   m_Name: Flake196
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6590,7 +6590,7 @@ GameObject:
   - component: {fileID: 2162666701694942329}
   m_Layer: 0
   m_Name: Arbre_Toy 8
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6673,7 +6673,7 @@ GameObject:
   - component: {fileID: 2709545342081175430}
   m_Layer: 0
   m_Name: Cylinder134
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6895,7 +6895,7 @@ GameObject:
   - component: {fileID: 3211222786779008101}
   m_Layer: 0
   m_Name: Arbre_Toy 9
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6976,7 +6976,7 @@ GameObject:
   - component: {fileID: 2190767615223591963}
   m_Layer: 0
   m_Name: Arbre_Toy 10
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7172,7 +7172,7 @@ GameObject:
   - component: {fileID: 2922685950689349163}
   m_Layer: 0
   m_Name: Arbre_Toy 6
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7284,7 +7284,7 @@ GameObject:
   - component: {fileID: 3018706293157268863}
   m_Layer: 0
   m_Name: Cylinder_Small
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7396,7 +7396,7 @@ GameObject:
   - component: {fileID: 3093754183967684437}
   m_Layer: 0
   m_Name: Marble 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7508,7 +7508,7 @@ GameObject:
   - component: {fileID: 3163002005761498498}
   m_Layer: 0
   m_Name: Flake192
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7620,7 +7620,7 @@ GameObject:
   - component: {fileID: 3179483584826599505}
   m_Layer: 0
   m_Name: Pencil 9
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8341,7 +8341,7 @@ GameObject:
   - component: {fileID: 3376488699759911966}
   m_Layer: 0
   m_Name: Arbre_Toy 3
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8565,7 +8565,7 @@ GameObject:
   - component: {fileID: 3436683915313786644}
   m_Layer: 0
   m_Name: Pen 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8773,7 +8773,7 @@ GameObject:
   - component: {fileID: 3455348750098596186}
   m_Layer: 0
   m_Name: Pen_Cap
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8885,7 +8885,7 @@ GameObject:
   - component: {fileID: 3459545629345300775}
   m_Layer: 0
   m_Name: Pencil 16
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8997,7 +8997,7 @@ GameObject:
   - component: {fileID: 3566774955340966590}
   m_Layer: 0
   m_Name: Pencil 6
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9316,7 +9316,7 @@ GameObject:
   - component: {fileID: 5199499708345836940}
   m_Layer: 0
   m_Name: Cylinder 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9492,7 +9492,7 @@ GameObject:
   - component: {fileID: 3188594805714431465}
   m_Layer: 0
   m_Name: Cylinder 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9782,7 +9782,7 @@ GameObject:
   - component: {fileID: 3963565954699208138}
   m_Layer: 0
   m_Name: Arbre_Toy 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9894,7 +9894,7 @@ GameObject:
   - component: {fileID: 3984023635154578094}
   m_Layer: 0
   m_Name: Pencil 4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10568,7 +10568,7 @@ GameObject:
   - component: {fileID: 4200485311886743907}
   m_Layer: 0
   m_Name: Arbre_Toy 5
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10776,7 +10776,7 @@ GameObject:
   - component: {fileID: 4240111876133579817}
   m_Layer: 0
   m_Name: Pencil 12
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10966,7 +10966,7 @@ GameObject:
   - component: {fileID: 6946460324334360916}
   - component: {fileID: 6427734647065756264}
   - component: {fileID: 4279121602019133704}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box125
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11160,7 +11160,7 @@ GameObject:
   - component: {fileID: 4304155684590974225}
   m_Layer: 0
   m_Name: Pencil 19
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11480,7 +11480,7 @@ GameObject:
   - component: {fileID: 4391498910326739009}
   m_Layer: 0
   m_Name: Pencil 17
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11670,7 +11670,7 @@ GameObject:
   - component: {fileID: 1042162973123558845}
   - component: {fileID: 1617248469365930046}
   - component: {fileID: 4453798451656403003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Livre003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11765,7 +11765,7 @@ GameObject:
   - component: {fileID: 6576645548006686417}
   - component: {fileID: 4045562722133945973}
   - component: {fileID: 4453825143133684263}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Livre002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11863,7 +11863,7 @@ GameObject:
   - component: {fileID: 4461450713803569878}
   m_Layer: 0
   m_Name: Cone007
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12056,7 +12056,7 @@ GameObject:
   - component: {fileID: 4503873952916879671}
   m_Layer: 0
   m_Name: Cylinder165
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12168,7 +12168,7 @@ GameObject:
   - component: {fileID: 4525565211333423241}
   m_Layer: 0
   m_Name: Pencil 20
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12280,7 +12280,7 @@ GameObject:
   - component: {fileID: 4531323450880104673}
   m_Layer: 0
   m_Name: Rectangle_Fine 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12814,7 +12814,7 @@ GameObject:
   - component: {fileID: 7009733805020784643}
   m_Layer: 0
   m_Name: Flake197
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13009,7 +13009,7 @@ GameObject:
   - component: {fileID: 4574209603651171787}
   m_Layer: 0
   m_Name: Pencil 8
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13121,7 +13121,7 @@ GameObject:
   - component: {fileID: 4623478426829380898}
   m_Layer: 0
   m_Name: Arbre_Toy 4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13314,7 +13314,7 @@ GameObject:
   - component: {fileID: 4766807371769524300}
   m_Layer: 0
   m_Name: Pencil 3
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13426,7 +13426,7 @@ GameObject:
   - component: {fileID: 4816473694697349662}
   m_Layer: 0
   m_Name: Marshmallow059
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13538,7 +13538,7 @@ GameObject:
   - component: {fileID: 4865508529271877166}
   m_Layer: 0
   m_Name: Pencil
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13648,7 +13648,7 @@ GameObject:
   - component: {fileID: 8159659543687249701}
   m_Layer: 0
   m_Name: Flake198
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14086,7 +14086,7 @@ GameObject:
   - component: {fileID: 5086541692318061843}
   m_Layer: 0
   m_Name: Sphere026
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14293,7 +14293,7 @@ GameObject:
   - component: {fileID: 5189485214715850541}
   m_Layer: 0
   m_Name: Flake203
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14517,7 +14517,7 @@ GameObject:
   - component: {fileID: 5214096535955836392}
   m_Layer: 0
   m_Name: Cylinder_Small 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14723,7 +14723,7 @@ GameObject:
   - component: {fileID: 5564118037025891293}
   m_Layer: 0
   m_Name: Cylinder 5
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14966,7 +14966,7 @@ GameObject:
   - component: {fileID: 8650202859540541196}
   m_Layer: 0
   m_Name: Meeple 20
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15242,7 +15242,7 @@ GameObject:
   - component: {fileID: 5530048312294393596}
   m_Layer: 0
   m_Name: Marble 3
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15723,7 +15723,7 @@ GameObject:
   - component: {fileID: 3902409886401902165}
   m_Layer: 0
   m_Name: Pencil 28
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15806,7 +15806,7 @@ GameObject:
   - component: {fileID: 5743502956969627731}
   m_Layer: 0
   m_Name: Cylinder114
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15997,7 +15997,7 @@ GameObject:
   - component: {fileID: 4300214969325100958}
   - component: {fileID: 5766746231618824314}
   - component: {fileID: 5766746231618824317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ruler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16414,7 +16414,7 @@ GameObject:
   - component: {fileID: 1571149500954807105}
   m_Layer: 0
   m_Name: Sphere029
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16495,7 +16495,7 @@ GameObject:
   - component: {fileID: 374760705436949847}
   m_Layer: 0
   m_Name: Pencil 29
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16740,7 +16740,7 @@ GameObject:
   - component: {fileID: 6024768386667821409}
   m_Layer: 0
   m_Name: Pencil 23
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16852,7 +16852,7 @@ GameObject:
   - component: {fileID: 6055659676508769898}
   m_Layer: 0
   m_Name: Rectangle
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17044,7 +17044,7 @@ GameObject:
   - component: {fileID: 6064776913255414270}
   m_Layer: 0
   m_Name: Pen_Box
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17139,7 +17139,7 @@ GameObject:
   - component: {fileID: 2892893147750854809}
   m_Layer: 0
   m_Name: Meeple 7
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17222,7 +17222,7 @@ GameObject:
   - component: {fileID: 6110015381886187539}
   m_Layer: 0
   m_Name: Arbre_Toy
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17332,7 +17332,7 @@ GameObject:
   - component: {fileID: 9169414798368820415}
   m_Layer: 0
   m_Name: Meeple 10
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17622,7 +17622,7 @@ GameObject:
   - component: {fileID: 6146669142246326099}
   m_Layer: 0
   m_Name: Rectangle_Fine 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17732,7 +17732,7 @@ GameObject:
   - component: {fileID: 8194117966082610760}
   m_Layer: 0
   m_Name: Meeple 6
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18231,7 +18231,7 @@ GameObject:
   - component: {fileID: 6289749288680251786}
   m_Layer: 0
   m_Name: Pencil 21
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18343,7 +18343,7 @@ GameObject:
   - component: {fileID: 6340460393863206230}
   m_Layer: 0
   m_Name: Marble 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18549,7 +18549,7 @@ GameObject:
   - component: {fileID: 8740158476873563313}
   m_Layer: 0
   m_Name: Meeple 13
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18711,7 +18711,7 @@ GameObject:
   - component: {fileID: 8847041014097668390}
   m_Layer: 0
   m_Name: Cylinder 4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18794,7 +18794,7 @@ GameObject:
   - component: {fileID: 6536681012519936802}
   m_Layer: 0
   m_Name: Meeple
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19018,7 +19018,7 @@ GameObject:
   - component: {fileID: 6566443513169981979}
   m_Layer: 0
   m_Name: Cylinder074
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19290,7 +19290,7 @@ GameObject:
   - component: {fileID: 6344356404090417429}
   m_Layer: 0
   m_Name: Cylinder 3
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19371,7 +19371,7 @@ GameObject:
   - component: {fileID: 4523105393257670332}
   m_Layer: 0
   m_Name: Flake199
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19452,7 +19452,7 @@ GameObject:
   - component: {fileID: 7000030609372157852}
   m_Layer: 0
   m_Name: Sphere044
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19630,7 +19630,7 @@ GameObject:
   - component: {fileID: 6700276962083187760}
   m_Layer: 0
   m_Name: Rectangle 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19916,7 +19916,7 @@ GameObject:
   - component: {fileID: 4870625901741327466}
   m_Layer: 0
   m_Name: Flake195
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20414,7 +20414,7 @@ GameObject:
   - component: {fileID: 6977536535748044013}
   m_Layer: 0
   m_Name: Pencil 18
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20526,7 +20526,7 @@ GameObject:
   - component: {fileID: 6986670295900510017}
   m_Layer: 0
   m_Name: Marshmallow057
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20833,7 +20833,7 @@ GameObject:
   - component: {fileID: 7122436325837880399}
   m_Layer: 0
   m_Name: Marble 4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20945,7 +20945,7 @@ GameObject:
   - component: {fileID: 7165270767217195243}
   m_Layer: 0
   m_Name: Pencil 26
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21057,7 +21057,7 @@ GameObject:
   - component: {fileID: 7239786437323967404}
   m_Layer: 0
   m_Name: Pencil 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21167,7 +21167,7 @@ GameObject:
   - component: {fileID: 5225471189953674432}
   m_Layer: 0
   m_Name: Meeple 1
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21250,7 +21250,7 @@ GameObject:
   - component: {fileID: 7317507419875694081}
   m_Layer: 0
   m_Name: Pencil 24
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21359,7 +21359,7 @@ GameObject:
   - component: {fileID: 2408955205747694960}
   - component: {fileID: 1857079147485058693}
   - component: {fileID: 7330753836698451540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21537,7 +21537,7 @@ GameObject:
   - component: {fileID: 4174106131888479148}
   m_Layer: 0
   m_Name: Meeple 9
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21811,7 +21811,7 @@ GameObject:
   - component: {fileID: 4235915785915795698}
   m_Layer: 0
   m_Name: Flake193
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21892,7 +21892,7 @@ GameObject:
   - component: {fileID: 4488974663282216594}
   m_Layer: 0
   m_Name: Meeple 3
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22152,7 +22152,7 @@ GameObject:
   - component: {fileID: 7612585513768085481}
   m_Layer: 0
   m_Name: Pencil 10
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22359,7 +22359,7 @@ GameObject:
   - component: {fileID: 7687663843584764277}
   m_Layer: 0
   m_Name: Pencil 5
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22662,7 +22662,7 @@ GameObject:
   - component: {fileID: 3853969325876755411}
   m_Layer: 0
   m_Name: Meeple 5
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22742,7 +22742,7 @@ GameObject:
   - component: {fileID: 6049853223111907423}
   - component: {fileID: 8313317336155351816}
   - component: {fileID: 7790564309261244851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Livre004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22840,7 +22840,7 @@ GameObject:
   - component: {fileID: 7851796323869785463}
   m_Layer: 0
   m_Name: Pen_cap
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22950,7 +22950,7 @@ GameObject:
   - component: {fileID: 3578935591946478808}
   m_Layer: 0
   m_Name: Meeple 19
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23258,7 +23258,7 @@ GameObject:
   - component: {fileID: 8133407894556071145}
   m_Layer: 0
   m_Name: Flake201
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23480,7 +23480,7 @@ GameObject:
   - component: {fileID: 4355946279414977985}
   m_Layer: 0
   m_Name: Arbre_Toy 7
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23673,7 +23673,7 @@ GameObject:
   - component: {fileID: 535667357426149928}
   m_Layer: 0
   m_Name: Sphere050
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23756,7 +23756,7 @@ GameObject:
   - component: {fileID: 8184317974256556132}
   m_Layer: 0
   m_Name: Marble 6
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23868,7 +23868,7 @@ GameObject:
   - component: {fileID: 8205222034059733954}
   m_Layer: 0
   m_Name: Rectangle_Fine
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23980,7 +23980,7 @@ GameObject:
   - component: {fileID: 8241014209142075529}
   m_Layer: 0
   m_Name: Cylinder124
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24314,7 +24314,7 @@ GameObject:
   - component: {fileID: 956124749357738381}
   m_Layer: 0
   m_Name: Meeple 18
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24509,7 +24509,7 @@ GameObject:
   - component: {fileID: 8336540208173506898}
   m_Layer: 0
   m_Name: Pencil 25
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24716,7 +24716,7 @@ GameObject:
   - component: {fileID: 8382195579283583052}
   m_Layer: 0
   m_Name: Pencil 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25019,7 +25019,7 @@ GameObject:
   - component: {fileID: 8596913015873673668}
   m_Layer: 0
   m_Name: Pencil 31
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25102,7 +25102,7 @@ GameObject:
   - component: {fileID: 8578815711921498982}
   m_Layer: 0
   m_Name: Pencil 13
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25388,7 +25388,7 @@ GameObject:
   - component: {fileID: 2069676438296498355}
   m_Layer: 0
   m_Name: Meeple 17
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25469,7 +25469,7 @@ GameObject:
   - component: {fileID: 8711658461114776411}
   m_Layer: 0
   m_Name: Marshmallow058
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25664,7 +25664,7 @@ GameObject:
   - component: {fileID: 8712281831874118222}
   m_Layer: 0
   m_Name: Arbre_Toy 2
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25776,7 +25776,7 @@ GameObject:
   - component: {fileID: 8732777034046306543}
   m_Layer: 0
   m_Name: Marble 5
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25886,7 +25886,7 @@ GameObject:
   - component: {fileID: 5319118516585374521}
   m_Layer: 0
   m_Name: Meeple 8
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25966,7 +25966,7 @@ GameObject:
   - component: {fileID: 7979022010998768927}
   - component: {fileID: 3547604850531976397}
   - component: {fileID: 8753541080386602812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jumper001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26063,7 +26063,7 @@ GameObject:
   - component: {fileID: 8521978202416657948}
   m_Layer: 0
   m_Name: Meeple 11
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26146,7 +26146,7 @@ GameObject:
   - component: {fileID: 8813754089375369894}
   m_Layer: 0
   m_Name: Pencil 7
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26258,7 +26258,7 @@ GameObject:
   - component: {fileID: 8818530796599590305}
   m_Layer: 0
   m_Name: Pen
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26370,7 +26370,7 @@ GameObject:
   - component: {fileID: 8848757207411241308}
   m_Layer: 0
   m_Name: Pencil 22
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26479,7 +26479,7 @@ GameObject:
   - component: {fileID: 6157162645659585073}
   - component: {fileID: 4060806902588419613}
   - component: {fileID: 8860833489984238280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big_Jumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27442,7 +27442,7 @@ GameObject:
   - component: {fileID: 5037195883347795904}
   m_Layer: 0
   m_Name: Sphere042
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
