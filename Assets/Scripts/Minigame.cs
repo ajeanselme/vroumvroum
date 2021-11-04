@@ -195,6 +195,7 @@ public class Minigame : MonoBehaviour
 
     public void launchCar()
     {
+        TurnManager.instance.BoostCarEffects(1f);
         car1.launchCar();
     }
 
