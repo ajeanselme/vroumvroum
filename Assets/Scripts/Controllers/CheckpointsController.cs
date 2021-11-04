@@ -17,6 +17,7 @@ public class CheckpointsController : MonoBehaviour
         public Vector3 position;
         public Vector3 rotation;
         public float distance;
+        public bool foldout = false;
 
         public Checkpoint(Vector3 vector3)
         {
