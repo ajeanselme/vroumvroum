@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -47,12 +49,13 @@ public class TurnManager : MonoBehaviour
 
         for (int i = 0; i < playerList.Count; i++)
         {
+            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
+            playerList[i].carController.rewiredPlayer = playerList[i].rewiredPlayer;
             CheckpointsController.instance.InitPlayer();
         }
         
         for (int i = 1; i < playerList.Count; i++)
         {
-            playerList[i].rewiredPlayer = ReInput.players.GetPlayer(i);
             playerList[i].carController.stopCar();
             playerList[i].carController.gameObject.SetActive(false);
             playerList[i].carController.vcam.gameObject.SetActive(false);
@@ -79,6 +82,11 @@ public class TurnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             FinishTurn(playerList[indexCarTurn].carController);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -136,6 +144,7 @@ public class TurnManager : MonoBehaviour
         speedParticles.Play();
 
         minigame.beginMinigame(player);
+        // player.launchCar();
     }
 
     private void EndGame()
