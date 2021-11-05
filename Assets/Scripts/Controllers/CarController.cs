@@ -241,7 +241,7 @@ public class CarController : MonoBehaviour
         _turnInput = rewiredPlayer.GetAxis("Horizontal");
         if (_grounded && _currentSpeed > 0)
         {
-            setDirection(_turnInput);
+            setWheelsDirection();
         }
         
         
@@ -270,6 +270,8 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(_nextRotation.eulerAngles + new Vector3(0f, _turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f), 0f) * Time.deltaTime);
+
         // Countdown before deceleration
         if (_remainingTime > 0)
         {
@@ -349,7 +351,7 @@ public class CarController : MonoBehaviour
         else
         {
             // If in the air apply gravity force
-            theRB.AddForce(Vector3.up * -gravityForce * 100f);
+            theRB.AddForce(Vector3.up * (-gravityForce * 100f));
         }
 
         foreach (ParticleSystem part in dustTrail)
@@ -365,18 +367,17 @@ public class CarController : MonoBehaviour
     {
         if (speed > 0.1f)
         {
-            theRB.velocity = transform.forward * speed * 4f;
+            theRB.velocity = transform.forward * speed * 200f * Time.deltaTime;
             _emissionRate = trailMaxEmission;
         }
         else
             stopCar(true);
     }
 
-    public void setDirection(float turnInput)
+    public void setWheelsDirection()
     {
-        transform.rotation = Quaternion.Euler(_nextRotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
-        wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
-        wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
+        wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * 45, 0f));
+        wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * 45, 0f));
     }
 
     public void launchCar()
