@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Rewired;
@@ -187,7 +188,7 @@ public class CarController : MonoBehaviour
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            Vector3 point_B = wheel.transform.position + (-transform.up * groundRayLength);
+            Vector3 point_B = wheel.transform.position + (Vector3.down * groundRayLength);
             Debug.DrawLine(point_A, point_B, Color.red);
         }
     }
@@ -201,21 +202,21 @@ public class CarController : MonoBehaviour
          * otherwhise the car won't adapt correctly to the slope.
          */
         _grounded = false;
-        
+
         foreach (GameObject wheel in wheels)
         {
             RaycastHit hit;
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
+            if (Physics.Raycast(point_A, Vector3.down, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
                 _grounded = true;
                 _emissionRate = 0;
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-                break;
             }
         }
+
 
         if (!_grounded)
         {
