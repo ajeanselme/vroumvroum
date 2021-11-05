@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Rewired;
 
 public class CarController : MonoBehaviour
 {
-    public bool Debugging;
+    public bool Debugging, turn;
 
     [Header("Settings")]
     [Tooltip("Temps total de parcours avant décélération")]
@@ -63,6 +65,8 @@ public class CarController : MonoBehaviour
 
     private MMFeedbacks _feedbacks;
 
+    [HideInInspector] public Rewired.Player rewiredPlayer;
+
     //Debug variables
     private float _rotationDamping;
     private GUIStyle debugWindowStyle, debugTextBoxStyle;
@@ -108,8 +112,9 @@ public class CarController : MonoBehaviour
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
-        
-        launchCar();
+
+        stopCar();
+        turn = false;
     }
 
     private void OnGUI()
@@ -149,6 +154,34 @@ public class CarController : MonoBehaviour
                 GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
             GUILayout.EndHorizontal();
 
+            GUILayout.Space(10);
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+            GUILayout.Label("_nextRotation : " + _nextRotation);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+            GUILayout.Label("transform.rotation : " + transform.rotation);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+            GUILayout.Label("rewiredPlayer.GetAxis(Horizontal); : " + rewiredPlayer.GetAxis("Horizontal"));
+            GUILayout.EndHorizontal();
+
+            
+            GUILayout.Space(10);
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Enter] Skip turn");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[LShift] Reset time");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[Space] Jump");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("[R] Restart");
+            GUILayout.EndHorizontal();
+            
             GUILayout.EndArea();
         }
         GUILayout.EndArea();
@@ -166,7 +199,7 @@ public class CarController : MonoBehaviour
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            Vector3 point_B = wheel.transform.position + (-transform.up * groundRayLength);
+            Vector3 point_B = wheel.transform.position + (Vector3.down * groundRayLength);
             Debug.DrawLine(point_A, point_B, Color.red);
         }
     }
@@ -180,14 +213,14 @@ public class CarController : MonoBehaviour
          * otherwhise the car won't adapt correctly to the slope.
          */
         _grounded = false;
-        
+
         foreach (GameObject wheel in wheels)
         {
             RaycastHit hit;
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
+            if (Physics.Raycast(point_A, Vector3.down, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
                 _grounded = true;
                 _emissionRate = 0;
@@ -195,6 +228,7 @@ public class CarController : MonoBehaviour
                 break;
             }
         }
+
 
         if (!_grounded)
         {
@@ -204,10 +238,10 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = Input.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("Horizontal");
         if (_grounded && _currentSpeed > 0)
         {
-            setDirection(_turnInput);
+            setWheelsDirection();
         }
         
         
@@ -215,8 +249,6 @@ public class CarController : MonoBehaviour
          * Finally update the general GO to match the RB position, and Lerp the new rotation based on the ground
          */
         transform.position = theRB.transform.position;
-        _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * 90f);
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -238,6 +270,8 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(_nextRotation.eulerAngles + new Vector3(0f, _turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f), 0f) * Time.deltaTime);
+
         // Countdown before deceleration
         if (_remainingTime > 0)
         {
@@ -317,7 +351,7 @@ public class CarController : MonoBehaviour
         else
         {
             // If in the air apply gravity force
-            theRB.AddForce(Vector3.up * -gravityForce * 100f);
+            theRB.AddForce(Vector3.up * (-gravityForce * 100f));
         }
 
         foreach (ParticleSystem part in dustTrail)
@@ -333,27 +367,26 @@ public class CarController : MonoBehaviour
     {
         if (speed > 0.1f)
         {
-            theRB.velocity = transform.forward * speed * 4f;
+            theRB.velocity = transform.forward * speed * 200f * Time.deltaTime;
             _emissionRate = trailMaxEmission;
         }
         else
-        {
             stopCar(true);
-        }
     }
 
-    public void setDirection(float turnInput)
+    public void setWheelsDirection()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
-        wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
-        wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
+        wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * 45, 0f));
+        wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * 45, 0f));
     }
 
     public void launchCar()
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
         _remainingTime = totalTime;
+        totalTime = 0f;
         _currentSpeed = initialSpeed;
+        turn = true;
         theRB.gameObject.SetActive(true);
     }
 

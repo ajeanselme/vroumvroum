@@ -7,6 +7,9 @@ public class Minigame : MonoBehaviour
 {
     public Slider slider;
     public GameObject barre;
+    public CarController car1;
+    public TurnManager changementVoiture;
+    public bool begin = false;
 
     public Text compteur;
     public Text compteur2;
@@ -44,9 +47,9 @@ public class Minigame : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) || begin)
         {
-            randomMinigame = Random.Range(0, 2);
+            
 
             if (randomMinigame == 0)
             {
@@ -66,6 +69,7 @@ public class Minigame : MonoBehaviour
                 decompte2 = 5.0f;
                 m2actif = true;
             }
+            begin = false;
         }
 
         float horizontal = Input.GetAxis("Horizontal");
@@ -76,12 +80,12 @@ public class Minigame : MonoBehaviour
             if (barre.transform.position.x <= m2Debut.transform.position.x || goRight)
             {
                 goRight = true;
-                barre.transform.position += new Vector3(horizontal + 5, 0, 0);
+                barre.transform.position += new Vector3(horizontal + 6, 0, 0);
             }
             if (barre.transform.position.x >= m2Fin.transform.position.x || !goRight)
             {
                 goRight = false;
-                barre.transform.position += new Vector3(horizontal - 5, 0, 0);
+                barre.transform.position += new Vector3(horizontal - 6, 0, 0);
             }
         }
 
@@ -89,21 +93,21 @@ public class Minigame : MonoBehaviour
         if (randomMinigame == 0)
         {
             decompte -= Time.deltaTime;
-            Debug.Log(decompte);
 
             if (decompte > 0)
                 compteur.text = decompte.ToString();
             else
                 compteur.text = "0";
 
-            if (decompte < -3)
+            if (decompte < -2.5f)
             {
                 minigame1.SetActive(false);
                 minigame2.SetActive(false);
                 decompteaenlever.SetActive(false);
                 decompteaenlever2.SetActive(false);
-                Debug.Log("BOOM");
                 Debug.Log(slider.value);
+                car1.totalTime = (slider.value / 10) + 1;
+                launchCar();
                 randomMinigame = 100;
             }
         }
@@ -123,14 +127,15 @@ public class Minigame : MonoBehaviour
                 m2actif = false;
             }
 
-            if (decompte2 < -3 && randomMinigame == 1)
+            if (decompte2 < -2.5f && randomMinigame == 1)
             {
                 minigame1.SetActive(false);
                 minigame2.SetActive(false);
                 decompteaenlever.SetActive(false);
                 decompteaenlever2.SetActive(false);
-                Debug.Log("BOOM2");
                 Debug.Log(m2Charge);
+                car1.totalTime = (m2Charge / 10) + 1;
+                launchCar();
                 randomMinigame = 100;
             }
         }
@@ -179,6 +184,19 @@ public class Minigame : MonoBehaviour
             decompte2 = 0f;
         }
 
+    }
+
+    public void beginMinigame(CarController player)
+    {
+        randomMinigame = Random.Range(0, 2);
+        begin = true;
+        car1 = player;
+    }
+
+    public void launchCar()
+    {
+        TurnManager.instance.BoostCarEffects(1f);
+        car1.launchCar();
     }
 
     public void SetCharge()
