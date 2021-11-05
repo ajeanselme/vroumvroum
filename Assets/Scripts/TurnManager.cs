@@ -37,6 +37,9 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public Transform spawnPoint;
     [HideInInspector] public int maxTurn;
     [HideInInspector] public ParticleSystem speedParticles;
+    
+    //debug
+    [HideInInspector] public bool playMinigame = true;
 
     private void Awake()
     {
@@ -182,8 +185,14 @@ public class TurnManager : MonoBehaviour
 
         yield return new WaitForSeconds(sec);
 
-        minigame.beginMinigame(player);
-        // player.launchCar();
+        if (playMinigame)
+        {
+            minigame.beginMinigame(player);
+        }
+        else
+        {
+            player.launchCar();
+        }
     }
 
     private void EndGame()
