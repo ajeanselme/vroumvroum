@@ -154,7 +154,18 @@ public class CarController : MonoBehaviour
                 GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
             GUILayout.EndHorizontal();
 
+            GUILayout.Space(10);
             
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+            GUILayout.Label("_nextRotation : " + _nextRotation);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+            GUILayout.Label("transform.rotation : " + transform.rotation);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+            GUILayout.Label("rewiredPlayer.GetAxis(Horizontal); : " + rewiredPlayer.GetAxis("Horizontal"));
+            GUILayout.EndHorizontal();
+
             
             GUILayout.Space(10);
             
@@ -214,6 +225,7 @@ public class CarController : MonoBehaviour
                 _grounded = true;
                 _emissionRate = 0;
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+                break;
             }
         }
 
@@ -237,8 +249,6 @@ public class CarController : MonoBehaviour
          * Finally update the general GO to match the RB position, and Lerp the new rotation based on the ground
          */
         transform.position = theRB.transform.position;
-        _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * 90f);
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -358,15 +368,13 @@ public class CarController : MonoBehaviour
             theRB.velocity = transform.forward * speed * 4f;
             _emissionRate = trailMaxEmission;
         }
-        else 
-       
+        else
             stopCar(true);
-        
     }
 
     public void setDirection(float turnInput)
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
+        transform.rotation = Quaternion.Euler(_nextRotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
         wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }
