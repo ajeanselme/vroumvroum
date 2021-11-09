@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Karim/CarsChoiceTest.unity
-    guid: 7e398746ceb66234ab20592ef6e13611
-  - enabled: 1
     path: Assets/Scenes/Antoine/Test.unity
     guid: 7db93d2d6c01b034481b3d79f2630deb
   m_configObjects: {}
