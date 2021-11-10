@@ -14,7 +14,11 @@ public class CarCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag("Prop"))
+        if (other.gameObject.GetComponent<PropController>())
+        {
+            other.gameObject.GetComponent<PropController>().callCollision(car.theRB.velocity);
+        }
+        else
         {
             if (!other.transform.IsChildOf(car.transform) && other.gameObject != car.theRB.gameObject)
             {
