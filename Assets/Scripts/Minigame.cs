@@ -17,6 +17,11 @@ public class Minigame : MonoBehaviour
     public GameObject decompteaenlever;
     public GameObject decompteaenlever2;
 
+    public new GameObject camera;
+    public float reductionVitesseBarre;
+    private float vitesseBarre = 100;
+    private float vitesseBase;
+
     public GameObject m2Debut;
     public GameObject m2Fin;
     public float m2Charge;
@@ -43,6 +48,7 @@ public class Minigame : MonoBehaviour
         slider.value = 0;
         decompte = 5.0f;
         decompte2 = 5.0f;
+        vitesseBase = camera.GetComponent<CanvasScaler>().referenceResolution.x/vitesseBarre - reductionVitesseBarre;
     }
 
     void Update()
@@ -80,12 +86,12 @@ public class Minigame : MonoBehaviour
             if (barre.transform.position.x <= m2Debut.transform.position.x || goRight)
             {
                 goRight = true;
-                barre.transform.position += new Vector3(horizontal + 6, 0, 0);
+                barre.transform.position += new Vector3(horizontal + vitesseBase, 0, 0);
             }
             if (barre.transform.position.x >= m2Fin.transform.position.x || !goRight)
             {
                 goRight = false;
-                barre.transform.position += new Vector3(horizontal - 6, 0, 0);
+                barre.transform.position += new Vector3(horizontal - vitesseBase, 0, 0);
             }
         }
 
