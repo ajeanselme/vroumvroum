@@ -206,4 +206,9 @@ public class TurnManager : MonoBehaviour
         
         endCamera.SetActive(true);
     }
+
+    public Player GetCurrentPlayer()
+    {
+        return playerList[indexCarTurn];
+    }
 }
