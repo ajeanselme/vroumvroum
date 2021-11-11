@@ -34,7 +34,6 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public List<GameObject> carPrefabs = new List<GameObject>();
     
     [HideInInspector] public GameObject endCamera;
-    [HideInInspector] public Transform spawnPoint;
     [HideInInspector] public int maxTurn;
     [HideInInspector] public ParticleSystem speedParticles;
     
@@ -205,5 +204,10 @@ public class TurnManager : MonoBehaviour
         }
         
         endCamera.SetActive(true);
+    }
+
+    public Player GetCurrentPlayer()
+    {
+        return playerList[indexCarTurn];
     }
 }
