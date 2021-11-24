@@ -19,6 +19,7 @@ public class MenuControllerManager : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         nbGamepad = 0;
