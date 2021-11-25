@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22626048, g: 0.18904202, b: 0.35171658, a: 1}
+  m_IndirectSpecularColor: {r: 0.2262607, g: 0.18904221, b: 0.35171795, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5294,7 +5294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &217528513
 Transform:
   m_ObjectHideFlags: 0
@@ -5519,7 +5519,7 @@ MonoBehaviour:
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
-      _assignKeyboardOnStart: 1
+      _assignKeyboardOnStart: 0
       _excludeFromControllerAutoAssignment: 0
       _controllerMapLayoutManagerSettings:
         _enabled: 1
@@ -5544,7 +5544,7 @@ MonoBehaviour:
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
-      _assignKeyboardOnStart: 1
+      _assignKeyboardOnStart: 0
       _excludeFromControllerAutoAssignment: 0
       _controllerMapLayoutManagerSettings:
         _enabled: 1
@@ -5569,7 +5569,7 @@ MonoBehaviour:
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
-      _assignKeyboardOnStart: 1
+      _assignKeyboardOnStart: 0
       _excludeFromControllerAutoAssignment: 0
       _controllerMapLayoutManagerSettings:
         _enabled: 1
@@ -5594,7 +5594,7 @@ MonoBehaviour:
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
-      _assignKeyboardOnStart: 1
+      _assignKeyboardOnStart: 0
       _excludeFromControllerAutoAssignment: 0
       _controllerMapLayoutManagerSettings:
         _enabled: 1
@@ -5619,7 +5619,7 @@ MonoBehaviour:
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
-      _assignKeyboardOnStart: 1
+      _assignKeyboardOnStart: 0
       _excludeFromControllerAutoAssignment: 0
       _controllerMapLayoutManagerSettings:
         _enabled: 1
@@ -6652,15 +6652,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1280199412, guid: 570dea96ba6b4164899a9c78f91734f3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.25241944
+      value: 0.2524194
       objectReference: {fileID: 0}
     - target: {fileID: 1280199412, guid: 570dea96ba6b4164899a9c78f91734f3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000025264995
+      value: -0.000000003824811
       objectReference: {fileID: 0}
     - target: {fileID: 1280199412, guid: 570dea96ba6b4164899a9c78f91734f3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000065908
+      value: 9.977662e-10
       objectReference: {fileID: 0}
     - target: {fileID: 1498212712, guid: 570dea96ba6b4164899a9c78f91734f3, type: 3}
       propertyPath: totalTime
@@ -6743,7 +6743,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852202892}
-  m_LocalRotation: {x: 0.25241944, y: 0.000000025264995, z: -0.0000000065908, w: 0.9676179}
+  m_LocalRotation: {x: 0.2524194, y: -0.000000003824811, z: 9.977662e-10, w: 0.9676179}
   m_LocalPosition: {x: -151.63628, y: 23.978954, z: -122.564735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

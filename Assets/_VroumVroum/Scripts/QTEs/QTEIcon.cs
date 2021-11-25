@@ -21,7 +21,7 @@ public class QTEIcon : MonoBehaviour
 
     private void Update()
     {
-        CarController carController = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController;
+        CarController carController = ParsecGameManager.instance.m_Players[TurnManager.instance.indexCarTurn].carController;
         canvas.transform.LookAt(carController.vcam.transform);
         
         float distance = Vector3.Distance(carController.transform.position, transform.position);

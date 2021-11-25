@@ -102,7 +102,7 @@ public class CheckpointsController : MonoBehaviour
                 Vector3 pointA = currentCP.position;
                 Vector3 pointB = nextCP.position;
 
-                Vector3 player = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController.transform.position;
+                Vector3 player = ParsecGameManager.instance.m_Players[TurnManager.instance.indexCarTurn].carController.transform.position;
 
                 Vector3 projected = Vector3.Project((player - pointA), (pointB - pointA)) + pointA;
                 

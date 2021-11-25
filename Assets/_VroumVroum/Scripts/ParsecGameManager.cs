@@ -5,14 +5,28 @@ using Rewired;
 
 public class ParsecGameManager : MonoBehaviour
 {
+    public static ParsecGameManager instance;
+    
+    private TurnManager turnManager;
+    
     public PlayerManager[] m_Players;
     
     private ParsecStreamGeneral streamer;
     private ParsecUnity.API.SessionResultDataData authData;
-    [System.NonSerialized] private bool initialized = false;
+    [NonSerialized] private bool initialized = false;
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        
         streamer = FindObjectOfType<ParsecStreamGeneral>();
         if (streamer != null)
         {
@@ -50,24 +64,31 @@ public class ParsecGameManager : MonoBehaviour
         int iPlayer = GetFreePlayer();
         if (iPlayer == 0) return; // no place left or array is null
         
+        turnManager = FindObjectOfType<TurnManager>();
+        if (turnManager == null) return;
+
         CustomController csController = ReInput.controllers.CreateCustomController(0, "Parsec_" + guest.id);
         CustomController csKeyboard = ReInput.controllers.CreateCustomController(1, "Parsec_" + guest.id);
         CustomController csMouse = ReInput.controllers.CreateCustomController(2, "Parsec_" + guest.id);
         ParsecUnity.ParsecRewiredInput.AssignCustomControllerToUser(guest, csController);
         //ParsecUnity.ParsecRewiredInput.AssignKeyboardControllerToUser(guest, csKeyboard);
-        //SpawnPlayer(iPlayer, guest, csController, csKeyboard, csMouse);
+        SetupPlayer(iPlayer, guest, csController, csKeyboard, csMouse);
     }
     
-    public void SpawnPlayer(int player, Parsec.ParsecGuest guest, CustomController controller, CustomController keyboard, CustomController mouse)
+    public void SetupPlayer(int player, Parsec.ParsecGuest guest, CustomController controller, CustomController keyboard, CustomController mouse)
     {
         if (m_Players == null) return;
         if (player >= 0 && player < m_Players.Length)
         {
             m_Players[player] = gameObject.AddComponent<PlayerManager>();
-            //m_Players[player].m_Instance = Instantiate(m_PlayerObjectPrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             m_Players[player].m_PlayerNumber = player;
             m_Players[player].m_AssignedGuest = guest;
-            //m_Players[player].Setup(controller, keyboard, mouse);
+            
+            m_Players[player].csController = controller;
+            m_Players[player].csKeyboard = keyboard;
+            m_Players[player].csMouse = mouse;
+            
+            m_Players[player].Setup();
         }
     }
 
@@ -77,10 +98,9 @@ public class ParsecGameManager : MonoBehaviour
         if (player >= 0 && player < m_Players.Length)
         {
             m_Players[player] = gameObject.AddComponent<PlayerManager>();
-            //m_Players[player].m_Instance = Instantiate(m_PlayerObjectPrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)) as GameObject;
             m_Players[player].m_PlayerNumber = player;
             m_Players[player].m_AssignedGuest = guest;
-            //m_Players[player].Setup(null, null, null);
+            m_Players[player].Setup();
         }
     }
 
@@ -144,5 +164,29 @@ public class ParsecGameManager : MonoBehaviour
     {
         if (!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
         if (!initialized) Initialize(); // Reinitialize after a recompile in the editor
+
+        if (turnManager == null)
+        {
+            turnManager = FindObjectOfType<TurnManager>();
+            
+            if (turnManager != null) SetupGame();
+        }
+    }
+
+    private void SetupGame()
+    {
+        for (int i = 0; i < m_Players.Length; i++)
+        {
+            // Spawn car
+            
+            //m_Players[i].SetupInGame(/* Car previously created */);
+
+            if (i != 0)
+            {
+                m_Players[i].carController.stopCar();
+                m_Players[i].carController.gameObject.SetActive(false);
+                m_Players[i].carController.vcam.gameObject.SetActive(false);
+            }
+        }
     }
 }
