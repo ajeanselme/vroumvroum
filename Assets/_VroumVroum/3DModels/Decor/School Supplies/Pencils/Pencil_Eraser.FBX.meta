@@ -3,7 +3,32 @@ guid: 6fa86a8c00be102479aa43575683a620
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bois
+    second: {fileID: 2100000, guid: acde7cbcafdce1b4095ac3ee4e4a67c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Couleur
+    second: {fileID: 2100000, guid: 51145afbf5ad9384c936d9cf76eecaff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gomme
+    second: {fileID: 2100000, guid: acde7cbcafdce1b4095ac3ee4e4a67c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Graphite
+    second: {fileID: 2100000, guid: 2648c9a03f0a25d48857d89104693391, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 5b85a9ba4ccf5ee4484fbe828669b3fe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

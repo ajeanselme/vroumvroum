@@ -3,7 +3,12 @@ guid: 6ebb4aa05e3a814478340347e7cadef5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Salt
+    second: {fileID: 2100000, guid: 2edac93279dc72d44b05402aa09289b3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
