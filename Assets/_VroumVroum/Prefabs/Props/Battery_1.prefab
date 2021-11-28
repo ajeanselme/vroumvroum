@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4848661783027767475
+--- !u!1 &8190030447983464016
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5188771977708536329}
-  - component: {fileID: 9200259246176767404}
-  - component: {fileID: 6361638230857513318}
-  - component: {fileID: 5730973334311102485}
-  - component: {fileID: 5730973334311102489}
+  - component: {fileID: 8854927752592119018}
+  - component: {fileID: 5570071434904951631}
+  - component: {fileID: 7685438104083083141}
+  - component: {fileID: 9036961511330624258}
+  - component: {fileID: 9036961511330624259}
   m_Layer: 0
   m_Name: Battery_1
   m_TagString: Untagged
@@ -20,35 +20,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5188771977708536329
+--- !u!4 &8854927752592119018
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848661783027767475}
+  m_GameObject: {fileID: 8190030447983464016}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 483.33893, y: 5.75, z: 362.35}
+  m_LocalPosition: {x: 364.11078, y: 4.8, z: 396.25287}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9200259246176767404
+--- !u!33 &5570071434904951631
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848661783027767475}
+  m_GameObject: {fileID: 8190030447983464016}
   m_Mesh: {fileID: -3408492576483885383, guid: f6d8ecd85346522449e46097c0f6f35c, type: 3}
---- !u!23 &6361638230857513318
+--- !u!23 &7685438104083083141
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848661783027767475}
+  m_GameObject: {fileID: 8190030447983464016}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,9 +61,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2694126538136904386, guid: f6d8ecd85346522449e46097c0f6f35c, type: 3}
-  - {fileID: 2269116928689028571, guid: f6d8ecd85346522449e46097c0f6f35c, type: 3}
-  - {fileID: 2269116928689028571, guid: f6d8ecd85346522449e46097c0f6f35c, type: 3}
+  - {fileID: 2100000, guid: 6ff2e7edef8653b419f3e21b625623ce, type: 2}
+  - {fileID: 2100000, guid: 8669ae633f64d444291d6552c26fe46c, type: 2}
+  - {fileID: 2100000, guid: 5e82b9a7ffb3e4d439d5800c40ecb7da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,30 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5730973334311102485
+--- !u!136 &9036961511330624258
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848661783027767475}
+  m_GameObject: {fileID: 8190030447983464016}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.7512963
-  m_Height: 5.813149
-  m_Direction: 2
-  m_Center: {x: 0.11450195, y: -0.014624357, z: -0.02486372}
---- !u!114 &5730973334311102489
+  m_Radius: 2.9211366
+  m_Height: 3.3857203
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: -0.00000011920932}
+--- !u!114 &9036961511330624259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848661783027767475}
+  m_GameObject: {fileID: 8190030447983464016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58ef85a0e5d14c348b6b2f3e6b2d3d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 5
+  weight: 1

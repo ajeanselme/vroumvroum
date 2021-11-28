@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7622454565394095330
+--- !u!1 &1272385206186977
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7098718262626535000}
-  - component: {fileID: 6137400459928914429}
-  - component: {fileID: 8271030567000161591}
-  - component: {fileID: 7280367707148755382}
-  - component: {fileID: 7280367707148755381}
+  - component: {fileID: 814964164044466523}
+  - component: {fileID: 4386662183153706750}
+  - component: {fileID: 1946814299587793460}
+  - component: {fileID: 920402195616517811}
+  - component: {fileID: 920402195616517810}
   m_Layer: 0
   m_Name: Bag_Fries
   m_TagString: Untagged
@@ -20,35 +20,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7098718262626535000
+--- !u!4 &814964164044466523
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7622454565394095330}
+  m_GameObject: {fileID: 1272385206186977}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 368.36328, y: 3.9, z: 353.17242}
+  m_LocalPosition: {x: 156.25085, y: 2.8525243, z: 410.005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6137400459928914429
+--- !u!33 &4386662183153706750
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7622454565394095330}
+  m_GameObject: {fileID: 1272385206186977}
   m_Mesh: {fileID: -5973858502704385786, guid: dae8c030d6300c546ac5eb8b4db7a7fb, type: 3}
---- !u!23 &8271030567000161591
+--- !u!23 &1946814299587793460
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7622454565394095330}
+  m_GameObject: {fileID: 1272385206186977}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,8 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2269116928689028571, guid: dae8c030d6300c546ac5eb8b4db7a7fb, type: 3}
-  - {fileID: 2269116928689028571, guid: dae8c030d6300c546ac5eb8b4db7a7fb, type: 3}
+  - {fileID: 2100000, guid: 619404c0f0ffaeb43950e328a6a39c35, type: 2}
+  - {fileID: 2100000, guid: e68d062635368ed479f9d7d05d796ac8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,29 +84,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7280367707148755382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7622454565394095330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ef85a0e5d14c348b6b2f3e6b2d3d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
---- !u!65 &7280367707148755381
+--- !u!65 &920402195616517811
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7622454565394095330}
+  m_GameObject: {fileID: 1272385206186977}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.470416, y: 5.671125, z: 4.616684}
   m_Center: {x: -0.22084433, y: 0.00000011920932, z: -0.04418243}
+--- !u!114 &920402195616517810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272385206186977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ef85a0e5d14c348b6b2f3e6b2d3d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
