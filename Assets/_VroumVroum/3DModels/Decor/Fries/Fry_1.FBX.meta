@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 9b0bc1b2168a8f64ab54780806776719
+guid: 2c404052fb61b6b49a00f9318a5bccb5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 10 - Default
+    second: {fileID: 2100000, guid: f16deb3b05b5f0f44975f9878dff5de3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frie
+    second: {fileID: 2100000, guid: 81aed29fcdb870e4382226697dbfc2da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Salt
+    second: {fileID: 2100000, guid: 2edac93279dc72d44b05402aa09289b3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

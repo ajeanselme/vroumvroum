@@ -3,7 +3,17 @@ guid: 4b2d6870907717645935d1f8208f620e
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corps
+    second: {fileID: 2100000, guid: 06f3d1cc5f3181549a44d490c38f0263, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pointe
+    second: {fileID: 2100000, guid: 3adc2d3ec50c3664480483f7ca8177d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
