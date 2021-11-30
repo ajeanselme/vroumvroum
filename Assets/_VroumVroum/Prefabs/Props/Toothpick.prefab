@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5652734878693744664}
   - component: {fileID: 7608404023025112274}
   - component: {fileID: 9104007422702389329}
-  - component: {fileID: 9104007422702389328}
   m_Layer: 0
   m_Name: Toothpick
   m_TagString: Untagged
@@ -96,16 +95,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16835332, y: 0.16835335, z: 3.004728}
   m_Center: {x: 0.000000022351742, y: 0.00000007450582, z: -0.00000005960466}
---- !u!114 &9104007422702389328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256935769910752519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ef85a0e5d14c348b6b2f3e6b2d3d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1242534571241081576}
   - component: {fileID: 3952658342679641634}
   - component: {fileID: 2385566895517852321}
-  - component: {fileID: 2385566895517852320}
   m_Layer: 0
   m_Name: Bowl
   m_TagString: Untagged
@@ -98,16 +97,3 @@ CapsuleCollider:
   m_Height: 4.7165756
   m_Direction: 1
   m_Center: {x: -0.00000011920929, y: 0, z: -0.65916216}
---- !u!114 &2385566895517852320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3304047431561830391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ef85a0e5d14c348b6b2f3e6b2d3d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
