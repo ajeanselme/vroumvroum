@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 339876526405967243}
   - component: {fileID: 3681869111725707822}
   - component: {fileID: 1512179484931139300}
+  - component: {fileID: 7301313046663073981}
+  - component: {fileID: 1266039838981953552}
   m_Layer: 0
   m_Name: Pencil_Tall
   m_TagString: Untagged
@@ -83,3 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7301313046663073981
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151983943266567985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.0839915
+  m_Height: 0.35951883
+  m_Direction: 1
+  m_Center: {x: 0.0000013709068, y: 0.00000014901164, z: 0.222678}
+--- !u!114 &1266039838981953552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151983943266567985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ef85a0e5d14c348b6b2f3e6b2d3d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 3
