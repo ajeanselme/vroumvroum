@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6186393403867231057}
   - component: {fileID: 7094761039276571892}
   - component: {fileID: 5012876760464525374}
-  - component: {fileID: 5931457842944808120}
+  - component: {fileID: 5822229268911264157}
   m_Layer: 0
   m_Name: DartYellow
   m_TagString: Untagged
@@ -86,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5931457842944808120
-CapsuleCollider:
+--- !u!64 &5822229268911264157
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,7 +96,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.422881
-  m_Height: 1.463806
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1856363813045904223, guid: 93761a79b13bb3e4cba0b06614d57780, type: 3}

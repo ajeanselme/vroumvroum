@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2860324201899254772}
   - component: {fileID: 1161420874355010641}
   - component: {fileID: 4033753468085180571}
-  - component: {fileID: 2322538859240686592}
   - component: {fileID: 2322538859240686593}
+  - component: {fileID: 5623471766941787126}
   m_Layer: 0
   m_Name: Cylinder_Arc_Tall_Blue
   m_TagString: Untagged
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2322538859240686592
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3240965658801355086}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2351784, y: 2.4618855, z: 4.9408717}
-  m_Center: {x: -0.6175886, y: 0, z: 2.4703562}
 --- !u!114 &2322538859240686593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &5623471766941787126
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240965658801355086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5365713564520892586, guid: a7e0022e3c4d9824cb4881f939d9ecfa, type: 3}

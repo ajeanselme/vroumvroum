@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1033278675795737332}
   - component: {fileID: 4177417332911863121}
   - component: {fileID: 2170134307020308891}
-  - component: {fileID: 710522033275346194}
   - component: {fileID: 710522033275346205}
+  - component: {fileID: 8976094866481291167}
   m_Layer: 0
   m_Name: CandyCorn
   m_TagString: Untagged
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &710522033275346194
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368487954810282062}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 3.9909286
-  m_Height: 7.810738
-  m_Direction: 1
-  m_Center: {x: 0.00000059604645, y: -0.00000023841864, z: 3.9909286}
 --- !u!114 &710522033275346205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +98,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &8976094866481291167
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368487954810282062}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6343659546497120494, guid: 77b4a2cce0c916347aecbaf007db3a6b, type: 3}

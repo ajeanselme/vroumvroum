@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2647802919962315155}
   - component: {fileID: 1373942236854060598}
   - component: {fileID: 3816183199760347900}
-  - component: {fileID: 2536753402002927173}
   - component: {fileID: 2536753402002927174}
+  - component: {fileID: 5922385890952979879}
   m_Layer: 0
   m_Name: Fountain_Pen
   m_TagString: Untagged
@@ -84,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2536753402002927173
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455723361381438249}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 6.180481
-  m_Height: 1.3958142
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2536753402002927174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +97,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!136 &5922385890952979879
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455723361381438249}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5875853
+  m_Height: 12.360962
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.010401309, z: -3.678921e-17}

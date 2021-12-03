@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 814964164044466523}
   - component: {fileID: 4386662183153706750}
   - component: {fileID: 1946814299587793460}
-  - component: {fileID: 920402195616517811}
   - component: {fileID: 920402195616517810}
+  - component: {fileID: 3314654832664108315}
   m_Layer: 0
   m_Name: Bag_Fries
   m_TagString: Untagged
@@ -84,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &920402195616517811
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272385206186977}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.470416, y: 5.671125, z: 4.616684}
-  m_Center: {x: -0.22084433, y: 0.00000011920932, z: -0.04418243}
 --- !u!114 &920402195616517810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +97,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 5
+--- !u!64 &3314654832664108315
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272385206186977}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5973858502704385786, guid: dae8c030d6300c546ac5eb8b4db7a7fb, type: 3}

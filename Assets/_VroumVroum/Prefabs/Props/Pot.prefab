@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3700737491355963098}
   - component: {fileID: 357036376567382399}
   - component: {fileID: 2526666694225687989}
-  - component: {fileID: 3805841136246024501}
+  - component: {fileID: 2984654623789290856}
   m_Layer: 0
   m_Name: Pot
   m_TagString: Untagged
@@ -85,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3805841136246024501
-CapsuleCollider:
+--- !u!65 &2984654623789290856
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,9 +95,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3.3671527
-  m_Height: 6.6099744
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 6.7343054, y: 6.6099744, z: 6.6943374}
   m_Center: {x: -0.009052396, y: 0, z: 0.0000004768373}
 --- !u!1001 &3805841136074831967
 PrefabInstance:

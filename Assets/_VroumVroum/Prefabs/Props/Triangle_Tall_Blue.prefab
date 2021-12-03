@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6286372333883855657}
   - component: {fileID: 6958753850206624908}
   - component: {fileID: 5149446744888731718}
-  - component: {fileID: 5816142911858865351}
   - component: {fileID: 5816142911858865348}
+  - component: {fileID: 4850633218450174417}
   m_Layer: 0
   m_Name: Triangle_Tall_Blue
   m_TagString: Untagged
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5816142911858865351
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6662652302967294355}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.4703555, y: 4.856369, z: 2.43542}
-  m_Center: {x: 0, y: 0, z: 1.21771}
 --- !u!114 &5816142911858865348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &4850633218450174417
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662652302967294355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1153159191922478106, guid: 1217613093059ec4299c21c2f1789713, type: 3}

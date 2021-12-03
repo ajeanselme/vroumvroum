@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2114426427704118178}
   - component: {fileID: 3096268961999717383}
   - component: {fileID: 944875757105017037}
-  - component: {fileID: 1935785738117180490}
   - component: {fileID: 1935785738117180491}
+  - component: {fileID: 8645784500246491323}
   m_Layer: 0
   m_Name: Chess_Tower_Black
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1935785738117180490
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593186913461784856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9380024
-  m_Height: 1.2803985
-  m_Direction: 1
-  m_Center: {x: -0.00000074505806, y: -0.0000014901165, z: 0}
 --- !u!114 &1935785738117180491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &8645784500246491323
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593186913461784856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8876249551751503084, guid: 16415ba78f9a088469c1d959e914cb49, type: 3}

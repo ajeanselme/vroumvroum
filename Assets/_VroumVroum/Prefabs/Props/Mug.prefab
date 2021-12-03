@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2294700839518050953}
   - component: {fileID: 2915994808697525548}
   - component: {fileID: 1122318375915905510}
-  - component: {fileID: 1752695459853303140}
+  - component: {fileID: 3829148284453076012}
   m_Layer: 0
   m_Name: Mug
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1752695459853303140
-CapsuleCollider:
+--- !u!64 &3829148284453076012
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +92,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.9307575
-  m_Height: 2.665017
-  m_Direction: 1
-  m_Center: {x: -0.59824944, y: 0, z: 0.00000011920932}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6320361774921270629, guid: 3df767bb0ec7af24b90b55137b59cec9, type: 3}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3242152910518711648}
   - component: {fileID: 1968543017127672517}
   - component: {fileID: 4374504010106310159}
-  - component: {fileID: 3131349302115963528}
   - component: {fileID: 3131349302115963529}
+  - component: {fileID: 504487381358547982}
   m_Layer: 0
   m_Name: Pancake_Butter
   m_TagString: Untagged
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3131349302115963528
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2861369370977185754}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.1624439, y: 2.4670625, z: 0.67548174}
-  m_Center: {x: 0.00000047683716, y: 0.00000041723263, z: 0.000000014901165}
 --- !u!114 &3131349302115963529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &504487381358547982
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2861369370977185754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3650865179533500963, guid: 0168053b199666040831c36b4ac00fdc, type: 3}

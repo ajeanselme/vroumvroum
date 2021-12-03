@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8826466692007454177}
   - component: {fileID: 5607600717098707524}
   - component: {fileID: 7653520592329776782}
-  - component: {fileID: 9076813512354202121}
   - component: {fileID: 9076813512354202120}
+  - component: {fileID: 8135455295113193261}
   m_Layer: 0
   m_Name: Coffee
   m_TagString: Untagged
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9076813512354202121
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8157769474588262235}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 3.0570633
-  m_Height: 4.6193023
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.00065517443, z: 0.37454996}
 --- !u!114 &9076813512354202120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +98,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 5
+--- !u!64 &8135455295113193261
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157769474588262235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6571506424998889177, guid: abec33dc52591a847a369889da3c3017, type: 3}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8385243199505787134}
   - component: {fileID: 4895841424429442907}
   - component: {fileID: 7211796409720411025}
-  - component: {fileID: 8346550263627124496}
   - component: {fileID: 8346550263627124499}
+  - component: {fileID: 2284922137887952771}
   m_Layer: 0
   m_Name: Chess_Bishop_Black
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8346550263627124496
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157382577957188164}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.6987454
-  m_Height: 2.109165
-  m_Direction: 1
-  m_Center: {x: -0.0000012516974, y: -0.0000024437902, z: 0}
 --- !u!114 &8346550263627124499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &2284922137887952771
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157382577957188164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8113768720884857512, guid: 907bfa77f1526ef4e98305838661a1df, type: 3}

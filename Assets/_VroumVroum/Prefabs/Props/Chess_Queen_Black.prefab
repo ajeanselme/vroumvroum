@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 669658419137135024}
   - component: {fileID: 4531959732491767317}
   - component: {fileID: 1801499312314333919}
-  - component: {fileID: 1063310988028782174}
   - component: {fileID: 1063310988028782173}
+  - component: {fileID: 7350234228881096370}
   m_Layer: 0
   m_Name: Chess_Queen_Black
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1063310988028782174
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144337720451570442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.0989966
-  m_Height: 1.266163
-  m_Direction: 1
-  m_Center: {x: -0.000000923872, y: -0.0000015199188, z: 0}
 --- !u!114 &1063310988028782173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &7350234228881096370
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144337720451570442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7241880563055013564, guid: 164d425053c35ef469e340333be53996, type: 3}

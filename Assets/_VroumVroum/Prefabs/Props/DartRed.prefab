@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3701827908011961863}
   - component: {fileID: 355875955415261602}
   - component: {fileID: 2527825620041323880}
-  - component: {fileID: 3807003640356620754}
+  - component: {fileID: 3064132986190675768}
   m_Layer: 0
   m_Name: DartRed
   m_TagString: Untagged
@@ -86,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3807003640356620754
-CapsuleCollider:
+--- !u!64 &3064132986190675768
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,7 +96,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.422881
-  m_Height: 1.463806
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1856363813045904223, guid: eb62bd0704bca574c93102cfa90167eb, type: 3}

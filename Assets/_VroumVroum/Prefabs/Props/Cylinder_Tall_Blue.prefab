@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3498291746551843719}
   - component: {fileID: 514455281454302242}
   - component: {fileID: 2361928082223837416}
-  - component: {fileID: 3965090384917965921}
   - component: {fileID: 3965090384917965922}
+  - component: {fileID: 5790974295612943581}
   m_Layer: 0
   m_Name: Cylinder_Tall_Blue
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3965090384917965921
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4307619803974537533}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2.470356
-  m_Height: 2.470356
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 2.470356}
 --- !u!114 &3965090384917965922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &5790974295612943581
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307619803974537533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3758538854293726031, guid: 5582c5ed679f57f44bd2987963285017, type: 3}

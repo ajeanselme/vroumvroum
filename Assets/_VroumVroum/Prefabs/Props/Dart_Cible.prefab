@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1743976541896535279}
   - component: {fileID: 3430620286806156106}
   - component: {fileID: 610507887521077120}
-  - component: {fileID: 2285963915133586178}
+  - component: {fileID: 2645043100472539887}
   m_Layer: 0
   m_Name: Dart_Cible
   m_TagString: Untagged
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2285963915133586178
-BoxCollider:
+--- !u!64 &2645043100472539887
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,6 +97,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 16.556372, y: 16.556374, z: 0.9519739}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1938754345972384419, guid: 74c098578ad6c90438e4241017742a0a, type: 3}

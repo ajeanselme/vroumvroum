@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4349478937590679877}
   - component: {fileID: 861225029167072992}
   - component: {fileID: 3177105713402819114}
-  - component: {fileID: 4311859582354828947}
   - component: {fileID: 4311859582354828972}
+  - component: {fileID: 8740240993892141360}
   m_Layer: 0
   m_Name: Chess_Pawn_Black
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4311859582354828947
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3969822603712041983}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.7943502
-  m_Height: 1.2803985
-  m_Direction: 1
-  m_Center: {x: -0.00000074505806, y: -0.0000014901165, z: -0.00000002980233}
 --- !u!114 &4311859582354828972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &8740240993892141360
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969822603712041983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1385706028658619059, guid: a16661c010a182b4fa386df457055b2b, type: 3}
