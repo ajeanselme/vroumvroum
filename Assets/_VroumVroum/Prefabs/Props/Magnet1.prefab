@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1105072545592475860}
   - component: {fileID: 4105552457920974705}
   - component: {fileID: 2241998203304836027}
-  - component: {fileID: 638588508347230002}
   - component: {fileID: 638588508347230013}
+  - component: {fileID: 1126281702563194753}
   m_Layer: 0
   m_Name: Magnet1
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &638588508347230002
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296623002255350382}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10.8148775, y: 2.8691044, z: 10.836461}
-  m_Center: {x: 0, y: 0, z: -0.0000007152559}
 --- !u!114 &638588508347230013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &1126281702563194753
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296623002255350382}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3304094240565004552, guid: 4f87ab739c970d143936145a6c1422d4, type: 3}

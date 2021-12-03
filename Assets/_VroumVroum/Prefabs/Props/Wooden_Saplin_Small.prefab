@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7404895332792009362}
   - component: {fileID: 5867243118483148087}
   - component: {fileID: 8541171037266246141}
-  - component: {fileID: 7010345882125690228}
   - component: {fileID: 7010345882125690231}
+  - component: {fileID: 4896598631912439255}
   m_Layer: 0
   m_Name: Wooden_Saplin_Small
   m_TagString: Untagged
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7010345882125690228
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7892744980957255720}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.396153, y: 3.3961537, z: 4.1161127}
-  m_Center: {x: 0, y: 0, z: 0.0004822017}
 --- !u!114 &7010345882125690231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &4896598631912439255
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892744980957255720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2745994737368711580, guid: c77306b310527404e9c612576e291526, type: 3}

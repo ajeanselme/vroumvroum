@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8500862733815463991}
   - component: {fileID: 4780282969642389394}
   - component: {fileID: 7327934117607291736}
-  - component: {fileID: 8247103432965498841}
   - component: {fileID: 8247103432965498846}
+  - component: {fileID: 4002633173466337653}
   m_Layer: 0
   m_Name: Chess_Queen_White
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8247103432965498841
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9129624589400087181}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.0989966
-  m_Height: 1.266163
-  m_Direction: 1
-  m_Center: {x: -0.000000923872, y: -0.0000015199188, z: 0}
 --- !u!114 &8247103432965498846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &4002633173466337653
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129624589400087181}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7241880563055013564, guid: b42c253b52948f24eab2bc357937142d, type: 3}

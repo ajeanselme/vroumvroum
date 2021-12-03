@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4637817308635450575}
   - component: {fileID: 8643267298340160362}
   - component: {fileID: 5771356985526073248}
-  - component: {fileID: 5176447109643283233}
   - component: {fileID: 5176447109643283238}
+  - component: {fileID: 643137087375121161}
   m_Layer: 0
   m_Name: Chess_Tower_White
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5176447109643283233
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5410801077336381045}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9380024
-  m_Height: 1.2803985
-  m_Direction: 1
-  m_Center: {x: -0.00000074505806, y: -0.0000014901165, z: 0}
 --- !u!114 &5176447109643283238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &643137087375121161
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5410801077336381045}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8876249551751503084, guid: fae461471353bea429906e68ba170b4b, type: 3}

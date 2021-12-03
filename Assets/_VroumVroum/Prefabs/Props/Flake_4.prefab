@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 396399737165924646}
   - component: {fileID: 3616268320583075459}
   - component: {fileID: 1570462872206225993}
-  - component: {fileID: 147196056372260552}
   - component: {fileID: 147196056372260559}
+  - component: {fileID: 8500053054722857755}
   m_Layer: 0
   m_Name: Flake_4
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &147196056372260552
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066117094864917404}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.20052993
-  m_Height: 0.38608667
-  m_Direction: 1
-  m_Center: {x: -0.0000023245811, y: 0.0000010579827, z: 0.000000011175874}
 --- !u!114 &147196056372260559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &8500053054722857755
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066117094864917404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4222421497883659222, guid: 558e712d1b6441d4da0ad5b24ceca1f1, type: 3}

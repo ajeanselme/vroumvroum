@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8416231935360114267}
   - component: {fileID: 4855915931571786238}
   - component: {fileID: 7243858057395954996}
-  - component: {fileID: 8306554332779477431}
   - component: {fileID: 8306554332779477430}
+  - component: {fileID: 6296390389382272096}
   m_Layer: 0
   m_Name: Glazed_Donut 1
   m_TagString: Untagged
@@ -88,20 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8306554332779477431
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9189497141184185569}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 3.6323082
-  m_Height: 7.3277583
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8306554332779477430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,3 +101,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 8
+--- !u!64 &6296390389382272096
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189497141184185569}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8465247911207672826, guid: 921d88f622a042548a0a2753c7238280, type: 3}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5737661938140429208}
   - component: {fileID: 8651307919732421693}
   - component: {fileID: 6911734595125526775}
-  - component: {fileID: 5200246206292221044}
   - component: {fileID: 5200246206292221045}
+  - component: {fileID: 7473164157427846238}
   m_Layer: 0
   m_Name: Chess_King_Black
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5200246206292221044
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4966227454354252066}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.2466034
-  m_Height: 1.2803985
-  m_Direction: 1
-  m_Center: {x: -0.00000074505806, y: -0.0000014901165, z: -0.00000011920932}
 --- !u!114 &5200246206292221045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &7473164157427846238
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966227454354252066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3211540825602620457, guid: 91732312cf7b16147b08d6502d827dc1, type: 3}

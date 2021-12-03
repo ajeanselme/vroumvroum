@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2223486173344615501}
   - component: {fileID: 2987209753504891880}
   - component: {fileID: 1049413721713882914}
-  - component: {fileID: 1824469781731847081}
   - component: {fileID: 1824469781731847080}
+  - component: {fileID: 364342083612665088}
   m_Layer: 0
   m_Name: Marsmallow_Star_3
   m_TagString: Untagged
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1824469781731847081
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553944492959241975}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.37552658, y: 0.3615276, z: 0.15281156}
-  m_Center: {x: 0, y: 0, z: 0.000000003725291}
 --- !u!114 &1824469781731847080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &364342083612665088
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553944492959241975}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4895820189648730580, guid: c24e51d1491d6554398dfe5b4889f281, type: 3}

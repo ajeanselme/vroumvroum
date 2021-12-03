@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4001532191968669172}
   - component: {fileID: 11144403395158609}
   - component: {fileID: 2865239957239944859}
-  - component: {fileID: 3459597044462144025}
+  - component: {fileID: 2165415459943921069}
   m_Layer: 0
   m_Name: DartBlue
   m_TagString: Untagged
@@ -86,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3459597044462144025
-CapsuleCollider:
+--- !u!64 &2165415459943921069
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,7 +96,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.422881
-  m_Height: 1.463806
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1856363813045904223, guid: 529b20031a56d8445a5c156b3cca2a4b, type: 3}

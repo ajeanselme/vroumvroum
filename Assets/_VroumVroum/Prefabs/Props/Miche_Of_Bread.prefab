@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 36605312832966295}
   - component: {fileID: 3976071281949933874}
   - component: {fileID: 1209533752545572344}
-  - component: {fileID: 506854158443243902}
+  - component: {fileID: 5064523903729382065}
   m_Layer: 0
   m_Name: Miche_Of_Bread
   m_TagString: Untagged
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &506854158443243902
+--- !u!65 &5064523903729382065
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,5 +94,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.9021614, y: 3.965766, z: 5.228243}
-  m_Center: {x: -0.00000011920932, y: 0.00000011920929, z: 0}
+  m_Size: {x: 2.7907526, y: 3.8522413, z: 5.2282424}
+  m_Center: {x: 0.016723761, y: -0.056759197, z: -1.2336369e-16}

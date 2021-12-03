@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4327224948009213369}
   - component: {fileID: 838443297625281052}
   - component: {fileID: 3190317604440106710}
-  - component: {fileID: 4289640525624080977}
   - component: {fileID: 4289640525624080976}
+  - component: {fileID: -4161703260959538758}
   m_Layer: 0
   m_Name: Chess_Knight_White
   m_TagString: Untagged
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4289640525624080977
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983069405859563267}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.99784756
-  m_Height: 1.3527564
-  m_Direction: 1
-  m_Center: {x: -0.000000029802322, y: -0.00000396371, z: 0}
 --- !u!114 &4289640525624080976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+--- !u!64 &-4161703260959538758
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983069405859563267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5874644948502627305, guid: 4bfab1868facb1b438214f9f90981dcf, type: 3}
