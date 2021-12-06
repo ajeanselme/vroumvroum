@@ -358,9 +358,8 @@ public class CarController : MonoBehaviour
 
     public void reduceSpeed(float weight)
     {
-        Debug.Log("reduce");
         _lastReducing = Time.fixedTime;
-        _reduceSpeed = _currentSpeed * (weight / 100f) * 3f;
+        _reduceSpeed = _currentSpeed * (weight / 100f) * 4f;
     }
 
     public void setCarSpeed(float speed)
