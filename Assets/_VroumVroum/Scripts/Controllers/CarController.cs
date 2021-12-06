@@ -54,7 +54,7 @@ public class CarController : MonoBehaviour
 
     public CinemachineVirtualCamera vcam;
 
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _initialFOV;
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed;
     private bool _grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
@@ -107,7 +107,6 @@ public class CarController : MonoBehaviour
          */
         _currentSpeed = initialSpeed;
         _nextRotation = transform.rotation;
-        _initialFOV = vcam.m_Lens.FieldOfView;
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
@@ -264,6 +263,11 @@ public class CarController : MonoBehaviour
         {
             _remainingTime -= 1 * Time.deltaTime;
         }
+        
+        if (Time.fixedTime >= _lastReducing + .5f)
+        {
+            _reduceSpeed = 0;
+        }
 
 
         if (!_groundedLastFrame && _grounded)
@@ -329,6 +333,8 @@ public class CarController : MonoBehaviour
                     }
                     emission.rateOverTime = (speedEmissionFactor * (1 - _slopeAngle / 45)) * (_currentSpeed / initialSpeed);
                 }
+
+                _currentSpeed -= _reduceSpeed;
                 setCarSpeed(_currentSpeed);
             }
             
@@ -350,6 +356,13 @@ public class CarController : MonoBehaviour
         _groundedLastFrame = _grounded;
     }
 
+    public void reduceSpeed(float weight)
+    {
+        Debug.Log("reduce");
+        _lastReducing = Time.fixedTime;
+        _reduceSpeed = _currentSpeed * (weight / 100f) * 3f;
+    }
+
     public void setCarSpeed(float speed)
     {
         if (speed > 0.1f)
@@ -357,10 +370,8 @@ public class CarController : MonoBehaviour
             theRB.velocity = transform.forward * speed * 4f;
             _emissionRate = trailMaxEmission;
         }
-        else 
-       
+        else
             stopCar(true);
-        
     }
 
     public void setDirection(float turnInput)
