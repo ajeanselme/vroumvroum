@@ -6,6 +6,7 @@ using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Rewired;
+using Unity.Mathematics;
 
 public class CarController : MonoBehaviour
 {
@@ -54,8 +55,9 @@ public class CarController : MonoBehaviour
 
     public CinemachineVirtualCamera vcam;
     public GameObject carKey;
+    public float keyRotationSpeed = 100f;
 
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed;
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed, _keyRotation;
     private bool _grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
@@ -256,7 +258,8 @@ public class CarController : MonoBehaviour
             }
         }
         
-        carKey.transform.RotateAround(carKey.transform.position, Vector3.up, 30f * Time.deltaTime);
+        // carKey.transform.RotateAround(carKey.transform.position, new Vector3(0,1,0), 30f * Time.deltaTime);
+        rotateKey();
     }
 
     private void FixedUpdate()
@@ -443,5 +446,17 @@ public class CarController : MonoBehaviour
     void jumpCar()
     {
         theRB.MovePosition(new Vector3(theRB.position.x, theRB.position.y + 2, theRB.position.z));
+    }
+
+    private void rotateKey()
+    {
+        _keyRotation += Time.deltaTime * keyRotationSpeed * (_currentSpeed / initialSpeed);
+
+        if (_keyRotation > 360.0f)
+        {
+            _keyRotation = 0.0f;
+        }
+        
+        carKey.transform.localRotation = Quaternion.Euler(-109f, 0, _keyRotation);
     }
 }

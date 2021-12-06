@@ -10609,8 +10609,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5333416498950105007}
   m_LocalRotation: {x: -0.5751217, y: -0.5751218, z: -0.4113818, w: 0.41138178}
-  m_LocalPosition: {x: 0.023, y: 1.364, z: -1.566}
-  m_LocalScale: {x: 3.1900382, y: 3.1900382, z: 3.1900382}
+  m_LocalPosition: {x: 0.022558, y: 1.4, z: -1.58}
+  m_LocalScale: {x: 2.009724, y: 2.009724, z: 2.009724}
   m_Children: []
   m_Father: {fileID: 37210080959263224}
   m_RootOrder: 5
@@ -10812,6 +10812,7 @@ MonoBehaviour:
   wheelOffset: 0.33
   vcam: {fileID: 1280199411}
   carKey: {fileID: 5333416498950105007}
+  keyRotationSpeed: 100
 --- !u!114 &1498212713
 MonoBehaviour:
   m_ObjectHideFlags: 0
