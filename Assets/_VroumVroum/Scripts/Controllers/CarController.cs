@@ -53,12 +53,13 @@ public class CarController : MonoBehaviour
     public float wheelOffset = 0f;
 
     public CinemachineVirtualCamera vcam;
+    public GameObject carKey;
 
     private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed;
     private bool _grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
-    
+
     private Quaternion _nextRotation;
     private float _slopeAngle = 0f;
 
@@ -254,6 +255,8 @@ public class CarController : MonoBehaviour
                 jumpCar();
             }
         }
+        
+        carKey.transform.RotateAround(carKey.transform.position, Vector3.left, 10 * Time.deltaTime);
     }
 
     private void FixedUpdate()
