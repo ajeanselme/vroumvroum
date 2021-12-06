@@ -7,7 +7,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 public class TurboEditor : EditorWindow
 {
-    
+
     private class PlayerLog
     {
         public int oldSelectedIndex = 0;
@@ -29,8 +29,9 @@ public class TurboEditor : EditorWindow
 
     private Action<SceneView> sceneViewAction;
     private TurnManager _turnManager;
+    private ParsecGameManager _gameManager;
     private CheckpointsController _checkpointsController;
-    
+
     private List<PlayerLog> playerLogs = new List<PlayerLog>();
 
     private bool showPlayerList, showCheckPoints;
@@ -51,19 +52,19 @@ public class TurboEditor : EditorWindow
     {
         FindManagers();
 
-        if (_turnManager != null)
+        if (_gameManager != null)
         {
             playerLogs.Clear();
-            for (int i = 0; i < _turnManager.playerList.Count; i++)
+            for (int i = 0; i < _gameManager.m_Players.Length; i++)
             {
-                playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
+                playerLogs.Add(new PlayerLog(_gameManager.m_Players[i].prefabIndex));
             }
         }
-        
+
         checkpointStyle = new GUIStyle();
         checkpointStyle.normal.textColor = Color.white;
-        Texture2D newTex = new Texture2D(64,64);
-            
+        Texture2D newTex = new Texture2D(64, 64);
+
         for (int y = 0; y < newTex.height; y++)
         {
             for (int x = 0; x < newTex.width; x++)
@@ -71,7 +72,7 @@ public class TurboEditor : EditorWindow
                 newTex.SetPixel(x, y, new Color(45f / 255f, 45f / 255f, 45f / 255f));
             }
         }
-            
+
         newTex.Apply();
         checkpointStyle.normal.background = newTex;
 
@@ -88,12 +89,12 @@ public class TurboEditor : EditorWindow
     {
         FindManagers();
 
-        if (_turnManager != null)
+        if (_gameManager != null)
         {
             playerLogs.Clear();
-            for (int i = 0; i < _turnManager.playerList.Count; i++)
+            for (int i = 0; i < _gameManager.m_Players.Length; i++)
             {
-                playerLogs.Add(new PlayerLog(_turnManager.playerList[i].prefabIndex));
+                playerLogs.Add(new PlayerLog(_gameManager.m_Players[i].prefabIndex));
             }
         }
     }
@@ -107,17 +108,18 @@ public class TurboEditor : EditorWindow
             if (_turnManager != null)
             {
                 // _turnManager = (TurnManager) EditorGUILayout.ObjectField("Turn Manager", _turnManager, typeof(TurnManager), true);
-            
+
                 GUILayout.Space(20);
 
                 scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-                
+
                 #region Map Settings
-                
+
                 GUILayout.Label("Map Settings", EditorStyles.whiteLargeLabel);
                 GUILayout.Space(10);
                 EditorGUI.indentLevel++;
-                _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera, typeof(GameObject), true);
+                _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera,
+                    typeof(GameObject), true);
                 // _turnManager.spawnPoint = (Transform) EditorGUILayout.ObjectField("Spawn Transform", _turnManager.spawnPoint, typeof(Transform), true);
                 _turnManager.maxTurn = EditorGUILayout.IntField("Turns Per Player", _turnManager.maxTurn);
                 _turnManager.playMinigame = EditorGUILayout.Toggle("Activate Minigame", _turnManager.playMinigame);
@@ -132,87 +134,97 @@ public class TurboEditor : EditorWindow
                 #endregion
 
                 GUILayout.Space(20);
-                
-                #region Players Settings
 
-                GUILayout.Label("Players Settings", EditorStyles.whiteLargeLabel);
-                GUILayout.Space(10);
-
-                showPlayerList = EditorGUILayout.Foldout(showPlayerList, "Player List", EditorStyles.foldoutHeader);
-                if (showPlayerList)
+                if (_gameManager != null)
                 {
+                    #region Players Settings
+
+                    GUILayout.Label("Players Settings", EditorStyles.whiteLargeLabel);
                     GUILayout.Space(10);
-                    List<string> prefabsNames = new List<string>();
-                    for (int i = 0; i < _turnManager.carPrefabs.Count; i++)
+
+
+                    showPlayerList = EditorGUILayout.Foldout(showPlayerList, "Player List", EditorStyles.foldoutHeader);
+                    if (showPlayerList)
                     {
-                        prefabsNames.Add(_turnManager.carPrefabs[i].name);
+                        GUILayout.Space(10);
+                        List<string> prefabsNames = new List<string>();
+                        for (int i = 0; i < _gameManager.m_Players.Length; i++)
+                        {
+                            prefabsNames.Add(_gameManager.m_Players[i].name);
+                        }
+
+                        for (int i = 0; i < _gameManager.m_Players.Length; i++)
+                        {
+                            if (_gameManager.m_Players[i].carController == null)
+                            {
+                                RemovePlayer(i);
+                                Debug.Log("remove 1");
+                                i--;
+                            }
+                            else
+                            {
+                                EditorGUILayout.BeginHorizontal();
+
+                                if (GUILayout.Button("", "Radio"))
+                                {
+                                    Selection.activeGameObject = _gameManager.m_Players[i].carController.gameObject;
+                                }
+
+                                if (playerLogs[i].ChangeIndex(EditorGUILayout.Popup("Player " + i,
+                                    _gameManager.m_Players[i].prefabIndex, prefabsNames.ToArray())))
+                                {
+                                    ChangeCarType(i, playerLogs[i].selectedIndex);
+                                }
+
+                                _gameManager.m_Players[i].carController.gameObject.SetActive(
+                                    GUILayout.Toggle(
+                                        _gameManager.m_Players[i].carController.gameObject.activeInHierarchy, ""));
+
+                                EditorGUILayout.EndHorizontal();
+                            }
+                        }
+
+                        GUILayout.Space(10);
+                        EditorGUILayout.BeginHorizontal();
+                        if (GUILayout.Button("Add", "MiniButtonLeft"))
+                        {
+                            AddPlayer();
+                        }
+
+                        if (GUILayout.Button("Remove", "MiniButtonRight"))
+                        {
+                            if (_gameManager.m_Players.Length > 0)
+                            {
+                                RemovePlayer(_gameManager.m_Players.Length - 1);
+                                Debug.Log("remove 2");
+                            }
+                        }
+
+                        EditorGUILayout.EndHorizontal();
                     }
 
-                    for (int i = 0; i < _turnManager.playerList.Count; i++)
-                    {
-                        if (_turnManager.playerList[i].carController == null)
-                        {
-                            RemovePlayer(i);
-                            Debug.Log("remove 1");
-                            i--;
-                        }
-                        else
-                        {
-                            EditorGUILayout.BeginHorizontal();
+                    #endregion
 
-                            if (GUILayout.Button("", "Radio"))
-                            {
-                                Selection.activeGameObject = _turnManager.playerList[i].carController.gameObject;
-                            }
-                        
-                            if(playerLogs[i].ChangeIndex(EditorGUILayout.Popup("Player " + i, _turnManager.playerList[i].prefabIndex, prefabsNames.ToArray())))
-                            {
-                                ChangeCarType(i, playerLogs[i].selectedIndex);
-                            }
-                         
-                            _turnManager.playerList[i].carController.gameObject.SetActive(GUILayout.Toggle(_turnManager.playerList[i].carController.gameObject.activeInHierarchy, ""));
-                         
-                            EditorGUILayout.EndHorizontal();
-                        }
-                    }
-                    
-                    GUILayout.Space(10);
-                    EditorGUILayout.BeginHorizontal();
-                    if (GUILayout.Button("Add", "MiniButtonLeft"))
-                    {
-                        AddPlayer();
-                    }
-                    if (GUILayout.Button("Remove", "MiniButtonRight"))
-                    {
-                        if (_turnManager.playerList.Count > 0)
-                        {
-                            RemovePlayer(_turnManager.playerList.Count - 1);
-                            Debug.Log("remove 2");
-                        }   
-                    }
-                    EditorGUILayout.EndHorizontal();
+                    GUILayout.Space(20);
                 }
-                
-                #endregion
 
-                GUILayout.Space(20);
-                
                 #region Advanced Edit
-                
+
                 GUILayout.Label("Edit Mode", EditorStyles.whiteLargeLabel);
-                
+
                 advancedToolbar = GUILayout.Toolbar(advancedToolbar, new string[] {"Simple", "Advanced"});
-                
+
                 // If Advanced mode
                 if (advancedToolbar == 1)
                 {
                     GUILayout.Space(10);
                     GUILayout.Label("Car prefabs");
-                    
-                    
+
+
                     for (int i = 0; i < _turnManager.carPrefabs.Count; i++)
                     {
-                        _turnManager.carPrefabs[i] = (GameObject) EditorGUILayout.ObjectField("Prefab " + i, _turnManager.carPrefabs[i], typeof(GameObject), true);
+                        _turnManager.carPrefabs[i] = (GameObject) EditorGUILayout.ObjectField("Prefab " + i,
+                            _turnManager.carPrefabs[i], typeof(GameObject), true);
                     }
 
                     GUILayout.BeginHorizontal();
@@ -220,17 +232,21 @@ public class TurboEditor : EditorWindow
                     {
                         _turnManager.carPrefabs.Add(_turnManager.carPrefabs[_turnManager.carPrefabs.Count - 1]);
                     }
+
                     if (GUILayout.Button("-", "toolbarTextField"))
                     {
                         _turnManager.carPrefabs.RemoveAt(_turnManager.carPrefabs.Count - 1);
                     }
+
                     GUILayout.EndHorizontal();
-                    
+
                     GUILayout.Space(10);
-                    
-                    _turnManager.speedParticles = (ParticleSystem) EditorGUILayout.ObjectField("Speed Particles", _turnManager.speedParticles, typeof(ParticleSystem), true);
-                    _checkpointsController.CPPrefab = (GameObject) EditorGUILayout.ObjectField("Checkpoint Prefab", _checkpointsController.CPPrefab, typeof(GameObject), true);
-                    
+
+                    _turnManager.speedParticles = (ParticleSystem) EditorGUILayout.ObjectField("Speed Particles",
+                        _turnManager.speedParticles, typeof(ParticleSystem), true);
+                    _checkpointsController.CPPrefab = (GameObject) EditorGUILayout.ObjectField("Checkpoint Prefab",
+                        _checkpointsController.CPPrefab, typeof(GameObject), true);
+
                     // if (GUILayout.Button("Reset"))
                     // {
                     //     for (int i = 0; i < _turnManager.playerList.Count; i++)
@@ -239,10 +255,11 @@ public class TurboEditor : EditorWindow
                     //         i--;
                     //     }
                     // }
-                    
+
                 }
+
                 #endregion
-                
+
                 EditorGUILayout.EndScrollView();
             }
             else
@@ -265,52 +282,60 @@ public class TurboEditor : EditorWindow
         {
             EditorGUILayout.BeginVertical(checkpointStyle);
             EditorGUILayout.BeginHorizontal();
-                    GUILayout.Label(""+i);
-                    if (GUILayout.Button("", "Radio"))
-                    {
-                        FocusCP(i);
-                    }
+            GUILayout.Label("" + i);
+            if (GUILayout.Button("", "Radio"))
+            {
+                FocusCP(i);
+            }
 
-                    _checkpointsController.points[i].distance = EditorGUILayout.FloatField("", _checkpointsController.points[i].distance, EditorStyles.numberField);
-                    
-                    if (GUILayout.Button("▲", "MiniButtonLeft"))
-                    {
-                        if(i > 0) SwapList(_checkpointsController.points, i, i-1);
-                    }
-                    if (GUILayout.Button("▼", "MiniButtonRight"))
-                    {
-                        if(i < _checkpointsController.points.Count - 1) SwapList(_checkpointsController.points, i, i+1);
-                    }
-                    if (GUILayout.Button("✖", "MiniButtonRight"))
-                    {
-                        RemoveCheckpoint(i);
-                        return;
-                    }
-                EditorGUILayout.EndHorizontal();
+            _checkpointsController.points[i].distance = EditorGUILayout.FloatField("",
+                _checkpointsController.points[i].distance, EditorStyles.numberField);
 
-                Vector3 previous = _checkpointsController.points[i - 1 >= 0 ? i - 1 : (_checkpointsController.points.Count - 1)].position;
-                Vector3 current = _checkpointsController.points[i].position;
-                
-                GUILayout.Label("Previous Direct Distance " + Vector3.Distance(current, previous), EditorStyles.miniLabel);
+            if (GUILayout.Button("▲", "MiniButtonLeft"))
+            {
+                if (i > 0) SwapList(_checkpointsController.points, i, i - 1);
+            }
 
-                _checkpointsController.points[i].foldout =
-                    EditorGUILayout.Foldout(_checkpointsController.points[i].foldout, "Transform");
-                if (_checkpointsController.points[i].foldout)
-                {
-                    _checkpointsController.points[i].position = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].position);
-                    _checkpointsController.points[i].rotation = EditorGUILayout.Vector3Field("", _checkpointsController.points[i].rotation);
-                }
-                
+            if (GUILayout.Button("▼", "MiniButtonRight"))
+            {
+                if (i < _checkpointsController.points.Count - 1) SwapList(_checkpointsController.points, i, i + 1);
+            }
+
+            if (GUILayout.Button("✖", "MiniButtonRight"))
+            {
+                RemoveCheckpoint(i);
+                return;
+            }
+
+            EditorGUILayout.EndHorizontal();
+
+            Vector3 previous = _checkpointsController
+                .points[i - 1 >= 0 ? i - 1 : (_checkpointsController.points.Count - 1)].position;
+            Vector3 current = _checkpointsController.points[i].position;
+
+            GUILayout.Label("Previous Direct Distance " + Vector3.Distance(current, previous), EditorStyles.miniLabel);
+
+            _checkpointsController.points[i].foldout =
+                EditorGUILayout.Foldout(_checkpointsController.points[i].foldout, "Transform");
+            if (_checkpointsController.points[i].foldout)
+            {
+                _checkpointsController.points[i].position =
+                    EditorGUILayout.Vector3Field("", _checkpointsController.points[i].position);
+                _checkpointsController.points[i].rotation =
+                    EditorGUILayout.Vector3Field("", _checkpointsController.points[i].rotation);
+            }
+
             EditorGUILayout.EndVertical();
             GUILayout.Space(3);
         }
 
         EditorGUILayout.BeginHorizontal();
-        
+
         if (GUILayout.Button("Add", "MiniButtonLeft"))
         {
             AddCheckpoint();
         }
+
         EditorGUILayout.EndHorizontal();
     }
 
@@ -323,14 +348,17 @@ public class TurboEditor : EditorWindow
         int newIndex = _checkpointsController.points.Count;
         if (newIndex > 0)
         {
-            _checkpointsController.points.Add(new CheckpointsController.Checkpoint(_checkpointsController.points[newIndex - 1].position));
+            _checkpointsController.points.Add(
+                new CheckpointsController.Checkpoint(_checkpointsController.points[newIndex - 1].position));
         }
         else
         {
-            _checkpointsController.points.Add(new CheckpointsController.Checkpoint(new Vector3(0,0,0)));
+            _checkpointsController.points.Add(new CheckpointsController.Checkpoint(new Vector3(0, 0, 0)));
         }
+
         FocusCP(newIndex);
     }
+
     private void RemoveCheckpoint(int index)
     {
         if (_checkpointsController.points.Count > index)
@@ -347,59 +375,59 @@ public class TurboEditor : EditorWindow
         SceneView.lastActiveSceneView.FrameSelected();
         DestroyImmediate(temp);
     }
-    
+
     #endregion
 
     #region Players Methods
-    
-        private void AddPlayer()
-        {
-            if (_checkpointsController.points.Count > 0)
-            {
-                GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0]);
-                go.transform.position = _checkpointsController.points[0].position;
-                go.transform.eulerAngles = _checkpointsController.points[0].rotation;
-                go.name = "Player " + _turnManager.playerList.Count;
-                TurnManager.Player newPlayer = new TurnManager.Player();
-            
-                newPlayer.carController = go.GetComponent<CarController>();
-                newPlayer.prefabIndex = 0;
-            
-                _turnManager.playerList.Add(newPlayer);
-            
-                playerLogs.Add(new PlayerLog(0));
-            }
-            else
-            {
-                Debug.LogError("Tu dois créer le premier checkpoint avant !");
-            }
-        }
 
-        private void RemovePlayer(int index)
+    private void AddPlayer()
+    {
+        if (_checkpointsController.points.Count > 0)
         {
-            if (_turnManager.playerList.Count > index)
+            /*GameObject go = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[0]);
+            go.transform.position = _checkpointsController.points[0].position;
+            go.transform.eulerAngles = _checkpointsController.points[0].rotation;
+            go.name = "Player " + _turnManager.playerList.Count;
+            TurnManager.Player newPlayer = new TurnManager.Player();
+        
+            newPlayer.carController = go.GetComponent<CarController>();
+            newPlayer.prefabIndex = 0;
+        
+            _turnManager.playerList.Add(newPlayer);
+        
+            playerLogs.Add(new PlayerLog(0));*/
+        }
+        else
+        {
+            Debug.LogError("Tu dois créer le premier checkpoint avant !");
+        }
+    }
+
+    private void RemovePlayer(int index)
+    {
+        /*if (_turnManager.playerList.Count > index)
+        {
+            if (_turnManager.playerList[index].carController != null)
             {
-                if (_turnManager.playerList[index].carController != null)
-                {
-                    DestroyImmediate(_turnManager.playerList[index].carController.gameObject);
-                }
-                playerLogs.RemoveAt(index);
-                _turnManager.playerList.RemoveAt(index);
+                DestroyImmediate(_turnManager.playerList[index].carController.gameObject);
             }
-        }
+            playerLogs.RemoveAt(index);
+            _turnManager.playerList.RemoveAt(index);
+        }*/
+    }
 
-        private void ChangeCarType(int carIndex, int typeIndex)
-        {
-            Transform oldTransform = _turnManager.playerList[carIndex].carController.transform;
+    private void ChangeCarType(int carIndex, int typeIndex)
+    {
+        /*Transform oldTransform = _turnManager.playerList[carIndex].carController.transform;
 
-            GameObject newCar = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[typeIndex], oldTransform);
-            newCar.transform.SetParent(null);
-            newCar.name = _turnManager.playerList[carIndex].carController.gameObject.name;
-            DestroyImmediate(_turnManager.playerList[carIndex].carController.gameObject);
-            _turnManager.playerList[carIndex].carController = newCar.GetComponent<CarController>();
-            _turnManager.playerList[carIndex].prefabIndex = typeIndex;
-        }
-    
+        GameObject newCar = (GameObject) PrefabUtility.InstantiatePrefab(_turnManager.carPrefabs[typeIndex], oldTransform);
+        newCar.transform.SetParent(null);
+        newCar.name = _turnManager.playerList[carIndex].carController.gameObject.name;
+        DestroyImmediate(_turnManager.playerList[carIndex].carController.gameObject);
+        _turnManager.playerList[carIndex].carController = newCar.GetComponent<CarController>();
+        _turnManager.playerList[carIndex].prefabIndex = typeIndex;*/
+    }
+
     #endregion
 
     private void OnSceneGUI(SceneView obj)
@@ -407,24 +435,26 @@ public class TurboEditor : EditorWindow
         if (_checkpointsController != null)
         {
             Handles.color = Color.blue;
-            
+
             Handles.BeginGUI();
             for (int i = 0; i < _checkpointsController.points.Count; i++)
             {
                 Handles.Label(_checkpointsController.points[i].position, "Checkpoint " + i);
-                Handles.SphereHandleCap(0, _checkpointsController.points[i].position, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
+                Handles.SphereHandleCap(0, _checkpointsController.points[i].position,
+                    quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
 
-                if ( i + 1 < _checkpointsController.points.Count)
+                if (i + 1 < _checkpointsController.points.Count)
                 {
                     Vector3 current = _checkpointsController.points[i].position;
                     Vector3 next = _checkpointsController.points[i + 1].position;
                     Handles.color = Color.blue;
                     Handles.DrawLine(current, next);
-                
+
                     Handles.color = Color.green;
                     Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
                         (current.z + next.z) / 2f);
-                    Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
+                    Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f,
+                        EventType.Repaint);
 
                 }
             }
@@ -434,7 +464,8 @@ public class TurboEditor : EditorWindow
                 // Handles.Label(checkpoints[i].position, "Checkpoint " + i);
                 // Handles.SphereHandleCap(0, checkpoints[i].position, quaternion.Euler(0,0,0), .5f, EventType.Repaint);
                 EditorGUI.BeginChangeCheck();
-                _checkpointsController.points[i].position = Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
+                _checkpointsController.points[i].position =
+                    Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
                 // if (EditorGUI.EndChangeCheck())
                 // {
                 //     Undo.RecordObject(this, "Free Move LookAt Point");
@@ -443,31 +474,31 @@ public class TurboEditor : EditorWindow
                 // }
                 EditorGUI.EndChangeCheck();
             }
+
             Handles.EndGUI();
             Repaint();
         }
     }
-    
+
     private void FindManagers()
     {
-
         if (_turnManager == null)
         {
-            if (GameObject.Find("TurnManager"))
-            {
-                _turnManager = GameObject.Find("TurnManager").GetComponent<TurnManager>();
-            }
+            _turnManager = GameObject.Find("TurnManager")?.GetComponent<TurnManager>();
+        }
+
+
+        if (_gameManager == null)
+        {
+            _gameManager = GameObject.Find("GameManager")?.GetComponent<ParsecGameManager>();
         }
 
         if (_checkpointsController == null)
         {
-            if (GameObject.Find("CheckpointsController"))
-            {
-                _checkpointsController = GameObject.Find("CheckpointsController").GetComponent<CheckpointsController>();
-            }
+            _checkpointsController = GameObject.Find("CheckpointsController")?.GetComponent<CheckpointsController>();
         }
     }
-    
+
     private void SwapList<T>(List<T> list, int indexA, int indexB)
     {
         T tmp = list[indexA];

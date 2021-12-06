@@ -115,6 +115,25 @@ public class CarController : MonoBehaviour
         stopCar();
         turn = false;
     }
+    
+    public void InitReInput(int playerId, CustomController controller, CustomController keyboard, CustomController mouse)
+    {
+        rewiredPlayer = ReInput.players.GetPlayer(playerId);
+        if (playerId == 0)
+        {
+            rewiredPlayer.controllers.AddController(ReInput.controllers.Joysticks[0], true);
+            rewiredPlayer.controllers.hasKeyboard = true;
+        }
+        else
+        {
+            if (controller != null)
+                rewiredPlayer.controllers.AddController(controller, true);
+            if (keyboard != null)
+                rewiredPlayer.controllers.AddController(keyboard, true);
+            if (mouse != null)
+                rewiredPlayer.controllers.AddController(mouse, true);
+        }
+    }
 
     private void OnGUI()
     {
@@ -237,7 +256,7 @@ public class CarController : MonoBehaviour
          */
         transform.position = theRB.transform.position;
         _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * 90f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
 
         if (Input.GetKeyDown(KeyCode.P))
         {
