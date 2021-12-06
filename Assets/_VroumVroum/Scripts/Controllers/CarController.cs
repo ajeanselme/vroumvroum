@@ -256,7 +256,7 @@ public class CarController : MonoBehaviour
             }
         }
         
-        carKey.transform.RotateAround(carKey.transform.position, Vector3.left, 10 * Time.deltaTime);
+        carKey.transform.RotateAround(carKey.transform.position, Vector3.up, 30f * Time.deltaTime);
     }
 
     private void FixedUpdate()
