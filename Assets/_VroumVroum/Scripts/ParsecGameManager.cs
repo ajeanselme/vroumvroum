@@ -1,20 +1,28 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using ParsecGaming;
 using Rewired;
+using UnityEngine.SceneManagement;
 
 public class ParsecGameManager : MonoBehaviour
 {
     public static ParsecGameManager instance;
+
+    private UInt16[] playerCarIndex;
     
     private TurnManager turnManager;
-    
+
+    public CarSelecting[] slotSelection;
     public PlayerManager[] m_Players;
     
     private ParsecStreamGeneral streamer;
     private ParsecUnity.API.SessionResultDataData authData;
     [NonSerialized] private bool initialized = false;
 
+    [SerializeField] private GameObject authGo;
+    [SerializeField] private GameObject controlGo;
+    
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -54,6 +62,7 @@ public class ParsecGameManager : MonoBehaviour
                 //m_Players[i].BreakDown(); // Destroy player gameobject
                 Destroy(m_Players[i]);
                 m_Players[i] = null;
+                slotSelection[i].rewiredPlayer = null;
                 break;
             }
         }
@@ -65,13 +74,15 @@ public class ParsecGameManager : MonoBehaviour
         if (iPlayer == 0) return; // no place left or array is null
         
         turnManager = FindObjectOfType<TurnManager>();
-        if (turnManager == null) return;
-
+        
+        bool isMenu = turnManager == null;
+        
         CustomController csController = ReInput.controllers.CreateCustomController(0, "Parsec_" + guest.id);
         CustomController csKeyboard = ReInput.controllers.CreateCustomController(1, "Parsec_" + guest.id);
         CustomController csMouse = ReInput.controllers.CreateCustomController(2, "Parsec_" + guest.id);
         ParsecUnity.ParsecRewiredInput.AssignCustomControllerToUser(guest, csController);
         //ParsecUnity.ParsecRewiredInput.AssignKeyboardControllerToUser(guest, csKeyboard);
+        
         SetupPlayer(iPlayer, guest, csController, csKeyboard, csMouse);
     }
     
@@ -89,6 +100,8 @@ public class ParsecGameManager : MonoBehaviour
             m_Players[player].csMouse = mouse;
             
             m_Players[player].Setup();
+            
+            slotSelection[player].InitReInput(player);
         }
     }
 
@@ -101,6 +114,12 @@ public class ParsecGameManager : MonoBehaviour
             m_Players[player].m_PlayerNumber = player;
             m_Players[player].m_AssignedGuest = guest;
             m_Players[player].Setup();
+            
+            slotSelection[player].InitReInput(player);
+            if (player == 0)
+            {
+                slotSelection[0].rewiredPlayer.controllers.AddController(ReInput.controllers.Joysticks[0], true);
+            }
         }
     }
 
@@ -113,39 +132,47 @@ public class ParsecGameManager : MonoBehaviour
             /*VerificationUri.text = sessionData.data.verification_uri;
             UserCode.text = sessionData.data.user_code;
             StatusField.text = "Waiting for User";*/
+            Debug.Log(sessionData.data.verification_uri + "/" +sessionData.data.user_code);
         }
     }
 
     public void AuthenticationPoll(ParsecUnity.API.SessionResultDataData data, ParsecUnity.API.SessionResultEnum status)
     {
-        /*switch (status)
+        switch (status)
         {
             case ParsecUnity.API.SessionResultEnum.PolledTooSoon:
                 break;
             case ParsecUnity.API.SessionResultEnum.Pending:
-                StatusField.text = "Waiting for User";
+                //StatusField.text = "Waiting for User";
+                Debug.Log("Waiting for User");
                 break;
             case ParsecUnity.API.SessionResultEnum.CodeApproved:
-                StatusField.text = "Code Approved";
-                PanelAuthentication.gameObject.SetActive(false);
-                authdata = data;
-                PanelParsecControl.gameObject.SetActive(true);
+                //StatusField.text = "Code Approved";
+                //PanelAuthentication.gameObject.SetActive(false);
+                authGo.SetActive(false);
+                authData = data;
+                //PanelParsecControl.gameObject.SetActive(true);
+                controlGo.SetActive(true);
+                Debug.Log("Code Approved");
                 break;
             case ParsecUnity.API.SessionResultEnum.CodeInvallidExpiredDenied:
-                StatusField.text = "Code Expired";
+                //StatusField.text = "Code Expired";
+                Debug.Log("Code Expired");
                 break;
             case ParsecUnity.API.SessionResultEnum.Unknown:
-                StatusField.text = "Unknown State";
+                //StatusField.text = "Unknown State";
+                Debug.Log("Unknown State");
                 break;
             default:
                 break;
-        }*/
+        }
     }
 
     public void StartParsec()
     {
-        streamer.StartParsec(m_Players.Length, /*IsPublicGame.isOn*/ false, "Unity Test", "An Example Unity Project", authData.id);
-        /*ShortLinkUri.text = */streamer.GetInviteUrl(authData);
+        streamer.StartParsec(m_Players.Length, /*IsPublicGame.isOn*/ false, "Vroom Vroom", "The best car game", authData.id);
+        Debug.Log(streamer.GetInviteUrl(authData));
+        //ShortLinkUri.text = streamer.GetInviteUrl(authData);
     }
 
     public void StopParsec()
@@ -164,21 +191,43 @@ public class ParsecGameManager : MonoBehaviour
     {
         if (!ReInput.isReady) return; // Exit if Rewired isn't ready. This would only happen during a script recompile in the editor.
         if (!initialized) Initialize(); // Reinitialize after a recompile in the editor
+    }
 
-        if (turnManager == null)
+    public void LaunchGameScene(UInt16[] playerCars)
+    {
+        playerCarIndex = playerCars;
+        StartCoroutine(LoadingScreen());
+    }
+    
+    IEnumerator LoadingScreen()
+    {
+        AsyncOperation loadingAsync = SceneManager.LoadSceneAsync(1);
+        loadingAsync.allowSceneActivation = false;
+
+        while (!loadingAsync.isDone)
         {
-            turnManager = FindObjectOfType<TurnManager>();
-            
-            if (turnManager != null) SetupGame();
+            if (loadingAsync.progress >= 0.9f)
+            {
+                loadingAsync.allowSceneActivation = true;
+            }
+
+            yield return null;
         }
+
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        turnManager = TurnManager.instance;
+        cube.transform.parent = turnManager.transform;
+        
+        //SetupGame();
     }
 
     private void SetupGame()
     {
-        for (int i = 0; i < m_Players.Length; i++)
+        for (int i = 0; i < playerCarIndex.Length; i++)
         {
             // Spawn car
-            
+            //
+
             //m_Players[i].SetupInGame(/* Car previously created */);
 
             if (i != 0)

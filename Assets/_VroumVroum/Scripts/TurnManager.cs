@@ -51,12 +51,12 @@ public class TurnManager : MonoBehaviour
         
         endCamera.SetActive(false);
 
-        for (int i = 0; i < gameManager.m_Players.Length; i++)
+        /*for (int i = 0; i < gameManager.m_Players.Length; i++)
         {
             CheckpointsController.instance.InitPlayer();
-        }
+        }*/
 
-        StartCoroutine(WaitLaunch(gameManager.m_Players[0].carController, 2f));
+        //StartCoroutine(WaitLaunch(gameManager.m_Players[0].carController, 2f));
     }
 
     private void Update()

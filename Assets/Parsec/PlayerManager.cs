@@ -20,12 +20,15 @@ public class PlayerManager : MonoBehaviour
     public void Setup()
     {
         ParsecInput.AssignGuestToPlayer(m_AssignedGuest, m_PlayerNumber);
+        
+        Debug.Log(csController);
 
+        if (csController != null) ParsecRewiredInput.AssignCustomControllerToUser(m_AssignedGuest, csController);
+        if (csKeyboard != null) ParsecRewiredInput.AssignKeyboardControllerToUser(m_AssignedGuest, csKeyboard);
+        if (csMouse != null) ParsecRewiredInput.AssignMouseControllerToUser(m_AssignedGuest, csMouse);
+        
         if (carController != null)
         {
-            if (csController != null) ParsecRewiredInput.AssignCustomControllerToUser(m_AssignedGuest, csController);
-            if (csKeyboard != null) ParsecRewiredInput.AssignKeyboardControllerToUser(m_AssignedGuest, csKeyboard);
-            if (csMouse != null) ParsecRewiredInput.AssignMouseControllerToUser(m_AssignedGuest, csMouse);
             // Assign a player with the main menu selection
         }
     }

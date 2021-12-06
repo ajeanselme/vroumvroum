@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_VroumVroum/Scenes/Karim/CarsChoiceTest.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/_VroumVroum/Scenes/Antoine/Test.unity
     guid: 7db93d2d6c01b034481b3d79f2630deb
   m_configObjects: {}
