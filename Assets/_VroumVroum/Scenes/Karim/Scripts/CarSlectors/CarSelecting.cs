@@ -1,156 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class CarSelecting : MonoBehaviour
 {
-    public int currentCarIndex;
-    public GameObject[] carModels;
-    public PlayerPrefs GetPlayerPrefs;
+    public Rewired.Player rewiredPlayer;
     
-    void Start()
-    {
-      
-        currentCarIndex = PlayerPrefs.GetInt("SelectedCarP1", 0);
-        currentCarIndex = PlayerPrefs.GetInt("SelectedCarP2", 0);
-        currentCarIndex = PlayerPrefs.GetInt("SelectedCarP3", 0);
-        currentCarIndex = PlayerPrefs.GetInt("SelectedCarP4", 0);
+    [HideInInspector] public int currentCarIndex = 0;
+    [SerializeField] private GameObject[] carModels;
+    [Space]
+    [SerializeField] private string previousKey = "q";
+    [SerializeField] private string nextKey = "d";
 
+    private void Start()
+    {
         foreach (GameObject car in carModels) car.SetActive(false);
 
         carModels[currentCarIndex].SetActive(true);
     }
+    
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ChangePreviousP1();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            ChangeNextP1();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ChangePreviousP2();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            ChangeNextP2();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            ChangePreviousP3();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            ChangeNextP3();
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            ChangePreviousP4();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            ChangeNextP4();
-        }
+        if (rewiredPlayer == null) return;
+        if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
+        if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
+        Debug.Log(rewiredPlayer.GetAxis("MoveLeftRight") + ", " + rewiredPlayer.id + ", " + rewiredPlayer.controllers.customControllerCount);
+        //if (Input.GetKeyDown(previousKey)) ChangePrevious();
+        //if (Input.GetKeyDown(nextKey)) ChangeNext();
     }
 
-
-    public void ChangeNextP1()
+    public void InitReInput(int playerID)
+    {
+        rewiredPlayer = ReInput.players.GetPlayer(playerID);
+    }
+    
+    public void ChangeNext()
     {
         carModels[currentCarIndex].SetActive(false);
         currentCarIndex++;
+        
         if (currentCarIndex == carModels.Length) currentCarIndex = 0;
+        
         carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP1", currentCarIndex);
-        PlayerPrefs.Save();
     }
 
-    public void ChangePreviousP1()
+    public void ChangePrevious()
     {
         carModels[currentCarIndex].SetActive(false);
         currentCarIndex--;
+        
         if (currentCarIndex == -1) currentCarIndex = carModels.Length -1;
 
         carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP1", currentCarIndex);
-        PlayerPrefs.Save();
-        
     }
-
-    public void ChangeNextP2()
-    {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex++;
-        if (currentCarIndex == carModels.Length) currentCarIndex = 0;
-        carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP2", currentCarIndex);
-        PlayerPrefs.Save();
-    }
-
-
-
-    public void ChangePreviousP2()
-    {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex--;
-        if (currentCarIndex == -1) currentCarIndex = carModels.Length - 1;
-
-        carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP2", currentCarIndex);
-        PlayerPrefs.Save();
-        
-    }
-
-
-    public void ChangeNextP3()
-    {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex++;
-        if (currentCarIndex == carModels.Length) currentCarIndex = 0;
-        carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP3", currentCarIndex);
-        PlayerPrefs.Save();
-    }
-
-    public void ChangePreviousP3()
-    {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex--;
-        if (currentCarIndex == -1) currentCarIndex = carModels.Length - 1;
-
-        carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP3", currentCarIndex);
-        PlayerPrefs.Save();
-        
-    }
-
-
-    public void ChangeNextP4()
-    {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex++;
-        if (currentCarIndex == carModels.Length) currentCarIndex = 0;
-        carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP4", currentCarIndex);
-        PlayerPrefs.Save();
-    }
-
-    public void ChangePreviousP4()
-    {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex--;
-        if (currentCarIndex == -1) currentCarIndex = carModels.Length - 1;
-
-        carModels[currentCarIndex].SetActive(true);
-        PlayerPrefs.SetInt("SelectedCarP4", currentCarIndex);
-        PlayerPrefs.Save();
-        
-    }
-   
-
 }
