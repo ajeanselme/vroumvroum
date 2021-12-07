@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarCollider : MonoBehaviour
@@ -17,6 +14,7 @@ public class CarCollider : MonoBehaviour
         if (other.gameObject.GetComponent<PropController>())
         {
             other.gameObject.GetComponent<PropController>().callCollision(car.theRB.velocity);
+            car.reduceSpeed(other.gameObject.GetComponent<PropController>().weight);
         }
         else
         {
