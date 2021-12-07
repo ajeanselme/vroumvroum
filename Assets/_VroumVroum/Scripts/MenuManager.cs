@@ -110,11 +110,13 @@ public class MenuManager : MonoBehaviour
             carController.InitWheels(wheels);
             
             carController.InitReInput(i);
+            carController.enabled = false;
             
             nCar.SetActive(false);
         }
 
         cars[0].gameObject.SetActive(true);
+        cars[0].enabled = true;
 
         TurnManager.instance.SetPlayers(cars);
         

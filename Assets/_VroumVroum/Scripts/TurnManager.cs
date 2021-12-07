@@ -115,46 +115,38 @@ public class TurnManager : MonoBehaviour
             speedParticles.Stop();
         
         cars[indexCarTurn].vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = zActualCam;
-        
-        for (int i = 0; i < cars.Length; i++)
-        {
-            if (player.gameObject.GetInstanceID() == cars[indexCarTurn].gameObject.GetInstanceID())
-            {
-                player.stopCar();
-                player.enabled = false;
-                cars[indexCarTurn].vcam.gameObject.SetActive(false);
 
-                if (i + 1 == cars.Length)
-                {
-                    turn++;
-                    
-                    if (turn >= maxTurn)
-                    {
-                        EndGame();
-                    }
-                    else
-                    {
-                        indexCarTurn = 0;
-                        cars[0].enabled = true;
-                        cars[0].vcam.gameObject.SetActive(true);
-                        StartCoroutine(WaitLaunch(cars[0], 2f));
-                    }
-                }
-                else
-                {
-                    if (!cars[i+1].gameObject.activeSelf)
-                        cars[i+1].gameObject.SetActive(true);
-                    
-                    indexCarTurn = i+1;
-                    cars[i+1].enabled = true;
-                    cars[i+1].vcam.gameObject.SetActive(true);
-                    StartCoroutine(WaitLaunch(cars[i+1], 2f));
-                }
-                
-                break;
+        player.stopCar();
+        player.enabled = false;
+        cars[indexCarTurn].vcam.gameObject.SetActive(false);
+
+        if (indexCarTurn + 1 == cars.Length)
+        {
+            turn++;
+            
+            if (turn >= maxTurn)
+            {
+                EndGame();
+            }
+            else
+            {
+                indexCarTurn = 0;
+                cars[0].enabled = true;
+                cars[0].vcam.gameObject.SetActive(true);
+                StartCoroutine(WaitLaunch(cars[0], 2f));
             }
         }
-
+        else
+        {
+            if (!cars[indexCarTurn+1].gameObject.activeSelf)
+                cars[indexCarTurn+1].gameObject.SetActive(true);
+            
+            indexCarTurn += 1;
+            cars[indexCarTurn+1].enabled = true;
+            cars[indexCarTurn+1].vcam.gameObject.SetActive(true);
+            StartCoroutine(WaitLaunch(cars[indexCarTurn+1], 2f));
+        }
+        
         EventsManager.instance.isOn = false;
     }
 
