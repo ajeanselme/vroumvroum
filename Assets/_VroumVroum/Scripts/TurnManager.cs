@@ -43,6 +43,8 @@ public class TurnManager : MonoBehaviour
         {
             instance = this;
         }
+
+        Application.targetFrameRate = 60;
     }
 
     private void Start()
@@ -152,6 +154,8 @@ public class TurnManager : MonoBehaviour
                 break;
             }
         }
+
+        EventsManager.instance.isOn = false;
     }
 
     IEnumerator WaitLaunch(CarController player, float sec)

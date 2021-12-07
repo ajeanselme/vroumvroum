@@ -30,10 +30,11 @@ public class TurboEditor : EditorWindow
     private Action<SceneView> sceneViewAction;
     private TurnManager _turnManager;
     private CheckpointsController _checkpointsController;
-
+    private EventsManager _eventsManager;
+    
     private List<PlayerLog> playerLogs = new List<PlayerLog>();
 
-    private bool showPlayerList, showCheckPoints;
+    private bool showPlayerList, showCheckPoints, showEvents;
 
     private Vector2 scrollPos;
 
@@ -128,6 +129,13 @@ public class TurboEditor : EditorWindow
                 if (showCheckPoints)
                 {
                     showCheckpoints();
+                }
+                
+                GUILayout.Space(10);
+                showEvents = EditorGUILayout.Foldout(showEvents, "Events");
+                if (showEvents)
+                {
+                    ShowChessEvent();
                 }
 
                 #endregion
@@ -338,6 +346,49 @@ public class TurboEditor : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
 
+    private void ShowChessEvent()
+    {
+        GUILayout.Space(10);
+        GUILayout.Label("Chess Event Steps");
+        
+        for (int i = 0; i < _eventsManager.stepList.Count; i++)
+        {
+            EditorGUILayout.BeginVertical(checkpointStyle);
+            EditorGUILayout.BeginHorizontal();
+                    GUILayout.Label(""+i);
+
+                    _eventsManager.stepList[i].gameObject = (GameObject) EditorGUILayout.ObjectField("Game Object", _eventsManager.stepList[i].gameObject, typeof(GameObject), true);
+                    
+                    
+                    if (GUILayout.Button("▲", "MiniButtonLeft"))
+                    {
+                        if(i > 0) SwapList(_eventsManager.stepList, i, i-1);
+                    }
+                    if (GUILayout.Button("▼", "MiniButtonRight"))
+                    {
+                        if(i < _eventsManager.stepList.Count - 1) SwapList(_eventsManager.stepList, i, i+1);
+                    }
+                    if (GUILayout.Button("✖", "MiniButtonRight"))
+                    {
+                        RemoveEventStep(i);
+                        return;
+                    }
+                EditorGUILayout.EndHorizontal();
+                
+                _eventsManager.stepList[i].targetPosition = EditorGUILayout.Vector3Field("", _eventsManager.stepList[i].targetPosition);
+                EditorGUILayout.EndVertical();
+            GUILayout.Space(3);
+        }
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Add", "MiniButtonLeft"))
+        {
+            AddEventStep();
+        }
+        EditorGUILayout.EndHorizontal();
+
+    }
+
     #endregion
 
     #region Map Methods
@@ -363,6 +414,18 @@ public class TurboEditor : EditorWindow
         if (_checkpointsController.points.Count > index)
         {
             _checkpointsController.points.RemoveAt(index);
+        }
+    }
+
+    private void AddEventStep()
+    {
+        _eventsManager.stepList.Add(new EventsManager.Step());
+    }
+    private void RemoveEventStep(int index)
+    {
+        if (_eventsManager.stepList.Count > index)
+        {
+            _eventsManager.stepList.RemoveAt(index);
         }
     }
 
@@ -489,6 +552,13 @@ public class TurboEditor : EditorWindow
         if (_checkpointsController == null)
         {
             _checkpointsController = GameObject.Find("CheckpointsController")?.GetComponent<CheckpointsController>();
+        }
+        if (_eventsManager == null)
+        {
+            if (GameObject.Find("EventsManager"))
+            {
+                _eventsManager = GameObject.Find("EventsManager").GetComponent<EventsManager>();
+            }
         }
     }
 

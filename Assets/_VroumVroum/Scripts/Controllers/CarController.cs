@@ -6,6 +6,7 @@ using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Rewired;
+using Unity.Mathematics;
 
 public class CarController : MonoBehaviour
 {
@@ -53,12 +54,14 @@ public class CarController : MonoBehaviour
     public float wheelOffset = 0f;
 
     public CinemachineVirtualCamera vcam;
+    public GameObject carKey;
+    public float keyRotationSpeed = 100f;
 
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _initialFOV;
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed, _keyRotation;
     private bool _grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
-    
+
     private Quaternion _nextRotation;
     private float _slopeAngle = 0f;
 
@@ -107,7 +110,6 @@ public class CarController : MonoBehaviour
          */
         _currentSpeed = initialSpeed;
         _nextRotation = transform.rotation;
-        _initialFOV = vcam.m_Lens.FieldOfView;
 
         _feedbacks = GetComponent<MMFeedbacks>();
         _animator = GetComponent<Animator>();
@@ -161,6 +163,10 @@ public class CarController : MonoBehaviour
 
             GUILayout.BeginHorizontal(debugTextBoxStyle);
                 GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Delta time : " + Time.deltaTime);
             GUILayout.EndHorizontal();
 
             
@@ -236,10 +242,6 @@ public class CarController : MonoBehaviour
          * Change car direction based on Horizontal input 
          */
         _turnInput = rewiredPlayer.GetAxis("Horizontal");
-        if (_grounded && _currentSpeed > 0)
-        {
-            setDirection(_turnInput);
-        }
         
         
         /*
@@ -265,6 +267,9 @@ public class CarController : MonoBehaviour
                 jumpCar();
             }
         }
+        
+        // carKey.transform.RotateAround(carKey.transform.position, new Vector3(0,1,0), 30f * Time.deltaTime);
+        rotateKey();
     }
 
     private void FixedUpdate()
@@ -273,6 +278,11 @@ public class CarController : MonoBehaviour
         if (_remainingTime > 0)
         {
             _remainingTime -= 1 * Time.deltaTime;
+        }
+        
+        if (Time.fixedTime >= _lastReducing + .5f)
+        {
+            _reduceSpeed = 0;
         }
 
 
@@ -339,6 +349,8 @@ public class CarController : MonoBehaviour
                     }
                     emission.rateOverTime = (speedEmissionFactor * (1 - _slopeAngle / 45)) * (_currentSpeed / initialSpeed);
                 }
+
+                _currentSpeed -= _reduceSpeed;
                 setCarSpeed(_currentSpeed);
             }
             
@@ -357,7 +369,19 @@ public class CarController : MonoBehaviour
             emissionModule.rateOverTime = _emissionRate;
         }
 
+        
+        if (_grounded && _currentSpeed > 0)
+        {
+            setDirection(_turnInput);
+        }
+        
         _groundedLastFrame = _grounded;
+    }
+
+    public void reduceSpeed(float weight)
+    {
+        _lastReducing = Time.fixedTime;
+        _reduceSpeed = _currentSpeed * (weight / 100f) * 4f;
     }
 
     public void setCarSpeed(float speed)
@@ -367,15 +391,14 @@ public class CarController : MonoBehaviour
             theRB.velocity = transform.forward * speed * 4f;
             _emissionRate = trailMaxEmission;
         }
-        else 
-       
+        else
             stopCar(true);
-        
     }
 
     public void setDirection(float turnInput)
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.fixedDeltaTime, 0f));
+        
         wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }
@@ -440,5 +463,17 @@ public class CarController : MonoBehaviour
     void jumpCar()
     {
         theRB.MovePosition(new Vector3(theRB.position.x, theRB.position.y + 2, theRB.position.z));
+    }
+
+    private void rotateKey()
+    {
+        _keyRotation += Time.deltaTime * keyRotationSpeed * (_currentSpeed / initialSpeed);
+
+        if (_keyRotation > 360.0f)
+        {
+            _keyRotation = 0.0f;
+        }
+        
+        carKey.transform.localRotation = Quaternion.Euler(-109f, 0, _keyRotation);
     }
 }
