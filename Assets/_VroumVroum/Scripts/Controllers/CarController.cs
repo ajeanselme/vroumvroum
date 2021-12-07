@@ -155,6 +155,10 @@ public class CarController : MonoBehaviour
                 GUILayout.Label("Distance : " + CheckpointsController.instance.CurrentDistance);
             GUILayout.EndHorizontal();
 
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Delta time : " + Time.deltaTime);
+            GUILayout.EndHorizontal();
+
             
             
             GUILayout.Space(10);
@@ -228,10 +232,6 @@ public class CarController : MonoBehaviour
          * Change car direction based on Horizontal input 
          */
         _turnInput = rewiredPlayer.GetAxis("Horizontal");
-        if (_grounded && _currentSpeed > 0)
-        {
-            setDirection(_turnInput);
-        }
         
         
         /*
@@ -359,6 +359,12 @@ public class CarController : MonoBehaviour
             emissionModule.rateOverTime = _emissionRate;
         }
 
+        
+        if (_grounded && _currentSpeed > 0)
+        {
+            setDirection(_turnInput);
+        }
+        
         _groundedLastFrame = _grounded;
     }
 
@@ -381,7 +387,8 @@ public class CarController : MonoBehaviour
 
     public void setDirection(float turnInput)
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.deltaTime, 0f));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Mathf.Clamp(_currentSpeed / 2f, 0f, 1f) * Time.fixedDeltaTime, 0f));
+        
         wheels[0].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }
