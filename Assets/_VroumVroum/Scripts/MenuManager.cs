@@ -3,73 +3,92 @@ using System.Collections;
 using System.Collections.Generic;
 using Rewired;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    private CarSelecting[] carSelectings;
+    public static MenuManager instance;
+
+    private bool isGameLaunched = false;
+    
+    [SerializeField] private CarSelecting[] carSelectings;
+
+    private List<GameObject> carMeshes;
 
     private void Awake()
     {
-        ReInput.ControllerConnectedEvent += OnControllerConnected;
-        ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
-        ReInput.ControllerPreDisconnectEvent += OnControllerPreDisconnect;
-
-        foreach(Joystick j in ReInput.controllers.Joysticks) {
-            if(ReInput.controllers.IsJoystickAssigned(j)) continue; // Joystick is already assigned
-
-            // Assign Joystick to first Player that doesn't have any assigned
-            AssignJoystickToNextOpenPlayer(j);
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
         }
-
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
-    
-    private void OnControllerConnected(ControllerStatusChangedEventArgs args)
+
+    public void InitializeSelectionMenu()
     {
-        Debug.Log("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
+        if (carSelectings == null) return;
         
-        if(args.controllerType != ControllerType.Joystick) return; // skip if this isn't a Joystick
- 
-        // Assign Joystick to first Player that doesn't have any assigned
-        AssignJoystickToNextOpenPlayer(ReInput.controllers.GetJoystick(args.controllerId));
-    }
-
-    // This function will be called when a controller is fully disconnected
-    // You can get information about the controller that was disconnected via the args parameter
-    void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
-        Debug.Log("A controller was disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
-    }
-
-    // This function will be called when a controller is about to be disconnected
-    // You can get information about the controller that is being disconnected via the args parameter
-    // You can use this event to save the controller's maps before it's disconnected
-    void OnControllerPreDisconnect(ControllerStatusChangedEventArgs args) {
-        Debug.Log("A controller is being disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
-    }
-
-    void OnDestroy() {
-        // Unsubscribe from events
-        ReInput.ControllerConnectedEvent -= OnControllerConnected;
-        ReInput.ControllerDisconnectedEvent -= OnControllerDisconnected;
-        ReInput.ControllerPreDisconnectEvent -= OnControllerPreDisconnect;
-    }
-    
-    
-    void AssignJoystickToNextOpenPlayer(Joystick j) {
-        foreach(Rewired.Player p in ReInput.players.Players) {
-            if(p.controllers.joystickCount > 0) continue;
-            
-            p.controllers.AddController(j, true); // assign joystick to player
-            return;
-        }
-    }
-
-    private void Start()
-    {
-        carSelectings = FindObjectsOfType<CarSelecting>();
-
         for (int i = 0; i < carSelectings.Length; i++)
         {
             carSelectings[i].InitReInput(i);
+        }
+    }
+
+    public bool LaunchGame()
+    {
+        if (isGameLaunched) return true;
+        
+        bool isReady = true;
+        carMeshes = new List<GameObject>();
+
+        for (int i = 0; i < carSelectings.Length; i++)
+        {
+            if (carSelectings[i].rewiredPlayer.controllers.joystickCount == 1 && !carSelectings[i].isLocked)
+            {
+                isReady = false;
+                break;
+            }
+            
+            if (carSelectings[i].rewiredPlayer.controllers.joystickCount == 1 && carSelectings[i].isLocked)
+                carMeshes.Add(carSelectings[i].carModels[carSelectings[i].currentCarIndex].transform.GetChild(2).gameObject);
+        }
+
+        if (isReady)
+        {
+            LoadGameScene();
+        }
+        else
+        {
+            Debug.Log("One player or more are not ready");
+        }
+
+        return isReady;
+    }
+    
+    private void LoadGameScene()
+    {
+        isGameLaunched = true;
+        
+        AsyncOperation asc = SceneManager.LoadSceneAsync(1);
+        asc.completed += InitializeGameScene;
+    }
+
+    private void InitializeGameScene(AsyncOperation _asc)
+    {
+        if (_asc.isDone)
+        {
+            // Initialize game
+            /*for (int i = 0; i < carMeshes.Count; i++)
+            {
+                Instantiate(carMeshes[i], Vector3.zero, Quaternion.identity);
+            }*/
+            
+            Debug.Log(carMeshes.Count);
+            GameObject.CreatePrimitive(PrimitiveType.Cube);
         }
     }
 }
