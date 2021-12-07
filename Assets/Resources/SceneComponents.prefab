@@ -5672,8 +5672,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3740434301147154106}
-  m_LocalRotation: {x: 0.24685037, y: -0.000000023580458, z: 0.0000000060067324, w: 0.9690536}
-  m_LocalPosition: {x: -155.09592, y: 24.438955, z: -126.92795}
+  m_LocalRotation: {x: 0.24685037, y: 0.000000023580464, z: -0.0000000060067338, w: 0.9690536}
+  m_LocalPosition: {x: 483.5831, y: 7.9121933, z: 328.5148}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3740434301003803736}
@@ -5841,7 +5841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a0ffee0eb3f5b4ca5b9675874d856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigame: {fileID: 0}
+  minigame: {fileID: 1792188622050225308}
   indexCarTurn: 0
   playerList: []
   carPrefabs:
