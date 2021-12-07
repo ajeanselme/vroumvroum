@@ -22,7 +22,7 @@ public class TurnManager : MonoBehaviour
     private float halfTimer = 0f;
     public int indexCarTurn = 0;
 
-    [HideInInspector] public CarController[] cars;
+    public CarController[] cars;
 
     [HideInInspector] public List<GameObject> carPrefabs = new List<GameObject>();
     
@@ -48,12 +48,7 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
-
-        /*for (int i = 0; i < gameManager.m_Players.Length; i++)
-        {
-            CheckpointsController.instance.InitPlayer();
-        }*/
-
+        
         //StartCoroutine(WaitLaunch(gameManager.m_Players[0].carController, 2f));
     }
 
@@ -89,6 +84,16 @@ public class TurnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public void SetPlayers(CarController[] _players)
+    {
+        cars = _players;
+        
+        for (int i = 0; i < cars.Length; i++)
+        {
+            CheckpointsController.instance.InitPlayer();
         }
     }
 

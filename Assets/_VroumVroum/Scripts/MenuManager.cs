@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
 
     private bool isGameLaunched = false;
     
+    [SerializeField] private GameObject carPrefab;
+    
     [SerializeField] private CarSelecting[] carSelectings;
 
     private List<GameObject> carMeshes;
@@ -59,6 +61,12 @@ public class MenuManager : MonoBehaviour
 
         if (isReady)
         {
+            for (int i = 0; i < carMeshes.Count; i++)
+            {
+                carMeshes[i].transform.parent = null;
+                DontDestroyOnLoad(carMeshes[i]);
+            }
+            
             LoadGameScene();
         }
         else
@@ -79,16 +87,33 @@ public class MenuManager : MonoBehaviour
 
     private void InitializeGameScene(AsyncOperation _asc)
     {
-        if (_asc.isDone)
+        _asc.completed -= InitializeGameScene;
+
+        CarController[] cars = new CarController[carMeshes.Count];
+
+        for (int i = 0; i < carMeshes.Count; i++)
         {
-            // Initialize game
-            /*for (int i = 0; i < carMeshes.Count; i++)
-            {
-                Instantiate(carMeshes[i], Vector3.zero, Quaternion.identity);
-            }*/
+            SceneManager.MoveGameObjectToScene(carMeshes[i], SceneManager.GetActiveScene());
+
+            GameObject nCar = Instantiate(carPrefab, CheckpointsController.instance.points[0].position, Quaternion.Euler(CheckpointsController.instance.points[0].rotation));
+            CarController carController = nCar.GetComponent<CarController>();
+            cars[i] = carController;
             
-            Debug.Log(carMeshes.Count);
-            GameObject.CreatePrimitive(PrimitiveType.Cube);
+            carMeshes[i].transform.parent = nCar.transform; // change to the car prefab
+            carMeshes[i].transform.localPosition = Vector3.zero;
+
+            GameObject[] wheels = new GameObject[4];
+            for (int x = 0; x < carMeshes[i].transform.childCount - 1; x++)
+            {
+                wheels[x] = carMeshes[i].transform.GetChild(x).gameObject;
+            }
+            carController.InitWheels(wheels);
+            
+            carController.InitReInput(i);
         }
+
+        TurnManager.instance.SetPlayers(cars);
+        
+        Destroy(gameObject);
     }
 }

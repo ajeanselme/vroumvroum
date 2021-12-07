@@ -121,6 +121,11 @@ public class CarController : MonoBehaviour
         rewiredPlayer = ReInput.players.GetPlayer(playerId);
     }
 
+    public void InitWheels(GameObject[] _wheels)
+    {
+        wheels = _wheels;
+    }
+
     private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10,10,200, Screen.height));
