@@ -13,8 +13,6 @@ public class TurnManager : MonoBehaviour
 
     public Minigame minigame;
 
-    private ParsecGameManager gameManager;
-
     private int turn = 0;
     private float startTimerBoostCar = 0f;
     private float timerBoostCar = 0f;
@@ -23,6 +21,8 @@ public class TurnManager : MonoBehaviour
     private float zActualCam = 0f;
     private float halfTimer = 0f;
     public int indexCarTurn = 0;
+
+    [HideInInspector] public CarController[] cars;
 
     [HideInInspector] public List<GameObject> carPrefabs = new List<GameObject>();
     
@@ -47,8 +47,6 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager = ParsecGameManager.instance;
-        
         endCamera.SetActive(false);
 
         /*for (int i = 0; i < gameManager.m_Players.Length; i++)
@@ -64,7 +62,7 @@ public class TurnManager : MonoBehaviour
         // Debug
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            FinishTurn(gameManager.m_Players[indexCarTurn].carController);
+            FinishTurn(cars[indexCarTurn]);
         }
 
         if (timerBoostCar > 0f)
@@ -74,12 +72,12 @@ public class TurnManager : MonoBehaviour
             if (timerBoostCar > halfTimer)
             {
                 float z = Mathf.Lerp(zActualCam, -12f, Mathf.Abs(timerBoostCar / startTimerBoostCar - 1f) * 2f);
-                gameManager.m_Players[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = z;
+                cars[indexCarTurn].vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = z;
             }
             else
             {
                 float z = Mathf.Lerp(-12f, zActualCam, Mathf.Abs(timerBoostCar / startTimerBoostCar - 0.5f) * 2f);
-                gameManager.m_Players[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = z;
+                cars[indexCarTurn].vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = z;
             }
         }
         else if (timerBoostCar <= 0f && speedParticles.isPlaying)
@@ -101,7 +99,7 @@ public class TurnManager : MonoBehaviour
         startTimerBoostCar = time;
         speedParticles.Play();
 
-        zActualCam = gameManager.m_Players[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z;
+        zActualCam = cars[indexCarTurn].vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z;
     }
 
     public void FinishTurn(CarController player)
@@ -109,17 +107,17 @@ public class TurnManager : MonoBehaviour
         if (speedParticles.isPlaying)
             speedParticles.Stop();
         
-        gameManager.m_Players[indexCarTurn].carController.vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = zActualCam;
+        cars[indexCarTurn].vcam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z = zActualCam;
         
-        for (int i = 0; i < gameManager.m_Players.Length; i++)
+        for (int i = 0; i < cars.Length; i++)
         {
-            if (player.gameObject.GetInstanceID() == gameManager.m_Players[i].carController.gameObject.GetInstanceID())
+            if (player.gameObject.GetInstanceID() == cars[indexCarTurn].gameObject.GetInstanceID())
             {
                 player.stopCar();
                 player.enabled = false;
-                gameManager.m_Players[i].carController.vcam.gameObject.SetActive(false);
+                cars[indexCarTurn].vcam.gameObject.SetActive(false);
 
-                if (i + 1 == gameManager.m_Players.Length)
+                if (i + 1 == cars.Length)
                 {
                     turn++;
                     
@@ -130,20 +128,20 @@ public class TurnManager : MonoBehaviour
                     else
                     {
                         indexCarTurn = 0;
-                        gameManager.m_Players[0].carController.enabled = true;
-                        gameManager.m_Players[0].carController.vcam.gameObject.SetActive(true);
-                        StartCoroutine(WaitLaunch(gameManager.m_Players[0].carController, 2f));
+                        cars[0].enabled = true;
+                        cars[0].vcam.gameObject.SetActive(true);
+                        StartCoroutine(WaitLaunch(cars[0], 2f));
                     }
                 }
                 else
                 {
-                    if (!gameManager.m_Players[i+1].carController.gameObject.activeSelf)
-                        gameManager.m_Players[i+1].carController.gameObject.SetActive(true);
+                    if (!cars[i+1].gameObject.activeSelf)
+                        cars[i+1].gameObject.SetActive(true);
                     
                     indexCarTurn = i+1;
-                    gameManager.m_Players[i+1].carController.enabled = true;
-                    gameManager.m_Players[i+1].carController.vcam.gameObject.SetActive(true);
-                    StartCoroutine(WaitLaunch(gameManager.m_Players[i+1].carController, 2f));
+                    cars[i+1].enabled = true;
+                    cars[i+1].vcam.gameObject.SetActive(true);
+                    StartCoroutine(WaitLaunch(cars[i+1], 2f));
                 }
                 
                 break;
@@ -170,11 +168,11 @@ public class TurnManager : MonoBehaviour
 
     private void EndGame()
     {
-        for (int i = 0; i < gameManager.m_Players.Length; i++)
+        for (int i = 0; i < cars.Length; i++)
         {
-            gameManager.m_Players[i].carController.enabled = true;
-            gameManager.m_Players[i].carController.stopCar();
-            gameManager.m_Players[i].carController.vcam.gameObject.SetActive(false);
+            cars[i].enabled = true;
+            cars[i].stopCar();
+            cars[i].vcam.gameObject.SetActive(false);
         }
         
         endCamera.SetActive(true);
@@ -182,6 +180,6 @@ public class TurnManager : MonoBehaviour
 
     public CarController GetCurrentCar()
     {
-        return gameManager.m_Players[indexCarTurn].carController;
+        return cars[indexCarTurn];
     }
 }

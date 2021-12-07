@@ -29,7 +29,6 @@ public class TurboEditor : EditorWindow
 
     private Action<SceneView> sceneViewAction;
     private TurnManager _turnManager;
-    private ParsecGameManager _gameManager;
     private CheckpointsController _checkpointsController;
 
     private List<PlayerLog> playerLogs = new List<PlayerLog>();
@@ -52,12 +51,12 @@ public class TurboEditor : EditorWindow
     {
         FindManagers();
 
-        if (_gameManager != null)
+        if (_turnManager != null)
         {
             playerLogs.Clear();
-            for (int i = 0; i < _gameManager.m_Players.Length; i++)
+            for (int i = 0; i < _turnManager.cars.Length; i++)
             {
-                playerLogs.Add(new PlayerLog(_gameManager.m_Players[i].prefabIndex));
+                playerLogs.Add(new PlayerLog(/*_turnManager.cars[i].prefabIndex*/ 0));
             }
         }
 
@@ -89,12 +88,12 @@ public class TurboEditor : EditorWindow
     {
         FindManagers();
 
-        if (_gameManager != null)
+        if (_turnManager != null)
         {
             playerLogs.Clear();
-            for (int i = 0; i < _gameManager.m_Players.Length; i++)
+            for (int i = 0; i < _turnManager.cars.Length; i++)
             {
-                playerLogs.Add(new PlayerLog(_gameManager.m_Players[i].prefabIndex));
+                playerLogs.Add(new PlayerLog(/*_turnManager.cars[i].prefabIndex*/ 0));
             }
         }
     }
@@ -135,7 +134,7 @@ public class TurboEditor : EditorWindow
 
                 GUILayout.Space(20);
 
-                if (_gameManager != null)
+                if (_turnManager != null)
                 {
                     #region Players Settings
 
@@ -148,14 +147,14 @@ public class TurboEditor : EditorWindow
                     {
                         GUILayout.Space(10);
                         List<string> prefabsNames = new List<string>();
-                        for (int i = 0; i < _gameManager.m_Players.Length; i++)
+                        for (int i = 0; i < _turnManager.cars.Length; i++)
                         {
-                            prefabsNames.Add(_gameManager.m_Players[i].name);
+                            prefabsNames.Add(_turnManager.cars[i].name);
                         }
 
-                        for (int i = 0; i < _gameManager.m_Players.Length; i++)
+                        for (int i = 0; i < _turnManager.cars.Length; i++)
                         {
-                            if (_gameManager.m_Players[i].carController == null)
+                            if (_turnManager.cars[i] == null)
                             {
                                 RemovePlayer(i);
                                 Debug.Log("remove 1");
@@ -167,18 +166,18 @@ public class TurboEditor : EditorWindow
 
                                 if (GUILayout.Button("", "Radio"))
                                 {
-                                    Selection.activeGameObject = _gameManager.m_Players[i].carController.gameObject;
+                                    Selection.activeGameObject = _turnManager.cars[i].gameObject;
                                 }
 
                                 if (playerLogs[i].ChangeIndex(EditorGUILayout.Popup("Player " + i,
-                                    _gameManager.m_Players[i].prefabIndex, prefabsNames.ToArray())))
+                                    /*_turnManager.cars[i].prefabIndex*/ 0, prefabsNames.ToArray())))
                                 {
                                     ChangeCarType(i, playerLogs[i].selectedIndex);
                                 }
 
-                                _gameManager.m_Players[i].carController.gameObject.SetActive(
+                                _turnManager.cars[i].gameObject.SetActive(
                                     GUILayout.Toggle(
-                                        _gameManager.m_Players[i].carController.gameObject.activeInHierarchy, ""));
+                                        _turnManager.cars[i].gameObject.activeInHierarchy, ""));
 
                                 EditorGUILayout.EndHorizontal();
                             }
@@ -193,9 +192,9 @@ public class TurboEditor : EditorWindow
 
                         if (GUILayout.Button("Remove", "MiniButtonRight"))
                         {
-                            if (_gameManager.m_Players.Length > 0)
+                            if (_turnManager.cars.Length > 0)
                             {
-                                RemovePlayer(_gameManager.m_Players.Length - 1);
+                                RemovePlayer(_turnManager.cars.Length - 1);
                                 Debug.Log("remove 2");
                             }
                         }
@@ -485,12 +484,6 @@ public class TurboEditor : EditorWindow
         if (_turnManager == null)
         {
             _turnManager = GameObject.Find("TurnManager")?.GetComponent<TurnManager>();
-        }
-
-
-        if (_gameManager == null)
-        {
-            _gameManager = GameObject.Find("GameManager")?.GetComponent<ParsecGameManager>();
         }
 
         if (_checkpointsController == null)

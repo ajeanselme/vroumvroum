@@ -116,23 +116,9 @@ public class CarController : MonoBehaviour
         turn = false;
     }
     
-    public void InitReInput(int playerId, CustomController controller, CustomController keyboard, CustomController mouse)
+    public void InitReInput(int playerId)
     {
         rewiredPlayer = ReInput.players.GetPlayer(playerId);
-        if (playerId == 0)
-        {
-            rewiredPlayer.controllers.AddController(ReInput.controllers.Joysticks[0], true);
-            rewiredPlayer.controllers.hasKeyboard = true;
-        }
-        else
-        {
-            if (controller != null)
-                rewiredPlayer.controllers.AddController(controller, true);
-            if (keyboard != null)
-                rewiredPlayer.controllers.AddController(keyboard, true);
-            if (mouse != null)
-                rewiredPlayer.controllers.AddController(mouse, true);
-        }
     }
 
     private void OnGUI()

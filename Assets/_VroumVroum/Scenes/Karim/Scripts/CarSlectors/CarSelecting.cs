@@ -6,12 +6,11 @@ using Rewired;
 public class CarSelecting : MonoBehaviour
 {
     public Rewired.Player rewiredPlayer;
+
+    private bool isJoined = false;
     
     [HideInInspector] public int currentCarIndex = 0;
     [SerializeField] private GameObject[] carModels;
-    [Space]
-    [SerializeField] private string previousKey = "q";
-    [SerializeField] private string nextKey = "d";
 
     private void Start()
     {
@@ -23,16 +22,20 @@ public class CarSelecting : MonoBehaviour
     private void Update()
     {
         if (rewiredPlayer == null) return;
+
+        if (!isJoined)
+        {
+            if (rewiredPlayer.GetButtonDown("Join")) isJoined = true;
+            else return;
+        }
+        
         if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
         if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
-        Debug.Log(rewiredPlayer.GetAxis("MoveLeftRight") + ", " + rewiredPlayer.id + ", " + rewiredPlayer.controllers.customControllerCount);
-        //if (Input.GetKeyDown(previousKey)) ChangePrevious();
-        //if (Input.GetKeyDown(nextKey)) ChangeNext();
     }
 
-    public void InitReInput(int playerID)
+    public void InitReInput(int player)
     {
-        rewiredPlayer = ReInput.players.GetPlayer(playerID);
+        rewiredPlayer = ReInput.players.GetPlayer(player);
     }
     
     public void ChangeNext()
