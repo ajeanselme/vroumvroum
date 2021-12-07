@@ -241,7 +241,7 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = rewiredPlayer.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("MoveLeftRight");
         
         
         /*

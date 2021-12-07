@@ -50,8 +50,6 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
-        
-        //StartCoroutine(WaitLaunch(gameManager.m_Players[0].carController, 2f));
     }
 
     private void Update()
@@ -97,6 +95,8 @@ public class TurnManager : MonoBehaviour
         {
             CheckpointsController.instance.InitPlayer();
         }
+        
+        StartCoroutine(WaitLaunch(cars[0], 2f));
     }
 
     public void BoostCarEffects(float time)
