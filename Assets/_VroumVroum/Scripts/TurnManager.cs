@@ -50,6 +50,8 @@ public class TurnManager : MonoBehaviour
         {
             instance = this;
         }
+
+        Application.targetFrameRate = 60;
     }
 
     private void Start()
@@ -75,18 +77,6 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        // Debug
-        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Cross"))
-            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Cross");
-        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Circle"))
-            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Circle");
-        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Triangle"))
-            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Triangle");
-        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Square"))
-            Debug.Log("QTE + " + playerList[indexCarTurn].rewiredPlayer + ", Square");
-        if (playerList[indexCarTurn].rewiredPlayer.GetButtonDown("Start"))
-            Debug.Log("Start");
-        
         // Debug
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -175,6 +165,8 @@ public class TurnManager : MonoBehaviour
                 break;
             }
         }
+
+        EventsManager.instance.isOn = false;
     }
 
     IEnumerator WaitLaunch(CarController player, float sec)
