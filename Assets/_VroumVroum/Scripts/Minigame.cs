@@ -204,10 +204,10 @@ public class Minigame : MonoBehaviour
         car1 = player;
     }
 
-    public void launchCar()
+    public void launchCar(float value)
     {
         TurnManager.instance.BoostCarEffects(1f);
-        car1.launchCar();
+        car1.launchCar(car1.totalTime * value / 100f);
     }
 
     public void AddCharge()
@@ -234,8 +234,7 @@ public class Minigame : MonoBehaviour
         minigame2.SetActive(false);
         decompteaenlever.SetActive(false);
         decompteaenlever2.SetActive(false);
-        car1.totalTime *= value / 100;
-        launchCar();
+        launchCar(value);
         randomMinigame = -1;
     }
 }

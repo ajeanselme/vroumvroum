@@ -181,7 +181,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            player.launchCar();
+            player.launchCar(player.totalTime);
         }
     }
 

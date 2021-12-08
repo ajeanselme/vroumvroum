@@ -250,7 +250,7 @@ public class CarController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                launchCar();
+                launchCar(totalTime);
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -393,11 +393,10 @@ public class CarController : MonoBehaviour
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }
 
-    public void launchCar()
+    public void launchCar(float value)
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
-        _remainingTime = totalTime;
-        totalTime = 0f;
+        _remainingTime = value;
         _currentSpeed = initialSpeed;
         turn = true;
         theRB.gameObject.SetActive(true);
