@@ -110,28 +110,28 @@ public class Minigame : MonoBehaviour
                     switch (_mgState)
                     {
                         case MGState.TOP:
-                            if (TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Horizontal") > .9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Horizontal") > .9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.RIGHT;
                             }
                             break;
                         case MGState.RIGHT:
-                            if (TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Vertical") < -.9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Vertical") < -.9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.BOTTOM;
                             }
                             break;
                         case MGState.BOTTOM:
-                            if (TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Horizontal") < -.9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Horizontal") < -.9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.LEFT;
                             }
                             break;
                         case MGState.LEFT:
-                            if (TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Vertical") > .9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("Vertical") > .9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.TOP;
@@ -160,7 +160,7 @@ public class Minigame : MonoBehaviour
                 }
             }
 
-            if (TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].rewiredPlayer.GetButtonDown("Cross") && randomMinigame == 1)
+            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetButtonDown("Cross") && randomMinigame == 1)
             {
                 m2Charge = (((barre.transform.position.x - m2Debut.transform.position.x) * 100) / (m2Fin.transform.position.x - m2Debut.transform.position.x)) * 2;
                 if (m2Charge > 100)
