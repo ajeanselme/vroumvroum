@@ -27,9 +27,9 @@ public class Minigame : MonoBehaviour
     public GameObject minigame2;
 
     [Header("Values")]
-    public float incrementMG1 = 2f;
-    public float resistanceMG1 = .5f;
-    public float incrementMG2 = 2f;
+    public float incrementMG1 = 3f;
+    public float resistanceMG1 = .1f;
+    public float incrementMG2 = 10f;
     
     private float vitesseBase;
 
