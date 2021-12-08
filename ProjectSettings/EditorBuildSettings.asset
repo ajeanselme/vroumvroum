@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_VroumVroum/Scenes/Felix/MainMenu.unity
+    guid: d241b98b2c707c242bc5f3e75a1debf5
+  - enabled: 1
     path: Assets/_VroumVroum/Scenes/Felix/CarsChoiceTestFelix.unity
     guid: 36d834cb84e4a614ab11b4c8a8ad853d
   - enabled: 1
-    path: Assets/_VroumVroum/Scenes/Felix/jeremy2_map 1.unity
+    path: Assets/_VroumVroum/Scenes/Felix/jeremy2_mapFelix.unity
     guid: 0699115395aa05c43adb4a2fc9d69a8f
+  - enabled: 1
+    path: Assets/_VroumVroum/Scenes/Felix/WinSceneFelix.unity
+    guid: 34f992bdf18b58e4da20e64f77e18720
   m_configObjects: {}

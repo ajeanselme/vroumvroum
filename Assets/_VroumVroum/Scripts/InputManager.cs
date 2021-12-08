@@ -29,11 +29,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        MenuManager.instance.InitializeSelectionMenu();
-    }
-
     private void OnControllerConnected(ControllerStatusChangedEventArgs args)
     {
         Debug.Log("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);

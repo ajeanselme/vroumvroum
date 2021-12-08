@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
-using Rewired;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
@@ -31,6 +29,12 @@ public class TurnManager : MonoBehaviour
     
     //debug
     [HideInInspector] public bool playMinigame = true;
+    
+    [System.Serializable]
+    public struct MyStruct
+    {
+        public int test;
+    }
 
     private void Awake()
     {
@@ -168,14 +172,20 @@ public class TurnManager : MonoBehaviour
 
     private void EndGame()
     {
+        GameObject[] carsArray = new GameObject[cars.Length];
+        
         for (int i = 0; i < cars.Length; i++)
         {
             cars[i].enabled = true;
             cars[i].stopCar();
             cars[i].vcam.gameObject.SetActive(false);
+            carsArray[i] = cars[i].gameObject.transform.GetChild(cars[i].gameObject.transform.childCount - 1).gameObject;
         }
         
         endCamera.SetActive(true);
+        
+        // when the cam is arrived launch new scene
+        EndGameManager.instance.EndGame(carsArray, CheckpointsController.instance.GetPlayerDataList());
     }
 
     public CarController GetCurrentCar()
