@@ -112,7 +112,7 @@ public class Minigame : MonoBehaviour
                 decompteaenlever.SetActive(false);
                 decompteaenlever2.SetActive(false);
                 Debug.Log(slider.value);
-                car1.totalTime = (slider.value / 10) + 1;
+                car1.totalTime *= slider.value / 100;
                 launchCar();
                 randomMinigame = 100;
             }
@@ -140,7 +140,7 @@ public class Minigame : MonoBehaviour
                 decompteaenlever.SetActive(false);
                 decompteaenlever2.SetActive(false);
                 Debug.Log(m2Charge);
-                car1.totalTime = (m2Charge / 10) + 1;
+                car1.totalTime *= m2Charge / 100;
                 launchCar();
                 randomMinigame = 100;
             }
