@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
+
 public class CarSelecting : MonoBehaviour
 {
     public Rewired.Player rewiredPlayer;
-    
     [HideInInspector] public int currentCarIndex = 0;
     [SerializeField] private GameObject[] carModels;
     [Space]
     [SerializeField] private string previousKey = "q";
     [SerializeField] private string nextKey = "d";
-
+    
     private void Start()
     {
         foreach (GameObject car in carModels) car.SetActive(false);
-
         carModels[currentCarIndex].SetActive(true);
+        
+        
     }
     
     private void Update()
     {
+        
         if (rewiredPlayer == null) return;
         if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
         if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
@@ -37,21 +39,26 @@ public class CarSelecting : MonoBehaviour
     
     public void ChangeNext()
     {
+       
+
         carModels[currentCarIndex].SetActive(false);
-        currentCarIndex++;
+      
+       currentCarIndex++;
         
         if (currentCarIndex == carModels.Length) currentCarIndex = 0;
+       
+
+       carModels[currentCarIndex].SetActive(true);
         
-        carModels[currentCarIndex].SetActive(true);
     }
 
     public void ChangePrevious()
-    {
+    { 
         carModels[currentCarIndex].SetActive(false);
         currentCarIndex--;
-        
-        if (currentCarIndex == -1) currentCarIndex = carModels.Length -1;
 
+        if (currentCarIndex == -1) currentCarIndex = carModels.Length -1;
         carModels[currentCarIndex].SetActive(true);
+       
     }
 }
