@@ -12,13 +12,12 @@ public class TurnManager : MonoBehaviour
     public Minigame minigame;
 
     private int turn = 0;
-    private float startTimerBoostCar = 0f;
-    private float timerBoostCar = 0f;
-    private float timeBoostCar = 0f;
+    private float startTimerBoostCar;
+    private float timerBoostCar;
 
-    private float zActualCam = 0f;
-    private float halfTimer = 0f;
-    public int indexCarTurn = 0;
+    private float zActualCam;
+    private float halfTimer;
+    public int indexCarTurn;
 
     public CarController[] cars;
 
@@ -167,7 +166,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            player.launchCar();
+            player.launchCar(player.totalTime);
         }
     }
 
