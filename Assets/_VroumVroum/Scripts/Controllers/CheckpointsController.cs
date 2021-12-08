@@ -26,7 +26,7 @@ public class CheckpointsController : MonoBehaviour
         }
     }
 
-    class PlayerData
+    public class PlayerData
     {
         public int index;
         public int ladderPosition, currentCP;
@@ -244,5 +244,10 @@ public class CheckpointsController : MonoBehaviour
         }
         // Debug.Log("Position " + _playingPlayer.ladderPosition);
         _lastUpdate = Time.fixedTime + .5f;
+    }
+
+    public List<PlayerData> GetPlayerDataList()
+    {
+        return _playerDatas;
     }
 }

@@ -30,6 +30,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InitializeSelectionMenu();
+    }
+
     public void InitializeSelectionMenu()
     {
         if (carSelectings == null) return;
@@ -81,7 +86,7 @@ public class MenuManager : MonoBehaviour
     {
         isGameLaunched = true;
         
-        AsyncOperation asc = SceneManager.LoadSceneAsync(1);
+        AsyncOperation asc = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
         asc.completed += InitializeGameScene;
     }
 
