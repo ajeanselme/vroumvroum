@@ -41,7 +41,7 @@ public class End : MonoBehaviour
             if (!showScore && timer <= 0f)
             {
                 showScore = true;
-                scoresTexts[carIndex].text = scores.ToString();
+                scoresTexts[carIndex].text = scores[carIndex].ToString();
                 // add effects
             }
             
