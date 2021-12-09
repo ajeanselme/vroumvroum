@@ -10,6 +10,8 @@ public class EndGameManager : MonoBehaviour
 
     private GameObject[] carsPodium;
     private float[] carsDistance;
+
+    [SerializeField] private float waitTransitionNextScene;
     
     private void Awake()
     {
@@ -36,20 +38,12 @@ public class EndGameManager : MonoBehaviour
 
             carsDistance[playerDatas[i].ladderPosition - 1] = playerDatas[i].CurrentDistance;
         }
-        
-        LaunchEndScene();
-    }
-    
-    private void LaunchEndScene()
-    {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
-        asyncOperation.completed += EndSceneInitialization;
+
+        StartCoroutine(IELaunchEndScene());
     }
 
-    private void EndSceneInitialization(AsyncOperation arg)
+    private void EndSceneInitialization()
     {
-        arg.completed -= EndSceneInitialization;
-
         for (int i = 0; i < carsPodium.Length; i++)
         {
             SceneManager.MoveGameObjectToScene(carsPodium[i], SceneManager.GetActiveScene());
@@ -61,5 +55,22 @@ public class EndGameManager : MonoBehaviour
         endScript.SetEnd(carsPodium, carsDistance);
         
         Destroy(gameObject);
+    }
+
+    private IEnumerator IELaunchEndScene()
+    {
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
+        asyncOperation.allowSceneActivation = false;
+
+        yield return new WaitForSeconds(waitTransitionNextScene);
+
+        asyncOperation.allowSceneActivation = true;
+        
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
+        
+        EndSceneInitialization();
     }
 }
