@@ -1,0 +1,102 @@
+Event	ID	Name			Wwise Object Path	Notes
+	76690888	Play_UI_QTE_Despawn_01			\Default Work Unit\UI\Play_UI_QTE_Despawn_01	
+	76690890	Play_UI_QTE_Despawn_03			\Default Work Unit\UI\Play_UI_QTE_Despawn_03	
+	76690891	Play_UI_QTE_Despawn_02			\Default Work Unit\UI\Play_UI_QTE_Despawn_02	
+	76690892	Play_UI_QTE_Despawn_05			\Default Work Unit\UI\Play_UI_QTE_Despawn_05	
+	76690893	Play_UI_QTE_Despawn_04			\Default Work Unit\UI\Play_UI_QTE_Despawn_04	
+	313894906	Play_SFX_OBJ_Ball_Rvb_01			\Default Work Unit\FX\OBJECTS\Play_SFX_OBJ_Ball_Rvb_01	
+	438491194	Play_AMB_Train_Steam_01			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Train_Steam_01	
+	660819928	Play_AMB_Train_Horn_02			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Train_Horn_02	
+	660819931	Play_AMB_Train_Horn_01			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Train_Horn_01	
+	663512636	Play_FX_CAR_WheelWood			\Default Work Unit\FX\CAR\Play_FX_CAR_WheelWood	
+	669599535	Play_AMB_JackBox			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_JackBox	
+	857368096	Play_FX_CAR_Engine			\Default Work Unit\FX\CAR\Play_FX_CAR_Engine	
+	902119208	Play_UI_QTE_Success_04			\Default Work Unit\UI\Play_UI_QTE_Success_04	
+	902119209	Play_UI_QTE_Success_05			\Default Work Unit\UI\Play_UI_QTE_Success_05	
+	902119213	Play_UI_QTE_Success_01			\Default Work Unit\UI\Play_UI_QTE_Success_01	
+	902119214	Play_UI_QTE_Success_02			\Default Work Unit\UI\Play_UI_QTE_Success_02	
+	902119215	Play_UI_QTE_Success_03			\Default Work Unit\UI\Play_UI_QTE_Success_03	
+	1043591872	Play_MUS_MainMenu			\Default Work Unit\MUSIC\Play_MUS_MainMenu	
+	1089311732	Play_AMB_JackBoxMusic			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_JackBoxMusic	
+	1232892826	Play_UI_QTE_Miss_05			\Default Work Unit\UI\Play_UI_QTE_Miss_05	
+	1232892827	Play_UI_QTE_Miss_04			\Default Work Unit\UI\Play_UI_QTE_Miss_04	
+	1232892828	Play_UI_QTE_Miss_03			\Default Work Unit\UI\Play_UI_QTE_Miss_03	
+	1232892829	Play_UI_QTE_Miss_02			\Default Work Unit\UI\Play_UI_QTE_Miss_02	
+	1232892830	Play_UI_QTE_Miss_01			\Default Work Unit\UI\Play_UI_QTE_Miss_01	
+	1579731861	Play_AMB_Truck_Main_LP_01			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Truck_Main_LP_01	
+	1631175982	Play_FX_CAR_WheelTiles			\Default Work Unit\FX\CAR\Play_FX_CAR_WheelTiles	
+	1752327981	Play_FX_CAR_WheelPlastic			\Default Work Unit\FX\CAR\Play_FX_CAR_WheelPlastic	
+	1814833164	Play_AMB_Truck_Horn_01			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Truck_Horn_01	
+	1819752424	Play_SFX_Engine_Main			\Default Work Unit\FX\CAR\ENGINE\Play_SFX_Engine_Main	
+	2252379224	Play_MUS_ShowOff			\Default Work Unit\MUSIC\Play_MUS_ShowOff	
+	2431258938	Play_SFX_Engine_Clic			\Default Work Unit\FX\CAR\ENGINE\Play_SFX_Engine_Clic	
+	2592517392	Play_Amb_Train_Main_LP_01			\Default Work Unit\AMBIENCE\EVENTS\Play_Amb_Train_Main_LP_01	
+	2653376589	Play_MUS_Jingle			\Default Work Unit\MUSIC\Play_MUS_Jingle	
+	2915648265	Play_MUS_Race			\Default Work Unit\MUSIC\Play_MUS_Race	
+	3313260042	Play_AMB_Robot_Laser_04			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Robot_Laser_04	
+	3313260044	Play_AMB_Robot_Laser_02			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Robot_Laser_02	
+	3313260045	Play_AMB_Robot_Laser_03			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Robot_Laser_03	
+	3313260047	Play_AMB_Robot_Laser_01			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Robot_Laser_01	
+	3403658395	Play_SFX_OBJ_Ball_01			\Default Work Unit\FX\OBJECTS\Play_SFX_OBJ_Ball_01	
+	3474986444	Play_FX_CAR_WheelBook			\Default Work Unit\FX\CAR\Play_FX_CAR_WheelBook	
+	3484568566	Play_SFX_Engine_Motor			\Default Work Unit\FX\CAR\ENGINE\Play_SFX_Engine_Motor	
+	3639421922	Play_UI_QTE_Appear_04			\Default Work Unit\UI\Play_UI_QTE_Appear_04	
+	3639421923	Play_UI_QTE_Appear_05			\Default Work Unit\UI\Play_UI_QTE_Appear_05	
+	3639421924	Play_UI_QTE_Appear_02			\Default Work Unit\UI\Play_UI_QTE_Appear_02	
+	3639421925	Play_UI_QTE_Appear_03			\Default Work Unit\UI\Play_UI_QTE_Appear_03	
+	3639421927	Play_UI_QTE_Appear_01			\Default Work Unit\UI\Play_UI_QTE_Appear_01	
+	3857233810	Play_AMB_Truck_HornAmbulance_01			\Default Work Unit\AMBIENCE\EVENTS\Play_AMB_Truck_HornAmbulance_01	
+	4275955849	Play_SFX_Engine_Rattle_01			\Default Work Unit\FX\CAR\ENGINE\Play_SFX_Engine_Rattle_01	
+	4275955850	Play_SFX_Engine_Rattle_02			\Default Work Unit\FX\CAR\ENGINE\Play_SFX_Engine_Rattle_02	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	34477157	MUS_MainMenu	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\MUSIC\MUS_MainMenu_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\MUSIC\MUS_MainMenu		8945008
+	47094193	MUS_Race	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\MUSIC\MUS_Race_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\MUSIC\MUS_Race		8741712
+	83840837	SFX_Engine_Clic	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Clic_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Clic		98108
+	91131233	Amb_Train_Main_LP_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\Amb_Train_Main_LP_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\Amb_Train_Main_LP_01		10584064
+	97464970	SFX_Engine_Motor	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Motor_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Motor		6144064
+	105950605	UI_QTE_Despawn_05	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Despawn_05_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Despawn_05		78208
+	108900281	UI_QTE_Miss_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Miss_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Miss_01		52984
+	143368855	UI_QTE_Miss_05	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Miss_05_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Miss_05		105904
+	155039983	AMB_Train_Horn_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Train_Horn_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Train_Horn_02		694028
+	193942734	FX_CAR_WheelTiles	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\FX_CAR_WheelTiles_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\FX_CAR_WheelTiles		1632064
+	209053335	UI_QTE_Success_04	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Success_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Success_04		193228
+	231666120	UI_QTE_Despawn_03	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Despawn_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Despawn_03		78208
+	239335572	AMB_Robot_Laser_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_01		264664
+	291327685	UI_QTE_Appear_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Appear_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Appear_02		141184
+	296214603	AMB_Train_Steam_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Train_Steam_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Train_Steam_01		883536
+	313338106	SFX_Engine_Rattle_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Rattle_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Rattle_02		128716
+	355684345	UI_QTE_Success_05	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Success_05_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Success_05		170584
+	394716354	UI_QTE_Appear_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Appear_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Appear_01		147064
+	395482646	AMB_Train_Horn_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Train_Horn_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Train_Horn_01		685260
+	409532371	UI_QTE_Despawn_04	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Despawn_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Despawn_04		78208
+	438945814	AMB_Truck_Main_LP_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Truck_Main_LP_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Truck_Main_LP_01		4410064
+	459899879	SFX_OBJ_Ball_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\OBJECTS\SFX_OBJ_Ball_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\OBJECTS\SFX_OBJ_Ball_01		282304
+	478471035	AMB_JackBox	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_JackBox_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_JackBox		1559516
+	481448173	SFX_OBJ_Ball_Rvb_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\OBJECTS\SFX_OBJ_Ball_Rvb_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\OBJECTS\SFX_OBJ_Ball_Rvb_01		352864
+	503763749	UI_QTE_Success_03	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Success_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Success_03		193976
+	508624443	MUS_Jingle	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\MUSIC\MUS_Jingle_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\MUSIC\MUS_Jingle		1694184
+	532048646	UI_QTE_Despawn_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Despawn_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Despawn_02		78208
+	538489768	UI_QTE_Miss_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Miss_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Miss_02		58864
+	558119256	AMB_Truck_Horn_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Truck_Horn_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Truck_Horn_01		547608
+	563563809	AMB_Robot_Laser_04	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_04		294064
+	627315743	AMB_Truck_HornAmbulance_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Truck_HornAmbulance_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Truck_HornAmbulance_01		1003252
+	640945638	UI_QTE_Despawn_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Despawn_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Despawn_01		78208
+	643701335	UI_QTE_Miss_03	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Miss_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Miss_03		58864
+	651012410	UI_QTE_Success_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Success_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Success_01		161904
+	657663678	SFX_Engine_Rattle_01	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Rattle_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Rattle_01		1152064
+	658955225	MUS_ShowOff	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\MUSIC\MUS_ShowOff_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\MUSIC\MUS_ShowOff		8741712
+	712347193	AMB_Robot_Laser_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_02		292880
+	742916424	FX_CAR_WheelBook	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\FX_CAR_WheelBook_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\FX_CAR_WheelBook		1499464
+	745670025	SFX_Engine_Main	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Main_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\ENGINE (For Wwise Later)\SFX_Engine_Main		6144064
+	750073433	UI_QTE_Appear_03	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Appear_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Appear_03		176464
+	771091144	FX_CAR_WheelPlastic	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\FX_CAR_WheelPlastic_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\FX_CAR_WheelPlastic		1632064
+	859239468	UI_QTE_Miss_04	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Miss_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Miss_04		82384
+	869199996	FX_CAR_WheelWood	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\FX_CAR_WheelWood_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\FX_CAR_WheelWood		1632064
+	955364040	UI_QTE_Success_02	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Success_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Success_02		168016
+	959481571	AMB_Robot_Laser_03	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_Robot_Laser_03		294064
+	964842396	UI_QTE_Appear_04	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Appear_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Appear_04		188224
+	989963240	AMB_JackBoxMusic	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\AMBIENCE\EVENTS\AMB_JackBoxMusic_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\AMBIENCE\EVENTS\AMB_JackBoxMusic		3351664
+	994214050	FX_CAR_Engine	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\FX\CAR\FX_CAR_Engine_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\FX\CAR\FX_CAR_Engine		1248064
+	1038938578	UI_QTE_Appear_05	D:\Prog\vroumvroum\Vroom vroom true\.cache\Windows\SFX\SOUNDS\UI\UI_QTE_Appear_05_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\UI\UI_QTE_Appear_05		156424
+
