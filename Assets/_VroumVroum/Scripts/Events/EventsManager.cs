@@ -62,7 +62,6 @@ public class EventsManager : MonoBehaviour
                 {
                     chessStep--;
                     order = false;
-                    Debug.Log(chessStep);
                 }
             }
             else
