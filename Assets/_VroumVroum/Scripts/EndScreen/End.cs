@@ -13,7 +13,8 @@ public class End : MonoBehaviour
     private bool endScroll = false;
 
     private int carIndex = 5;
-    private float timer = 0f;
+    private float timer = -10f;
+    private float timeWait;
     private Vector3 lastCamPos, nextCamPos;
     private bool showScore = false;
 
@@ -22,6 +23,10 @@ public class End : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private Transform[] carSpawnPoints;
     [SerializeField] private TextMesh[] scoresTexts;
+    [Space]
+    [SerializeField] private float timeTransitionCar;
+    [SerializeField] private float timeTransitionEnd;
+    [SerializeField] private float timePause;
     [Space]
     [SerializeField] private Text endText;
 
@@ -36,16 +41,16 @@ public class End : MonoBehaviour
         {
             timer -= Time.deltaTime;
             
-            camera.transform.position = Vector3.Lerp(lastCamPos, nextCamPos, 1f - timer);
+            camera.transform.position = Vector3.Lerp(lastCamPos, nextCamPos, 1f - timer / timeWait);
 
             if (!showScore && timer <= 0f)
             {
                 showScore = true;
-                scoresTexts[carIndex].text = scores.ToString();
+                scoresTexts[carIndex].text = scores[carIndex].ToString();
                 // add effects
             }
             
-            if (timer <= -5f)
+            if (timer <= -timePause)
             {
                 NextStep();
             }
@@ -83,10 +88,12 @@ public class End : MonoBehaviour
         if (carIndex >= 0)
         {
             nextCamPos = new Vector3(carSpawnPoints[carIndex].position.x, camera.transform.position.y, camera.transform.position.z);
+            timeWait = timeTransitionCar;
         }
         else
         {
             nextCamPos = new Vector3((carSpawnPoints[carSpawnPoints.Length - 1].position.x - carSpawnPoints[0].position.x) / 2f, 4.5f, 6.5f);
+            timeWait = timeTransitionEnd;
 
             endScroll = true;
             endText.text = "Press any button to continue";
