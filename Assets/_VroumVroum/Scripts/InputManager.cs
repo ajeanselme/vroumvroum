@@ -50,6 +50,7 @@ public class InputManager : MonoBehaviour
     // You can use this event to save the controller's maps before it's disconnected
     void OnControllerPreDisconnect(ControllerStatusChangedEventArgs args) {
         Debug.Log("A controller is being disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
+        if (MenuManager.instance != null) MenuManager.instance.UnsetPlayerSlot(ReInput.players.GetPlayer(args.controllerId)); // Not good
     }
 
     void OnDestroy() {

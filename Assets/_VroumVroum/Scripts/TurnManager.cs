@@ -121,7 +121,9 @@ public class TurnManager : MonoBehaviour
         player.enabled = false;
         cars[indexCarTurn].vcam.gameObject.SetActive(false);
 
-        if (indexCarTurn + 1 == cars.Length)
+        indexCarTurn++;
+
+        if (indexCarTurn >= cars.Length)
         {
             turn++;
             
@@ -139,13 +141,12 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            if (!cars[indexCarTurn+1].gameObject.activeSelf)
-                cars[indexCarTurn+1].gameObject.SetActive(true);
-            
-            indexCarTurn += 1;
-            cars[indexCarTurn+1].enabled = true;
-            cars[indexCarTurn+1].vcam.gameObject.SetActive(true);
-            StartCoroutine(WaitLaunch(cars[indexCarTurn+1], 2f));
+            if (!cars[indexCarTurn].gameObject.activeSelf)
+                cars[indexCarTurn].gameObject.SetActive(true);
+
+            cars[indexCarTurn].enabled = true;
+            cars[indexCarTurn].vcam.gameObject.SetActive(true);
+            StartCoroutine(WaitLaunch(cars[indexCarTurn], 2f));
         }
         
         EventsManager.instance.isOn = false;
