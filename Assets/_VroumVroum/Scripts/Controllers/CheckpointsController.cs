@@ -26,7 +26,7 @@ public class CheckpointsController : MonoBehaviour
         }
     }
 
-    class PlayerData
+    public class PlayerData
     {
         public int index;
         public int ladderPosition, currentCP;
@@ -109,7 +109,7 @@ public class CheckpointsController : MonoBehaviour
                 Vector3 pointA = currentCP.position;
                 Vector3 pointB = nextCP.position;
 
-                Vector3 player = TurnManager.instance.playerList[TurnManager.instance.indexCarTurn].carController.transform.position;
+                Vector3 player = TurnManager.instance.cars[TurnManager.instance.indexCarTurn].transform.position;
 
                 Vector3 projected = Vector3.Project((player - pointA), (pointB - pointA)) + pointA;
                 
@@ -244,5 +244,10 @@ public class CheckpointsController : MonoBehaviour
         }
         // Debug.Log("Position " + _playingPlayer.ladderPosition);
         _lastUpdate = Time.fixedTime + .5f;
+    }
+
+    public List<PlayerData> GetPlayerDataList()
+    {
+        return _playerDatas;
     }
 }

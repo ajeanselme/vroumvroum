@@ -117,6 +117,16 @@ public class CarController : MonoBehaviour
         stopCar();
         turn = false;
     }
+    
+    public void InitReInput(int playerId)
+    {
+        rewiredPlayer = ReInput.players.GetPlayer(playerId);
+    }
+
+    public void InitWheels(GameObject[] _wheels)
+    {
+        wheels = _wheels;
+    }
 
     private void OnGUI()
     {
@@ -231,7 +241,7 @@ public class CarController : MonoBehaviour
         /*
          * Change car direction based on Horizontal input 
          */
-        _turnInput = rewiredPlayer.GetAxis("Horizontal");
+        _turnInput = rewiredPlayer.GetAxis("MoveLeftRight");
         
         
         /*
@@ -239,7 +249,7 @@ public class CarController : MonoBehaviour
          */
         transform.position = theRB.transform.position;
         _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime * 90f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -250,7 +260,7 @@ public class CarController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                launchCar();
+                launchCar(totalTime);
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -393,11 +403,10 @@ public class CarController : MonoBehaviour
         wheels[1].transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * 45, 0f));
     }
 
-    public void launchCar()
+    public void launchCar(float value)
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
-        _remainingTime = totalTime;
-        totalTime = 0f;
+        _remainingTime = value;
         _currentSpeed = initialSpeed;
         turn = true;
         theRB.gameObject.SetActive(true);
