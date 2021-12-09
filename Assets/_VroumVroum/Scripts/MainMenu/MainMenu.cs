@@ -14,9 +14,12 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (ReInput.players.GetPlayer(0).GetAnyButton())
+        for (int i = 0; i < ReInput.players.playerCount; i++)
         {
-            LoadSelectionScene();
+            if (ReInput.players.GetPlayer(i).GetAnyButton())
+            {
+                LoadSelectionScene();
+            }
         }
     }
 

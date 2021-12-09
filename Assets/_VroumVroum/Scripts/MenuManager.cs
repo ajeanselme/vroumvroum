@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Player = Rewired.Player;
 
 public class MenuManager : MonoBehaviour
 {
@@ -15,7 +16,15 @@ public class MenuManager : MonoBehaviour
     
     [SerializeField] private CarSelecting[] carSelectings;
 
-    private List<GameObject> carMeshes;
+    private Rewired.Player[] slotsSet = new Rewired.Player[4];
+
+    private List<PlayerStruct> carMeshes;
+    
+    private struct PlayerStruct
+    {
+        public GameObject mesh;
+        public Rewired.Player player;
+    }
 
     private void Awake()
     {
@@ -30,19 +39,54 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Update()
     {
-        InitializeSelectionMenu();
+        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+        {
+            if (ReInput.players.GetPlayer(i).GetButtonDown("Join"))
+            {
+                SetPlayerSlot(ReInput.players.GetPlayer(i));
+            }
+        }
+
+        for (int i = 0; i < slotsSet.Length; i++)
+        {
+            if (slotsSet[i] != null)
+            {
+                
+                if (carSelectings[i].isLocked && slotsSet[i].GetButtonDown("Join"))
+                {
+                    LaunchGame();
+                }
+                
+                break;
+            }
+        }
     }
 
-    public void InitializeSelectionMenu()
+    private void SetPlayerSlot(Rewired.Player _player)
     {
-        if (carSelectings == null) return;
-        
-        for (int i = 0; i < carSelectings.Length; i++)
+        if (Array.IndexOf(slotsSet, _player) > -1) return; // Already register
+
+        for (int i = 0; i < slotsSet.Length; i++)
         {
-            carSelectings[i].InitReInput(i);
+            if (slotsSet[i] == null)
+            {
+                slotsSet[i] = _player;
+                carSelectings[i].PlayerJoin(_player);
+                break;
+            }
         }
+    }
+
+    public void UnsetPlayerSlot(Rewired.Player _player)
+    {
+        int index = Array.IndexOf(slotsSet, _player);
+        
+        if (index == -1) return;
+
+        slotsSet[index] = null;
+        carSelectings[index].PlayerLeave(_player);
     }
 
     public bool LaunchGame()
@@ -50,9 +94,25 @@ public class MenuManager : MonoBehaviour
         if (isGameLaunched) return true;
         
         bool isReady = true;
-        carMeshes = new List<GameObject>();
+        carMeshes = new List<PlayerStruct>();
 
-        for (int i = 0; i < carSelectings.Length; i++)
+        for (int i = 0; i < slotsSet.Length; i++)
+        {
+            if (slotsSet[i] != null)
+            {
+                if (carSelectings[i].isLocked)
+                {
+                    carMeshes.Add(new PlayerStruct{mesh = carSelectings[i].carModels[carSelectings[i].currentCarIndex].transform.GetChild(2).gameObject, player = slotsSet[i]} );
+                }
+                else
+                {
+                    isReady = false;
+                    break;
+                }
+            }
+        }
+
+        /*for (int i = 0; i < carSelectings.Length; i++)
         {
             if (carSelectings[i].rewiredPlayer.controllers.joystickCount == 1 && !carSelectings[i].isLocked)
             {
@@ -62,14 +122,14 @@ public class MenuManager : MonoBehaviour
             
             if (carSelectings[i].rewiredPlayer.controllers.joystickCount == 1 && carSelectings[i].isLocked)
                 carMeshes.Add(carSelectings[i].carModels[carSelectings[i].currentCarIndex].transform.GetChild(2).gameObject);
-        }
+        }*/
 
         if (isReady)
         {
             for (int i = 0; i < carMeshes.Count; i++)
             {
-                carMeshes[i].transform.parent = null;
-                DontDestroyOnLoad(carMeshes[i]);
+                carMeshes[i].mesh.transform.parent = null;
+                DontDestroyOnLoad(carMeshes[i].mesh);
             }
             
             LoadGameScene();
@@ -98,23 +158,23 @@ public class MenuManager : MonoBehaviour
 
         for (int i = 0; i < carMeshes.Count; i++)
         {
-            SceneManager.MoveGameObjectToScene(carMeshes[i], SceneManager.GetActiveScene());
+            SceneManager.MoveGameObjectToScene(carMeshes[i].mesh, SceneManager.GetActiveScene());
 
             GameObject nCar = Instantiate(carPrefab, CheckpointsController.instance.points[0].position, Quaternion.Euler(CheckpointsController.instance.points[0].rotation));
             CarController carController = nCar.GetComponent<CarController>();
             cars[i] = carController;
             
-            carMeshes[i].transform.parent = nCar.transform; // change to the car prefab
-            carMeshes[i].transform.localPosition = Vector3.zero;
+            carMeshes[i].mesh.transform.parent = nCar.transform; // change to the car prefab
+            carMeshes[i].mesh.transform.localPosition = Vector3.zero;
 
             GameObject[] wheels = new GameObject[4];
-            for (int x = 0; x < carMeshes[i].transform.childCount - 1; x++)
+            for (int x = 0; x < carMeshes[i].mesh.transform.childCount - 1; x++)
             {
-                wheels[x] = carMeshes[i].transform.GetChild(x).gameObject;
+                wheels[x] = carMeshes[i].mesh.transform.GetChild(x).gameObject;
             }
             carController.InitWheels(wheels);
             
-            carController.InitReInput(i);
+            carController.InitReInput(carMeshes[i].player.id);
             carController.enabled = false;
             
             nCar.SetActive(false);
