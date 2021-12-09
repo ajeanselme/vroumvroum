@@ -10454,7 +10454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Debugging: 0
   turn: 0
-  totalTime: 3
+  totalTime: 15
   initialSpeed: 8
   decelerationSpeed: 3
   turnStrength: 300
@@ -10527,6 +10527,8 @@ MonoBehaviour:
   - {fileID: 0}
   wheelOffset: 0.33
   vcam: {fileID: 1280199411}
+  carKey: {fileID: 0}
+  keyRotationSpeed: 100
 --- !u!114 &1498212713
 MonoBehaviour:
   m_ObjectHideFlags: 0
