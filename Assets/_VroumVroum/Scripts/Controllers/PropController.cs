@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PropController : MonoBehaviour
@@ -26,13 +23,11 @@ public class PropController : MonoBehaviour
 
     public void callCollision(Vector3 direction)
     {
-        float converted = (direction.magnitude / 5f) * (1f - weight / 10f);
-        if (converted == 0) converted = 1;
+        float converted =  direction.magnitude * ((12f - weight) / 100f);
         
         Vector3 force = new Vector3( direction.x * converted, Mathf.Clamp(2f * converted, 2f, 10f),
             direction.z * converted);
-        Debug.Log(force);
-        // GetComponent<Rigidbody>().AddForce(direction.x * 2f, 5, direction.z * 2f, ForceMode.Impulse);
+        
         GetComponent<Rigidbody>().AddForce(force, ForceMode.VelocityChange);
     }
 }
