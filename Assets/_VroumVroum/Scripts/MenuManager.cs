@@ -102,7 +102,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (carSelectings[i].isLocked)
                 {
-                    carMeshes.Add(new PlayerStruct{mesh = carSelectings[i].carModels[carSelectings[i].currentCarIndex].transform.GetChild(2).gameObject, player = slotsSet[i]} );
+                    carMeshes.Add(new PlayerStruct{mesh = carSelectings[i].carModels[carSelectings[i].currentCarIndex].transform.GetChild(0).gameObject, player = slotsSet[i]} );
                 }
                 else
                 {
