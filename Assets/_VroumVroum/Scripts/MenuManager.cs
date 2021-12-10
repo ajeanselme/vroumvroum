@@ -168,9 +168,10 @@ public class MenuManager : MonoBehaviour
             GameObject nCar = Instantiate(carPrefab, CheckpointsController.instance.points[0].position, Quaternion.Euler(CheckpointsController.instance.points[0].rotation));
             CarController carController = nCar.GetComponent<CarController>();
             cars[i] = carController;
+            carController.carKey = carMeshes[i].mesh.transform.GetChild(1).gameObject;
             
             carMeshes[i].mesh.transform.parent = nCar.transform; // change to the car prefab
-            carMeshes[i].mesh.transform.localPosition = new Vector3(0f, 0.3f, 0f);
+            carMeshes[i].mesh.transform.localPosition = Vector3.zero;
             carMeshes[i].mesh.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
 
             GameObject[] wheels = new GameObject[4];
