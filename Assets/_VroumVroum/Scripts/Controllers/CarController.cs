@@ -48,7 +48,7 @@ public class CarController : MonoBehaviour
     public ParticleSystem[] dustTrail;
     public LayerMask whatIsGround;
     
-    [Range(.3f, .5f)]
+    [Range(.3f, 2f)]
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
@@ -407,6 +407,8 @@ public class CarController : MonoBehaviour
     public void launchCar(float value)
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
+        theRB.transform.position = new Vector3(theRB.transform.position.x, theRB.transform.position.y + .5f,
+            theRB.transform.position.z);
         _remainingTime = value;
         _currentSpeed = initialSpeed;
         turn = true;
