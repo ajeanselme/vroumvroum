@@ -249,7 +249,8 @@ public class CarController : MonoBehaviour
          */
         transform.position = theRB.transform.position;
         _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
+        transform.rotation = _nextRotation;
 
         if (Input.GetKeyDown(KeyCode.P))
         {

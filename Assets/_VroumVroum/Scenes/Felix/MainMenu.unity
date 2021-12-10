@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -603,8 +603,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actionIdCounter
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actions.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actions.Array.data[7]._id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actions.Array.data[7]._name
+      value: JoystickL
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actions.Array.data[7]._type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actions.Array.data[7]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actions.Array.data[7]._descriptiveName
+      value: Action0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.size
-      value: 22
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[7]
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[0]._actionId
@@ -651,6 +687,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[22]._actionId
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[3]._elementType
       value: 1
       objectReference: {fileID: 0}
@@ -669,6 +709,10 @@ PrefabInstance:
     - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[13]._elementType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[22]._elementType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[9]._axisContribution
@@ -761,6 +805,10 @@ PrefabInstance:
     - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[21]._elementIdentifierId
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 825921803941328979, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[22]._elementIdentifierId
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d11b64143d62d94ca2662aa3f0d0082, type: 3}

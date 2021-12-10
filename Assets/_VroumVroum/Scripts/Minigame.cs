@@ -110,28 +110,28 @@ public class Minigame : MonoBehaviour
                     switch (_mgState)
                     {
                         case MGState.TOP:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("MoveLeftRight") > .9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") > .9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.RIGHT;
                             }
                             break;
                         case MGState.RIGHT:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("MoveLeftRight") < -.9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") < -.9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.BOTTOM;
                             }
                             break;
                         case MGState.BOTTOM:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("MoveLeftRight") < -.9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") < -.9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.LEFT;
                             }
                             break;
                         case MGState.LEFT:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("MoveLeftRight") > .9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") > .9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.TOP;
