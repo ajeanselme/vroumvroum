@@ -19,7 +19,10 @@ public class MenuManager : MonoBehaviour
     private Rewired.Player[] slotsSet = new Rewired.Player[4];
 
     private List<PlayerStruct> carMeshes;
-    
+
+    public delegate void OnGameSceneLaunched();
+    public event OnGameSceneLaunched onGameSceneLaunched;
+
     private struct PlayerStruct
     {
         public GameObject mesh;
@@ -154,6 +157,8 @@ public class MenuManager : MonoBehaviour
     {
         _asc.completed -= InitializeGameScene;
 
+        onGameSceneLaunched();
+        
         CarController[] cars = new CarController[carMeshes.Count];
 
         for (int i = 0; i < carMeshes.Count; i++)
