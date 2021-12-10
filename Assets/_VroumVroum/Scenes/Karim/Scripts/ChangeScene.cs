@@ -14,6 +14,6 @@ public class ChangeScene : MonoBehaviour
         for (int i = 0; i < carsIndex.Length; i++)
             carsIndex[i] = Convert.ToUInt16(cars[i].currentCarIndex);
             
-        //LaunchGameScene(carsIndex);
+        ParsecGameManager.instance.LaunchGameScene(carsIndex);
     }
 }
