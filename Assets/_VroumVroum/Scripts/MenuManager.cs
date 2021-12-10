@@ -44,7 +44,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+        for (int i = 0; i < ReInput.players.playerCount; i++)
         {
             if (ReInput.players.GetPlayer(i).GetButtonDown("Join"))
             {

@@ -45,40 +45,52 @@ public class EventsManager : MonoBehaviour
     {
         if (isOn)
         {
+            Debug.Log("a");
             if (order)
             {
+                Debug.Log("b");
                 if (stepList.Count > chessStep)
                 {
+                    Debug.Log("c");
                     if (stepList[chessStep].gameObject.transform.localPosition != stepList[chessStep].targetPosition)
                     {
+                        Debug.Log("d");
                         stepList[chessStep].gameObject.transform.localPosition = Vector3.MoveTowards(stepList[chessStep].gameObject.transform.localPosition, stepList[chessStep].targetPosition, chessSpeed / 10f);
+                        
                     }
                     else
                     {
+                        Debug.Log("e");
                         chessStep++;
                     }
                 }
                 else
                 {
+                    Debug.Log("f");
                     chessStep--;
                     order = false;
                 }
             }
             else
             {
+                Debug.Log("g");
                 if (chessStep >= 0)
                 {
+                    Debug.Log("h");
                     if (stepList[chessStep].gameObject.transform.localPosition != stepList[chessStep].basePosition)
                     {
+                        Debug.Log("i");
                         stepList[chessStep].gameObject.transform.localPosition = Vector3.MoveTowards(stepList[chessStep].gameObject.transform.localPosition, stepList[chessStep].basePosition, chessSpeed / 10f);
                     }
                     else
                     {
+                        Debug.Log("j");
                         chessStep--;
                     }
                 }
                 else
                 {
+                    Debug.Log("k");
                     order = true;
                     chessStep++;
                 }

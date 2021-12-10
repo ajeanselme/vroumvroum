@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: b2e2dda26abf6054cbaa9321aa46e044, type: 2}
   m_LightingSettings: {fileID: 401740422}
 --- !u!196 &4
 NavMeshSettings:
@@ -2137,6 +2137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toaster (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6748099728342104617, guid: 5f9a0581167fdc64d850fa6a18a50299, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9a0581167fdc64d850fa6a18a50299, type: 3}
 --- !u!4 &42872979 stripped
@@ -2616,7 +2620,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &52868247 stripped
 Transform:
@@ -3489,6 +3494,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe173c4fdf9ccc42839b64f794ca95b, type: 3}
+--- !u!1001 &80577211
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 102.77002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1480.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097392, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007095304116097398, guid: aae1f054098f72349987dfb4903edddf, type: 3}
+      propertyPath: m_Name
+      value: Music Race
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aae1f054098f72349987dfb4903edddf, type: 3}
 --- !u!4 &81946245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8781271577280868285, guid: fb3c872a28dc28b4882bc9ba7d5a2e07, type: 3}
@@ -4550,11 +4612,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8905540962858343352, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &113101535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132664194075771138, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
+  m_PrefabInstance: {fileID: 113101534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &113101536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8905540962858343352, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_PrefabInstance: {fileID: 113101534}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &113198491
@@ -5152,12 +5224,12 @@ MonoBehaviour:
     distance: 144
     foldout: 0
   - listIndex: 0
-    position: {x: 529.70166, y: 0.24757767, z: 233.3149}
+    position: {x: 525.9886, y: 0.24757767, z: 233.3149}
     rotation: {x: 0, y: 0, z: 0}
     distance: 60
     foldout: 0
   - listIndex: 0
-    position: {x: 519.7753, y: 0.24757767, z: 152.64859}
+    position: {x: 517.2296, y: 0.24757767, z: 152.64859}
     rotation: {x: 0, y: 0, z: 0}
     distance: 81
     foldout: 0
@@ -7465,16 +7537,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &173754447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
-  m_PrefabInstance: {fileID: 173754446}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &173754448 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_PrefabInstance: {fileID: 173754446}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &175531575
@@ -8179,7 +8247,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8905540962858343352, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &193414421 stripped
 Transform:
@@ -8483,6 +8556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_Black (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
       propertyPath: m_RootOrder
       value: 121
@@ -8539,11 +8616,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &201855982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
+  m_PrefabInstance: {fileID: 201855981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &201855983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_PrefabInstance: {fileID: 201855981}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &203199913
@@ -10377,6 +10460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1845215600640312935, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
+    - {fileID: 1755167692271738918, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
 --- !u!4 &254979557 stripped
 Transform:
@@ -12212,11 +12296,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Queen_White
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9129624589400087181, guid: c48c365c1d2ad2344bb48aeacf52eb3c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8247103432965498846, guid: c48c365c1d2ad2344bb48aeacf52eb3c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c48c365c1d2ad2344bb48aeacf52eb3c, type: 3}
 --- !u!4 &318340161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8500862733815463991, guid: c48c365c1d2ad2344bb48aeacf52eb3c, type: 3}
+  m_PrefabInstance: {fileID: 318340160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &318340162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9129624589400087181, guid: c48c365c1d2ad2344bb48aeacf52eb3c, type: 3}
   m_PrefabInstance: {fileID: 318340160}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &318410464
@@ -17140,6 +17234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_King_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 4966227454354252066, guid: 68ce30a2d62b7144f883670eb38ddf6f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5737661938140429208, guid: 68ce30a2d62b7144f883670eb38ddf6f, type: 3}
       propertyPath: m_RootOrder
       value: 320
@@ -17196,11 +17294,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5200246206292221045, guid: 68ce30a2d62b7144f883670eb38ddf6f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 68ce30a2d62b7144f883670eb38ddf6f, type: 3}
 --- !u!4 &411462038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5737661938140429208, guid: 68ce30a2d62b7144f883670eb38ddf6f, type: 3}
+  m_PrefabInstance: {fileID: 411462037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &411462039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4966227454354252066, guid: 68ce30a2d62b7144f883670eb38ddf6f, type: 3}
   m_PrefabInstance: {fileID: 411462037}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &411920729
@@ -26040,7 +26144,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &503510624 stripped
 Transform:
@@ -30777,6 +30882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_Black (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
       propertyPath: m_RootOrder
       value: 41
@@ -30833,11 +30942,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &660082465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
+  m_PrefabInstance: {fileID: 660082464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &660082466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_PrefabInstance: {fileID: 660082464}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &660788428
@@ -31261,7 +31376,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1755167692271738918, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
 --- !u!4 &672000819 stripped
 Transform:
@@ -34049,7 +34165,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &729749571 stripped
 Transform:
@@ -34259,16 +34376,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &740901648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
-  m_PrefabInstance: {fileID: 740901647}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &740901649 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_PrefabInstance: {fileID: 740901647}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &741233455
@@ -34531,7 +34644,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Tower_White (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5176447109643283238, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
 --- !u!4 &752879680 stripped
 Transform:
@@ -35281,11 +35395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8132664194075771138, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 108.991
+      value: 108.79
       objectReference: {fileID: 0}
     - target: {fileID: 8132664194075771138, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 109.18513
+      value: 109.27
       objectReference: {fileID: 0}
     - target: {fileID: 8132664194075771138, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
       propertyPath: m_LocalPosition.z
@@ -35323,7 +35437,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8905540962858343352, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &778072036 stripped
 Transform:
@@ -42487,11 +42606,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8905540962858343352, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &955650834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132664194075771138, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
+  m_PrefabInstance: {fileID: 955650833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &955650835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8905540962858343352, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_PrefabInstance: {fileID: 955650833}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &957757006
@@ -43667,7 +43796,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 173.334
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1755167692271738918, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
 --- !u!4 &980940089 stripped
 Transform:
@@ -43741,11 +43871,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Tower_White
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5410801077336381045, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5176447109643283238, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
 --- !u!4 &985095375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4637817308635450575, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
+  m_PrefabInstance: {fileID: 985095374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &985095376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5410801077336381045, guid: 4fc3b3aa9cb866b469be3d48f69b2ec3, type: 3}
   m_PrefabInstance: {fileID: 985095374}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &985230543
@@ -44270,7 +44410,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -121.013
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4289640525624080976, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
 --- !u!4 &1005078582 stripped
 Transform:
@@ -44738,6 +44879,10 @@ PrefabInstance:
     - target: {fileID: 4517065455313792622, guid: d3baad4b7f9c0bb48bb0ee3de9d71184, type: 3}
       propertyPath: m_Name
       value: Slice_Of_Bread (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517065455313792622, guid: d3baad4b7f9c0bb48bb0ee3de9d71184, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3baad4b7f9c0bb48bb0ee3de9d71184, type: 3}
@@ -46265,20 +46410,116 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepList:
-  - gameObject: {fileID: 193414422}
+  - gameObject: {fileID: 955650835}
     basePosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 122, y: 118.5, z: -7}
-  - gameObject: {fileID: 173754448}
+    targetPosition: {x: 115, y: 101, z: -6.9}
+  - gameObject: {fileID: 1695748991}
     basePosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 123, y: 108, z: -7}
+    targetPosition: {x: 128.7, y: 86, z: -2}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 122, y: 93, z: -2}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 122, y: 93, z: -6.9}
+  - gameObject: {fileID: 955650835}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 119.5, y: 99.5, z: -6.9}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 119.5, y: 99.5, z: -2}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 121.5, y: 104.5, z: -2}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 121.5, y: 104.5, z: -6.6}
   - gameObject: {fileID: 778072037}
     basePosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 117, y: 106, z: -7}
-  - gameObject: {fileID: 740901649}
+    targetPosition: {x: 117, y: 105.7, z: -6.9}
+  - gameObject: {fileID: 1283587338}
     basePosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 118, y: 95, z: -7}
+    targetPosition: {x: 125.6, y: 102.2, z: -6.9}
+  - gameObject: {fileID: 2103991830}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 99.3, y: 98, z: -2}
+  - gameObject: {fileID: 2103991830}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 109.5, y: 99, z: -2}
+  - gameObject: {fileID: 2103991830}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 109.5, y: 99, z: -6.7}
+  - gameObject: {fileID: 201855983}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 120.5, y: 89, z: -6.9}
+  - gameObject: {fileID: 1211723472}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 118.8, y: 109.9, z: -6.65}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 121.5, y: 104, z: -2}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 129, y: 110.5, z: -2}
+  - gameObject: {fileID: 1695748991}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 129, y: 110.5, z: -6.6}
+  - gameObject: {fileID: 1211723472}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 116, y: 116, z: -6.65}
+  - gameObject: {fileID: 1368750764}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 124.5, y: 87.4, z: -6.65}
+  - gameObject: {fileID: 318340162}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 107, y: 104.9, z: -6.6}
+  - gameObject: {fileID: 2017894096}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 137.6, y: 106.8, z: -2}
+  - gameObject: {fileID: 2017894096}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 127, y: 106.6, z: -2}
+  - gameObject: {fileID: 2017894096}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 127, y: 106.6, z: -6.7}
+  - gameObject: {fileID: 2078738982}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 99, y: 98, z: -6.26}
+  - gameObject: {fileID: 985095376}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 97, y: 93, z: -2}
+  - gameObject: {fileID: 985095376}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 101, y: 103, z: -2}
+  - gameObject: {fileID: 985095376}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 101, y: 103, z: -6.75}
+  - gameObject: {fileID: 411462039}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 128.7, y: 85.9, z: -6.45}
+  - gameObject: {fileID: 1117931165}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 127, y: 81.8, z: -2}
+  - gameObject: {fileID: 1117931165}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 130.5, y: 90, z: -2}
+  - gameObject: {fileID: 1117931165}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 130.5, y: 90, z: -6.75}
+  - gameObject: {fileID: 113101536}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 106, y: 90.3, z: -6.9}
+  - gameObject: {fileID: 660082466}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 126.3, y: 116.85, z: -6.9}
+  - gameObject: {fileID: 193414422}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 122.22, y: 118.6, z: -6.9}
+  - gameObject: {fileID: 1740776080}
+    basePosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 129.9, y: 100.5, z: -6.6}
   chessSpeed: 0.7
-  isOn: 0
+  isOn: 1
 --- !u!1001 &1060638662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47005,7 +47246,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &1071361089 stripped
 Transform:
@@ -48887,6 +49129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Tower_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 1593186913461784856, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2114426427704118178, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
       propertyPath: m_RootOrder
       value: 446
@@ -48943,11 +49189,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1935785738117180491, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
 --- !u!4 &1117931164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2114426427704118178, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
+  m_PrefabInstance: {fileID: 1117931163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1117931165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1593186913461784856, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
   m_PrefabInstance: {fileID: 1117931163}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1118446380
@@ -49568,6 +49820,30 @@ PrefabInstance:
     - target: {fileID: 6299670655095502141, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
       propertyPath: m_Name
       value: Book_1_Yellow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606082208101189742, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
+      propertyPath: m_Size.x
+      value: 3.4187756
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606082208101189742, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
+      propertyPath: m_Size.y
+      value: 14.423963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606082208101189742, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
+      propertyPath: m_Size.z
+      value: 3.4043832
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606082208101189742, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
+      propertyPath: m_Center.x
+      value: 0.009904484
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606082208101189742, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
+      propertyPath: m_Center.y
+      value: -0.37393767
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606082208101189742, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
+      propertyPath: m_Center.z
+      value: -0.075010955
       objectReference: {fileID: 0}
     - target: {fileID: 6640344044458946439, guid: 2ea82fa78c7b12a4eba5cd6eac358327, type: 3}
       propertyPath: m_RootOrder
@@ -51945,6 +52221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1845215600640312935, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
+    - {fileID: 1755167692271738918, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
 --- !u!4 &1192422876 stripped
 Transform:
@@ -52953,11 +53230,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Bishop_White (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6444264203799380605, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6174375679362563874, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
 --- !u!4 &1211723471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919261027157547207, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
+  m_PrefabInstance: {fileID: 1211723470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1211723472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6444264203799380605, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
   m_PrefabInstance: {fileID: 1211723470}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1212252986
@@ -53229,7 +53516,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &1214830641 stripped
 Transform:
@@ -55557,7 +55845,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1755167692271738918, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
 --- !u!4 &1277151152 stripped
 Transform:
@@ -55917,6 +56206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bookmark_Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 535085177963725424, guid: 06b849691eb25734a8568d449ce1f86a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 875617589675071690, guid: 06b849691eb25734a8568d449ce1f86a, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -56152,6 +56445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_Black (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
       propertyPath: m_RootOrder
       value: 406
@@ -56208,11 +56505,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &1283587337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4349478937590679877, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
+  m_PrefabInstance: {fileID: 1283587336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1283587338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3969822603712041983, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_PrefabInstance: {fileID: 1283587336}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1284466006
@@ -57706,7 +58009,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh640178
+  m_Name: pb_Mesh1594696
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57715,10 +58018,10 @@ Mesh:
     topology: 0
     baseVertex: 0
     firstVertex: 0
-    vertexCount: 24
+    vertexCount: 30
     localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
+      m_Center: {x: 0.79089355, y: 0.82021904, z: -1.1215515}
+      m_Extent: {x: 14.043701, y: 0.82021904, z: 3.1251984}
   m_Shapes:
     vertices: []
     shapes: []
@@ -57735,10 +58038,10 @@ Mesh:
   m_KeepVertices: 1
   m_KeepIndices: 1
   m_IndexFormat: 0
-  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
+  m_IndexBuffer: 00000100020003000400050006000700080009000a000b000c000d000e000d000f000e001000110012001300140015001600170018001700190018001a001b001c001b001d001c00
   m_VertexData:
     serializedVersion: 3
-    m_VertexCount: 24
+    m_VertexCount: 30
     m_Channels:
     - stream: 0
       offset: 0
@@ -57796,8 +58099,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 1152
-    _typelessdata: 800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d410000000060e587c00000003f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000003f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d41e0f9d13f406261c00000803f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d410000000060e587c000000000e5ffce3e13256abf0000803f0000000000000000000080bf805a6d41d5c4dbbf800b54c10000000060e587c000000000e5ffce3e13256abf0000803f0000000000000000000080bf800b54c1d5c4dbbf805a6d41e0f9d13f406261c000000000e5ffce3e13256abf0000803f0000000000000000000080bf805a6d4158e79c3d800b54c1e0f9d13f406261c000000000e5ffce3e13256abf0000803f0000000000000000000080bf800b54c158e79c3d800b54c10000000060e587c0000080bf00000000000000000000000000000000000080bf000080bf60e5874000000000800b54c100000000c03b0040000000bf00000000000000000000c0ff0000c0ff0000c0ff0000803fc03b00c000000000800b54c1e0f9d13f406261c0000000bf00000000000000000000c0ff0000c0ff0000c0ff0000803f40626140e0f9d13f800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803fc03b00c000000000800b54c100000000c03b0040000000007f69753f75b9913e0000803f0000000000000000000080bf800b54c10edcf53f805a6d4100000000c03b0040000000007f69753f75b9913e0000803f0000000000000000000080bf805a6d410edcf53f800b54c1e0f9d13f406261c0000000007f69753f75b9913e0000803f0000000000000000000080bf800b54c192f175c0805a6d41e0f9d13f406261c0000000007f69753f75b9913e0000803f0000000000000000000080bf805a6d4192f175c0800b54c10000000060e587c000000000000080bf00000000000080bf0000000000000000000080bf800b544160e587c0805a6d410000000060e587c000000000000080bf00000000000080bf0000000000000000000080bf805a6dc160e587c0800b54c100000000c03b004000000000000080bf00000000000080bf0000000000000000000080bf800b5441c03b0040805a6d4100000000c03b004000000000000080bf00000000000080bf0000000000000000000080bf805a6dc1c03b0040
+    m_DataSize: 1440
+    _typelessdata: 800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d410000000060e587c00000003f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000003f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d410000000060e587c00000003f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d41e0f9d13f406261c00000803f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d4100000000c03b00400000003f00000000000000000000c0ff0000c0ff0000c0ff0000803f0000000000000000805a6d410000000060e587c000000000e5ffce3e13256abf0000803f0000000000000000000080bf805a6d41d5c4dbbf800b54c10000000060e587c000000000e5ffce3e13256abf0000803f0000000000000000000080bf800b54c1d5c4dbbf805a6d41e0f9d13f406261c000000000e5ffce3e13256abf0000803f0000000000000000000080bf805a6d4158e79c3d800b54c1e0f9d13f406261c000000000e5ffce3e13256abf0000803f0000000000000000000080bf800b54c158e79c3d800b54c10000000060e587c0000080bf00000000000000000000000000000000000080bf000080bf60e5874000000000800b54c100000000c03b0040000000bf00000000000000000000c0ff0000c0ff0000c0ff0000803fc03b00c000000000800b54c1e0f9d13f406261c0000000bf00000000000000000000c0ff0000c0ff0000c0ff0000803f40626140e0f9d13f800b54c100000000c03b0040000000bf00000000000000000000c0ff0000c0ff0000c0ff0000803fc03b00c000000000800b54c100000000c03b00400000000000000000000000000000c0ff0000c0ff0000c0ff0000803fc03b00c000000000800b54c1e0f9d13f406261c0000000bf00000000000000000000c0ff0000c0ff0000c0ff0000803f40626140e0f9d13f800b54c100000000c03b0040000000007f69753f75b9913e0000803f0000000000000000000080bf800b54c10edcf53f805a6d4100000000c03b0040000000007f69753f75b9913e0000803f0000000000000000000080bf805a6d410edcf53f800b54c1e0f9d13f406261c0000000007f69753f75b9913e0000803f0000000000000000000080bf800b54c192f175c0805a6d41e0f9d13f406261c0000000007f69753f75b9913e0000803f0000000000000000000080bf805a6d4192f175c0800b54c10000000060e587c000000000000080bf00000000000080bf0000000000000000000080bf800b544160e587c0805a6d410000000060e587c000000000000080bf00000000000080bf0000000000000000000080bf805a6dc160e587c0800b54c100000000c03b004000000000000080bf00000000000080bf0000000000000000000080bf800b5441c03b0040805a6d4100000000c03b004000000000000080bf00000000000080bf0000000000000000000080bf805a6dc1c03b0040
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -58580,7 +58883,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4311859582354828972, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 247c1fcff0c9f284ea0cbe11f433e1ac, type: 3}
 --- !u!4 &1342470249 stripped
 Transform:
@@ -59542,15 +59846,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8385243199505787134, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 130.63298
+      value: 130.28
       objectReference: {fileID: 0}
     - target: {fileID: 8385243199505787134, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 90.161224
+      value: 90.05
       objectReference: {fileID: 0}
     - target: {fileID: 8385243199505787134, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6454544
+      value: -6.65
       objectReference: {fileID: 0}
     - target: {fileID: 8385243199505787134, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59584,11 +59888,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Bishop_Black
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9157382577957188164, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8346550263627124499, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
 --- !u!4 &1368750763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8385243199505787134, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
+  m_PrefabInstance: {fileID: 1368750762}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1368750764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9157382577957188164, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
   m_PrefabInstance: {fileID: 1368750762}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1368870683
@@ -60456,7 +60770,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Bishop_Black (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8346550263627124499, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1c707dd06b7c6d44b99687f1cfb490fc, type: 3}
 --- !u!4 &1394372124 stripped
 Transform:
@@ -62686,7 +63001,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 178.313
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1935785738117180491, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f7bfb209251c2994e9f35a63887ebe26, type: 3}
 --- !u!4 &1459953331 stripped
 Transform:
@@ -76708,6 +77024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Knight_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 239172786528825280, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -76726,15 +77046,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 128.84299
+      value: 128.73
       objectReference: {fileID: 0}
     - target: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 86.05392
+      value: 85.98
       objectReference: {fileID: 0}
     - target: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6982574
+      value: -6.59
       objectReference: {fileID: 0}
     - target: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -76764,11 +77084,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 70.086
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1121642255043564179, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
 --- !u!4 &1695748990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
+  m_PrefabInstance: {fileID: 1695748989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1695748991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 239172786528825280, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
   m_PrefabInstance: {fileID: 1695748989}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1696578015
@@ -78430,6 +78756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Queen_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 144337720451570442, guid: a2fe25699427efc4ba2b0d0d476354bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 669658419137135024, guid: a2fe25699427efc4ba2b0d0d476354bf, type: 3}
       propertyPath: m_RootOrder
       value: 281
@@ -78486,11 +78816,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1063310988028782173, guid: a2fe25699427efc4ba2b0d0d476354bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a2fe25699427efc4ba2b0d0d476354bf, type: 3}
 --- !u!4 &1740776079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 669658419137135024, guid: a2fe25699427efc4ba2b0d0d476354bf, type: 3}
+  m_PrefabInstance: {fileID: 1740776078}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1740776080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 144337720451570442, guid: a2fe25699427efc4ba2b0d0d476354bf, type: 3}
   m_PrefabInstance: {fileID: 1740776078}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1741152406
@@ -81828,15 +82164,15 @@ RectTransform:
   m_GameObject: {fileID: 1838894977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 1, z: 1}
+  m_LocalScale: {x: 3.0505, y: 1.2202, z: 1.2202}
   m_Children: []
   m_Father: {fileID: 387670165}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 270}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 4.9, y: 314.9}
+  m_SizeDelta: {x: 50, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838894979
 MonoBehaviour:
@@ -81858,7 +82194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a21d4399e97d0824597a70bc47afb0c1, type: 3}
+  m_Texture: {fileID: 2800000, guid: 920e7490f666e974a99bcc89408b62fd, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -83110,7 +83446,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Pawn_White (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8599552585328862959, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 560834cd87d4f2f43ad268a9d8225a28, type: 3}
 --- !u!4 &1854682282 stripped
 Transform:
@@ -90346,7 +90683,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Bishop_White (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6174375679362563874, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92d6a96102c745241ad7a5a0c1b29af5, type: 3}
 --- !u!4 &1930163762 stripped
 Transform:
@@ -92943,6 +93281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fry_1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3547991728407454262, guid: 65fdad6a5bda94f428c32fbdb35954ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4212887659236849804, guid: 65fdad6a5bda94f428c32fbdb35954ef, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -93778,6 +94120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Knight_Black (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 239172786528825280, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
       propertyPath: m_RootOrder
       value: 610
@@ -93834,11 +94180,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 115.787
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1121642255043564179, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
 --- !u!4 &2017894095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 583892133665961338, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
+  m_PrefabInstance: {fileID: 2017894094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2017894096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 239172786528825280, guid: cdf96ad5cd8720442b3199996861035f, type: 3}
   m_PrefabInstance: {fileID: 2017894094}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2018250128 stripped
@@ -96197,6 +96549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_King_White
       objectReference: {fileID: 0}
+    - target: {fileID: 4658093854267225343, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5471608577044475461, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
       propertyPath: m_RootOrder
       value: 325
@@ -96219,11 +96575,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471608577044475461, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 106.71663
+      value: 106.72
       objectReference: {fileID: 0}
     - target: {fileID: 5471608577044475461, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.4479523
+      value: -6.26
       objectReference: {fileID: 0}
     - target: {fileID: 5471608577044475461, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -96253,11 +96609,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5505006779027294624, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
 --- !u!4 &2078738981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5471608577044475461, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
+  m_PrefabInstance: {fileID: 2078738980}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2078738982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4658093854267225343, guid: 4e856d53b5f4fa2459a29a81ea50c0ff, type: 3}
   m_PrefabInstance: {fileID: 2078738980}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2079420394
@@ -97572,6 +97934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chess_Knight_White
       objectReference: {fileID: 0}
+    - target: {fileID: 3983069405859563267, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4327224948009213369, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
       propertyPath: m_RootOrder
       value: 263
@@ -97628,11 +97994,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -68.191
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4289640525624080976, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
 --- !u!4 &2103991829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4327224948009213369, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
+  m_PrefabInstance: {fileID: 2103991828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2103991830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3983069405859563267, guid: e51dae2f3df64d4469665a0749940fe5, type: 3}
   m_PrefabInstance: {fileID: 2103991828}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2104617485
@@ -98340,7 +98712,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.8730011
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1755167692271738918, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90212edcb5079be46a30817ee8526d32, type: 3}
 --- !u!4 &2118359593 stripped
 Transform:
