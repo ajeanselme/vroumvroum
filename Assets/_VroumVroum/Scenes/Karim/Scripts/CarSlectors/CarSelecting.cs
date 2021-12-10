@@ -27,9 +27,7 @@ public class CarSelecting : MonoBehaviour
         if (rewiredPlayer == null) return;
         if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
         if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
-        Debug.Log(rewiredPlayer.GetAxis("MoveLeftRight") + ", " + rewiredPlayer.id + ", " + rewiredPlayer.controllers.customControllerCount);
-        //if (Input.GetKeyDown(previousKey)) ChangePrevious();
-        //if (Input.GetKeyDown(nextKey)) ChangeNext();
+        
     }
 
     public void InitReInput(int playerID)
