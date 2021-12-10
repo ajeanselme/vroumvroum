@@ -47,8 +47,8 @@ public class EndGameManager : MonoBehaviour
         for (int i = 0; i < carsPodium.Length; i++)
         {
             SceneManager.MoveGameObjectToScene(carsPodium[i], SceneManager.GetActiveScene());
-            carsPodium[i].transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            carsPodium[i].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            carsPodium[i].transform.rotation = Quaternion.Euler(Vector3.zero);
+            carsPodium[i].transform.localScale = Vector3.one;
         }
         
         End endScript = End.instance;
