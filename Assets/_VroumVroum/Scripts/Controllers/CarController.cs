@@ -249,7 +249,8 @@ public class CarController : MonoBehaviour
          */
         transform.position = theRB.transform.position;
         _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
+        transform.rotation = _nextRotation;
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -406,6 +407,8 @@ public class CarController : MonoBehaviour
     public void launchCar(float value)
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
+        theRB.transform.position = new Vector3(theRB.transform.position.x, theRB.transform.position.y + .5f,
+            theRB.transform.position.z);
         _remainingTime = value;
         _currentSpeed = initialSpeed;
         turn = true;

@@ -28,15 +28,7 @@ public class CarSelecting : MonoBehaviour
     {
         if (rewiredPlayer == null) return;
 
-        if (!isJoined)
-        {
-            if (rewiredPlayer.GetButtonDown("Join"))
-            {
-                isJoined = true;
-                statusText.text = "";
-            }
-            else return;
-        }
+        if (!isJoined) return;
 
         if (rewiredPlayer.GetButtonDown("Lock"))
         {
@@ -44,23 +36,30 @@ public class CarSelecting : MonoBehaviour
             statusText.text = isLocked ? "Ready" : "";
         }
         
-        if (isLocked && rewiredPlayer.id != 0) return;
-        else if (isLocked && rewiredPlayer.id == 0)
-        {
-            if (rewiredPlayer.GetButtonDown("Join"))
-            {
-                MenuManager.instance.LaunchGame();
-            }
-            return;
-        }
-        
+        if (isLocked) return;
+
         if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
         if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
+        
     }
 
-    public void InitReInput(int player)
+    public void PlayerJoin(Rewired.Player _player)
     {
-        rewiredPlayer = ReInput.players.GetPlayer(player);
+        if (isJoined || _player == null) return;
+
+        isJoined = true;
+        statusText.text = "";
+        rewiredPlayer = _player;
+    }
+
+    public void PlayerLeave(Rewired.Player _player)
+    {
+        if (rewiredPlayer != _player) return;
+
+        rewiredPlayer = null;
+        statusText.text = "To Join";
+        isJoined = false;
+        isLocked = false;
     }
     
     public void ChangeNext()
