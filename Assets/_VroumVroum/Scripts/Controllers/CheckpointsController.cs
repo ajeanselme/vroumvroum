@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +25,7 @@ public class CheckpointsController : MonoBehaviour
         }
     }
 
-    public class PlayerData
+    class PlayerData
     {
         public int index;
         public int ladderPosition, currentCP;
@@ -43,22 +42,23 @@ public class CheckpointsController : MonoBehaviour
     [HideInInspector] public GameObject CPPrefab;
 
     public GameObject UI;
-    public GameObject ladderBar;
+    public Image progressBarFill;
 
     public AudioClip[] ladderAudioClips;
     public AudioSource audio;
 
     
     private PlayerData _playingPlayer;
-    private int firstCar = 0;
+    private int firstCar;
     // private float _CPDistance, _previousDistance, _lastProgress;
     public float CurrentCP => _playingPlayer.currentCP;
     public float CurrentDistance => _playingPlayer.CurrentDistance;
 
     private List<PlayerData> _playerDatas = new List<PlayerData>();
 
+    public GameObject debug;
+
     private float _lastUpdate;
-    private Slider[] sliders;
     
     private void Awake()
     {
@@ -75,13 +75,6 @@ public class CheckpointsController : MonoBehaviour
     private void Start()
     {
         audio = GetComponent<AudioSource>();
-
-        sliders = new Slider[ladderBar.transform.childCount];
-        for (int i = 0; i < ladderBar.transform.childCount; i++)
-        {
-            sliders[i] = ladderBar.transform.GetChild(i).GetComponent<Slider>();
-            sliders[i].value = 0f;
-        }
     }
 
     private void Update()
@@ -109,7 +102,7 @@ public class CheckpointsController : MonoBehaviour
                 Vector3 pointA = currentCP.position;
                 Vector3 pointB = nextCP.position;
 
-                Vector3 player = TurnManager.instance.cars[TurnManager.instance.indexCarTurn].transform.position;
+                Vector3 player = ParsecGameManager.instance.m_Players[TurnManager.instance.indexCarTurn].carController.transform.position;
 
                 Vector3 projected = Vector3.Project((player - pointA), (pointB - pointA)) + pointA;
                 
@@ -155,26 +148,30 @@ public class CheckpointsController : MonoBehaviour
 
     private void UpdateUI()
     {
-        float[] scores = new float[_playerDatas.Count];
+        List<float> scores = new List<float>();
+
+        float imageHeight = Screen.height - Screen.height / 14f;
+
         for (int i = 0; i < _playerDatas.Count; i++)
         {
             if (i == TurnManager.instance.indexCarTurn)
             {
-                scores[i] = (CurrentDistance);
+                scores.Add(CurrentDistance);
             }
             else
             {
-                scores[i] = (_playerDatas[i].CurrentDistance);
+                scores.Add(_playerDatas[i].CurrentDistance);
             }
         }
         
-        for (int i = 0; i < scores.Length; i++)
+        for (int i = 0; i < scores.Count; i++)
         {
-            float progress = Mathf.Clamp(scores[i] / (_playerDatas[firstCar].CurrentDistance > 200f ? _playerDatas[firstCar].CurrentDistance : 200f), .1f, 1f);
-            if(progress > 0)
-                sliders[i].value = progress;
+            float progress = scores[i] / ((_playerDatas[firstCar].CurrentDistance < 200) ? 200 : _playerDatas[firstCar].CurrentDistance);
             
-            sliders[i].transform.SetSiblingIndex(_playerDatas[i].ladderPosition);
+            float newPos = Mathf.Clamp(progress * imageHeight, progressBarFill.transform.position.y + 20f, imageHeight);
+            Transform bar = progressBarFill.transform.GetChild(i);
+
+            bar.position = Vector3.Lerp(bar.position, new Vector2(progressBarFill.transform.position.x, newPos), Time.deltaTime * 10f);
         }
     }
 
@@ -230,12 +227,10 @@ public class CheckpointsController : MonoBehaviour
                     if (i == 0)
                     {
                         UI.GetComponent<Animator>().SetTrigger("Confetti");
-                        ladderBar.transform.DOShakePosition(1.3f, new Vector3(5, 0, 0), 10, 0, true, false);
-                        ladderBar.transform.DOShakeRotation(1.3f, new Vector3(0, 0, 2), 20, 90, false);
+
                     }
                     else
                     {
-                        ladderBar.transform.DOPunchScale(new Vector3(.7f, 0, 0), .7f, 2, .2f);
                         UI.GetComponent<Animator>().SetTrigger("Blow");
                     }
                 }
@@ -244,10 +239,5 @@ public class CheckpointsController : MonoBehaviour
         }
         // Debug.Log("Position " + _playingPlayer.ladderPosition);
         _lastUpdate = Time.fixedTime + .5f;
-    }
-
-    public List<PlayerData> GetPlayerDataList()
-    {
-        return _playerDatas;
     }
 }
