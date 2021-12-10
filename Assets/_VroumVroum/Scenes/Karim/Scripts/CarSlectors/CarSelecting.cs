@@ -8,19 +8,22 @@ public class CarSelecting : MonoBehaviour
 {
     public Rewired.Player rewiredPlayer;
 
+    private MeshRenderer mrCar, mrKey;
+    
     private bool isJoined = false;
-    [HideInInspector] public bool isLocked = false;
+    public bool isColorChose = false;
+    public bool isLocked = false;
 
-    [HideInInspector] public int currentCarIndex = 0;
-    [HideInInspector] public GameObject[] carModels;
+    public int colorIndex = 0;
+    public int motifIndex = 0;
+    
     [SerializeField] private Text statusText;
 
     private void Start()
     {
-        foreach (GameObject car in carModels) car.SetActive(false);
-
-        carModels[currentCarIndex].SetActive(true);
-
+        mrCar = gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
+        mrKey = gameObject.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>();
+        
         statusText.text = "To Join";
     }
     
@@ -32,6 +35,13 @@ public class CarSelecting : MonoBehaviour
 
         if (rewiredPlayer.GetButtonDown("Lock"))
         {
+            if (!isColorChose)
+            {
+                isColorChose = true;
+                statusText.text = "Chose motif";
+                return;
+            }
+            
             isLocked = !isLocked;
             statusText.text = isLocked ? "Ready" : "";
         }
@@ -50,12 +60,11 @@ public class CarSelecting : MonoBehaviour
         isJoined = true;
         statusText.text = "";
         rewiredPlayer = _player;
+        ChangeNext();
     }
 
     public void PlayerLeave(Rewired.Player _player)
     {
-        if (rewiredPlayer != _player) return;
-
         rewiredPlayer = null;
         statusText.text = "To Join";
         isJoined = false;
@@ -64,21 +73,91 @@ public class CarSelecting : MonoBehaviour
     
     public void ChangeNext()
     {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex++;
-        
-        if (currentCarIndex == carModels.Length) currentCarIndex = 0;
-        
-        carModels[currentCarIndex].SetActive(true);
+        if (!isColorChose)
+        {
+            if (colorIndex >= 0)
+                ColorManager.instance.colorChanger[colorIndex].isSet = false;
+            
+            colorIndex++;
+            
+            if (colorIndex >= ColorManager.instance.colorChanger.Count)
+                colorIndex = 0;
+
+            colorIndex = GetNextAvailableColorIndex();
+
+            ColorManager.instance.colorChanger[colorIndex].isSet = true;
+
+            mrCar.materials = ColorManager.instance.colorChanger[colorIndex].Datas[0].materials;
+        }
+        else
+        {
+            motifIndex++;
+
+            if (motifIndex == ColorManager.instance.colorChanger[colorIndex].Datas.Length)
+                motifIndex = 0;
+
+            mrCar.materials = ColorManager.instance.colorChanger[colorIndex].Datas[motifIndex].materials;
+            mrKey.material = ColorManager.instance.colorChanger[colorIndex].Datas[motifIndex].keyMaterial;
+        }
+    }
+
+    private int GetNextAvailableColorIndex()
+    {
+        int index = colorIndex;
+
+        while (ColorManager.instance.colorChanger[index].isSet)
+        {
+            index++;
+
+            if (index >= ColorManager.instance.colorChanger.Count)
+                index = 0;
+        }
+
+        return index;
     }
 
     public void ChangePrevious()
     {
-        carModels[currentCarIndex].SetActive(false);
-        currentCarIndex--;
-        
-        if (currentCarIndex == -1) currentCarIndex = carModels.Length -1;
+        if (!isColorChose)
+        {
+            if (colorIndex >= 0)
+                ColorManager.instance.colorChanger[colorIndex].isSet = false;
+            
+            colorIndex--;
+            
+            if (colorIndex < 0)
+                colorIndex = ColorManager.instance.colorChanger.Count - 1;
 
-        carModels[currentCarIndex].SetActive(true);
+            colorIndex = GetPreviousAvailableColorIndex();
+
+            ColorManager.instance.colorChanger[colorIndex].isSet = true;
+
+            mrCar.materials = ColorManager.instance.colorChanger[colorIndex].Datas[0].materials;
+        }
+        else
+        {
+            motifIndex--;
+
+            if (motifIndex < 0)
+                motifIndex = ColorManager.instance.colorChanger[colorIndex].Datas.Length - 1;
+
+            mrCar.materials = ColorManager.instance.colorChanger[colorIndex].Datas[motifIndex].materials;
+            mrKey.material = ColorManager.instance.colorChanger[colorIndex].Datas[motifIndex].keyMaterial;
+        }
+    }
+    
+    private int GetPreviousAvailableColorIndex()
+    {
+        int index = colorIndex;
+
+        while (ColorManager.instance.colorChanger[index].isSet)
+        {
+            index--;
+
+            if (index < 0)
+                index =  ColorManager.instance.colorChanger.Count - 1;
+        }
+
+        return index;
     }
 }

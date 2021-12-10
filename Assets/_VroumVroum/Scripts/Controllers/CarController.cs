@@ -48,7 +48,7 @@ public class CarController : MonoBehaviour
     public ParticleSystem[] dustTrail;
     public LayerMask whatIsGround;
     
-    [Range(.3f, .5f)]
+    [Range(.3f, 2f)]
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;

@@ -10550,13 +10550,13 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  groundRayLength: 0.35
+  groundRayLength: 0.75
   wheels:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  wheelOffset: 0.33
+  wheelOffset: 0
   vcam: {fileID: 1280199411}
   carKey: {fileID: 0}
   keyRotationSpeed: 100

@@ -10,9 +10,7 @@ public class ChangeScene : MonoBehaviour
     {
         CarSelecting[] cars = GameObject.FindObjectsOfType<CarSelecting>();
         UInt16[] carsIndex = new ushort[cars.Length];
-
-        for (int i = 0; i < carsIndex.Length; i++)
-            carsIndex[i] = Convert.ToUInt16(cars[i].currentCarIndex);
+        
             
         //LaunchGameScene(carsIndex);
     }
