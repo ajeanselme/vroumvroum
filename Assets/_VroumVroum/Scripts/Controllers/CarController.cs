@@ -128,6 +128,7 @@ public class CarController : MonoBehaviour
         wheels = _wheels;
     }
 
+    #if UNITY_EDITOR
     private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10,10,200, Screen.height));
@@ -207,6 +208,7 @@ public class CarController : MonoBehaviour
             Debug.DrawLine(point_A, point_B, Color.red);
         }
     }
+    #endif
 
     private void Update()
     {
