@@ -407,6 +407,8 @@ public class CarController : MonoBehaviour
     public void launchCar(float value)
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
+        theRB.transform.position = new Vector3(theRB.transform.position.x, theRB.transform.position.y + .5f,
+            theRB.transform.position.z);
         _remainingTime = value;
         _currentSpeed = initialSpeed;
         turn = true;
