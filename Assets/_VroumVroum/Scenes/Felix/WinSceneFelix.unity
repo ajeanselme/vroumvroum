@@ -563,8 +563,8 @@ MonoBehaviour:
   - {fileID: 565843574}
   - {fileID: 568740602}
   timeTransitionCar: 2
-  timeTransitionEnd: 5
-  timePause: 5
+  timeTransitionEnd: 3
+  timePause: 3
   endText: {fileID: 884572219}
 --- !u!4 &866497521
 Transform:
