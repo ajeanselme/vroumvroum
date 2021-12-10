@@ -40,6 +40,7 @@ public class CarSelecting : MonoBehaviour
 
         if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
         if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
+        
     }
 
     public void PlayerJoin(Rewired.Player _player)
