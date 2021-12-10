@@ -5,21 +5,17 @@ using UnityEngine;
 public class CarAnimation : MonoBehaviour
 {
     [SerializeField] private Vector3 finalPosition;
-    
     private Vector3 initialposition;
-    
 
     private void Awake()
     {
         initialposition = transform.position;
-        
 
     }
 
     private void Update()
     {
         transform.position = Vector3.Lerp(transform.position, finalPosition, 0.1f);
-       
 
     }
 
@@ -27,8 +23,5 @@ public class CarAnimation : MonoBehaviour
     {
         transform.position = initialposition;
     }
-
-    
-   
 
 }
