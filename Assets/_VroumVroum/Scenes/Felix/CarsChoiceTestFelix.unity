@@ -556,6 +556,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4df8d7fd698b024282a65282e9320fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor:
+    materials:
+    - {fileID: 2100000, guid: 33259ef2c62d4d14a8ff8117585fc766, type: 2}
+    - {fileID: 2100000, guid: 33259ef2c62d4d14a8ff8117585fc766, type: 2}
+    - {fileID: 2100000, guid: c17a8af71b7dbd44690189c44479b869, type: 2}
+    - {fileID: 2100000, guid: 33259ef2c62d4d14a8ff8117585fc766, type: 2}
+    - {fileID: 2100000, guid: 32a88b25bac72b3489092e789892e4fd, type: 2}
+    - {fileID: 2100000, guid: 48b4ec4521a52bb4b845e5e3ce0d85ef, type: 2}
+    - {fileID: 2100000, guid: 7d86878c0d7b6844292722dfe59ca161, type: 2}
+    keyMaterial: {fileID: 2100000, guid: 33259ef2c62d4d14a8ff8117585fc766, type: 2}
   colorChanger:
   - color: Blue
     isSet: 0

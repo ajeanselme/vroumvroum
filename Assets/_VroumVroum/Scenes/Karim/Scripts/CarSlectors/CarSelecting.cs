@@ -27,6 +27,10 @@ public class CarSelecting : MonoBehaviour
         mrCar = gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
         mrKey = gameObject.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>();
         
+        // Default materials
+        mrCar.materials = ColorManager.instance.defaultColor.materials;
+        mrKey.material = ColorManager.instance.defaultColor.keyMaterial;
+        
         statusText.text = "To Join";
     }
     

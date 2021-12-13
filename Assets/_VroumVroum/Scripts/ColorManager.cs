@@ -32,6 +32,7 @@ public class ColorManager : MonoBehaviour
         }
         public data[] Datas;
     }
+
+    public colorPimp.data defaultColor;
     public List<colorPimp> colorChanger; 
-    
 }
