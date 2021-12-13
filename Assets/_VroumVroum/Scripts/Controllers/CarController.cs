@@ -233,7 +233,6 @@ public class CarController : MonoBehaviour
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
                 break;
             }
-            Debug.Log(hit.collider != null ? hit.collider.gameObject.name : "None");
         }
 
         if (!_grounded)
