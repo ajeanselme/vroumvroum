@@ -15,6 +15,11 @@ public class Toaster : MonoBehaviour
 
     public Slice[] slices;
 
+    private void Start()
+    {
+        trigger();
+    }
+
     public void trigger()
     {
         for (int i = 0; i < slices.Length; i++)
