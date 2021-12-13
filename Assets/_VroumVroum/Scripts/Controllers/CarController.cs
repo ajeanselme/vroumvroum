@@ -479,6 +479,6 @@ public class CarController : MonoBehaviour
             _keyRotation = 0.0f;
         }
         
-        carKey.transform.localRotation = Quaternion.Euler(-109f, 0, _keyRotation);
+        carKey.transform.localRotation = Quaternion.Euler(carKey.transform.localRotation.eulerAngles.x, carKey.transform.localRotation.eulerAngles.y, _keyRotation);
     }
 }
