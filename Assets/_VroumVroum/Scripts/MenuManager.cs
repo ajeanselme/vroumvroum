@@ -16,6 +16,10 @@ public class MenuManager : MonoBehaviour
     
     [SerializeField] private CarSelecting[] carSelectings;
 
+    [Space]
+    [SerializeField] private GameObject selectionScreen;
+    [SerializeField] private GameObject loadingScreen;
+
     private Rewired.Player[] slotsSet = new Rewired.Player[4];
 
     private List<PlayerStruct> carMeshes;
@@ -150,7 +154,25 @@ public class MenuManager : MonoBehaviour
         isGameLaunched = true;
         
         AsyncOperation asc = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
+        asc.allowSceneActivation = false;
         asc.completed += InitializeGameScene;
+        StartCoroutine(LoadingScreen(asc));
+    }
+
+    private IEnumerator LoadingScreen(AsyncOperation _asc)
+    {
+        selectionScreen.SetActive(false);
+        loadingScreen.SetActive(true);
+        
+        while (_asc.progress < 0.9f)
+            yield return null;
+        
+        loadingScreen.transform.GetChild(1).gameObject.SetActive(false); // text Loading
+        loadingScreen.transform.GetChild(2).gameObject.SetActive(true); // text Press start to continue
+
+        yield return new WaitUntil(() => ReInput.players.Players[0].GetButtonDown("Join"));
+        
+        _asc.allowSceneActivation = true;
     }
 
     private void InitializeGameScene(AsyncOperation _asc)
