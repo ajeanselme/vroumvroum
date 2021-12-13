@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using Unity.Mathematics;
 using UnityEngine.UI;
 
 public class CarSelecting : MonoBehaviour
@@ -16,8 +17,10 @@ public class CarSelecting : MonoBehaviour
 
     public int colorIndex = 0;
     public int motifIndex = 0;
-    
+
     [SerializeField] private Text statusText;
+    [SerializeField] private float moveForceEffect;
+    [SerializeField] private float timePlayerEffect;
 
     private void Start()
     {
@@ -73,6 +76,8 @@ public class CarSelecting : MonoBehaviour
     
     public void ChangeNext()
     {
+        CarMoveEffect(-1f);
+        
         if (!isColorChose)
         {
             if (colorIndex >= 0)
@@ -118,6 +123,8 @@ public class CarSelecting : MonoBehaviour
 
     public void ChangePrevious()
     {
+        CarMoveEffect(1f);
+        
         if (!isColorChose)
         {
             if (colorIndex >= 0)
@@ -159,5 +166,44 @@ public class CarSelecting : MonoBehaviour
         }
 
         return index;
+    }
+
+    private void CarMoveEffect(float _dir)
+    {
+        StopAllCoroutines();
+        StartCoroutine(MoveEffect(_dir));
+    }
+
+    private IEnumerator MoveEffect(float _dir)
+    {
+        float t = 0f;
+
+        float startZRot = transform.localRotation.eulerAngles.z;
+
+        if (startZRot > 180f)
+            startZRot = startZRot - 360f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / timePlayerEffect;
+
+            float zRot = Mathf.Lerp(startZRot, _dir * moveForceEffect, t);
+            
+            transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, zRot);
+
+            yield return null;
+        }
+
+        t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / timePlayerEffect;
+
+            float zRot = Mathf.Lerp(_dir * moveForceEffect, 0f, t);
+            transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, zRot);
+
+            yield return null;
+        }
     }
 }
