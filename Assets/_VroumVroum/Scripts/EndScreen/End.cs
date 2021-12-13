@@ -47,7 +47,7 @@ public class End : MonoBehaviour
             if (!showScore && timer <= 0f)
             {
                 showScore = true;
-                scoresTexts[carIndex].text = $"{scores[carIndex] / 1000f:0.##}" + "cm";
+                scoresTexts[carIndex].text = $"{scores[carIndex]:0.##}" + "cm";
                 // add effects
             }
             

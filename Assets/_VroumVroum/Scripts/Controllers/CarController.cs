@@ -48,7 +48,7 @@ public class CarController : MonoBehaviour
     public ParticleSystem[] dustTrail;
     public LayerMask whatIsGround;
     
-    [Range(.3f, .5f)]
+    [Range(.3f, 2f)]
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
@@ -226,13 +226,14 @@ public class CarController : MonoBehaviour
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
+            if (Physics.Raycast(point_A, -transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
                 _grounded = true;
                 _emissionRate = 0;
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
                 break;
             }
+            Debug.Log(hit.collider != null ? hit.collider.gameObject.name : "None");
         }
 
         if (!_grounded)
@@ -478,6 +479,6 @@ public class CarController : MonoBehaviour
             _keyRotation = 0.0f;
         }
         
-        carKey.transform.localRotation = Quaternion.Euler(-109f, 0, _keyRotation);
+        carKey.transform.localRotation = Quaternion.Euler(carKey.transform.localRotation.eulerAngles.x, carKey.transform.localRotation.eulerAngles.y, _keyRotation);
     }
 }

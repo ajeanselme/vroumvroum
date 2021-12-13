@@ -56,7 +56,6 @@ public class MenuManager : MonoBehaviour
         {
             if (slotsSet[i] != null)
             {
-                
                 if (carSelectings[i].isLocked && slotsSet[i].GetButtonDown("Join"))
                 {
                     LaunchGame();
@@ -105,7 +104,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (carSelectings[i].isLocked)
                 {
-                    carMeshes.Add(new PlayerStruct{mesh = carSelectings[i].carModels[carSelectings[i].currentCarIndex].transform.GetChild(0).gameObject, player = slotsSet[i]} );
+                    carMeshes.Add(new PlayerStruct{mesh = carSelectings[i].gameObject, player = slotsSet[i]} );
                 }
                 else
                 {
@@ -132,6 +131,7 @@ public class MenuManager : MonoBehaviour
             for (int i = 0; i < carMeshes.Count; i++)
             {
                 carMeshes[i].mesh.transform.parent = null;
+                Destroy(carMeshes[i].mesh.GetComponent<CarSelecting>());
                 DontDestroyOnLoad(carMeshes[i].mesh);
             }
             
@@ -168,14 +168,16 @@ public class MenuManager : MonoBehaviour
             GameObject nCar = Instantiate(carPrefab, CheckpointsController.instance.points[0].position, Quaternion.Euler(CheckpointsController.instance.points[0].rotation));
             CarController carController = nCar.GetComponent<CarController>();
             cars[i] = carController;
+            carController.carKey = carMeshes[i].mesh.transform.GetChild(1).gameObject;
             
             carMeshes[i].mesh.transform.parent = nCar.transform; // change to the car prefab
             carMeshes[i].mesh.transform.localPosition = Vector3.zero;
+            carMeshes[i].mesh.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
 
             GameObject[] wheels = new GameObject[4];
-            for (int x = 0; x < carMeshes[i].mesh.transform.childCount - 1; x++)
+            for (int x = 2; x < carMeshes[i].mesh.transform.childCount; x++)
             {
-                wheels[x] = carMeshes[i].mesh.transform.GetChild(x).gameObject;
+                wheels[x - 2] = carMeshes[i].mesh.transform.GetChild(x).gameObject;
             }
             carController.InitWheels(wheels);
             
