@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +52,12 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
+
+        for (int i = 0; i < ReInput.players.playerCount; i++)
+        {
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Menu");
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Default");
+        }
     }
 
     private void Update()
@@ -179,6 +186,10 @@ public class TurnManager : MonoBehaviour
             cars[i].stopCar();
             cars[i].vcam.gameObject.SetActive(false);
             carsArray[i] = cars[i].gameObject.transform.GetChild(cars[i].gameObject.transform.childCount - 1).gameObject;
+            if (carsArray[i].transform.childCount == 7)
+            {
+                Destroy(carsArray[i].transform.GetChild(6).gameObject);
+            }
         }
         
         endCamera.SetActive(true);

@@ -233,7 +233,6 @@ public class CarController : MonoBehaviour
                 _nextRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
                 break;
             }
-            Debug.Log(hit.collider != null ? hit.collider.gameObject.name : "None");
         }
 
         if (!_grounded)
@@ -379,8 +378,11 @@ public class CarController : MonoBehaviour
 
     public void reduceSpeed(float weight)
     {
-        _lastReducing = Time.fixedTime;
-        _reduceSpeed = _currentSpeed * (weight / 100f) * 4f;
+        if (_remainingTime > 0)
+        {
+            _lastReducing = Time.fixedTime;
+            _reduceSpeed = _currentSpeed * (weight / 100f) * 4f;
+        }
     }
 
     public void setCarSpeed(float speed)
