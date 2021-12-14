@@ -76,6 +76,10 @@ public class CarSelecting : MonoBehaviour
         statusText.text = "To Join";
         isJoined = false;
         isLocked = false;
+        
+        // Default materials
+        mrCar.materials = ColorManager.instance.defaultColor.materials;
+        mrKey.material = ColorManager.instance.defaultColor.keyMaterial;
     }
     
     public void ChangeNext()
