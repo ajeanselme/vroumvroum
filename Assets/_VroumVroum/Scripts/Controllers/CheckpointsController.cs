@@ -38,6 +38,14 @@ public class CheckpointsController : MonoBehaviour
             this.index = index;
         }
     }
+    
+    [Serializable]
+    public class CarColor
+    {
+        public String colorName;
+        public Sprite sprite;
+        public Color Color;
+    }
 
     [HideInInspector] public List<Checkpoint> points = new List<Checkpoint>();
     [HideInInspector] public GameObject CPPrefab;
@@ -48,7 +56,8 @@ public class CheckpointsController : MonoBehaviour
     public AudioClip[] ladderAudioClips;
     public AudioSource audio;
 
-    
+    public CarColor[] carColors;
+
     private PlayerData _playingPlayer;
     private int firstCar = 0;
     // private float _CPDistance, _previousDistance, _lastProgress;
@@ -83,6 +92,24 @@ public class CheckpointsController : MonoBehaviour
             sliders[i].value = 0f;
         }
     }
+
+    public void SetPlayerColor(int index, String color)
+    {
+        color = color.ToLower();
+        for (int i = 0; i < carColors.Length; i++)
+        {
+            if (carColors[i].colorName.Equals(color))
+            {
+                ladderBar.transform.GetChild(index).GetChild(0).GetChild(0).GetComponent<Image>().color =
+                    carColors[i].Color;
+                
+                ladderBar.transform.GetChild(index).GetChild(1).GetChild(0).GetComponent<Image>().sprite =
+                    carColors[i].sprite;
+                break;
+            }
+        }
+    }
+
 
     private void Update()
     {
