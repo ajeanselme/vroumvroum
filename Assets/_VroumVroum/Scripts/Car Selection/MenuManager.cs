@@ -91,7 +91,7 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < slotsSet.Length; i++)
         {
-            if (_player == slotsSet[i])
+            if (slotsSet[i] != null && _player.id == slotsSet[i].id)
             {
                 return carSelectings[i].gameObject;
             }
@@ -125,7 +125,7 @@ public class MenuManager : MonoBehaviour
         carSelectings[index].PlayerLeave(_player);
     }
 
-    public bool LaunchGame()
+    private bool LaunchGame()
     {
         if (isGameLaunched) return true;
         
@@ -220,7 +220,20 @@ public class MenuManager : MonoBehaviour
         loadingScreen.transform.GetChild(1).gameObject.SetActive(false); // text Loading
         loadingScreen.transform.GetChild(2).gameObject.SetActive(true); // text Press start to continue
 
-        yield return new WaitUntil(() => ReInput.players.Players[0].GetButtonDown("Join"));
+        yield return new WaitUntil(() =>
+        {
+            bool rValue = false;
+            
+            for (int i = 0; i < ReInput.players.playerCount; i++)
+            {
+                rValue = ReInput.players.Players[i].GetButtonDown("Join");
+                
+                if (rValue)
+                    break;
+            }
+
+            return rValue;
+        });
         
         _asc.allowSceneActivation = true;
     }
