@@ -179,6 +179,10 @@ public class TurnManager : MonoBehaviour
             cars[i].stopCar();
             cars[i].vcam.gameObject.SetActive(false);
             carsArray[i] = cars[i].gameObject.transform.GetChild(cars[i].gameObject.transform.childCount - 1).gameObject;
+            if (carsArray[i].transform.childCount == 7)
+            {
+                Destroy(carsArray[i].transform.GetChild(6).gameObject);
+            }
         }
         
         endCamera.SetActive(true);
