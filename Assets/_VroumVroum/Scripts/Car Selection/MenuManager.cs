@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject carPrefab;
     
     [SerializeField] private CarSelecting[] carSelectings;
+    private bool[] carsLocked;
 
     [Space]
     [SerializeField] private GameObject selectionScreen;
@@ -59,6 +60,8 @@ public class MenuManager : MonoBehaviour
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Default");
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Menu");
         }
+
+        carsLocked = new bool[carSelectings.Length];
     }
 
     private void Update()
@@ -84,6 +87,38 @@ public class MenuManager : MonoBehaviour
                 
                 break;
             }
+        }
+    }
+
+    public void SetLockState(CarSelecting _slot, bool _state)
+    {
+        carsLocked[Array.IndexOf(carSelectings, _slot)] = _state;
+        
+        TestAllSlotLocked();
+    }
+
+    private void TestAllSlotLocked()
+    {
+        bool allLocked = true;
+        
+        for (int i = 0; i < slotsSet.Length; i++)
+        {
+            if (slotsSet[i] != null && !carsLocked[i])
+            {
+                allLocked = false;
+                break;
+            }
+        }
+
+        if (allLocked)
+        {
+            selectionScreen.transform.GetChild(0).gameObject.SetActive(false);
+            selectionScreen.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            selectionScreen.transform.GetChild(0).gameObject.SetActive(true);
+            selectionScreen.transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 
