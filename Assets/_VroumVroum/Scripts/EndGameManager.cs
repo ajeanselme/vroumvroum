@@ -35,7 +35,7 @@ public class EndGameManager : MonoBehaviour
         for (int i = 0; i < carsPodium.Length; i++)
         {
             carsPodium[playerDatas[i].ladderPosition - 1] = cars[playerDatas[i].index];
-            if (i == 0)
+            if (playerDatas[i].ladderPosition == 1)
             {
                 winnerPlayer = carsPodium[playerDatas[i].ladderPosition - 1].GetComponentInParent<CarController>().rewiredPlayer;
             }
@@ -45,8 +45,6 @@ public class EndGameManager : MonoBehaviour
 
             carsDistance[playerDatas[i].ladderPosition - 1] = playerDatas[i].CurrentDistance;
         }
-        
-        
 
         StartCoroutine(IELaunchEndScene());
     }
