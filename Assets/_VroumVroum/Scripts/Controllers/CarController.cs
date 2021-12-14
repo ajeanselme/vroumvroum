@@ -346,7 +346,9 @@ public class CarController : MonoBehaviour
                     }
                 }
 
-                _currentSpeed -= _reduceSpeed;
+                if(_remainingTime > 0)
+                    _currentSpeed -= _reduceSpeed;
+                
                 setCarSpeed(_currentSpeed);
             }
             

@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public static MenuManager instance;
 
     [HideInInspector] public bool isGameLaunched = false;
+
+    private string[] carsColor;
     
     [SerializeField] private GameObject carPrefab;
     
@@ -160,10 +162,14 @@ public class MenuManager : MonoBehaviour
 
         if (isReady)
         {
+            carsColor = new string[carMeshes.Count];
+            
             for (int i = 0; i < carMeshes.Count; i++)
             {
                 carMeshes[i].mesh.transform.parent = null;
-                Destroy(carMeshes[i].mesh.GetComponent<CarSelecting>());
+                CarSelecting crs = carMeshes[i].mesh.GetComponent<CarSelecting>();
+                carsColor[i] = ColorManager.instance.colorChanger[crs.colorIndex].color;
+                Destroy(crs);
                 DontDestroyOnLoad(carMeshes[i].mesh);
             }
             
@@ -199,7 +205,7 @@ public class MenuManager : MonoBehaviour
         while (_asc.progress < 0.9f)
         {
             nText.text = "Rewinding Cars" + pointText;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
 
             pointText += ".";
             nbPoint += 1;
@@ -256,7 +262,7 @@ public class MenuManager : MonoBehaviour
         cars[0].gameObject.SetActive(true);
         cars[0].enabled = true;
 
-        TurnManager.instance.SetPlayers(cars);
+        TurnManager.instance.SetPlayers(cars, carsColor);
         
         Destroy(gameObject);
     }
