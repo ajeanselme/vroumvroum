@@ -10,7 +10,7 @@ public class CarSelecting : MonoBehaviour
     public Rewired.Player rewiredPlayer;
 
     private MeshRenderer mrCar, mrKey;
-    
+
     private bool isJoined = false;
     public bool isColorChose = false;
     public bool isLocked = false;
@@ -55,8 +55,8 @@ public class CarSelecting : MonoBehaviour
         
         if (isLocked) return;
 
-        if (rewiredPlayer.GetButtonDown("LeftArrow")) ChangePrevious();
-        if (rewiredPlayer.GetButtonDown("RightArrow")) ChangeNext();
+        if (rewiredPlayer.GetButtonDown("Left")) ChangePrevious();
+        if (rewiredPlayer.GetButtonDown("Right")) ChangeNext();
         
     }
 
