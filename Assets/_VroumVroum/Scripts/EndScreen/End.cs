@@ -20,7 +20,7 @@ public class End : MonoBehaviour
     private bool showScore = false;
 
     private float[] scores;
-        
+    
     [SerializeField] private Camera camera;
     [SerializeField] private Transform[] carSpawnPoints;
     [SerializeField] private TextMesh[] scoresTexts;
@@ -36,6 +36,16 @@ public class End : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < ReInput.players.playerCount; i++)
+        {
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Default");
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Minigame");
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Menu");
+        }
+    }
+
     private void Update()
     {
         if (timer > -5f)
@@ -47,7 +57,8 @@ public class End : MonoBehaviour
             if (!showScore && timer <= 0f)
             {
                 showScore = true;
-                scoresTexts[carIndex].text = (int)scores[carIndex] + "cm";
+                if (carIndex < scoresTexts.Length)
+                    scoresTexts[carIndex].text = (int)scores[carIndex] + "cm";
                 // add effects
             }
             

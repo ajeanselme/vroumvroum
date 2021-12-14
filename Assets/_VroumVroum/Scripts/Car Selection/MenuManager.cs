@@ -51,6 +51,12 @@ public class MenuManager : MonoBehaviour
     {
         if (CrownManager.instance != null)
             CrownManager.instance.isSelectingLoaded = true;
+        
+        for (int i = 0; i < ReInput.players.playerCount; i++)
+        {
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Default");
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Menu");
+        }
     }
 
     private void Update()
