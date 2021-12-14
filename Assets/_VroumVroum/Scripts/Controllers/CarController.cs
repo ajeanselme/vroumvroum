@@ -365,9 +365,7 @@ public class CarController : MonoBehaviour
         {
             setDirection(_turnInput);
             
-            float tempEmission = (_turnInput > .2f || _turnInput < .2f) ? _emissionRate : 0;
-            Debug.Log(_turnInput);
-            Debug.Log(tempEmission);
+            float tempEmission = (_turnInput > .5f || _turnInput < -.5f) ? _emissionRate : 0;
             foreach (ParticleSystem part in dustTrail)
             {
                 var emissionModule = part.emission;
