@@ -210,7 +210,7 @@ public class Minigame : MonoBehaviour
 
     public void launchCar(float value)
     {
-        value = Mathf.Clamp(value, 50f, 100f);
+        value = Mathf.Lerp(50f, 100f, value / 100f);
         Rewired.Player player = TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer;
         player.controllers.maps.SetMapsEnabled(false, "Minigame");
         player.controllers.maps.SetMapsEnabled(true, "Default");
