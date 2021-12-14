@@ -36,7 +36,7 @@ public class CarSelecting : MonoBehaviour
     
     private void Update()
     {
-        if (rewiredPlayer == null) return;
+        if (rewiredPlayer == null || MenuManager.instance.isGameLaunched) return;
 
         if (!isJoined) return;
 
