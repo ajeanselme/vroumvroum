@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -110,28 +111,28 @@ public class Minigame : MonoBehaviour
                     switch (_mgState)
                     {
                         case MGState.TOP:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") > .9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("LeftRight") > .9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.RIGHT;
                             }
                             break;
                         case MGState.RIGHT:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") < -.9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("UpDown") < -.9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.BOTTOM;
                             }
                             break;
                         case MGState.BOTTOM:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") < -.9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("UpDown") < -.9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.LEFT;
                             }
                             break;
                         case MGState.LEFT:
-                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("JoystickL") > .9f)
+                            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetAxis("LeftRight") > .9f)
                             {
                                 AddCharge();
                                 _mgState = MGState.TOP;
@@ -160,7 +161,7 @@ public class Minigame : MonoBehaviour
                 }
             }
 
-            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetButtonDown("Lock") && randomMinigame == 1)
+            if (TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer.GetButtonDown("Click") && randomMinigame == 1)
             {
                 m2Charge = (((barre.transform.position.x - m2Debut.transform.position.x) * 100) / (m2Fin.transform.position.x - m2Debut.transform.position.x)) * 2;
                 if (m2Charge > 100)
@@ -199,6 +200,9 @@ public class Minigame : MonoBehaviour
 
     public void beginMinigame(CarController player)
     {
+        player.rewiredPlayer.controllers.maps.SetMapsEnabled(false, "Default");
+        player.rewiredPlayer.controllers.maps.SetMapsEnabled(true, "Minigame");
+        
         randomMinigame = Random.Range(0, 2);
         begin = true;
         car1 = player;
@@ -206,6 +210,11 @@ public class Minigame : MonoBehaviour
 
     public void launchCar(float value)
     {
+        value = Mathf.Clamp(value, 50f, 100f);
+        Rewired.Player player = TurnManager.instance.cars[TurnManager.instance.indexCarTurn].rewiredPlayer;
+        player.controllers.maps.SetMapsEnabled(false, "Minigame");
+        player.controllers.maps.SetMapsEnabled(true, "Default");
+
         TurnManager.instance.BoostCarEffects(1f);
         car1.launchCar(car1.totalTime * value / 100f);
     }

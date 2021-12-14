@@ -5360,6 +5360,34 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f8b3bb472bd260145918abd2f2cc561c, type: 3}
   - {fileID: 8300000, guid: 5c530fe479032184389575b47d61b269, type: 3}
   audio: {fileID: 0}
+  carColors:
+  - colorName: blue
+    sprite: {fileID: 21300000, guid: 70ccd58db65aee64598024c5774a5b27, type: 3}
+    Color: {r: 0, g: 0.3254902, b: 1, a: 1}
+  - colorName: cyan
+    sprite: {fileID: 21300000, guid: 8c47df12fad6072408f325dca1134e5d, type: 3}
+    Color: {r: 0, g: 1, b: 0.9294118, a: 1}
+  - colorName: green
+    sprite: {fileID: 21300000, guid: 76d8c9c9f73659d4580bf1ba19f0ba10, type: 3}
+    Color: {r: 0.054901965, g: 0.65882355, b: 0.10588236, a: 1}
+  - colorName: orange
+    sprite: {fileID: 21300000, guid: ff941df0c4e35c34185892c343c9f58f, type: 3}
+    Color: {r: 1, g: 0.46274513, b: 0, a: 1}
+  - colorName: pink
+    sprite: {fileID: 21300000, guid: 583394f0bfbae1343964bdd552283c36, type: 3}
+    Color: {r: 1, g: 0.37254903, b: 0.8000001, a: 1}
+  - colorName: purple
+    sprite: {fileID: 21300000, guid: ed100e703def24c4791c54dc79b42021, type: 3}
+    Color: {r: 0.6117647, g: 0, b: 0.92549026, a: 1}
+  - colorName: red
+    sprite: {fileID: 21300000, guid: 1e167ed7ef77cc3469292c01236e0270, type: 3}
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - colorName: white
+    sprite: {fileID: 21300000, guid: d59e7de5a1114404dafd7345dee11eb8, type: 3}
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - colorName: yellow
+    sprite: {fileID: 21300000, guid: 7cb342214ca50754db6a5ea97a1f74d3, type: 3}
+    Color: {r: 1, g: 0.85098046, b: 0, a: 1}
 --- !u!1001 &124464855
 PrefabInstance:
   m_ObjectHideFlags: 0

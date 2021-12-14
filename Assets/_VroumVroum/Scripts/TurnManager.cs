@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +52,12 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
+
+        for (int i = 0; i < ReInput.players.playerCount; i++)
+        {
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Menu");
+            ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Default");
+        }
     }
 
     private void Update()
