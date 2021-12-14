@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7744019733565309652}
   - component: {fileID: 6689977942179155313}
   - component: {fileID: 8877549480629074363}
-  - component: {fileID: 7850602728995415345}
+  - component: {fileID: 4865065365994138474}
   m_Layer: 0
   m_Name: Spinner
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6932051684620687470}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 199.25336, y: 0.50746906, z: 477.46063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6689977942179155313
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7850602728995415345
+--- !u!136 &4865065365994138474
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.5369906
-  m_Height: 4.9137907
-  m_Direction: 1
-  m_Center: {x: 0.00000035762787, y: -0.00000011920932, z: 2.5295224}
+  m_Radius: 2.2414541
+  m_Height: 8.558111
+  m_Direction: 2
+  m_Center: {x: 0.00000023841858, y: 0.059996605, z: 2.2790546}

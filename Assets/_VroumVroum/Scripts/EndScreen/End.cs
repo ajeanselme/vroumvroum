@@ -11,6 +11,7 @@ public class End : MonoBehaviour
     public static End instance;
 
     private bool endScroll = false;
+    private int divided;
 
     private int carIndex = 5;
     private float timer = -10f;
@@ -46,7 +47,7 @@ public class End : MonoBehaviour
             if (!showScore && timer <= 0f)
             {
                 showScore = true;
-                scoresTexts[carIndex].text = scores[carIndex].ToString();
+                scoresTexts[carIndex].text = (int)scores[carIndex] + "cm";
                 // add effects
             }
             
@@ -72,6 +73,7 @@ public class End : MonoBehaviour
         }
 
         carIndex = _cars.Length;
+        divided = carIndex;
         camera.transform.position = new Vector3(carSpawnPoints[carIndex-1].position.x - 5f, camera.transform.position.y, camera.transform.position.z);
         lastCamPos = camera.transform.position;
         
@@ -89,18 +91,23 @@ public class End : MonoBehaviour
         {
             nextCamPos = new Vector3(carSpawnPoints[carIndex].position.x, camera.transform.position.y, camera.transform.position.z);
             timeWait = timeTransitionCar;
+            timer = timeTransitionCar;
         }
         else
         {
-            nextCamPos = new Vector3((carSpawnPoints[carSpawnPoints.Length - 1].position.x - carSpawnPoints[0].position.x) / 2f, 4.5f, 6.5f);
+            float xPos = 0f;
+            for (int i = 0; i < divided; i++)
+                xPos += carSpawnPoints[i].position.x;
+            
+            nextCamPos = new Vector3(xPos / divided, 4.5f, 6.5f);
             timeWait = timeTransitionEnd;
+            timer = timeTransitionEnd;
 
             endScroll = true;
             endText.text = "Press any button to continue";
             showScore = true;
         }
         
-        timer = 1f;
         lastCamPos = camera.transform.position;
     }
 }

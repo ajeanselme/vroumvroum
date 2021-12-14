@@ -48,7 +48,7 @@ public class CarController : MonoBehaviour
     public ParticleSystem[] dustTrail;
     public LayerMask whatIsGround;
     
-    [Range(.3f, .5f)]
+    [Range(.3f, 2f)]
     public float groundRayLength = .35f;
     public GameObject[] wheels;
     public float wheelOffset = 0f;
@@ -128,6 +128,7 @@ public class CarController : MonoBehaviour
         wheels = _wheels;
     }
 
+    #if UNITY_EDITOR
     private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10,10,200, Screen.height));
@@ -207,6 +208,7 @@ public class CarController : MonoBehaviour
             Debug.DrawLine(point_A, point_B, Color.red);
         }
     }
+    #endif
 
     private void Update()
     {
@@ -224,7 +226,7 @@ public class CarController : MonoBehaviour
             Vector3 point_A = new Vector3(wheel.transform.position.x, 
                 wheel.transform.position.y + wheelOffset,
                 wheel.transform.position.z);
-            if (Physics.Raycast(point_A, -wheel.transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
+            if (Physics.Raycast(point_A, -transform.up, out hit, groundRayLength + wheelOffset, whatIsGround))
             {
                 _grounded = true;
                 _emissionRate = 0;
@@ -249,7 +251,8 @@ public class CarController : MonoBehaviour
          */
         transform.position = theRB.transform.position;
         _rotationDamping = Mathf.Abs(90 - _slopeAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, _nextRotation, Time.deltaTime/* * 90f*/);
+        transform.rotation = _nextRotation;
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -406,6 +409,8 @@ public class CarController : MonoBehaviour
     public void launchCar(float value)
     {
         theRB.constraints = RigidbodyConstraints.FreezeRotation;
+        theRB.transform.position = new Vector3(theRB.transform.position.x, theRB.transform.position.y + .5f,
+            theRB.transform.position.z);
         _remainingTime = value;
         _currentSpeed = initialSpeed;
         turn = true;
@@ -473,6 +478,6 @@ public class CarController : MonoBehaviour
             _keyRotation = 0.0f;
         }
         
-        carKey.transform.localRotation = Quaternion.Euler(-109f, 0, _keyRotation);
+        carKey.transform.localRotation = Quaternion.Euler(carKey.transform.localRotation.eulerAngles.x, carKey.transform.localRotation.eulerAngles.y, _keyRotation);
     }
 }
