@@ -10491,7 +10491,7 @@ MonoBehaviour:
   turnStrength: 250
   gravityForce: 70
   antiBounceForce: 100
-  trailMaxEmission: 30
+  trailMaxEmission: 8
   speedEmissionFactor: 200
   airIgnoring: 0.2
   airSmallBump: 0.6
