@@ -50,6 +50,7 @@ public class CarSelecting : MonoBehaviour
             }
             
             isLocked = !isLocked;
+            MenuManager.instance.SetLockState(this, isLocked);
             statusText.text = isLocked ? "Ready" : "";
         }
         
@@ -68,6 +69,7 @@ public class CarSelecting : MonoBehaviour
         statusText.text = "";
         rewiredPlayer = _player;
         ChangeNext();
+        MenuManager.instance.SetLockState(this, isLocked);
     }
 
     public void PlayerLeave(Rewired.Player _player)

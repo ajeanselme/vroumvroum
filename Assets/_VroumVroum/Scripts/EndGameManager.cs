@@ -56,6 +56,14 @@ public class EndGameManager : MonoBehaviour
             SceneManager.MoveGameObjectToScene(carsPodium[i], SceneManager.GetActiveScene());
             carsPodium[i].transform.rotation = Quaternion.Euler(Vector3.zero);
             carsPodium[i].transform.localScale = Vector3.one;
+            
+            carsPodium[i].transform.GetChild(0).localRotation = Quaternion.Euler(-90f, 0f, 0f); // car mesh
+            carsPodium[i].transform.GetChild(1).localRotation = Quaternion.Euler(-75f, 0f, 0f); // key mesh
+
+            for (int x = 2; x < carsPodium[i].transform.childCount; x++)
+            {
+                carsPodium[i].transform.GetChild(x).localRotation = Quaternion.Euler(Vector3.zero); // wheel mesh
+            }
         }
         
         End endScript = End.instance;
