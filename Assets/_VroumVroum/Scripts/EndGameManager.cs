@@ -37,7 +37,7 @@ public class EndGameManager : MonoBehaviour
             carsPodium[playerDatas[i].ladderPosition - 1] = cars[playerDatas[i].index];
             if (i == 0)
             {
-                winnerPlayer = carsPodium[0].GetComponentInParent<CarController>().rewiredPlayer;
+                winnerPlayer = carsPodium[playerDatas[i].ladderPosition - 1].GetComponentInParent<CarController>().rewiredPlayer;
             }
 
             cars[playerDatas[i].index].transform.parent = null;
