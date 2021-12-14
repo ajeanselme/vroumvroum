@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 36d834cb84e4a614ab11b4c8a8ad853d
   - enabled: 1
     path: Assets/_VroumVroum/Scenes/jeremy2.unity
-    guid: 9216df63effbf3249a41f994cfc8af8f
+    guid: 532c31fe2fe238b41b0f46f59678fc63
   - enabled: 1
     path: Assets/_VroumVroum/Scenes/Felix/WinSceneFelix.unity
     guid: 34f992bdf18b58e4da20e64f77e18720
