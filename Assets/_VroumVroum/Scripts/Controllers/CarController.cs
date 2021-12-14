@@ -57,7 +57,7 @@ public class CarController : MonoBehaviour
     public GameObject carKey;
     public float keyRotationSpeed = 100f;
 
-    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed, _keyRotation;
+    private float _turnInput, _remainingTime, _currentSpeed, _emissionRate, _airTime, _lastReducing, _reduceSpeed, _keyRotation, _lastBump;
     private bool _grounded, _bumped, _groundedLastFrame;
 
     private Animator _animator;
@@ -140,6 +140,10 @@ public class CarController : MonoBehaviour
 
             GUILayout.BeginHorizontal(debugTextBoxStyle);
                 GUILayout.Label("State : " + (_grounded ? "ground" : "air"));
+            GUILayout.EndHorizontal();
+            
+            GUILayout.BeginHorizontal(debugTextBoxStyle);
+                GUILayout.Label("Bumped : " + _bumped);
             GUILayout.EndHorizontal();
             
             GUILayout.BeginHorizontal(debugTextBoxStyle);
@@ -288,6 +292,14 @@ public class CarController : MonoBehaviour
             _reduceSpeed = 0;
         }
 
+        if (_bumped && _grounded)
+        {
+            if (Time.fixedTime > _lastBump + .2f)
+            {
+                _bumped = false;
+                landCar();
+            }
+        }
 
         if (!_groundedLastFrame && _grounded)
         {
@@ -373,8 +385,6 @@ public class CarController : MonoBehaviour
                 emissionModule.rateOverDistance = tempEmission;
             }
         }
-
-        
         _groundedLastFrame = _grounded;
     }
 
@@ -439,7 +449,6 @@ public class CarController : MonoBehaviour
             _feedbacks.PlayFeedbacks();
             playBigVibrations();
         }
-        
         _airTime = 0f;
     }
 
@@ -447,6 +456,7 @@ public class CarController : MonoBehaviour
     {
         if (!_bumped)
         {
+            _lastBump = Time.fixedTime;
             _bumped = true;
             theRB.velocity = new Vector3((-theRB.velocity.normalized.x * force) +  (direction.normalized.x * force), force, (-theRB.velocity.normalized.z * force) +  (direction.normalized.z * force));
             playBigVibrations();
