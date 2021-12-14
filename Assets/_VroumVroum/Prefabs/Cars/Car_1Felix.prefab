@@ -10485,10 +10485,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Debugging: 0
   turn: 0
-  totalTime: 20
+  totalTime: 15
   initialSpeed: 8
   decelerationSpeed: 3
-  turnStrength: 300
+  turnStrength: 250
   gravityForce: 70
   antiBounceForce: 100
   trailMaxEmission: 30
