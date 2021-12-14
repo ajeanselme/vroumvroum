@@ -15,11 +15,32 @@ public class Toaster : MonoBehaviour
 
     public Slice[] slices;
 
+    private void Start()
+    {
+        StartCoroutine(co());
+    }
+
+    private IEnumerator co()
+    {
+        yield return new WaitForSeconds(3f);
+
+        trigger();
+        
+        yield return null;
+    }
+    
     public void trigger()
     {
+        Debug.Log("size " + slices.Length);
         for (int i = 0; i < slices.Length; i++)
         {
-            slices[i].gameObject.GetComponent<Rigidbody>().AddForce(slices[i].targetPosition.normalized * slices[i].force, ForceMode.VelocityChange);
+            Debug.Log(slices[i].gameObject);
+            Debug.Log(slices[i].targetPosition);
+            Debug.Log(slices[i].force);
+            Vector3 direction = slices[i].targetPosition - slices[i].gameObject.transform.position;
+            direction = direction.normalized;
+            Debug.Log(direction);
+            slices[i].gameObject.GetComponent<Rigidbody>().AddForce(direction * slices[i].force, ForceMode.VelocityChange);
         }
     }
 }
