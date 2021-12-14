@@ -346,7 +346,9 @@ public class CarController : MonoBehaviour
                     }
                 }
 
-                _currentSpeed -= _reduceSpeed;
+                if(_remainingTime > 0)
+                    _currentSpeed -= _reduceSpeed;
+                
                 setCarSpeed(_currentSpeed);
             }
             
@@ -378,11 +380,8 @@ public class CarController : MonoBehaviour
 
     public void reduceSpeed(float weight)
     {
-        if (_remainingTime > 0)
-        {
-            _lastReducing = Time.fixedTime;
-            _reduceSpeed = _currentSpeed * (weight / 100f) * 4f;
-        }
+        _lastReducing = Time.fixedTime;
+        _reduceSpeed = _currentSpeed * (weight / 100f) * 4f;
     }
 
     public void setCarSpeed(float speed)
