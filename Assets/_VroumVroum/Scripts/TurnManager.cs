@@ -95,13 +95,14 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void SetPlayers(CarController[] _players)
+    public void SetPlayers(CarController[] _players, string[] _carsColor)
     {
         cars = _players;
         
         for (int i = 0; i < cars.Length; i++)
         {
             CheckpointsController.instance.InitPlayer();
+            CheckpointsController.instance.SetPlayerColor(i, _carsColor[i]);
         }
         
         StartCoroutine(WaitLaunch(cars[0], 2f));
