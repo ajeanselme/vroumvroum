@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class EndGameManager : MonoBehaviour
 {
+    private Rewired.Player winnerPlayer;
+    
     public static EndGameManager instance;
 
     private GameObject[] carsPodium;
@@ -33,11 +35,18 @@ public class EndGameManager : MonoBehaviour
         for (int i = 0; i < carsPodium.Length; i++)
         {
             carsPodium[playerDatas[i].ladderPosition - 1] = cars[playerDatas[i].index];
+            if (i == 0)
+            {
+                winnerPlayer = carsPodium[0].GetComponentInParent<CarController>().rewiredPlayer;
+            }
+
             cars[playerDatas[i].index].transform.parent = null;
             DontDestroyOnLoad(cars[playerDatas[i].index]);
 
             carsDistance[playerDatas[i].ladderPosition - 1] = playerDatas[i].CurrentDistance;
         }
+        
+        
 
         StartCoroutine(IELaunchEndScene());
     }
@@ -53,6 +62,7 @@ public class EndGameManager : MonoBehaviour
         
         End endScript = End.instance;
         endScript.SetEnd(carsPodium, carsDistance);
+        CrownManager.instance.SetWinnerPlayer(winnerPlayer);
         
         Destroy(gameObject);
     }

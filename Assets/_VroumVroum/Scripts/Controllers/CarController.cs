@@ -304,8 +304,6 @@ public class CarController : MonoBehaviour
             {
                 // Manage speed based on slope
                 _slopeAngle = (Vector3.Angle (Vector3.down, transform.forward)) - 90;
-                
-                var emission = TurnManager.instance.speedParticles.emission;
 
                 // If on flat ground
                 if (_slopeAngle > -1f && _slopeAngle < 1f)
@@ -322,8 +320,6 @@ public class CarController : MonoBehaviour
                             _currentSpeed -= decelerationSpeed * Time.deltaTime;
                         }
                     }
-                    
-                    emission.rateOverTime = speedEmissionFactor * (_currentSpeed / initialSpeed);
                 }
                 // If on slide
                 else if (_slopeAngle < -1f)
@@ -336,8 +332,6 @@ public class CarController : MonoBehaviour
                     {
                         _currentSpeed = Mathf.Clamp(_currentSpeed + slideCurve.Evaluate(-_slopeAngle) * Time.deltaTime, 0, initialSpeed * 1.2f);
                     }
-                    
-                    emission.rateOverTime = (speedEmissionFactor + speedEmissionFactor * (5 * (-_slopeAngle / 45))) * (_currentSpeed / initialSpeed);
                 }
                 // If on uphill
                 else if (_slopeAngle > 1f)
@@ -350,10 +344,11 @@ public class CarController : MonoBehaviour
                     {
                         _currentSpeed -= decelerationSpeed * Mathf.Clamp(uphillCurve.Evaluate(_slopeAngle), .95f, 1f) * Time.deltaTime;
                     }
-                    emission.rateOverTime = (speedEmissionFactor * (1 - _slopeAngle / 45)) * (_currentSpeed / initialSpeed);
                 }
 
-                _currentSpeed -= _reduceSpeed;
+                if(_remainingTime > 0)
+                    _currentSpeed -= _reduceSpeed;
+                
                 setCarSpeed(_currentSpeed);
             }
             
@@ -366,17 +361,19 @@ public class CarController : MonoBehaviour
             theRB.AddForce(Vector3.up * -gravityForce * 100f);
         }
 
-        foreach (ParticleSystem part in dustTrail)
-        {
-            var emissionModule = part.emission;
-            emissionModule.rateOverTime = _emissionRate;
-        }
 
-        
         if (_grounded && _currentSpeed > 0)
         {
             setDirection(_turnInput);
+            
+            float tempEmission = (_turnInput > .5f || _turnInput < -.5f) ? _emissionRate : 0;
+            foreach (ParticleSystem part in dustTrail)
+            {
+                var emissionModule = part.emission;
+                emissionModule.rateOverDistance = tempEmission;
+            }
         }
+
         
         _groundedLastFrame = _grounded;
     }
