@@ -118,8 +118,6 @@ public class TurboEditor : EditorWindow
                 GUILayout.Label("Map Settings", EditorStyles.whiteLargeLabel);
                 GUILayout.Space(10);
                 EditorGUI.indentLevel++;
-                _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera,
-                    typeof(GameObject), true);
                 // _turnManager.spawnPoint = (Transform) EditorGUILayout.ObjectField("Spawn Transform", _turnManager.spawnPoint, typeof(Transform), true);
                 _turnManager.maxTurn = EditorGUILayout.IntField("Turns Per Player", _turnManager.maxTurn);
                 _turnManager.playMinigame = EditorGUILayout.Toggle("Activate Minigame", _turnManager.playMinigame);
@@ -225,6 +223,10 @@ public class TurboEditor : EditorWindow
                 if (advancedToolbar == 1)
                 {
                     GUILayout.Space(10);
+
+                    _turnManager.endCamera = (GameObject) EditorGUILayout.ObjectField("End Camera", _turnManager.endCamera,
+                        typeof(GameObject), true);
+                    GUILayout.Space(10);
                     GUILayout.Label("Car prefabs");
 
 
@@ -251,8 +253,6 @@ public class TurboEditor : EditorWindow
 
                     _turnManager.speedParticles = (ParticleSystem) EditorGUILayout.ObjectField("Speed Particles",
                         _turnManager.speedParticles, typeof(ParticleSystem), true);
-                    _checkpointsController.CPPrefab = (GameObject) EditorGUILayout.ObjectField("Checkpoint Prefab",
-                        _checkpointsController.CPPrefab, typeof(GameObject), true);
 
                     // if (GUILayout.Button("Reset"))
                     // {
@@ -494,51 +494,54 @@ public class TurboEditor : EditorWindow
 
     private void OnSceneGUI(SceneView obj)
     {
-        if (_checkpointsController != null)
+        if (showCheckPoints)
         {
-            Handles.color = Color.blue;
-
-            Handles.BeginGUI();
-            for (int i = 0; i < _checkpointsController.points.Count; i++)
+            if (_checkpointsController != null)
             {
-                Handles.Label(_checkpointsController.points[i].position, "Checkpoint " + i);
-                Handles.SphereHandleCap(0, _checkpointsController.points[i].position,
-                    quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
+                Handles.color = Color.blue;
 
-                if (i + 1 < _checkpointsController.points.Count)
+                Handles.BeginGUI();
+                for (int i = 0; i < _checkpointsController.points.Count; i++)
                 {
-                    Vector3 current = _checkpointsController.points[i].position;
-                    Vector3 next = _checkpointsController.points[i + 1].position;
-                    Handles.color = Color.blue;
-                    Handles.DrawLine(current, next);
+                    Handles.Label(_checkpointsController.points[i].position, "Checkpoint " + i);
+                    Handles.SphereHandleCap(0, _checkpointsController.points[i].position,
+                        quaternion.Euler(_checkpointsController.points[i].rotation), .5f, EventType.Repaint);
 
-                    Handles.color = Color.green;
-                    Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
-                        (current.z + next.z) / 2f);
-                    Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f,
-                        EventType.Repaint);
+                    if (i + 1 < _checkpointsController.points.Count)
+                    {
+                        Vector3 current = _checkpointsController.points[i].position;
+                        Vector3 next = _checkpointsController.points[i + 1].position;
+                        Handles.color = Color.blue;
+                        Handles.DrawLine(current, next);
 
+                        Handles.color = Color.green;
+                        Vector3 middle = new Vector3((current.x + next.x) / 2f, (current.y + next.y) / 2f,
+                            (current.z + next.z) / 2f);
+                        Handles.SphereHandleCap(0, middle, quaternion.Euler(_checkpointsController.points[i].rotation), .5f,
+                            EventType.Repaint);
+
+                    }
                 }
-            }
 
-            for (int i = 0; i < _checkpointsController.points.Count; i++)
-            {
-                // Handles.Label(checkpoints[i].position, "Checkpoint " + i);
-                // Handles.SphereHandleCap(0, checkpoints[i].position, quaternion.Euler(0,0,0), .5f, EventType.Repaint);
-                EditorGUI.BeginChangeCheck();
-                _checkpointsController.points[i].position =
-                    Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
-                // if (EditorGUI.EndChangeCheck())
-                // {
-                //     Undo.RecordObject(this, "Free Move LookAt Point");
-                //     checkpoints[i].position = pos;
-                //     this.Update();
-                // }
-                EditorGUI.EndChangeCheck();
-            }
+                for (int i = 0; i < _checkpointsController.points.Count; i++)
+                {
+                    // Handles.Label(checkpoints[i].position, "Checkpoint " + i);
+                    // Handles.SphereHandleCap(0, checkpoints[i].position, quaternion.Euler(0,0,0), .5f, EventType.Repaint);
+                    EditorGUI.BeginChangeCheck();
+                    _checkpointsController.points[i].position =
+                        Handles.DoPositionHandle(_checkpointsController.points[i].position, Quaternion.identity);
+                    // if (EditorGUI.EndChangeCheck())
+                    // {
+                    //     Undo.RecordObject(this, "Free Move LookAt Point");
+                    //     checkpoints[i].position = pos;
+                    //     this.Update();
+                    // }
+                    EditorGUI.EndChangeCheck();
+                }
 
-            Handles.EndGUI();
-            Repaint();
+                Handles.EndGUI();
+                Repaint();
+            }
         }
     }
 

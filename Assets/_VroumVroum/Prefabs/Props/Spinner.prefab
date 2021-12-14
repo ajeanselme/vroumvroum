@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7744019733565309652}
   - component: {fileID: 6689977942179155313}
   - component: {fileID: 8877549480629074363}
-  - component: {fileID: 388408315}
   - component: {fileID: 4865065365994138474}
   m_Layer: 0
   m_Name: Spinner
@@ -86,21 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &388408315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6932051684620687470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7444cd1d730d9294588d77d4d5650a52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positionA: {x: 22.5, y: 63.4, z: -10}
-  positionB: {x: 7.15, y: 55.78, z: -10}
-  speed: 1
 --- !u!136 &4865065365994138474
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -111,7 +95,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.1626623
-  m_Height: 12.963801
+  m_Radius: 2.2414541
+  m_Height: 8.558111
   m_Direction: 2
-  m_Center: {x: -0.000030039011, y: 0.049547434, z: 0.7690034}
+  m_Center: {x: 0.00000023841858, y: 0.059996605, z: 2.2790546}

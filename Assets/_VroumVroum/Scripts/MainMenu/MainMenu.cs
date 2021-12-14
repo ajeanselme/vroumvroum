@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             td = true;
+            MenuManager.instance.onGameSceneLaunched += ToDestroy;
             return;
         }
         
