@@ -15,20 +15,6 @@ public class Toaster : MonoBehaviour
 
     public Slice[] slices;
 
-    private void Start()
-    {
-        StartCoroutine(co());
-    }
-
-    private IEnumerator co()
-    {
-        yield return new WaitForSeconds(3f);
-
-        trigger();
-        
-        yield return null;
-    }
-    
     public void trigger()
     {
         Debug.Log("size " + slices.Length);
