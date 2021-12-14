@@ -427,6 +427,7 @@ public class CarController : MonoBehaviour
             _feedbacks.Feedbacks[2].Active = false;
             _animator.SetInteger("Power", 0);
             _feedbacks.PlayFeedbacks();
+            playSmallVibrations();
         }
         else
         {
@@ -436,6 +437,7 @@ public class CarController : MonoBehaviour
             _animator.SetInteger("Power", 1);
 
             _feedbacks.PlayFeedbacks();
+            playBigVibrations();
         }
         
         _airTime = 0f;
@@ -447,6 +449,30 @@ public class CarController : MonoBehaviour
         {
             _bumped = true;
             theRB.velocity = new Vector3((-theRB.velocity.normalized.x * force) +  (direction.normalized.x * force), force, (-theRB.velocity.normalized.z * force) +  (direction.normalized.z * force));
+            playBigVibrations();
+        }
+    }
+
+    public void playSmallVibrations()
+    {
+        foreach (Joystick joystick in rewiredPlayer.controllers.Joysticks)
+        {
+            if(!joystick.supportsVibration) continue;
+            for (int i = 0; i < joystick.vibrationMotorCount; i++)
+            {
+                joystick.SetVibration(i, .2f, .1f);
+            }
+        }
+    }
+    public void playBigVibrations()
+    {
+        foreach (Joystick joystick in rewiredPlayer.controllers.Joysticks)
+        {
+            if(!joystick.supportsVibration) continue;
+            for (int i = 0; i < joystick.vibrationMotorCount; i++)
+            {
+                joystick.SetVibration(i, .4f, .3f);
+            }
         }
     }
 
