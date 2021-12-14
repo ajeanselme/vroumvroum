@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Player = Rewired.Player;
 
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
 
-    private bool isGameLaunched = false;
+    [HideInInspector] public bool isGameLaunched = false;
     
     [SerializeField] private GameObject carPrefab;
     
@@ -46,8 +47,16 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (CrownManager.instance != null)
+            CrownManager.instance.isSelectingLoaded = true;
+    }
+
     private void Update()
     {
+        if (isGameLaunched) return;
+
         for (int i = 0; i < ReInput.players.playerCount; i++)
         {
             if (ReInput.players.GetPlayer(i).GetButtonDown("Join"))
@@ -68,6 +77,19 @@ public class MenuManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public GameObject IsPlayerSet(Rewired.Player _player)
+    {
+        for (int i = 0; i < slotsSet.Length; i++)
+        {
+            if (_player == slotsSet[i])
+            {
+                return carSelectings[i].gameObject;
+            }
+        }
+
+        return null;
     }
 
     private void SetPlayerSlot(Rewired.Player _player)
@@ -163,10 +185,26 @@ public class MenuManager : MonoBehaviour
     {
         selectionScreen.SetActive(false);
         loadingScreen.SetActive(true);
+
+        Text nText = loadingScreen.transform.GetChild(1).gameObject.GetComponent<Text>();
+        int nbPoint = 0;
+        string pointText = "";
         
         while (_asc.progress < 0.9f)
-            yield return null;
-        
+        {
+            nText.text = "Rewinding Cars" + pointText;
+            yield return new WaitForSeconds(0.1f);
+
+            pointText += ".";
+            nbPoint += 1;
+
+            if (nbPoint > 3)
+            {
+                nbPoint = 0;
+                pointText = "";
+            }
+        }
+
         loadingScreen.transform.GetChild(1).gameObject.SetActive(false); // text Loading
         loadingScreen.transform.GetChild(2).gameObject.SetActive(true); // text Press start to continue
 
@@ -197,7 +235,7 @@ public class MenuManager : MonoBehaviour
             carMeshes[i].mesh.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
 
             GameObject[] wheels = new GameObject[4];
-            for (int x = 2; x < carMeshes[i].mesh.transform.childCount; x++)
+            for (int x = 2; x < 6; x++)
             {
                 wheels[x - 2] = carMeshes[i].mesh.transform.GetChild(x).gameObject;
             }
