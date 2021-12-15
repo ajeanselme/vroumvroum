@@ -18,6 +18,7 @@ public class PropController : MonoBehaviour
             theRB = gameObject.AddComponent<Rigidbody>();
         }
 
+        theRB.mass = 50f;
         theRB.drag = 1f;
     }
 
