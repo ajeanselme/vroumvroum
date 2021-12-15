@@ -27,6 +27,9 @@ public class Minigame : MonoBehaviour
     public GameObject minigame1;
     public GameObject minigame2;
 
+    public AudioClip[] minigameSound;
+    public AudioSource playAudio;
+
     [Header("Values")]
     public float incrementMG1 = 3f;
     public float resistanceMG1 = .1f;
