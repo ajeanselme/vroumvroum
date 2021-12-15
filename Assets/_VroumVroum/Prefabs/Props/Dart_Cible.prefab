@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2645043100472539887}
   m_Layer: 0
   m_Name: Dart_Cible
-  m_TagString: Untagged
+  m_TagString: Other
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
