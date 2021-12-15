@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1755167692271738918}
   m_Layer: 0
   m_Name: Slice_Of_Bread_Bend
-  m_TagString: Untagged
+  m_TagString: Other
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

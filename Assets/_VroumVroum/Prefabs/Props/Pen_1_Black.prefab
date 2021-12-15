@@ -42,6 +42,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pen_1_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 3730159099580515933, guid: ee8890e243fe0504ba05552f6758423c, type: 3}
+      propertyPath: m_TagString
+      value: Other
+      objectReference: {fileID: 0}
     - target: {fileID: 4075756960752884967, guid: ee8890e243fe0504ba05552f6758423c, type: 3}
       propertyPath: m_RootOrder
       value: 0
