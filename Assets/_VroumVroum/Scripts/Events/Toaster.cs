@@ -14,9 +14,14 @@ public class Toaster : MonoBehaviour
     }
 
     public Slice[] slices;
+    public AudioClip toaster;
+    public AudioSource playAudio;
+    
 
     public void trigger()
     {
+        playAudio.clip = (AudioClip)toaster;
+        playAudio.Play();
         Debug.Log("size " + slices.Length);
         for (int i = 0; i < slices.Length; i++)
         {
