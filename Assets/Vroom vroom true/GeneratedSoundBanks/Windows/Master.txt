@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2915648265	Play_MUS_Race			\Default Work Unit\Play_MUS_Race	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	47094193	MUS_Race	D:\Prog\vroumvroum\Assets\Vroom vroom true\.cache\Windows\SFX\SOUNDS\MUSIC\MUS_Race_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SOUNDS\MUSIC\MUS_Race		8741712
+

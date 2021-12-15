@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1742839839}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &189423692
 ParticleSystem:
@@ -4834,7 +4834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1742839839}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &325828355
 ParticleSystem:
@@ -10224,8 +10224,6 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3449547572988248588}
-  - {fileID: 4968669231009718782}
   - {fileID: 189423693}
   - {fileID: 325828353}
   m_Father: {fileID: 5478544761951383303}
@@ -10844,7 +10842,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 47873227a93a415449e0890cc46cbb4b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.117
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
