@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Rewired;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CrownManager : MonoBehaviour
@@ -28,10 +30,22 @@ public class CrownManager : MonoBehaviour
         }
     }
 
+    // private void Start()
+    // {
+    //     if (!isSelectingLoaded || isCrownDone || player == null) return;
+    //
+    //     GameObject car = MenuManager.instance.IsPlayerSet(player);
+    //     
+    //     if (car != null)
+    //     {
+    //         SetCrown(car);
+    //     }
+    // }
+
     private void FixedUpdate()
     {
         if (!isSelectingLoaded || isCrownDone || player == null) return;
-
+    
         GameObject car = MenuManager.instance.IsPlayerSet(player);
         
         if (car != null)
@@ -45,10 +59,11 @@ public class CrownManager : MonoBehaviour
         isCrownDone = true;
 
         GameObject nCrown = Instantiate(crownPrefab, _car.transform);
-        nCrown.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-        nCrown.transform.localPosition = new Vector3(0f, 1.3f, 0f);
-        nCrown.AddComponent<CrownLevitate>().Initialize(0.2f, 1f);
-
+        nCrown.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        nCrown.transform.localPosition = new Vector3(-0.284f,1.073f,0.25f);
+        nCrown.transform.localEulerAngles = new Vector3(6.35f,1.8f,15.8f);
+        // nCrown.AddComponent<CrownLevitate>().Initialize(0.2f, 1f);
+        
         crown = nCrown;
         
         Destroy(gameObject);
