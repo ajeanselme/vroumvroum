@@ -21,7 +21,8 @@ public class MenuManager : MonoBehaviour
     private bool[] carsLocked;
 
     [Space]
-    [SerializeField] private GameObject selectionScreen;
+    [SerializeField] private GameObject readyScreen;
+    [SerializeField] private GameObject arrowScreen;
     [SerializeField] private GameObject loadingScreen;
 
     private Rewired.Player[] slotsSet = new Rewired.Player[4];
@@ -112,13 +113,13 @@ public class MenuManager : MonoBehaviour
 
         if (allLocked)
         {
-            selectionScreen.transform.GetChild(0).gameObject.SetActive(false);
-            selectionScreen.transform.GetChild(1).gameObject.SetActive(true);
+            arrowScreen.gameObject.SetActive(false);
+            readyScreen.gameObject.SetActive(true);
         }
         else
         {
-            selectionScreen.transform.GetChild(0).gameObject.SetActive(true);
-            selectionScreen.transform.GetChild(1).gameObject.SetActive(false);
+            arrowScreen.gameObject.SetActive(true);
+            readyScreen.gameObject.SetActive(false);
         }
     }
 
@@ -230,7 +231,7 @@ public class MenuManager : MonoBehaviour
 
     private IEnumerator LoadingScreen(AsyncOperation _asc)
     {
-        selectionScreen.SetActive(false);
+        readyScreen.transform.parent.gameObject.SetActive(false);
         loadingScreen.SetActive(true);
 
         Text nText = loadingScreen.transform.GetChild(1).gameObject.GetComponent<Text>();
