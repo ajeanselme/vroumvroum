@@ -20,36 +20,9 @@ public class CarCollider : MonoBehaviour
         {
             other.gameObject.GetComponent<PropController>().callCollision(car.theRB.velocity);
             car.reduceSpeed(other.gameObject.GetComponent<PropController>().weight);
-            if (other.gameObject.CompareTag("Book"))
-            {
-                randomSon = Random.Range(0, 3);
-                playAudio.clip = (AudioClip)collision[randomSon];
-                playAudio.Play();
-            }
-            if (other.gameObject.CompareTag("Other"))
-            {
-                randomSon = Random.Range(4, 7);
-                playAudio.clip = (AudioClip)collision[randomSon];
-                playAudio.Play();
-            }
-            if (other.gameObject.CompareTag("Glass"))
-            {
-                randomSon = Random.Range(8, 9);
-                playAudio.clip = (AudioClip)collision[randomSon];
-                playAudio.Play();
-            }
-            if (other.gameObject.CompareTag("Metal"))
-            {
-                randomSon = Random.Range(10, 12);
-                playAudio.clip = (AudioClip)collision[randomSon];
-                playAudio.Play();
-            }
-            if (other.gameObject.CompareTag("Wood"))
-            {
-                randomSon = Random.Range(13, 15);
-                playAudio.clip = (AudioClip)collision[randomSon];
-                playAudio.Play();
-            }
+            randomSon = Random.Range(0, collision.Length);
+            playAudio.clip = (AudioClip)collision[randomSon];
+            playAudio.Play();
         }
         else
         {
