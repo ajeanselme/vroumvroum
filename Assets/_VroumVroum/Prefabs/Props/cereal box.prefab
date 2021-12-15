@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8336149225497504713}
   m_Layer: 0
   m_Name: cereal box
-  m_TagString: Untagged
+  m_TagString: Other
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
