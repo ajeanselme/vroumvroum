@@ -35,9 +35,9 @@ public class EndGameManager : MonoBehaviour
         for (int i = 0; i < carsPodium.Length; i++)
         {
             carsPodium[playerDatas[i].ladderPosition - 1] = cars[playerDatas[i].index];
-            if (i == 0)
+            if (playerDatas[i].ladderPosition == 1)
             {
-                winnerPlayer = carsPodium[0].GetComponentInParent<CarController>().rewiredPlayer;
+                winnerPlayer = carsPodium[playerDatas[i].ladderPosition - 1].GetComponentInParent<CarController>().rewiredPlayer;
             }
 
             cars[playerDatas[i].index].transform.parent = null;
@@ -45,8 +45,6 @@ public class EndGameManager : MonoBehaviour
 
             carsDistance[playerDatas[i].ladderPosition - 1] = playerDatas[i].CurrentDistance;
         }
-        
-        
 
         StartCoroutine(IELaunchEndScene());
     }
@@ -58,6 +56,14 @@ public class EndGameManager : MonoBehaviour
             SceneManager.MoveGameObjectToScene(carsPodium[i], SceneManager.GetActiveScene());
             carsPodium[i].transform.rotation = Quaternion.Euler(Vector3.zero);
             carsPodium[i].transform.localScale = Vector3.one;
+            
+            carsPodium[i].transform.GetChild(0).localRotation = Quaternion.Euler(-90f, 0f, 0f); // car mesh
+            carsPodium[i].transform.GetChild(1).localRotation = Quaternion.Euler(-75f, 0f, 0f); // key mesh
+
+            for (int x = 2; x < carsPodium[i].transform.childCount; x++)
+            {
+                carsPodium[i].transform.GetChild(x).localRotation = Quaternion.Euler(Vector3.zero); // wheel mesh
+            }
         }
         
         End endScript = End.instance;

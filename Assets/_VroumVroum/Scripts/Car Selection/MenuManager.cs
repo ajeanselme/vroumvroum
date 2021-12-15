@@ -12,10 +12,13 @@ public class MenuManager : MonoBehaviour
     public static MenuManager instance;
 
     [HideInInspector] public bool isGameLaunched = false;
+
+    private string[] carsColor;
     
     [SerializeField] private GameObject carPrefab;
     
     [SerializeField] private CarSelecting[] carSelectings;
+    private bool[] carsLocked;
 
     [Space]
     [SerializeField] private GameObject selectionScreen;
@@ -57,6 +60,8 @@ public class MenuManager : MonoBehaviour
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Default");
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Menu");
         }
+
+        carsLocked = new bool[carSelectings.Length];
     }
 
     private void Update()
@@ -85,11 +90,43 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void SetLockState(CarSelecting _slot, bool _state)
+    {
+        carsLocked[Array.IndexOf(carSelectings, _slot)] = _state;
+        
+        TestAllSlotLocked();
+    }
+
+    private void TestAllSlotLocked()
+    {
+        bool allLocked = true;
+        
+        for (int i = 0; i < slotsSet.Length; i++)
+        {
+            if (slotsSet[i] != null && !carsLocked[i])
+            {
+                allLocked = false;
+                break;
+            }
+        }
+
+        if (allLocked)
+        {
+            selectionScreen.transform.GetChild(0).gameObject.SetActive(false);
+            selectionScreen.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            selectionScreen.transform.GetChild(0).gameObject.SetActive(true);
+            selectionScreen.transform.GetChild(1).gameObject.SetActive(false);
+        }
+    }
+
     public GameObject IsPlayerSet(Rewired.Player _player)
     {
         for (int i = 0; i < slotsSet.Length; i++)
         {
-            if (_player == slotsSet[i])
+            if (slotsSet[i] != null && _player.id == slotsSet[i].id)
             {
                 return carSelectings[i].gameObject;
             }
@@ -123,7 +160,7 @@ public class MenuManager : MonoBehaviour
         carSelectings[index].PlayerLeave(_player);
     }
 
-    public bool LaunchGame()
+    private bool LaunchGame()
     {
         if (isGameLaunched) return true;
         
@@ -160,10 +197,14 @@ public class MenuManager : MonoBehaviour
 
         if (isReady)
         {
+            carsColor = new string[carMeshes.Count];
+            
             for (int i = 0; i < carMeshes.Count; i++)
             {
                 carMeshes[i].mesh.transform.parent = null;
-                Destroy(carMeshes[i].mesh.GetComponent<CarSelecting>());
+                CarSelecting crs = carMeshes[i].mesh.GetComponent<CarSelecting>();
+                carsColor[i] = ColorManager.instance.colorChanger[crs.colorIndex].color;
+                Destroy(crs);
                 DontDestroyOnLoad(carMeshes[i].mesh);
             }
             
@@ -199,7 +240,7 @@ public class MenuManager : MonoBehaviour
         while (_asc.progress < 0.9f)
         {
             nText.text = "Rewinding Cars" + pointText;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
 
             pointText += ".";
             nbPoint += 1;
@@ -214,7 +255,20 @@ public class MenuManager : MonoBehaviour
         loadingScreen.transform.GetChild(1).gameObject.SetActive(false); // text Loading
         loadingScreen.transform.GetChild(2).gameObject.SetActive(true); // text Press start to continue
 
-        yield return new WaitUntil(() => ReInput.players.Players[0].GetButtonDown("Join"));
+        yield return new WaitUntil(() =>
+        {
+            bool rValue = false;
+            
+            for (int i = 0; i < ReInput.players.playerCount; i++)
+            {
+                rValue = ReInput.players.Players[i].GetButtonDown("Join");
+                
+                if (rValue)
+                    break;
+            }
+
+            return rValue;
+        });
         
         _asc.allowSceneActivation = true;
     }
@@ -256,7 +310,7 @@ public class MenuManager : MonoBehaviour
         cars[0].gameObject.SetActive(true);
         cars[0].enabled = true;
 
-        TurnManager.instance.SetPlayers(cars);
+        TurnManager.instance.SetPlayers(cars, carsColor);
         
         Destroy(gameObject);
     }

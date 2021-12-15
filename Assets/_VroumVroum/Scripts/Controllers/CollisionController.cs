@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
+using Rewired;
 using UnityEngine;
 
 public class CollisionController : MonoBehaviour
@@ -27,6 +28,7 @@ public class CollisionController : MonoBehaviour
         {
             Vector3 reflection = Vector3.Reflect(car.transform.forward, collision.contacts[0].normal);
             car.transform.rotation = Quaternion.LookRotation(reflection, Vector3.up);
+            car.playSmallVibrations();
         }
         else
         {
