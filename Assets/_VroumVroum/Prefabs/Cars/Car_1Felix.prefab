@@ -10299,14 +10299,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 327f4a577fa1a8346ad68e4ca6b4ba5f, type: 3}
   - {fileID: 8300000, guid: 825511bb34bc7d245b92dee9c286398f, type: 3}
   - {fileID: 8300000, guid: a12be0738ef872849b2d573c180738b7, type: 3}
-  - {fileID: 8300000, guid: 48d631a4788cae543ab47837ea5c9224, type: 3}
-  - {fileID: 8300000, guid: 00694c54dde97bf4ca59a303c76381ca, type: 3}
-  - {fileID: 8300000, guid: 080d98c14fa4db941a866f58c0b34a6b, type: 3}
-  - {fileID: 8300000, guid: 6a16ca56f4285034b9af6ab0a7c10eaf, type: 3}
-  - {fileID: 8300000, guid: b1c0517e8023a3347a847ea12b406065, type: 3}
-  - {fileID: 8300000, guid: 0ab1b84249e4339409d9d09a5557baef, type: 3}
-  - {fileID: 8300000, guid: cf9286ba8a5b62b4ba0d0544ed62c7a2, type: 3}
-  - {fileID: 8300000, guid: 23d56819665e7e64a9a4e9c81b5d69a9, type: 3}
   playAudio: {fileID: 8204447199599698787}
 --- !u!54 &1813643305
 Rigidbody:
@@ -10335,7 +10327,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
