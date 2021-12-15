@@ -27,6 +27,10 @@ public class Minigame : MonoBehaviour
     public GameObject minigame1;
     public GameObject minigame2;
 
+    public AudioClip[] minigameSound;
+    public AudioSource playAudio;
+    private int randomSon;
+
     [Header("Values")]
     public float incrementMG1 = 3f;
     public float resistanceMG1 = .1f;
@@ -169,6 +173,17 @@ public class Minigame : MonoBehaviour
                 
                 m2actif = false;
                 decompteMG2 = 0f;
+                if (m2Charge > 80)
+                {
+                    randomSon = Random.Range(3, 5);
+                    playAudio.clip = (AudioClip)minigameSound[randomSon];
+                    playAudio.Play();
+                } else
+                {
+                    randomSon = Random.Range(0, 2);
+                    playAudio.clip = (AudioClip)minigameSound[randomSon];
+                    playAudio.Play();
+                }
             }
         }
     }
