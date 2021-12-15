@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Prop
+  - Book
+  - Wood
+  - Metal
+  - Glass
+  - Other
   layers:
   - Default
   - TransparentFX
