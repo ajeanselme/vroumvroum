@@ -31,6 +31,9 @@ public class End : MonoBehaviour
     [Space]
     [SerializeField] private Text endText;
 
+    [SerializeField] private RectTransform endMenu;
+    [SerializeField] private Button firstButton;
+
     private void Awake()
     {
         instance = this;
@@ -38,6 +41,7 @@ public class End : MonoBehaviour
 
     private void Start()
     {
+        endMenu.gameObject.SetActive(false);
         for (int i = 0; i < ReInput.players.playerCount; i++)
         {
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Default");
@@ -70,7 +74,9 @@ public class End : MonoBehaviour
 
         if (endScroll && ReInput.players.GetPlayer(0).GetAnyButton())
         {
-            SceneManager.LoadScene(1);
+            endMenu.gameObject.SetActive(true);
+            firstButton.Select();
+            endMenu.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
         }
     }
 
