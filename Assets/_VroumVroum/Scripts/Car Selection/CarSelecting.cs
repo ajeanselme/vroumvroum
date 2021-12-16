@@ -51,7 +51,7 @@ public class CarSelecting : MonoBehaviour
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
         
-        statusText.text = "To Join";
+        statusText.text = "Start\nTo Join";
     }
     
     private void Update()

@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using DG.Tweening;
 using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -20,6 +22,11 @@ public class TurnManager : MonoBehaviour
     private float halfTimer;
     public int indexCarTurn;
 
+    public GameObject lastRoundPostit;
+    public AudioSource lastRoundRing;
+
+    public Text roundText;
+    
     public CarController[] cars;
 
     [HideInInspector] public List<GameObject> carPrefabs = new List<GameObject>();
@@ -27,11 +34,14 @@ public class TurnManager : MonoBehaviour
     [HideInInspector] public GameObject endCamera;
     [HideInInspector] public int maxTurn;
     [HideInInspector] public ParticleSystem speedParticles;
+
+    private bool playLastRound;
+    private bool playedLastRound;
     
     //debug
     [HideInInspector] public bool playMinigame = true;
-    
-    [System.Serializable]
+
+    [Serializable]
     public struct MyStruct
     {
         public int test;
@@ -52,12 +62,16 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         endCamera.SetActive(false);
-
+        lastRoundPostit.SetActive(false);
+        
         for (int i = 0; i < ReInput.players.playerCount; i++)
         {
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Menu");
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Default");
         }
+        
+        roundText.text = (turn + 1) + "/" + maxTurn;
+
     }
 
     private void Update()
@@ -141,10 +155,17 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
+                if (turn == maxTurn - 1)
+                    if (!playedLastRound)
+                        playLastRound = true;
+                    
+                
                 indexCarTurn = 0;
                 cars[0].enabled = true;
                 cars[0].vcam.gameObject.SetActive(true);
                 StartCoroutine(WaitLaunch(cars[0], 2f));
+
+                roundText.text = (turn + 1) + "/" + maxTurn;
             }
         }
         else
@@ -165,8 +186,21 @@ public class TurnManager : MonoBehaviour
         player.stopCar();
         CheckpointsController.instance.LoadPlayer(indexCarTurn);
 
-        yield return new WaitForSeconds(sec);
-
+        if (playLastRound)
+        {
+            playLastRound = false;
+            playedLastRound = true;
+            
+            PlayLastRound();
+            yield return new WaitForSeconds(5f);
+            lastRoundPostit.SetActive(false);
+        }
+        else
+        {
+            yield return new WaitForSeconds(sec);
+        }
+        
+        
         if (playMinigame)
         {
             minigame.beginMinigame(player);
@@ -202,5 +236,16 @@ public class TurnManager : MonoBehaviour
     public CarController GetCurrentCar()
     {
         return cars[indexCarTurn];
+    }
+
+    private void PlayLastRound()
+    {
+        Debug.Log("hmm");
+        lastRoundPostit.SetActive(true);
+
+        lastRoundPostit.transform.DOPunchScale(new Vector3(.3f, .3f, 0f), 3f);
+        lastRoundPostit.transform.DOPunchRotation(new Vector3(0f, 0f, -30f), 3f, 20, 2f);
+        
+        lastRoundRing.Play();
     }
 }
