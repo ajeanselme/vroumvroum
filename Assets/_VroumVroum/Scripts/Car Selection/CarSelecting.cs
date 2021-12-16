@@ -11,6 +11,8 @@ public class CarSelecting : MonoBehaviour
 
     private MeshRenderer mrCar, mrKey;
 
+    private Coroutine moveCoroutine;
+
     private float timerLRJoystick = 0f;
     
     private bool isJoined = false;
@@ -20,13 +22,16 @@ public class CarSelecting : MonoBehaviour
     public int colorIndex = 0;
     public int motifIndex = 0;
 
-    [SerializeField] private Text statusText;
+    [SerializeField] private TextMesh statusText;
     [SerializeField] private float moveForceEffect;
     [SerializeField] private float timePlayerEffect;
 
     [Space]
     [SerializeField] private GameObject lArrow;
     [SerializeField] private GameObject rArrow;
+    [Space]
+    [SerializeField] private GameObject carSilouhette;
+    [SerializeField] private float yCarStart;
 
     private void Start()
     {
@@ -39,6 +44,12 @@ public class CarSelecting : MonoBehaviour
         
         lArrow.SetActive(false);
         rArrow.SetActive(false);
+        carSilouhette.SetActive(true);
+        
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
         
         statusText.text = "To Join";
     }
@@ -54,13 +65,13 @@ public class CarSelecting : MonoBehaviour
             if (!isColorChose)
             {
                 isColorChose = true;
-                statusText.text = "Chose motif";
+                statusText.text = "Choose\nDesign";
                 return;
             }
             
             isLocked = !isLocked;
             MenuManager.instance.SetLockState(this, isLocked);
-            statusText.text = isLocked ? "Ready" : "";
+            statusText.text = isLocked ? "Ready" : "Choose\nDesign";
         }
         
         if (isLocked) return;
@@ -95,9 +106,12 @@ public class CarSelecting : MonoBehaviour
         
         lArrow.SetActive(true);
         rArrow.SetActive(true);
+        carSilouhette.SetActive(false);
+
+        StartCoroutine(JoinShowCar());
 
         isJoined = true;
-        statusText.text = "";
+        statusText.text = "Choose\nColor";
         rewiredPlayer = _player;
         ChangeNext();
         MenuManager.instance.SetLockState(this, isLocked);
@@ -107,7 +121,13 @@ public class CarSelecting : MonoBehaviour
     {
         lArrow.SetActive(false);
         rArrow.SetActive(false);
+        carSilouhette.SetActive(true);
         
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
         rewiredPlayer = null;
         statusText.text = "To Join";
         isJoined = false;
@@ -116,6 +136,30 @@ public class CarSelecting : MonoBehaviour
         // Default materials
         mrCar.materials = ColorManager.instance.defaultColor.materials;
         mrKey.material = ColorManager.instance.defaultColor.keyMaterial;
+    }
+
+    private IEnumerator JoinShowCar()
+    {
+        float t = 0f;
+        Vector3 carPos;
+        carPos.x = gameObject.transform.position.x;
+        carPos.y = yCarStart;
+        carPos.z = gameObject.transform.position.z;
+
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+
+            carPos.y = Mathf.Lerp(yCarStart, 0f, t);
+            gameObject.transform.position = carPos;
+            
+            yield return null;
+        }
     }
     
     public void ChangeNext()
@@ -214,8 +258,11 @@ public class CarSelecting : MonoBehaviour
 
     private void CarMoveEffect(float _dir)
     {
-        StopAllCoroutines();
-        StartCoroutine(MoveEffect(_dir));
+        
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+        
+        moveCoroutine = StartCoroutine(MoveEffect(_dir));
     }
 
     private IEnumerator MoveEffect(float _dir)
