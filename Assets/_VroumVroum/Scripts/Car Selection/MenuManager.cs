@@ -18,9 +18,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject carPrefab;
     
     [SerializeField] private CarSelecting[] carSelectings;
+    private bool[] carsLocked;
 
     [Space]
-    [SerializeField] private GameObject selectionScreen;
+    [SerializeField] private GameObject readyScreen;
+    [SerializeField] private GameObject arrowScreen;
     [SerializeField] private GameObject loadingScreen;
 
     private Rewired.Player[] slotsSet = new Rewired.Player[4];
@@ -59,6 +61,8 @@ public class MenuManager : MonoBehaviour
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(false, "Default");
             ReInput.players.Players[i].controllers.maps.SetMapsEnabled(true, "Menu");
         }
+
+        carsLocked = new bool[carSelectings.Length];
     }
 
     private void Update()
@@ -84,6 +88,38 @@ public class MenuManager : MonoBehaviour
                 
                 break;
             }
+        }
+    }
+
+    public void SetLockState(CarSelecting _slot, bool _state)
+    {
+        carsLocked[Array.IndexOf(carSelectings, _slot)] = _state;
+        
+        TestAllSlotLocked();
+    }
+
+    private void TestAllSlotLocked()
+    {
+        bool allLocked = true;
+        
+        for (int i = 0; i < slotsSet.Length; i++)
+        {
+            if (slotsSet[i] != null && !carsLocked[i])
+            {
+                allLocked = false;
+                break;
+            }
+        }
+
+        if (allLocked)
+        {
+            arrowScreen.gameObject.SetActive(false);
+            readyScreen.gameObject.SetActive(true);
+        }
+        else
+        {
+            arrowScreen.gameObject.SetActive(true);
+            readyScreen.gameObject.SetActive(false);
         }
     }
 
@@ -195,7 +231,7 @@ public class MenuManager : MonoBehaviour
 
     private IEnumerator LoadingScreen(AsyncOperation _asc)
     {
-        selectionScreen.SetActive(false);
+        readyScreen.transform.parent.gameObject.SetActive(false);
         loadingScreen.SetActive(true);
 
         Text nText = loadingScreen.transform.GetChild(1).gameObject.GetComponent<Text>();

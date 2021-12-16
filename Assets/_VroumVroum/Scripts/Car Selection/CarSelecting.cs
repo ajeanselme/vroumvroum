@@ -11,6 +11,8 @@ public class CarSelecting : MonoBehaviour
 
     private MeshRenderer mrCar, mrKey;
 
+    private float timerLRJoystick = 0f;
+    
     private bool isJoined = false;
     public bool isColorChose = false;
     public bool isLocked = false;
@@ -22,6 +24,10 @@ public class CarSelecting : MonoBehaviour
     [SerializeField] private float moveForceEffect;
     [SerializeField] private float timePlayerEffect;
 
+    [Space]
+    [SerializeField] private GameObject lArrow;
+    [SerializeField] private GameObject rArrow;
+
     private void Start()
     {
         mrCar = gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
@@ -30,6 +36,9 @@ public class CarSelecting : MonoBehaviour
         // Default materials
         mrCar.materials = ColorManager.instance.defaultColor.materials;
         mrKey.material = ColorManager.instance.defaultColor.keyMaterial;
+        
+        lArrow.SetActive(false);
+        rArrow.SetActive(false);
         
         statusText.text = "To Join";
     }
@@ -50,28 +59,55 @@ public class CarSelecting : MonoBehaviour
             }
             
             isLocked = !isLocked;
+            MenuManager.instance.SetLockState(this, isLocked);
             statusText.text = isLocked ? "Ready" : "";
         }
         
         if (isLocked) return;
 
-        if (rewiredPlayer.GetButtonDown("Left")) ChangePrevious();
-        if (rewiredPlayer.GetButtonDown("Right")) ChangeNext();
+        if (timerLRJoystick > 0f)
+        {
+            timerLRJoystick -= Time.deltaTime;
+        }
+
+        float lrValue = rewiredPlayer.GetAxis("LRMenu");
         
+        if (lrValue != 0f && timerLRJoystick <= 0f)
+        {
+            if (lrValue < 0f) ChangePrevious();
+            else ChangeNext();
+
+            timerLRJoystick = 0.5f;
+            return;
+        }
+        if (lrValue == 0f && timerLRJoystick > 0f)
+        {
+            timerLRJoystick = 0f;
+        }
+        
+        /*if (rewiredPlayer.GetButtonDown("Left")) ChangePrevious();
+        if (rewiredPlayer.GetButtonDown("Right")) ChangeNext();*/
     }
 
     public void PlayerJoin(Rewired.Player _player)
     {
         if (isJoined || _player == null) return;
+        
+        lArrow.SetActive(true);
+        rArrow.SetActive(true);
 
         isJoined = true;
         statusText.text = "";
         rewiredPlayer = _player;
         ChangeNext();
+        MenuManager.instance.SetLockState(this, isLocked);
     }
 
     public void PlayerLeave(Rewired.Player _player)
     {
+        lArrow.SetActive(false);
+        rArrow.SetActive(false);
+        
         rewiredPlayer = null;
         statusText.text = "To Join";
         isJoined = false;

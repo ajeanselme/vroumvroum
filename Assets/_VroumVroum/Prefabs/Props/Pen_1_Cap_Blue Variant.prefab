@@ -93,6 +93,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pen_1_Cap_Blue Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4337406617441158451, guid: 4aa3a4ea06bcdf445af4daba0cd7007c, type: 3}
+      propertyPath: m_TagString
+      value: Other
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa3a4ea06bcdf445af4daba0cd7007c, type: 3}
 --- !u!1 &4511376307213295268 stripped

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2984654623789290856}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Glass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
