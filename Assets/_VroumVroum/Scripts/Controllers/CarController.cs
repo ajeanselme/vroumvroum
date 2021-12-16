@@ -336,26 +336,26 @@ public class CarController : MonoBehaviour
                 // If on slide
                 else if (_slopeAngle < -1f)
                 {
-                    if (_remainingTime > 1f)
-                    {
+                    // if (_remainingTime > 1f)
+                    // {
                         _currentSpeed = Mathf.Clamp(initialSpeed + .5f * slideCurve.Evaluate(-_slopeAngle), 0, initialSpeed * 1.2f);
-                    }
-                    else
-                    {
-                        _currentSpeed = Mathf.Clamp(_currentSpeed + slideCurve.Evaluate(-_slopeAngle) * Time.deltaTime, 0, initialSpeed * 1.2f);
-                    }
+                    // }
+                    // else
+                    // {
+                    //     _currentSpeed = Mathf.Clamp(_currentSpeed + slideCurve.Evaluate(-_slopeAngle) * Time.deltaTime, 0, initialSpeed * 1.2f);
+                    // }
                 }
                 // If on uphill
                 else if (_slopeAngle > 1f)
                 {
-                    if (_remainingTime > 1f)
-                    {
+                    // if (_remainingTime > 1f)
+                    // {
                         _currentSpeed = Mathf.Clamp(initialSpeed * uphillCurve.Evaluate(_slopeAngle), 0, initialSpeed);
-                    }
-                    else
-                    {
-                        _currentSpeed -= decelerationSpeed * Mathf.Clamp(uphillCurve.Evaluate(_slopeAngle), .95f, 1f) * Time.deltaTime;
-                    }
+                    // }
+                    // else
+                    // {
+                    //     _currentSpeed -= decelerationSpeed * Mathf.Clamp(uphillCurve.Evaluate(_slopeAngle), .95f, 1f) * Time.deltaTime;
+                    // }
                 }
 
                 if(_remainingTime > 0)

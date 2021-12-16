@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8492639512910097117}
   - component: {fileID: 7069102228032812628}
   - component: {fileID: 7069102228032812635}
+  - component: {fileID: 292938980292482858}
   m_Layer: 0
   m_Name: Spoon
   m_TagString: Metal
@@ -94,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.548443, y: 4.686781, z: 0.7026943}
-  m_Center: {x: -0.0000027418134, y: -1.3960584, z: -0.21658713}
+  m_Size: {x: 1.548443, y: 1.9621714, z: 0.51480037}
+  m_Center: {x: -0.000002594104, y: -0.033752233, z: -0.31053433}
 --- !u!114 &7069102228032812635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +110,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 7
+--- !u!65 &292938980292482858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988003464579664648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.350924, y: 2.687448, z: 0.40615368}
+  m_Center: {x: 0.000027704096, y: -2.3956952, z: -0.06831061}
